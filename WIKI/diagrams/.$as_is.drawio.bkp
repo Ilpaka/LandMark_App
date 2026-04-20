@@ -1,0 +1,76 @@
+<mxfile host="Electron" agent="LandMark_App">
+  <diagram id="as_is_landmark" name="AS-IS">
+    <mxGraphModel dx="2357" dy="1728" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1000" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="lane_hdr_user" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=14;fontStyle=1" value="Пользователь" vertex="1">
+          <mxGeometry height="32" width="460" x="90" y="202" as="geometry" />
+        </mxCell>
+        <mxCell id="lane_hdr_ext" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=14;fontStyle=1" value="Внешние сервисы / сторонние приложения" vertex="1">
+          <mxGeometry height="32" width="460" x="570" y="202" as="geometry" />
+        </mxCell>
+        <mxCell id="lane_hdr_adm" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=14;fontStyle=1" value="Администратор" vertex="1">
+          <mxGeometry height="32" width="460" x="1050" y="202" as="geometry" />
+        </mxCell>
+        <mxCell id="bg_user" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#B3B3B3;fontFamily=Arial;fontSize=12" value="" vertex="1">
+          <mxGeometry height="474" width="460" x="90" y="238" as="geometry" />
+        </mxCell>
+        <mxCell id="bg_ext" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F0F0F0;strokeColor=#B3B3B3;fontFamily=Arial;fontSize=12" value="" vertex="1">
+          <mxGeometry height="474" width="460" x="570" y="238" as="geometry" />
+        </mxCell>
+        <mxCell id="bg_adm" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F5F5F5;strokeColor=#B3B3B3;fontFamily=Arial;fontSize=12" value="" vertex="1">
+          <mxGeometry height="474" width="460" x="1050" y="238" as="geometry" />
+        </mxCell>
+        <mxCell id="u1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#666666;fontFamily=Arial;fontSize=13" value="Открывает стороннее картографическое приложение и ищет интересное место" vertex="1">
+          <mxGeometry height="64" width="380" x="130" y="278" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8E8E8;strokeColor=#666666;fontFamily=Arial;fontSize=13" value="Картографическое приложение: просмотр расположения и базовой информации о месте" vertex="1">
+          <mxGeometry height="64" width="380" x="610" y="278" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_u1_e1" edge="1" parent="1" source="u1" style="endArrow=block;html=1;rounded=0;strokeColor=#444444;fontSize=12;edgeStyle=orthogonalEdgeStyle;" target="e1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="u2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFE6E6;strokeColor=#CC6666;fontFamily=Arial;fontSize=13" value="Пытается сохранить информацию о месте вручную: заметки, мессенджер или соцсети&#xa;Проблема: данные отдельно от карты, теряется структура" vertex="1">
+          <mxGeometry height="72" width="380" x="130" y="382" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFE6E6;strokeColor=#CC6666;fontFamily=Arial;fontSize=13" value="Заметки / мессенджер / соцсети: фрагментарное хранение" vertex="1">
+          <mxGeometry height="72" width="380" x="610" y="382" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_e1_u2" edge="1" parent="1" source="e1" style="endArrow=block;html=1;rounded=0;strokeColor=#444444;fontSize=12;edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="u2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_u2_e2" edge="1" parent="1" source="u2" style="endArrow=block;html=1;rounded=0;strokeColor=#444444;fontSize=12;edgeStyle=orthogonalEdgeStyle;" target="e2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="u3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFE6E6;strokeColor=#CC6666;fontFamily=Arial;fontSize=13" value="После посещения фиксирует фотографии и впечатления в другом приложении&#xa;Проблема: личный опыт не связан с локацией на карте" vertex="1">
+          <mxGeometry height="72" width="380" x="130" y="494" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFE6E6;strokeColor=#CC6666;fontFamily=Arial;fontSize=13" value="Другое приложение (галерея, заметки и т.п.): контент вне картографического контекста" vertex="1">
+          <mxGeometry height="72" width="380" x="610" y="494" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_e2_u3" edge="1" parent="1" source="e2" style="endArrow=block;html=1;rounded=0;strokeColor=#444444;fontSize=12;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;edgeStyle=orthogonalEdgeStyle;" target="u3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_u3_e3" edge="1" parent="1" source="u3" style="endArrow=block;html=1;rounded=0;strokeColor=#444444;fontSize=12;edgeStyle=orthogonalEdgeStyle;" target="e3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="u4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFE6E6;strokeColor=#CC6666;fontFamily=Arial;fontSize=13" value="Позже восстанавливает историю поездки и снова ищет нужную точку&#xa;Проблема: повторный поиск, риск потери части информации" vertex="1">
+          <mxGeometry height="72" width="380" x="130" y="606" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_e3_u4" edge="1" parent="1" source="e3" style="endArrow=block;html=1;rounded=0;strokeColor=#444444;fontSize=12;edgeStyle=orthogonalEdgeStyle;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" target="u4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="end" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EEEEEE;strokeColor=#666666;fontFamily=Arial;fontSize=13;fontStyle=1" value="Итог AS-IS: карта, заметки, фото и история поездки разрознены между сервисами" vertex="1">
+          <mxGeometry height="56" width="420" x="110" y="742" as="geometry" />
+        </mxCell>
+        <mxCell id="edge_u4_end" edge="1" parent="1" source="u4" style="endArrow=block;html=1;rounded=0;strokeColor=#444444;fontSize=12" target="end">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#999999;fontFamily=Arial;fontSize=13" value="В текущем процессе не выполняется модерация пользовательских публичных точек на общей карте приложения (единого контура нет)" vertex="1">
+          <mxGeometry height="88" width="380" x="1090" y="382" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
