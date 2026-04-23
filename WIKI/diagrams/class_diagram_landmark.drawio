@@ -1,0 +1,151 @@
+<mxfile host="Electron" agent="LandMark_App">
+  <diagram id="class_diagram_landmark" name="Диаграмма классов (путешественник)">
+    <mxGraphModel dx="2408" dy="1540" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="1400" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="cl_user" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FAFAFA;strokeColor=#333333;fontFamily=Arial;fontSize=11;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;spacingBottom=6;" value="&lt;p style=&quot;margin:0;text-align:center&quot;&gt;&lt;b&gt;Пользователь&lt;/b&gt;&lt;/p&gt;&lt;hr style=&quot;border:none;border-top:1px solid #333;margin:6px 0&quot;/&gt;&lt;p style=&quot;margin:0;line-height:1.4&quot;&gt;+ идентификатор: UUID&lt;br/&gt;+ имя: string&lt;br/&gt;+ email: string&lt;br/&gt;+ хэш_пароля: string&lt;br/&gt;+ url_аватара: string&lt;br/&gt;+ дата_создания: datetime&lt;br/&gt;+ статус: string&lt;/p&gt;" vertex="1">
+          <mxGeometry height="200" width="230" x="160" y="500" as="geometry" />
+        </mxCell>
+        <mxCell id="cl_trip" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FAFAFA;strokeColor=#333333;fontFamily=Arial;fontSize=11;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;spacingBottom=6;" value="&lt;p style=&quot;margin:0;text-align:center&quot;&gt;&lt;b&gt;Путешествие&lt;/b&gt;&lt;/p&gt;&lt;hr style=&quot;border:none;border-top:1px solid #333;margin:6px 0&quot;/&gt;&lt;p style=&quot;margin:0;line-height:1.4&quot;&gt;+ идентификатор: UUID&lt;br/&gt;+ идентификатор_пользователя: UUID&lt;br/&gt;+ заголовок: string&lt;br/&gt;+ описание: text&lt;br/&gt;+ дата_начала: date&lt;br/&gt;+ дата_окончания: date&lt;br/&gt;+ страна: string&lt;br/&gt;+ город: string&lt;br/&gt;+ статус: string&lt;/p&gt;" vertex="1">
+          <mxGeometry height="240" width="250" x="595" y="240" as="geometry" />
+        </mxCell>
+        <mxCell id="cl_journal" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FAFAFA;strokeColor=#333333;fontFamily=Arial;fontSize=11;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;spacingBottom=6;" value="&lt;p style=&quot;margin:0;text-align:center&quot;&gt;&lt;b&gt;ЗаписьЖурнала&lt;/b&gt;&lt;/p&gt;&lt;hr style=&quot;border:none;border-top:1px solid #333;margin:6px 0&quot;/&gt;&lt;p style=&quot;margin:0;line-height:1.4&quot;&gt;+ идентификатор: UUID&lt;br/&gt;+ идентификатор_путешествия: UUID&lt;br/&gt;+ идентификатор_пользователя: UUID&lt;br/&gt;+ заголовок: string&lt;br/&gt;+ текст: text&lt;br/&gt;+ дата_посещения: datetime&lt;br/&gt;+ широта: decimal&lt;br/&gt;+ долгота: decimal&lt;br/&gt;+ настроение: string&lt;br/&gt;+ дата_создания: datetime&lt;/p&gt;" vertex="1">
+          <mxGeometry height="270" width="260" x="590" y="590" as="geometry" />
+        </mxCell>
+        <mxCell id="cl_media" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FAFAFA;strokeColor=#333333;fontFamily=Arial;fontSize=11;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;spacingBottom=6;" value="&lt;p style=&quot;margin:0;text-align:center&quot;&gt;&lt;b&gt;МедиаФайл&lt;/b&gt;&lt;/p&gt;&lt;hr style=&quot;border:none;border-top:1px solid #333;margin:6px 0&quot;/&gt;&lt;p style=&quot;margin:0;line-height:1.4&quot;&gt;+ идентификатор: UUID&lt;br/&gt;+ идентификатор_записи_журнала: UUID&lt;br/&gt;+ url_файла: string&lt;br/&gt;+ тип_файла: string&lt;br/&gt;+ дата_загрузки: datetime&lt;br/&gt;+ описание: string&lt;/p&gt;" vertex="1">
+          <mxGeometry height="175" width="260" x="590" y="910" as="geometry" />
+        </mxCell>
+        <mxCell id="cl_route" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FAFAFA;strokeColor=#333333;fontFamily=Arial;fontSize=11;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;spacingBottom=6;" value="&lt;p style=&quot;margin:0;text-align:center&quot;&gt;&lt;b&gt;Маршрут&lt;/b&gt;&lt;/p&gt;&lt;hr style=&quot;border:none;border-top:1px solid #333;margin:6px 0&quot;/&gt;&lt;p style=&quot;margin:0;line-height:1.4&quot;&gt;+ идентификатор: UUID&lt;br/&gt;+ идентификатор_пользователя: UUID&lt;br/&gt;+ идентификатор_путешествия: UUID&lt;br/&gt;+ заголовок: string&lt;br/&gt;+ начальная_точка: string&lt;br/&gt;+ конечная_точка: string&lt;br/&gt;+ длина: decimal&lt;br/&gt;+ длительность: integer&lt;br/&gt;+ дата_создания: datetime&lt;/p&gt;" vertex="1">
+          <mxGeometry height="240" width="250" x="934" y="60" as="geometry" />
+        </mxCell>
+        <mxCell id="cl_rpoint" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FAFAFA;strokeColor=#333333;fontFamily=Arial;fontSize=11;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;spacingBottom=6;" value="&lt;p style=&quot;margin:0;text-align:center&quot;&gt;&lt;b&gt;ТочкаМаршрута&lt;/b&gt;&lt;/p&gt;&lt;hr style=&quot;border:none;border-top:1px solid #333;margin:6px 0&quot;/&gt;&lt;p style=&quot;margin:0;line-height:1.4&quot;&gt;+ идентификатор: UUID&lt;br/&gt;+ идентификатор_маршрута: UUID&lt;br/&gt;+ идентификатор_достопримечательности: UUID&lt;br/&gt;+ порядковый_номер: integer&lt;br/&gt;+ широта: decimal&lt;br/&gt;+ долгота: decimal&lt;br/&gt;+ планируемое_время: datetime&lt;/p&gt;" vertex="1">
+          <mxGeometry height="200" width="270" x="924" y="380" as="geometry" />
+        </mxCell>
+        <mxCell id="cl_cat" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FAFAFA;strokeColor=#333333;fontFamily=Arial;fontSize=11;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;spacingBottom=6;" value="&lt;p style=&quot;margin:0;text-align:center&quot;&gt;&lt;b&gt;КатегорияДостопримечательности&lt;/b&gt;&lt;/p&gt;&lt;hr style=&quot;border:none;border-top:1px solid #333;margin:6px 0&quot;/&gt;&lt;p style=&quot;margin:0;line-height:1.4&quot;&gt;+ идентификатор: UUID&lt;br/&gt;+ наименование: string&lt;br/&gt;+ иконка: string&lt;br/&gt;+ описание: string&lt;/p&gt;" vertex="1">
+          <mxGeometry height="130" width="280" x="1311" y="578" as="geometry" />
+        </mxCell>
+        <mxCell id="cl_attr" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FAFAFA;strokeColor=#333333;fontFamily=Arial;fontSize=11;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;spacingBottom=6;" value="&lt;p style=&quot;margin:0;text-align:center&quot;&gt;&lt;b&gt;Достопримечательность&lt;/b&gt;&lt;/p&gt;&lt;hr style=&quot;border:none;border-top:1px solid #333;margin:6px 0&quot;/&gt;&lt;p style=&quot;margin:0;line-height:1.4&quot;&gt;+ идентификатор: UUID&lt;br/&gt;+ наименование: string&lt;br/&gt;+ описание: text&lt;br/&gt;+ широта: decimal&lt;br/&gt;+ долгота: decimal&lt;br/&gt;+ адрес: string&lt;br/&gt;+ рейтинг: decimal&lt;br/&gt;+ режим_работы: string&lt;br/&gt;+ идентификатор_категории: UUID&lt;br/&gt;+ url_изображения: string&lt;/p&gt;" vertex="1">
+          <mxGeometry height="250" width="290" x="1307" y="830" as="geometry" />
+        </mxCell>
+        <mxCell id="cl_fav" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FAFAFA;strokeColor=#333333;fontFamily=Arial;fontSize=11;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;spacingBottom=6;" value="&lt;p style=&quot;margin:0;text-align:center&quot;&gt;&lt;b&gt;Избранное&lt;/b&gt;&lt;/p&gt;&lt;hr style=&quot;border:none;border-top:1px solid #333;margin:6px 0&quot;/&gt;&lt;p style=&quot;margin:0;line-height:1.4&quot;&gt;+ идентификатор: UUID&lt;br/&gt;+ идентификатор_пользователя: UUID&lt;br/&gt;+ идентификатор_достопримечательности: UUID&lt;br/&gt;+ дата_создания: datetime&lt;/p&gt;" vertex="1">
+          <mxGeometry height="140" width="290" x="1307" y="1120" as="geometry" />
+        </mxCell>
+        <mxCell id="cl_notif" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FAFAFA;strokeColor=#333333;fontFamily=Arial;fontSize=11;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;spacingBottom=6;" value="&lt;p style=&quot;margin:0;text-align:center&quot;&gt;&lt;b&gt;Уведомление&lt;/b&gt;&lt;/p&gt;&lt;hr style=&quot;border:none;border-top:1px solid #333;margin:6px 0&quot;/&gt;&lt;p style=&quot;margin:0;line-height:1.4&quot;&gt;+ идентификатор: UUID&lt;br/&gt;+ идентификатор_пользователя: UUID&lt;br/&gt;+ заголовок: string&lt;br/&gt;+ текст: string&lt;br/&gt;+ тип: string&lt;br/&gt;+ прочитано: boolean&lt;br/&gt;+ дата_создания: datetime&lt;/p&gt;" vertex="1">
+          <mxGeometry height="190" width="290" x="575" y="1120" as="geometry" />
+        </mxCell>
+        <mxCell id="e_user_trip" edge="1" parent="1" source="cl_user" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333333;endArrow=none;startArrow=none;exitX=1;exitY=0.25;exitDx=0;exitDy=0;entryX=0;entryY=0.35;entryDx=0;entryDy=0;" target="cl_trip">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Fss_Nf9l-E2iULmYch9E-3" connectable="0" parent="e_user_trip" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="1--0...*" vertex="1">
+          <mxGeometry relative="1" x="0.105" y="2" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_user_journal" edge="1" parent="1" source="cl_user" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333333;endArrow=none;startArrow=none;exitX=0.999;exitY=0.919;exitDx=0;exitDy=0;entryX=0;entryY=0.35;entryDx=0;entryDy=0;exitPerimeter=0;" target="cl_journal">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Fss_Nf9l-E2iULmYch9E-4" connectable="0" parent="e_user_journal" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="1--0...*" vertex="1">
+          <mxGeometry relative="1" x="-0.033" y="-2" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_user_route" edge="1" parent="1" source="cl_user" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333333;endArrow=none;startArrow=none;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="cl_route">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Fss_Nf9l-E2iULmYch9E-2" connectable="0" parent="e_user_route" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="1--0...*" vertex="1">
+          <mxGeometry relative="1" x="-0.5113" y="6" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_user_fav" edge="1" parent="1" source="cl_user" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333333;endArrow=none;startArrow=none;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" target="cl_fav">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="275" y="1330" />
+              <mxPoint x="1451" y="1330" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Fss_Nf9l-E2iULmYch9E-6" connectable="0" parent="e_user_fav" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="1--0...*" vertex="1">
+          <mxGeometry relative="1" x="-0.6011" y="2" as="geometry">
+            <mxPoint x="657" y="255" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_user_notif" edge="1" parent="1" source="cl_user" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333333;endArrow=none;startArrow=none;exitX=0.75;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.35;entryDx=0;entryDy=0;" target="cl_notif">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Fss_Nf9l-E2iULmYch9E-5" connectable="0" parent="e_user_notif" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="1--0...*" vertex="1">
+          <mxGeometry relative="1" x="-0.0995" y="-1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_trip_journal" edge="1" parent="1" source="cl_trip" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333333;endArrow=none;startArrow=none;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="cl_journal">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Fss_Nf9l-E2iULmYch9E-8" connectable="0" parent="e_trip_journal" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="1--0...*" vertex="1">
+          <mxGeometry relative="1" x="-0.0727" y="-4" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_trip_route" edge="1" parent="1" source="cl_trip" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333333;endArrow=none;startArrow=none;exitX=1;exitY=0.35;exitDx=0;exitDy=0;entryX=0;entryY=0.35;entryDx=0;entryDy=0;" target="cl_route">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Fss_Nf9l-E2iULmYch9E-9" connectable="0" parent="e_trip_route" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="1--0...*" vertex="1">
+          <mxGeometry relative="1" x="0.1473" y="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_cat_attr" edge="1" parent="1" source="cl_cat" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333333;endArrow=none;startArrow=none;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="cl_attr">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Fss_Nf9l-E2iULmYch9E-12" connectable="0" parent="e_cat_attr" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="1--0...*" vertex="1">
+          <mxGeometry relative="1" x="-0.2287" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_route_rpoint" edge="1" parent="1" source="cl_route" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333333;endArrow=none;startArrow=none;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="cl_rpoint">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Fss_Nf9l-E2iULmYch9E-10" connectable="0" parent="e_route_rpoint" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="1--1...*" vertex="1">
+          <mxGeometry relative="1" x="-0.2962" y="2" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_attr_rpoint" edge="1" parent="1" source="cl_attr" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333333;endArrow=none;startArrow=none;exitX=0.008;exitY=0.155;exitDx=0;exitDy=0;entryX=1;entryY=0.45;entryDx=0;entryDy=0;exitPerimeter=0;" target="cl_rpoint">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Fss_Nf9l-E2iULmYch9E-11" connectable="0" parent="e_attr_rpoint" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="1--0...*" vertex="1">
+          <mxGeometry relative="1" x="-0.0376" y="2" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_journal_media" edge="1" parent="1" source="cl_journal" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333333;endArrow=none;startArrow=none;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="cl_media">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Fss_Nf9l-E2iULmYch9E-7" connectable="0" parent="e_journal_media" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="1...*" vertex="1">
+          <mxGeometry relative="1" x="-0.2" y="-2" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_attr_journal" edge="1" parent="1" source="cl_attr" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333333;endArrow=none;startArrow=none;exitX=-0.005;exitY=0.467;exitDx=0;exitDy=0;entryX=1;entryY=0.25;entryDx=0;entryDy=0;exitPerimeter=0;" target="cl_journal">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1306.0000000000005" y="658" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="Fss_Nf9l-E2iULmYch9E-13" connectable="0" parent="e_attr_journal" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="1--0...*" vertex="1">
+          <mxGeometry relative="1" x="0.0811" y="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_attr_fav" edge="1" parent="1" source="cl_attr" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#333333;endArrow=none;startArrow=none;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="cl_fav">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="Fss_Nf9l-E2iULmYch9E-14" connectable="0" parent="e_attr_fav" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="1--0...*" vertex="1">
+          <mxGeometry relative="1" x="-0.1794" y="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
