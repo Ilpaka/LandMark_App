@@ -1,0 +1,274 @@
+<mxfile host="app.diagrams.net" modified="2026-04-25T00:00:00.000Z" agent="LandMark-associations" version="22.0.0">
+  <diagram id="page_associations" name="Схема ассоциаций">
+    <mxGraphModel dx="2000" dy="1200" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2000" pageHeight="1200" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="bg" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F8FAFC;strokeColor=none;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;locked=1;" parent="1" vertex="1">
+          <mxGeometry x="0" y="0" width="2000" height="1200" as="geometry" />
+        </mxCell>
+        <mxCell id="title_main" value="&lt;div style=&quot;font-size:28px;font-weight:700;font-family:Arial,Helvetica,sans-serif;color:#0F172A;&quot;&gt;Схема ассоциаций сущностей предметной области&lt;/div&gt;&lt;div style=&quot;font-size:14px;font-family:Arial,Helvetica,sans-serif;color:#334155;margin-top:8px;&quot;&gt;Мобильное приложение для ведения журнала путешественника с картой достопримечательностей&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fillColor=none;strokeColor=none;" parent="1" vertex="1">
+          <mxGeometry x="200" y="8" width="1600" height="72" as="geometry" />
+        </mxCell>
+        <mxCell id="z1" value="&lt;div style=&quot;font-size:12px;font-weight:700;font-family:Arial,Helvetica,sans-serif;color:#0F172A;&quot;&gt;Пользователь и доступ&lt;/div&gt;" style="rounded=1;arcSize=2;fillColor=#DBEAFE;strokeColor=#93C5FD;opacity=30;html=1;align=left;verticalAlign=top;spacingLeft=12;spacingTop=10;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="20" y="100" width="280" height="780" as="geometry" />
+        </mxCell>
+        <mxCell id="z2" value="&lt;div style=&quot;font-size:12px;font-weight:700;font-family:Arial,Helvetica,sans-serif;color:#0F172A;&quot;&gt;Журнал путешествий&lt;/div&gt;" style="rounded=1;arcSize=2;fillColor=#A7F3D0;strokeColor=#6EE7B7;opacity=28;html=1;align=left;verticalAlign=top;spacingLeft=12;spacingTop=10;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="310" y="100" width="300" height="780" as="geometry" />
+        </mxCell>
+        <mxCell id="z3" value="&lt;div style=&quot;font-size:12px;font-weight:700;font-family:Arial,Helvetica,sans-serif;color:#0F172A;&quot;&gt;Карта и геоданные&lt;/div&gt;" style="rounded=1;arcSize=2;fillColor=#FDE68A;strokeColor=#F59E0B;opacity=30;html=1;align=left;verticalAlign=top;spacingLeft=12;spacingTop=10;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="620" y="100" width="360" height="780" as="geometry" />
+        </mxCell>
+        <mxCell id="z4" value="&lt;div style=&quot;font-size:12px;font-weight:700;font-family:Arial,Helvetica,sans-serif;color:#0F172A;&quot;&gt;Достопримечательности и справочники&lt;/div&gt;" style="rounded=1;arcSize=2;fillColor=#E9D5FF;strokeColor=#A855F7;opacity=28;html=1;align=left;verticalAlign=top;spacingLeft=12;spacingTop=10;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="990" y="100" width="500" height="780" as="geometry" />
+        </mxCell>
+        <mxCell id="z5" value="&lt;div style=&quot;font-size:12px;font-weight:700;font-family:Arial,Helvetica,sans-serif;color:#0F172A;&quot;&gt;Системные блоки&lt;/div&gt;" style="rounded=1;arcSize=2;fillColor=#E2E8F0;strokeColor=#94A3B8;opacity=30;html=1;align=left;verticalAlign=top;spacingLeft=12;spacingTop=10;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="1500" y="100" width="480" height="780" as="geometry" />
+        </mxCell>
+        <mxCell id="v_profile" value="&lt;span style=&quot;font-size:16px;font-family:Arial,Helvetica,sans-serif;&quot;&gt;Профиль пользователя&lt;/span&gt;" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#BFDBFE;strokeColor=#3B82F6;fontFamily=Arial;fontSize=16;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="60" y="150" width="200" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="v_user" value="&lt;span style=&quot;font-size:16px;font-family:Arial,Helvetica,sans-serif;&quot;&gt;Пользователь&lt;/span&gt;" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#BFDBFE;strokeColor=#3B82F6;fontFamily=Arial;fontSize=16;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="60" y="250" width="200" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="v_privacy" value="&lt;span style=&quot;font-size:16px;font-family:Arial,Helvetica,sans-serif;&quot;&gt;Настройки приватности&lt;/span&gt;" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#BFDBFE;strokeColor=#3B82F6;fontFamily=Arial;fontSize=16;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="100" y="400" width="200" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="v_admin" value="&lt;span style=&quot;font-size:16px;font-family:Arial,Helvetica,sans-serif;&quot;&gt;Администратор&lt;/span&gt;" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#BFDBFE;strokeColor=#3B82F6;fontFamily=Arial;fontSize=16;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="50" y="700" width="220" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="v_trip" value="&lt;span style=&quot;font-size:16px;font-family:Arial,Helvetica,sans-serif;&quot;&gt;Путешествие&lt;/span&gt;" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#6EE7B7;strokeColor=#059669;fontFamily=Arial;fontSize=16;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="360" y="250" width="200" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="v_entry" value="&lt;span style=&quot;font-size:16px;font-family:Arial,Helvetica,sans-serif;&quot;&gt;Запись журнала&lt;/span&gt;" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#6EE7B7;strokeColor=#059669;fontFamily=Arial;fontSize=16;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="360" y="430" width="200" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="v_media" value="&lt;span style=&quot;font-size:16px;font-family:Arial,Helvetica,sans-serif;&quot;&gt;Медиафайл&lt;/span&gt;" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#6EE7B7;strokeColor=#059669;fontFamily=Arial;fontSize=16;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="360" y="550" width="200" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="v_route" value="&lt;span style=&quot;font-size:16px;font-family:Arial,Helvetica,sans-serif;&quot;&gt;Маршрут&lt;/span&gt;" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#FCD34D;strokeColor=#D97706;fontFamily=Arial;fontSize=16;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="650" y="250" width="200" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="v_rpoint" value="&lt;span style=&quot;font-size:16px;font-family:Arial,Helvetica,sans-serif;&quot;&gt;Точка маршрута&lt;/span&gt;" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#FCD34D;strokeColor=#D97706;fontFamily=Arial;fontSize=16;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="950" y="250" width="200" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="v_geo" value="&lt;span style=&quot;font-size:16px;font-family:Arial,Helvetica,sans-serif;&quot;&gt;Геометка&lt;/span&gt;" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#FCD34D;strokeColor=#D97706;fontFamily=Arial;fontSize=16;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="780" y="500" width="200" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="v_fav" value="&lt;span style=&quot;font-size:16px;font-family:Arial,Helvetica,sans-serif;&quot;&gt;Избранное&lt;/span&gt;" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#C4B5FD;strokeColor=#7C3AED;fontFamily=Arial;fontSize=16;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="1000" y="120" width="200" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="v_poi" value="&lt;span style=&quot;font-size:16px;font-family:Arial,Helvetica,sans-serif;&quot;&gt;Достопримечательность&lt;/span&gt;" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#C4B5FD;strokeColor=#7C3AED;fontFamily=Arial;fontSize=16;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="1200" y="250" width="200" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="v_cat" value="&lt;span style=&quot;font-size:15px;font-family:Arial,Helvetica,sans-serif;&quot;&gt;Категория достопримечательности&lt;/span&gt;" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#C4B5FD;strokeColor=#7C3AED;fontFamily=Arial;fontSize=15;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="1500" y="250" width="200" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="v_notif" value="&lt;span style=&quot;font-size:16px;font-family:Arial,Helvetica,sans-serif;&quot;&gt;Система уведомлений&lt;/span&gt;" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#CBD5E1;strokeColor=#64748B;fontFamily=Arial;fontSize=16;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="1520" y="1000" width="200" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="v_sync" value="&lt;span style=&quot;font-size:16px;font-family:Arial,Helvetica,sans-serif;&quot;&gt;Блок синхронизации&lt;/span&gt;" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#CBD5E1;strokeColor=#64748B;fontFamily=Arial;fontSize=16;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="1600" y="900" width="200" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="v_store" value="&lt;span style=&quot;font-size:16px;font-family:Arial,Helvetica,sans-serif;&quot;&gt;Хранилище данных&lt;/span&gt;" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=#CBD5E1;strokeColor=#64748B;fontFamily=Arial;fontSize=16;align=center;verticalAlign=middle;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="1800" y="900" width="200" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="leg" value="&lt;div style=&quot;font-size:12px;font-family:Arial,Helvetica,sans-serif;color:#334155;text-align:left;line-height:1.4;&quot;&gt;&lt;b&gt;Легенда:&lt;/b&gt; стрелка показывает смысловую связь между сущностями. Подпись содержит тип связи и кратность.&lt;/div&gt;" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#94A3B8;fontFamily=Arial;fontSize=12;align=left;verticalAlign=bottom;spacing=8;" parent="1" vertex="1">
+          <mxGeometry x="24" y="1100" width="560" height="72" as="geometry" />
+        </mxCell>
+        <mxCell id="e_user_trip" edge="1" parent="1" source="v_user" target="v_trip" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#475569;strokeWidth=2;endArrow=blockThin;endFill=1;startArrow=none;exitX=1;exitY=0.5;entryX=0;entryY=0.5;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_user_trip_l" connectable="0" parent="e_user_trip" value="&lt;span style=&quot;font-size:11px;font-family:Arial,Helvetica,sans-serif;&quot;&gt;создаёт, 1:N&lt;/span&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;fontFamily=Arial;" vertex="1">
+          <mxGeometry x="0.2" y="-2" relative="1" as="geometry"><mxPoint as="offset" /></mxGeometry>
+        </mxCell>
+        <mxCell id="e_user_profile" edge="1" parent="1" source="v_user" target="v_profile" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#475569;strokeWidth=2;endArrow=blockThin;endFill=1;startArrow=none;exitX=0.5;exitY=0;entryX=0.5;entryY=1;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_user_profile_l" connectable="0" parent="e_user_profile" value="&lt;span style=&quot;font-size:11px;font-family:Arial,Helvetica,sans-serif;&quot;&gt;имеет, 1:1&lt;/span&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;fontFamily=Arial;" vertex="1">
+          <mxGeometry x="0" y="2" relative="1" as="geometry"><mxPoint as="offset" /></mxGeometry>
+        </mxCell>
+        <mxCell id="e_profile_priv" edge="1" parent="1" source="v_profile" target="v_privacy" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#475569;strokeWidth=2;endArrow=blockThin;endFill=1;startArrow=none;exitX=1;exitY=0.5;entryX=0.5;entryY=0;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="290" y="175" />
+              <mxPoint x="290" y="360" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_profile_priv_l" connectable="0" parent="e_profile_priv" value="&lt;span style=&quot;font-size:11px;font-family:Arial,Helvetica,sans-serif;&quot;&gt;использует, 1:1&lt;/span&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;fontFamily=Arial;" vertex="1">
+          <mxGeometry x="0" y="2" relative="1" as="geometry"><mxPoint as="offset" /></mxGeometry>
+        </mxCell>
+        <mxCell id="e_trip_entry" edge="1" parent="1" source="v_trip" target="v_entry" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#475569;strokeWidth=2;endArrow=blockThin;endFill=1;startArrow=none;exitX=0.5;exitY=1;entryX=0.5;entryY=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_trip_entry_l" connectable="0" parent="e_trip_entry" value="&lt;span style=&quot;font-size:11px;font-family:Arial,Helvetica,sans-serif;&quot;&gt;содержит, 1:N&lt;/span&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;fontFamily=Arial;" vertex="1">
+          <mxGeometry x="0" y="2" relative="1" as="geometry"><mxPoint as="offset" /></mxGeometry>
+        </mxCell>
+        <mxCell id="e_user_entry" edge="1" parent="1" source="v_user" target="v_entry" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#64748B;strokeWidth=2;endArrow=blockThin;endFill=1;startArrow=none;exitX=0.5;exitY=1;entryX=0;entryY=0.5;dashed=1;dashPattern=6 4;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="160" y="500" />
+              <mxPoint x="320" y="500" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_user_entry_l" connectable="0" parent="e_user_entry" value="&lt;span style=&quot;font-size:11px;font-family:Arial,Helvetica,sans-serif;&quot;&gt;ведёт, 1:N&lt;/span&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;fontFamily=Arial;" vertex="1">
+          <mxGeometry x="0.15" y="-3" relative="1" as="geometry"><mxPoint as="offset" /></mxGeometry>
+        </mxCell>
+        <mxCell id="e_entry_media" edge="1" parent="1" source="v_entry" target="v_media" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#475569;strokeWidth=2;endArrow=blockThin;endFill=1;startArrow=none;exitX=0.5;exitY=1;entryX=0.5;entryY=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_entry_media_l" connectable="0" parent="e_entry_media" value="&lt;span style=&quot;font-size:11px;font-family:Arial,Helvetica,sans-serif;&quot;&gt;содержит, 1:N&lt;/span&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;fontFamily=Arial;" vertex="1">
+          <mxGeometry x="0" y="2" relative="1" as="geometry"><mxPoint as="offset" /></mxGeometry>
+        </mxCell>
+        <mxCell id="e_entry_geo" edge="1" parent="1" source="v_entry" target="v_geo" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#475569;strokeWidth=2;endArrow=blockThin;endFill=1;startArrow=none;exitX=1;exitY=0.5;entryX=0;entryY=0.5;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_entry_geo_l" connectable="0" parent="e_entry_geo" value="&lt;span style=&quot;font-size:11px;font-family:Arial,Helvetica,sans-serif;&quot;&gt;привязана к, 0..1:1&lt;/span&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;fontFamily=Arial;" vertex="1">
+          <mxGeometry x="0.3" y="-4" relative="1" as="geometry"><mxPoint as="offset" /></mxGeometry>
+        </mxCell>
+        <mxCell id="e_trip_route" edge="1" parent="1" source="v_trip" target="v_route" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#475569;strokeWidth=2;endArrow=blockThin;endFill=1;startArrow=none;exitX=1;exitY=0.5;entryX=0;entryY=0.5;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_trip_route_l" connectable="0" parent="e_trip_route" value="&lt;span style=&quot;font-size:11px;font-family:Arial,Helvetica,sans-serif;&quot;&gt;включает, 1:0..N&lt;/span&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;fontFamily=Arial;" vertex="1">
+          <mxGeometry x="0.2" y="-2" relative="1" as="geometry"><mxPoint as="offset" /></mxGeometry>
+        </mxCell>
+        <mxCell id="e_route_rpt" edge="1" parent="1" source="v_route" target="v_rpoint" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#475569;strokeWidth=2;endArrow=blockThin;endFill=1;startArrow=none;exitX=1;exitY=0.5;entryX=0;entryY=0.5;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_route_rpt_l" connectable="0" parent="e_route_rpt" value="&lt;span style=&quot;font-size:11px;font-family:Arial,Helvetica,sans-serif;&quot;&gt;состоит из, 1:N&lt;/span&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;fontFamily=Arial;" vertex="1">
+          <mxGeometry x="0.15" y="-2" relative="1" as="geometry"><mxPoint as="offset" /></mxGeometry>
+        </mxCell>
+        <mxCell id="e_rpt_geo" edge="1" parent="1" source="v_rpoint" target="v_geo" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#475569;strokeWidth=2;endArrow=blockThin;endFill=1;startArrow=none;exitX=0.5;exitY=1;entryX=0.5;entryY=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_rpt_geo_l" connectable="0" parent="e_rpt_geo" value="&lt;span style=&quot;font-size:11px;font-family:Arial,Helvetica,sans-serif;&quot;&gt;использует, 1:1&lt;/span&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;fontFamily=Arial;" vertex="1">
+          <mxGeometry x="0" y="2" relative="1" as="geometry"><mxPoint as="offset" /></mxGeometry>
+        </mxCell>
+        <mxCell id="e_rpt_poi" edge="1" parent="1" source="v_rpoint" target="v_poi" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#475569;strokeWidth=2;endArrow=blockThin;endFill=1;startArrow=none;exitX=1;exitY=0.5;entryX=0;entryY=0.5;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_rpt_poi_l" connectable="0" parent="e_rpt_poi" value="&lt;span style=&quot;font-size:11px;font-family:Arial,Helvetica,sans-serif;&quot;&gt;может ссылаться на, 0..1:1&lt;/span&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;fontFamily=Arial;" vertex="1">
+          <mxGeometry x="0.2" y="-3" relative="1" as="geometry"><mxPoint as="offset" /></mxGeometry>
+        </mxCell>
+        <mxCell id="e_poi_cat" edge="1" parent="1" source="v_poi" target="v_cat" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#475569;strokeWidth=2;endArrow=blockThin;endFill=1;startArrow=none;exitX=1;exitY=0.5;entryX=0;entryY=0.5;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_poi_cat_l" connectable="0" parent="e_poi_cat" value="&lt;span style=&quot;font-size:11px;font-family:Arial,Helvetica,sans-serif;&quot;&gt;относится к, N:1&lt;/span&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;fontFamily=Arial;" vertex="1">
+          <mxGeometry x="0.1" y="-2" relative="1" as="geometry"><mxPoint as="offset" /></mxGeometry>
+        </mxCell>
+        <mxCell id="e_poi_geo" edge="1" parent="1" source="v_poi" target="v_geo" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#475569;strokeWidth=2;endArrow=blockThin;endFill=1;startArrow=none;exitX=0.5;exitY=1;entryX=1;entryY=0.5;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1300" y="600" />
+              <mxPoint x="980" y="600" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_poi_geo_l" connectable="0" parent="e_poi_geo" value="&lt;span style=&quot;font-size:11px;font-family:Arial,Helvetica,sans-serif;&quot;&gt;имеет, 1:1&lt;/span&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;fontFamily=Arial;" vertex="1">
+          <mxGeometry x="0.35" y="6" relative="1" as="geometry"><mxPoint as="offset" /></mxGeometry>
+        </mxCell>
+        <mxCell id="e_user_fav" edge="1" parent="1" source="v_user" target="v_fav" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#475569;strokeWidth=2;endArrow=blockThin;endFill=1;startArrow=none;exitX=0.75;exitY=0;entryX=0;entryY=0.5;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="210" y="145" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_user_fav_l" connectable="0" parent="e_user_fav" value="&lt;span style=&quot;font-size:11px;font-family:Arial,Helvetica,sans-serif;&quot;&gt;добавляет, 1:N&lt;/span&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;fontFamily=Arial;" vertex="1">
+          <mxGeometry x="0.4" y="-8" relative="1" as="geometry"><mxPoint as="offset" /></mxGeometry>
+        </mxCell>
+        <mxCell id="e_fav_poi" edge="1" parent="1" source="v_fav" target="v_poi" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#475569;strokeWidth=2;endArrow=blockThin;endFill=1;startArrow=none;exitX=0.5;exitY=1;entryX=0.5;entryY=0;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_fav_poi_l" connectable="0" parent="e_fav_poi" value="&lt;span style=&quot;font-size:11px;font-family:Arial,Helvetica,sans-serif;&quot;&gt;связывает, N:1&lt;/span&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;fontFamily=Arial;" vertex="1">
+          <mxGeometry x="0" y="2" relative="1" as="geometry"><mxPoint as="offset" /></mxGeometry>
+        </mxCell>
+        <mxCell id="e_admin_poi" edge="1" parent="1" source="v_admin" target="v_poi" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#475569;strokeWidth=2;endArrow=blockThin;endFill=1;startArrow=none;exitX=1;exitY=0.5;entryX=0.4;entryY=1;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="300" y="725" />
+              <mxPoint x="1280" y="725" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_admin_poi_l" connectable="0" parent="e_admin_poi" value="&lt;span style=&quot;font-size:11px;font-family:Arial,Helvetica,sans-serif;&quot;&gt;модерирует, 1:N&lt;/span&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;fontFamily=Arial;" vertex="1">
+          <mxGeometry x="0.5" y="8" relative="1" as="geometry"><mxPoint as="offset" /></mxGeometry>
+        </mxCell>
+        <mxCell id="e_admin_cat" edge="1" parent="1" source="v_admin" target="v_cat" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#475569;strokeWidth=2;endArrow=blockThin;endFill=1;startArrow=none;exitX=1;exitY=0.25;entryX=0.5;entryY=1;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="300" y="712" />
+              <mxPoint x="1600" y="712" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_admin_cat_l" connectable="0" parent="e_admin_cat" value="&lt;span style=&quot;font-size:11px;font-family:Arial,Helvetica,sans-serif;&quot;&gt;управляет, 1:N&lt;/span&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;fontFamily=Arial;" vertex="1">
+          <mxGeometry x="0.65" y="8" relative="1" as="geometry"><mxPoint as="offset" /></mxGeometry>
+        </mxCell>
+        <mxCell id="e_notif_user" edge="1" parent="1" source="v_notif" target="v_user" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#94A3B8;strokeWidth=2;endArrow=blockThin;endFill=1;startArrow=none;exitX=0;exitY=0.5;entryX=0.5;entryY=1;dashed=1;dashPattern=6 4;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1440" y="1025" />
+              <mxPoint x="160" y="1025" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_notif_user_l" connectable="0" parent="e_notif_user" value="&lt;span style=&quot;font-size:11px;font-family:Arial,Helvetica,sans-serif;&quot;&gt;информирует, N:1&lt;/span&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=11;fontFamily=Arial;" vertex="1">
+          <mxGeometry x="0.25" y="10" relative="1" as="geometry"><mxPoint as="offset" /></mxGeometry>
+        </mxCell>
+        <mxCell id="e_sync_store" edge="1" parent="1" source="v_sync" target="v_store" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#94A3B8;strokeWidth=2;endArrow=blockThin;endFill=1;startArrow=blockThin;startFill=1;exitX=1;exitY=0.5;entryX=0;entryY=0.5;dashed=1;dashPattern=6 4;">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e_sync_store_l" connectable="0" parent="e_sync_store" value="&lt;span style=&quot;font-size:11px;font-family:Arial,Helvetica,sans-serif;&quot;&gt;обменивается данными, N:N&lt;/span&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=10;fontFamily=Arial;" vertex="1">
+          <mxGeometry x="0.1" y="-2" relative="1" as="geometry"><mxPoint as="offset" /></mxGeometry>
+        </mxCell>
+        <mxCell id="e_store_trip" edge="1" parent="1" source="v_store" target="v_trip" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#94A3B8;strokeWidth=2;endArrow=blockThin;endFill=1;startArrow=none;exitX=0;exitY=0.5;entryX=1;entryY=0.5;dashed=1;dashPattern=4 3;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1780" y="220" />
+              <mxPoint x="500" y="220" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_store_trip_l" connectable="0" parent="e_store_trip" value="&lt;span style=&quot;font-size:11px;font-family:Arial,Helvetica,sans-serif;&quot;&gt;сохраняет&lt;/span&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=10;fontFamily=Arial;" vertex="1">
+          <mxGeometry x="0.2" y="-10" relative="1" as="geometry"><mxPoint as="offset" /></mxGeometry>
+        </mxCell>
+        <mxCell id="e_store_entry" edge="1" parent="1" source="v_store" target="v_entry" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#94A3B8;strokeWidth=2;endArrow=blockThin;endFill=1;startArrow=none;exitX=0.25;exitY=0;entryX=1;entryY=0.5;dashed=1;dashPattern=4 3;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1850" y="400" />
+              <mxPoint x="520" y="400" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_store_entry_l" connectable="0" parent="e_store_entry" value="&lt;span style=&quot;font-size:11px;font-family:Arial,Helvetica,sans-serif;&quot;&gt;сохраняет&lt;/span&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=10;fontFamily=Arial;" vertex="1">
+          <mxGeometry x="0.2" y="-4" relative="1" as="geometry"><mxPoint as="offset" /></mxGeometry>
+        </mxCell>
+        <mxCell id="e_store_media" edge="1" parent="1" source="v_store" target="v_media" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#94A3B8;strokeWidth=2;endArrow=blockThin;endFill=1;startArrow=none;exitX=0.5;exitY=0;entryX=1;entryY=0.5;dashed=1;dashPattern=4 3;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1900" y="500" />
+              <mxPoint x="540" y="500" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_store_media_l" connectable="0" parent="e_store_media" value="&lt;span style=&quot;font-size:11px;font-family:Arial,Helvetica,sans-serif;&quot;&gt;сохраняет&lt;/span&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=10;fontFamily=Arial;" vertex="1">
+          <mxGeometry x="0.2" y="-2" relative="1" as="geometry"><mxPoint as="offset" /></mxGeometry>
+        </mxCell>
+        <mxCell id="e_store_geo" edge="1" parent="1" source="v_store" target="v_geo" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#94A3B8;strokeWidth=2;endArrow=blockThin;endFill=1;startArrow=none;exitX=0.75;exitY=0;entryX=0.5;entryY=1;dashed=1;dashPattern=4 3;">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1950" y="600" />
+              <mxPoint x="880" y="600" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e_store_geo_l" connectable="0" parent="e_store_geo" value="&lt;span style=&quot;font-size:11px;font-family:Arial,Helvetica,sans-serif;&quot;&gt;сохраняет&lt;/span&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=10;fontFamily=Arial;" vertex="1">
+          <mxGeometry x="0.35" y="6" relative="1" as="geometry"><mxPoint as="offset" /></mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
