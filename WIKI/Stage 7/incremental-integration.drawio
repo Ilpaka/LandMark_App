@@ -1,0 +1,98 @@
+<mxfile host="Electron" agent="Cursor">
+  <diagram id="inc-integration" name="Инкрементная интеграция">
+    <mxGraphModel dx="2020" dy="1481" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2480" pageHeight="1000" background="#ffffff" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="h1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;strokeColor=#9e9e9e;strokeWidth=1;fontStyle=1;fontSize=16;align=center;verticalAlign=middle" value="Инкрементная интеграция модулей программной системы" vertex="1">
+          <mxGeometry height="48" width="1160" x="40" y="24" as="geometry" />
+        </mxCell>
+        <mxCell id="h2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fafafa;strokeColor=#bdbdbd;strokeWidth=1;fontSize=12;align=center;verticalAlign=middle;fontColor=#424242" value="Каждый следующий инкремент подключается к уже работающей части системы и проходит отдельную проверку" vertex="1">
+          <mxGeometry height="40" width="1160" x="40" y="80" as="geometry" />
+        </mxCell>
+        <mxCell id="inc1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;align=left;verticalAlign=top;spacingLeft=10;spacingTop=8;fontSize=10" value="Инкремент 1. Базовая структура проекта&#xa;&#xa;Подключаемые элементы:&#xa;– структура мобильного приложения&#xa;– базовая навигация&#xa;– конфигурация проекта&#xa;– подключение Backend API&#xa;– подготовка базы данных&#xa;&#xa;Результат:&#xa;Сформирована основа приложения и серверной части" vertex="1">
+          <mxGeometry height="300" width="200" x="40" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="ch1" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8EEF7;strokeColor=#6C8EBF;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fontSize=9" value="Результат проверки&#xa;Приложение запускается, базовые экраны открываются, API доступен" vertex="1">
+          <mxGeometry height="70" width="200" x="40" y="442" as="geometry" />
+        </mxCell>
+        <mxCell id="inc2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#DAE8FC;strokeColor=#6C8EBF;align=left;verticalAlign=top;spacingLeft=10;spacingTop=8;fontSize=10" value="Инкремент 2. Авторизация и профиль&#xa;&#xa;Подключаемые модули:&#xa;– модуль авторизации&#xa;– модуль профиля пользователя&#xa;– сервис пользователей&#xa;– таблицы пользователей в базе данных&#xa;&#xa;Результат:&#xa;Пользователь может зарегистрироваться, войти в систему и открыть профиль" vertex="1">
+          <mxGeometry height="300" width="200" x="280" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="ch2" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8EEF7;strokeColor=#6C8EBF;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fontSize=9" value="Результат проверки&#xa;Проверяются регистрация, вход, получение данных профиля" vertex="1">
+          <mxGeometry height="70" width="200" x="280" y="442" as="geometry" />
+        </mxCell>
+        <mxCell id="inc3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;align=left;verticalAlign=top;spacingLeft=10;spacingTop=8;fontSize=10" value="Инкремент 3. Журнал путешествий&#xa;&#xa;Подключаемые модули:&#xa;– модуль журнала путешествий&#xa;– модуль записей журнала&#xa;– сервис путешествий и записей&#xa;– хранение записей в базе данных&#xa;&#xa;Результат:&#xa;Пользователь может создать путешествие и добавить запись" vertex="1">
+          <mxGeometry height="300" width="200" x="520" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="ch3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF4E8;strokeColor=#82B366;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fontSize=9" value="Результат проверки&#xa;Проверяются создание, чтение, изменение и удаление записей" vertex="1">
+          <mxGeometry height="70" width="200" x="520" y="442" as="geometry" />
+        </mxCell>
+        <mxCell id="inc4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D5E8D4;strokeColor=#82B366;align=left;verticalAlign=top;spacingLeft=10;spacingTop=8;fontSize=10" value="Инкремент 4. Медиафайлы&#xa;&#xa;Подключаемые модули:&#xa;– модуль работы с медиафайлами&#xa;– сервис медиафайлов&#xa;– файловое хранилище&#xa;– метаданные файлов в базе данных&#xa;&#xa;Результат:&#xa;К записи журнала можно прикрепить фото или изображение" vertex="1">
+          <mxGeometry height="300" width="200" x="760" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="ch4" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF4E8;strokeColor=#82B366;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fontSize=9" value="Результат проверки&#xa;Проверяются загрузка файла, сохранение ссылки и отображение медиа" vertex="1">
+          <mxGeometry height="70" width="200" x="760" y="442" as="geometry" />
+        </mxCell>
+        <mxCell id="inc5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;align=left;verticalAlign=top;spacingLeft=10;spacingTop=8;fontSize=10" value="Инкремент 5. Карта и геометки&#xa;&#xa;Подключаемые модули:&#xa;– модуль карты и геоданных&#xa;– картографический сервис&#xa;– геометки записей&#xa;– координаты достопримечательностей&#xa;&#xa;Результат:&#xa;Записи и достопримечательности отображаются на карте" vertex="1">
+          <mxGeometry height="300" width="200" x="1000" y="130" as="geometry" />
+        </mxCell>
+        <mxCell id="ch5" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF9E6;strokeColor=#D6B656;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fontSize=9" value="Результат проверки&#xa;Проверяются координаты, маркеры, открытие карточки объекта" vertex="1">
+          <mxGeometry height="70" width="200" x="1000" y="442" as="geometry" />
+        </mxCell>
+        <mxCell id="inc6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#D6B656;align=left;verticalAlign=top;spacingLeft=10;spacingTop=8;fontSize=10" value="Инкремент 6. Маршруты и достопримечательности&#xa;&#xa;Подключаемые модули:&#xa;– модуль маршрутов&#xa;– модуль справочника достопримечательностей&#xa;– сервис маршрутов&#xa;– сервис достопримечательностей&#xa;&#xa;Результат:&#xa;Пользователь может просматривать достопримечательности и формировать маршрут" vertex="1">
+          <mxGeometry height="300" width="200" x="40" y="530" as="geometry" />
+        </mxCell>
+        <mxCell id="ch6" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF9E6;strokeColor=#D6B656;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fontSize=9" value="Результат проверки&#xa;Проверяются точки маршрута, порядок точек и связь с картой" vertex="1">
+          <mxGeometry height="70" width="200" x="40" y="842" as="geometry" />
+        </mxCell>
+        <mxCell id="inc7" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1D5E7;strokeColor=#9673A6;align=left;verticalAlign=top;spacingLeft=10;spacingTop=8;fontSize=9" value="Инкремент 7. Офлайн-режим и синхронизация&#xa;&#xa;Подключаемые модули:&#xa;– локальное хранилище&#xa;– модуль офлайн-режима&#xa;– сервис синхронизации&#xa;– механизм отправки изменений на сервер&#xa;&#xa;Результат:&#xa;Часть данных доступна без интернета, изменения синхронизируются после восстановления соединения" vertex="1">
+          <mxGeometry height="300" width="200" x="280" y="530" as="geometry" />
+        </mxCell>
+        <mxCell id="ch7" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EDE4F0;strokeColor=#9673A6;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fontSize=9" value="Результат проверки&#xa;Проверяется работа без сети и последующая передача изменений на сервер" vertex="1">
+          <mxGeometry height="70" width="200" x="280" y="842" as="geometry" />
+        </mxCell>
+        <mxCell id="inc8" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E1D5E7;strokeColor=#9673A6;align=left;verticalAlign=top;spacingLeft=10;spacingTop=8;fontSize=10" value="Инкремент 8. Уведомления и итоговая интеграционная проверка&#xa;&#xa;Подключаемые модули:&#xa;– модуль уведомлений&#xa;– сервис уведомлений&#xa;– push-сервис&#xa;– итоговые пользовательские сценарии&#xa;&#xa;Результат:&#xa;Система работает как единое программное обеспечение" vertex="1">
+          <mxGeometry height="300" width="200" x="520" y="530" as="geometry" />
+        </mxCell>
+        <mxCell id="ch8" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EDE4F0;strokeColor=#9673A6;align=left;verticalAlign=top;spacingLeft=8;spacingTop=6;fontSize=8" value="Результат проверки&#xa;Проверяются сквозные сценарии: вход → создание путешествия → добавление записи → добавление фото → геометка → отображение на карте → синхронизация" vertex="1">
+          <mxGeometry height="68" width="200" x="520" y="842" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" edge="1" parent="1" source="inc1" style="endArrow=classic;html=1;strokeWidth=2;strokeColor=#757575;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0" target="inc2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" edge="1" parent="1" source="inc2" style="endArrow=classic;html=1;strokeWidth=2;strokeColor=#757575;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0" target="inc3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" edge="1" parent="1" source="inc3" style="endArrow=classic;html=1;strokeWidth=2;strokeColor=#757575;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0" target="inc4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" edge="1" parent="1" source="inc4" style="endArrow=classic;html=1;strokeWidth=2;strokeColor=#757575;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0" target="inc5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" edge="1" parent="1" source="inc5" style="endArrow=classic;html=1;strokeWidth=2;strokeColor=#757575;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;edgeStyle=orthogonalEdgeStyle;" target="inc6">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1210" y="280" />
+              <mxPoint x="1210" y="520" />
+              <mxPoint x="30" y="520" />
+              <mxPoint x="30" y="680" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e6" edge="1" parent="1" source="inc6" style="endArrow=classic;html=1;strokeWidth=2;strokeColor=#757575;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0" target="inc7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e7" edge="1" parent="1" source="inc7" style="endArrow=classic;html=1;strokeWidth=2;strokeColor=#757575;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0" target="inc8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="itog" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ECEFF1;strokeColor=#9E9E9E;align=left;verticalAlign=top;spacingLeft=12;spacingTop=10;fontSize=11" value="Итог интеграции&#xa;Модули согласованно работают между собой, данные передаются через согласованные интерфейсы, основные пользовательские сценарии подтверждены интеграционной проверкой" vertex="1">
+          <mxGeometry height="70" width="1170" x="30" y="920" as="geometry" />
+        </mxCell>
+        <mxCell id="podhod" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFECB3;strokeColor=#E65100;align=left;verticalAlign=top;spacingLeft=12;spacingTop=10;fontSize=10" value="Подход&#xa;&#xa;Выбранный подход: инкрементный&#xa;&#xa;Подходит для учебного проекта, так как позволяет постепенно собирать систему и фиксировать результат после каждого этапа" vertex="1">
+          <mxGeometry height="200" width="400" x="796" y="620" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

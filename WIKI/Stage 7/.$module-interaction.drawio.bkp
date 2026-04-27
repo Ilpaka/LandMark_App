@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" modified="2026-04-27T16:30:00.000Z" agent="Mozilla/5.0" version="24.0.0" type="device">
+  <diagram id="diagram-modules" name="Взаимодействие модулей">
+    <mxGraphModel dx="1600" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2400" pageHeight="980" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="bg_blue" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#E3F2FD;strokeColor=#90CAF9;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;connectable=0;" vertex="1" parent="1">
+          <mxGeometry x="20" y="80" width="240" height="440" as="geometry"/>
+        </mxCell>
+        <mxCell id="bg_green" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#E8F5E9;strokeColor=#A5D6A7;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;connectable=0;" vertex="1" parent="1">
+          <mxGeometry x="280" y="80" width="940" height="560" as="geometry"/>
+        </mxCell>
+        <mxCell id="bg_yellow" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFDE7;strokeColor=#FFE082;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;connectable=0;" vertex="1" parent="1">
+          <mxGeometry x="1240" y="80" width="920" height="560" as="geometry"/>
+        </mxCell>
+        <mxCell id="bg_purple" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#EDE7F6;strokeColor=#B39DDB;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;connectable=0;" vertex="1" parent="1">
+          <mxGeometry x="2180" y="80" width="200" height="560" as="geometry"/>
+        </mxCell>
+        <mxCell id="bg_gray" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ECEFF1;strokeColor=#B0BEC5;movable=0;resizable=0;rotatable=0;deletable=0;editable=0;connectable=0;" vertex="1" parent="1">
+          <mxGeometry x="20" y="720" width="2360" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="lbl_title" value="Схема взаимодействия модулей программной системы" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=18;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="400" y="20" width="1600" height="36" as="geometry"/>
+        </mxCell>
+        <mxCell id="lbl_zone1" value="Пользовательский уровень" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontStyle=1;fontSize=11;fontColor=#1565C0" vertex="1" parent="1">
+          <mxGeometry x="28" y="86" width="220" height="18" as="geometry"/>
+        </mxCell>
+        <mxCell id="lbl_zone2" value="Прикладной уровень мобильного приложения" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontStyle=1;fontSize=11;fontColor=#2E7D32" vertex="1" parent="1">
+          <mxGeometry x="288" y="86" width="380" height="18" as="geometry"/>
+        </mxCell>
+        <mxCell id="lbl_zone3" value="Серверный уровень" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontStyle=1;fontSize=11;fontColor=#F57F17" vertex="1" parent="1">
+          <mxGeometry x="1248" y="86" width="200" height="18" as="geometry"/>
+        </mxCell>
+        <mxCell id="lbl_zone4" value="Внешние сервисы" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontStyle=1;fontSize=11;fontColor=#6A1B9A" vertex="1" parent="1">
+          <mxGeometry x="2188" y="86" width="180" height="18" as="geometry"/>
+        </mxCell>
+        <mxCell id="lbl_zone5" value="Уровень хранения данных" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontStyle=1;fontSize=11;fontColor=#455A64" vertex="1" parent="1">
+          <mxGeometry x="28" y="726" width="240" height="18" as="geometry"/>
+        </mxCell>
+        <mxCell id="n_user" value="Пользователь" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#BBDEFB;strokeColor=#1976D2;fontSize=11" vertex="1" parent="1">
+          <mxGeometry x="40" y="130" width="200" height="44" as="geometry"/>
+        </mxCell>
+        <mxCell id="n_mobile" value="Мобильное приложение" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#BBDEFB;strokeColor=#1976D2;fontSize=11" vertex="1" parent="1">
+          <mxGeometry x="40" y="200" width="200" height="44" as="geometry"/>
+        </mxCell>
+        <mxCell id="n_ui" value="Модуль пользовательского интерфейса" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#BBDEFB;strokeColor=#1976D2;fontSize=11" vertex="1" parent="1">
+          <mxGeometry x="40" y="270" width="200" height="44" as="geometry"/>
+        </mxCell>
+        <mxCell id="n_auth" value="Модуль авторизации и профиля" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#C8E6C9;strokeColor=#388E3C;fontSize=11" vertex="1" parent="1">
+          <mxGeometry x="300" y="130" width="200" height="44" as="geometry"/>
+        </mxCell>
+        <mxCell id="n_journal" value="Модуль журнала путешествий" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#C8E6C9;strokeColor=#388E3C;fontSize=11" vertex="1" parent="1">
+          <mxGeometry x="300" y="210" width="200" height="44" as="geometry"/>
+        </mxCell>
+        <mxCell id="n_entries" value="Модуль записей журнала" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#C8E6C9;strokeColor=#388E3C;fontSize=11" vertex="1" parent="1">
+          <mxGeometry x="540" y="210" width="200" height="44" as="geometry"/>
+        </mxCell>
+        <mxCell id="n_media" value="Модуль работы с медиафайлами" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#C8E6C9;strokeColor=#388E3C;fontSize=11" vertex="1" parent="1">
+          <mxGeometry x="780" y="130" width="200" height="44" as="geometry"/>
+        </mxCell>
+        <mxCell id="n_map" value="Модуль карты и геоданных" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#C8E6C9;strokeColor=#388E3C;fontSize=11" vertex="1" parent="1">
+          <mxGeometry x="780" y="290" width="200" height="44" as="geometry"/>
+        </mxCell>
+        <mxCell id="n_routes" value="Модуль маршрутов" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#C8E6C9;strokeColor=#388E3C;fontSize=11" vertex="1" parent="1">
+          <mxGeometry x="1020" y="210" width="180" height="44" as="geometry"/>
+        </mxCell>
+        <mxCell id="n_poi" value="Модуль справочника достопримечательностей" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#C8E6C9;strokeColor=#388E3C;fontSize=11" vertex="1" parent="1">
+          <mxGeometry x="1020" y="370" width="180" height="44" as="geometry"/>
+        </mxCell>
+        <mxCell id="n_offline" value="Модуль офлайн-режима и синхронизации" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#C8E6C9;strokeColor=#388E3C;fontSize=11" vertex="1" parent="1">
+          <mxGeometry x="660" y="460" width="200" height="44" as="geometry"/>
+        </mxCell>
+        <mxCell id="n_notif" value="Модуль уведомлений" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#C8E6C9;strokeColor=#388E3C;fontSize=11" vertex="1" parent="1">
+          <mxGeometry x="920" y="460" width="200" height="44" as="geometry"/>
+        </mxCell>
+        <mxCell id="n_api" value="Backend API" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#FFE082;strokeColor=#F9A825;fontSize=12;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="1240" y="130" width="920" height="50" as="geometry"/>
+        </mxCell>
+        <mxCell id="n_svc_user" value="Сервис пользователей" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#FFECB3;strokeColor=#FF8F00;fontSize=10" vertex="1" parent="1">
+          <mxGeometry x="1240" y="240" width="200" height="44" as="geometry"/>
+        </mxCell>
+        <mxCell id="n_svc_travel" value="Сервис путешествий и записей" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#FFECB3;strokeColor=#FF8F00;fontSize=10" vertex="1" parent="1">
+          <mxGeometry x="1480" y="240" width="200" height="44" as="geometry"/>
+        </mxCell>
+        <mxCell id="n_svc_media" value="Сервис медиафайлов" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#FFECB3;strokeColor=#FF8F00;fontSize=10" vertex="1" parent="1">
+          <mxGeometry x="1720" y="240" width="200" height="44" as="geometry"/>
+        </mxCell>
+        <mxCell id="n_svc_poi" value="Сервис достопримечательностей" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#FFECB3;strokeColor=#FF8F00;fontSize=10" vertex="1" parent="1">
+          <mxGeometry x="1960" y="240" width="200" height="44" as="geometry"/>
+        </mxCell>
+        <mxCell id="n_svc_routes" value="Сервис маршрутов" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#FFECB3;strokeColor=#FF8F00;fontSize=10" vertex="1" parent="1">
+          <mxGeometry x="1360" y="380" width="200" height="44" as="geometry"/>
+        </mxCell>
+        <mxCell id="n_svc_sync" value="Сервис синхронизации" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#FFECB3;strokeColor=#FF8F00;fontSize=10" vertex="1" parent="1">
+          <mxGeometry x="1600" y="380" width="200" height="44" as="geometry"/>
+        </mxCell>
+        <mxCell id="n_svc_notif" value="Сервис уведомлений" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#FFECB3;strokeColor=#FF8F00;fontSize=10" vertex="1" parent="1">
+          <mxGeometry x="1840" y="380" width="200" height="44" as="geometry"/>
+        </mxCell>
+        <mxCell id="n_ext_map" value="Картографический сервис" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#D1C4E9;strokeColor=#7E57C2;fontSize=10" vertex="1" parent="1">
+          <mxGeometry x="2200" y="130" width="160" height="44" as="geometry"/>
+        </mxCell>
+        <mxCell id="n_ext_push" value="Сервис push-уведомлений" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#D1C4E9;strokeColor=#7E57C2;fontSize=10" vertex="1" parent="1">
+          <mxGeometry x="2200" y="460" width="160" height="44" as="geometry"/>
+        </mxCell>
+        <mxCell id="n_local" value="Локальное хранилище мобильного приложения" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#CFD8DC;strokeColor=#546E7A;fontSize=10" vertex="1" parent="1">
+          <mxGeometry x="620" y="760" width="280" height="44" as="geometry"/>
+        </mxCell>
+        <mxCell id="n_fs" value="Файловое хранилище медиафайлов" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#CFD8DC;strokeColor=#546E7A;fontSize=10" vertex="1" parent="1">
+          <mxGeometry x="940" y="760" width="280" height="44" as="geometry"/>
+        </mxCell>
+        <mxCell id="n_db" value="База данных PostgreSQL" style="rounded=1;whiteSpace=wrap;html=1;arcSize=10;fillColor=#CFD8DC;strokeColor=#546E7A;fontSize=10" vertex="1" parent="1">
+          <mxGeometry x="1280" y="760" width="820" height="44" as="geometry"/>
+        </mxCell>
+        <mxCell id="e1" value="Ввод данных, просмотр журнала, работа с картой" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;startArrow=none;strokeWidth=1.2;strokeColor=#37474F;fontSize=10;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="n_user" target="n_mobile">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e2" value="Экраны, формы, пользовательские сценарии" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;startArrow=none;strokeWidth=1.2;strokeColor=#37474F;fontSize=10;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="n_mobile" target="n_ui">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e3" value="Регистрация, вход, данные профиля" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;startArrow=none;strokeWidth=1.2;strokeColor=#37474F;fontSize=10;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.3;entryX=0;entryY=0.5;" edge="1" parent="1" source="n_ui" target="n_auth">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="284" y="283"/>
+              <mxPoint x="284" y="152"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e4" value="Создание и просмотр путешествий" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;startArrow=none;strokeWidth=1.2;strokeColor=#37474F;fontSize=10;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.7;entryX=0;entryY=0.5;" edge="1" parent="1" source="n_ui" target="n_journal">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="266" y="301"/>
+              <mxPoint x="266" y="232"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e5" value="Записи, даты, описания, впечатления" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;startArrow=none;strokeWidth=1.2;strokeColor=#37474F;fontSize=10;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="n_journal" target="n_entries">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e6" value="Фото, изображения, вложения" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;startArrow=none;strokeWidth=1.2;strokeColor=#37474F;fontSize=10;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.3;entryX=0;entryY=0.5;" edge="1" parent="1" source="n_entries" target="n_media">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="760" y="223"/>
+              <mxPoint x="760" y="152"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e7" value="Геометки записей" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;startArrow=none;strokeWidth=1.2;strokeColor=#37474F;fontSize=10;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.7;entryX=0;entryY=0.5;" edge="1" parent="1" source="n_entries" target="n_map">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="760" y="241"/>
+              <mxPoint x="760" y="312"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e8" value="Точки маршрута, координаты" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;startArrow=none;strokeWidth=1.2;strokeColor=#37474F;fontSize=10;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.3;entryX=0;entryY=0.5;" edge="1" parent="1" source="n_map" target="n_routes">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1000" y="303"/>
+              <mxPoint x="1000" y="232"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e9" value="Поиск и отображение объектов" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;startArrow=none;strokeWidth=1.2;strokeColor=#37474F;fontSize=10;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.7;entryX=0;entryY=0.5;" edge="1" parent="1" source="n_map" target="n_poi">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1000" y="321"/>
+              <mxPoint x="1000" y="392"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e10" value="Временное хранение данных" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;startArrow=none;strokeWidth=1.2;strokeColor=#37474F;fontSize=10;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="n_offline" target="n_local">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e11" value="Синхронизация изменений" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;startArrow=none;strokeWidth=1.2;strokeColor=#37474F;fontSize=10;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=0;entryX=0.283;entryY=0;" edge="1" parent="1" source="n_offline" target="n_api">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="760" y="104"/>
+              <mxPoint x="1500" y="104"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e12" value="Отправка уведомлений" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;startArrow=none;strokeWidth=1.2;strokeColor=#6A1B9A;dashed=1;dashPattern=6 6;fontSize=10;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="n_notif" target="n_ext_push">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e13" value="REST/JSON запросы" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;startArrow=none;strokeWidth=1.5;strokeColor=#1565C0;fontSize=10;fontStyle=1;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;entryX=0.5;entryY=0;" edge="1" parent="1" source="n_mobile" target="n_api">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="240" y="92"/>
+              <mxPoint x="1700" y="92"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e14" value="Профиль, настройки, авторизация" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;startArrow=none;strokeWidth=1.2;strokeColor=#37474F;fontSize=10;labelBackgroundColor=#FFFFFF;exitX=0.1087;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;" edge="1" parent="1" source="n_api" target="n_svc_user">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e15" value="Путешествия и записи журнала" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;startArrow=none;strokeWidth=1.2;strokeColor=#37474F;fontSize=10;labelBackgroundColor=#FFFFFF;exitX=0.3696;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;" edge="1" parent="1" source="n_api" target="n_svc_travel">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e16" value="Загрузка и получение медиа" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;startArrow=none;strokeWidth=1.2;strokeColor=#37474F;fontSize=10;labelBackgroundColor=#FFFFFF;exitX=0.6304;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;" edge="1" parent="1" source="n_api" target="n_svc_media">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e17" value="Справочник объектов" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;startArrow=none;strokeWidth=1.2;strokeColor=#37474F;fontSize=10;labelBackgroundColor=#FFFFFF;exitX=0.8913;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;" edge="1" parent="1" source="n_api" target="n_svc_poi">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e18" value="Маршруты и точки маршрута" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;startArrow=none;strokeWidth=1.2;strokeColor=#37474F;fontSize=10;labelBackgroundColor=#FFFFFF;exitX=0.2391;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;" edge="1" parent="1" source="n_api" target="n_svc_routes">
+          <mxGeometry x="0.85" relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e19" value="Обмен изменениями" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;startArrow=none;strokeWidth=1.2;strokeColor=#37474F;fontSize=10;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;" edge="1" parent="1" source="n_api" target="n_svc_sync">
+          <mxGeometry x="0.85" relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e20" value="События для уведомлений" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;startArrow=none;strokeWidth=1.2;strokeColor=#37474F;fontSize=10;labelBackgroundColor=#FFFFFF;exitX=0.7609;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;" edge="1" parent="1" source="n_api" target="n_svc_notif">
+          <mxGeometry x="0.85" relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e21" value="Данные пользователей" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;startArrow=none;strokeWidth=1.2;strokeColor=#37474F;fontSize=10;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.0732;entryY=0;" edge="1" parent="1" source="n_svc_user" target="n_db">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e22" value="Путешествия, записи, геометки" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;startArrow=none;strokeWidth=1.2;strokeColor=#37474F;fontSize=10;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.3659;entryY=0;" edge="1" parent="1" source="n_svc_travel" target="n_db">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e23" value="Достопримечательности" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;startArrow=none;strokeWidth=1.2;strokeColor=#37474F;fontSize=10;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.9512;entryY=0;" edge="1" parent="1" source="n_svc_poi" target="n_db">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e24" value="Маршруты и точки" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;startArrow=none;strokeWidth=1.2;strokeColor=#37474F;fontSize=10;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.2195;entryY=0;" edge="1" parent="1" source="n_svc_routes" target="n_db">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e25" value="Фото и вложения" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;startArrow=none;strokeWidth=1.2;strokeColor=#37474F;fontSize=10;labelBackgroundColor=#FFFFFF;exitX=0.35;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;" edge="1" parent="1" source="n_svc_media" target="n_fs">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1790" y="716"/>
+              <mxPoint x="1080" y="716"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e26" value="Метаданные файлов" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;startArrow=none;strokeWidth=1.2;strokeColor=#37474F;fontSize=10;labelBackgroundColor=#FFFFFF;exitX=0.55;exitY=1;exitDx=0;exitDy=0;entryX=0.6707;entryY=0;" edge="1" parent="1" source="n_svc_media" target="n_db">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="e27" value="Отображение карты, координаты, маршруты" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=1;startArrow=none;strokeWidth=1.2;strokeColor=#6A1B9A;dashed=1;dashPattern=6 6;fontSize=10;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=0;entryX=0.5;entryY=0;" edge="1" parent="1" source="n_map" target="n_ext_map">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="880" y="120"/>
+              <mxPoint x="2280" y="120"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="legend" value="Легенда:&#xa;Сплошная стрелка — основной обмен данными&#xa;Пунктирная стрелка — внешняя интеграция или вспомогательный обмен" style="rounded=1;whiteSpace=wrap;html=1;arcSize=8;align=left;verticalAlign=top;spacingLeft=10;spacingTop=8;fillColor=#FAFAFA;strokeColor=#9E9E9E;fontSize=11" vertex="1" parent="1">
+          <mxGeometry x="1700" y="870" width="640" height="80" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
