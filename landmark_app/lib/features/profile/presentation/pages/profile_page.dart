@@ -4,6 +4,8 @@ import '../../../../core/design/tokens.dart';
 import '../../domain/entities/profile.dart';
 import '../providers/profile_provider.dart';
 import '../../../auth/presentation/providers/auth_provider.dart' show authProvider, AuthStateAuthenticated; // ignore: unused_shown_name
+import '../../../notifications/presentation/providers/notifications_provider.dart';
+import '../../../notifications/presentation/pages/notifications_feed_page.dart';
 import 'edit_profile_page.dart';
 import '../../../settings/presentation/pages/settings_page.dart';
 
@@ -21,6 +23,7 @@ class ProfilePage extends ConsumerWidget {
         foregroundColor: AppColors.textPrimary,
         elevation: 0,
         actions: [
+          _NotificationBell(),
           IconButton(
             icon: const Icon(Icons.settings_outlined),
             onPressed: () => Navigator.push(
@@ -156,5 +159,45 @@ class ProfilePage extends ConsumerWidget {
       ),
     );
   }
+}
 
+class _NotificationBell extends ConsumerWidget {
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final unread = ref.watch(unreadCountProvider);
+    return Stack(
+      clipBehavior: Clip.none,
+      children: [
+        IconButton(
+          icon: const Icon(Icons.notifications_outlined),
+          onPressed: () => Navigator.push<void>(
+            context,
+            MaterialPageRoute(builder: (_) => const NotificationsFeedPage()),
+          ),
+        ),
+        if (unread > 0)
+          Positioned(
+            right: 6,
+            top: 6,
+            child: Container(
+              padding: const EdgeInsets.all(3),
+              decoration: const BoxDecoration(
+                color: Colors.red,
+                shape: BoxShape.circle,
+              ),
+              constraints: const BoxConstraints(minWidth: 16, minHeight: 16),
+              child: Text(
+                unread > 99 ? '99+' : '$unread',
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 9,
+                  fontWeight: FontWeight.w700,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ),
+          ),
+      ],
+    );
+  }
 }
