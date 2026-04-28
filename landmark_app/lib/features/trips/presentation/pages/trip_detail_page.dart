@@ -7,6 +7,7 @@ import '../../domain/entities/trip.dart';
 import '../../domain/entities/stop.dart';
 import '../providers/stops_provider.dart';
 import '../providers/trips_provider.dart';
+import 'trip_map_page.dart';
 
 class TripDetailPage extends ConsumerWidget {
   final Trip trip;
@@ -23,6 +24,16 @@ class TripDetailPage extends ConsumerWidget {
         backgroundColor: AppColors.surface,
         foregroundColor: AppColors.textPrimary,
         elevation: 0,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.map_outlined),
+            tooltip: 'Карта маршрута',
+            onPressed: () => Navigator.push<void>(
+              context,
+              MaterialPageRoute(builder: (_) => TripMapPage(trip: trip)),
+            ),
+          ),
+        ],
       ),
       body: stopsAsync.when(
         loading: () => const Center(child: CircularProgressIndicator(color: AppColors.primary)),

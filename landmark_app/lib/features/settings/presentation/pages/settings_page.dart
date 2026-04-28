@@ -4,6 +4,7 @@ import '../../../../core/design/tokens.dart';
 import '../../../../core/services/proximity_provider.dart';
 import '../../../profile/presentation/providers/profile_provider.dart';
 import '../providers/settings_provider.dart';
+import 'help_page.dart';
 
 class SettingsPage extends ConsumerWidget {
   const SettingsPage({super.key});
@@ -27,6 +28,22 @@ class SettingsPage extends ConsumerWidget {
           const Divider(height: 1),
           _sectionHeader('Приватность'),
           _PrivacySection(),
+          const Divider(height: 1),
+          _sectionHeader('О приложении'),
+          ListTile(
+            leading: const Icon(Icons.help_outline, color: AppColors.primary),
+            title: const Text('Помощь и поддержка'),
+            trailing: const Icon(Icons.chevron_right, color: AppColors.textSecondary),
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute<void>(builder: (_) => const HelpPage()),
+            ),
+          ),
+          const ListTile(
+            leading: Icon(Icons.info_outline, color: AppColors.primary),
+            title: Text('Версия приложения'),
+            trailing: Text('1.0.0', style: TextStyle(color: AppColors.textSecondary, fontSize: 14)),
+          ),
         ],
       ),
     );

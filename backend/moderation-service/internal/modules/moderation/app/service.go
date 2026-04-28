@@ -60,3 +60,7 @@ func (s *Service) Reject(ctx context.Context, moderatorID, itemID uuid.UUID, not
 	}
 	return s.Store.UpdateDecision(ctx, itemID, domain.StatusRejected, moderatorID, &note)
 }
+
+func (s *Service) GetStats(ctx context.Context) (*domain.ModerationStats, error) {
+	return s.Store.GetStats(ctx)
+}

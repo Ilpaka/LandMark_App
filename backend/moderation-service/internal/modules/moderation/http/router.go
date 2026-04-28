@@ -23,6 +23,7 @@ func Mount(r *gin.Engine, h *Handler) {
 	v1.POST("/moderation/submit", h.Submit)
 
 	admin := v1.Group("/moderation")
+	admin.GET("/stats", h.GetStats)
 	admin.GET("/queue", h.ListQueue)
 	admin.POST("/queue/:id/approve", h.Approve)
 	admin.POST("/queue/:id/reject", h.Reject)
