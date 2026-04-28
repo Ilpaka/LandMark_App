@@ -16,7 +16,7 @@ final connectivityProvider = StreamProvider<bool>((ref) {
   }
 
   // Poll every 5 seconds
-  Timer.periodic(const Duration(seconds: 5), (_) async {
+  final timer = Timer.periodic(const Duration(seconds: 5), (_) async {
     if (!controller.isClosed) {
       controller.add(await check());
     }
@@ -25,7 +25,10 @@ final connectivityProvider = StreamProvider<bool>((ref) {
   // Initial check
   check().then((v) { if (!controller.isClosed) controller.add(v); });
 
-  ref.onDispose(controller.close);
+  ref.onDispose(() {
+    timer.cancel();
+    controller.close();
+  });
   return controller.stream;
 });
 

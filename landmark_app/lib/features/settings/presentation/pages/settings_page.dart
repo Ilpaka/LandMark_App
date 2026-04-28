@@ -85,7 +85,7 @@ class _NotifPrefsSection extends ConsumerWidget {
       value: value,
       title: Text(title),
       subtitle: subtitle != null ? Text(subtitle, style: const TextStyle(fontSize: 12)) : null,
-      activeColor: AppColors.primary,
+      activeThumbColor: AppColors.primary,
       onChanged: (v) => ref.read(notifPrefsProvider.notifier).toggle(key, v),
     );
   }
@@ -135,7 +135,7 @@ class _PrivacySection extends ConsumerWidget {
             value: privacy.analyticsEnabled,
             title: const Text('Аналитика'),
             subtitle: const Text('Разрешить сбор аналитики', style: TextStyle(fontSize: 12)),
-            activeColor: AppColors.primary,
+            activeThumbColor: AppColors.primary,
             onChanged: (v) => ref.read(privacyProvider.notifier).save({'analytics_enabled': v}),
           ),
         ],

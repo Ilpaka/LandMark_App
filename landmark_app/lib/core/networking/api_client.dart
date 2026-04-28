@@ -35,9 +35,10 @@ class ApiClient {
             try {
               final refresh = await getRefreshToken();
               if (refresh != null) {
-                final r = await _dio.post('/v1/auth/refresh', data: {'refresh_token': refresh});
-                final newAccess = r.data['access_token'] as String;
-                final newRefresh = r.data['refresh_token'] as String;
+                final r = await _dio.post<Map<String, dynamic>>('/v1/auth/refresh', data: {'refresh_token': refresh});
+                final body = r.data!;
+                final newAccess = body['access_token'] as String;
+                final newRefresh = body['refresh_token'] as String;
                 await saveTokens(newAccess, newRefresh);
                 final opts = err.requestOptions;
                 opts.headers['Authorization'] = 'Bearer $newAccess';
