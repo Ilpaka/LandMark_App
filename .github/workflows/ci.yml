@@ -1,0 +1,71 @@
+name: CI
+
+on:
+  push:
+    branches: [main, create_app]
+  pull_request:
+    branches: [main]
+
+jobs:
+  backend:
+    name: Backend – ${{ matrix.service }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        service:
+          - auth-service
+          - profile-service
+          - places-service
+          - trips-service
+          - journal-service
+          - media-service
+          - favorites-service
+          - notifications-service
+          - moderation-service
+          - api-gateway
+    defaults:
+      run:
+        working-directory: backend/${{ matrix.service }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.23'
+          cache: true
+          cache-dependency-path: backend/${{ matrix.service }}/go.sum
+
+      - name: go build
+        run: go build ./...
+
+      - name: go vet
+        run: go vet ./...
+
+      - name: go test
+        run: go test ./... -timeout 60s
+
+  flutter:
+    name: Flutter
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: landmark_app
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.22.0'
+          channel: stable
+          cache: true
+
+      - name: Flutter pub get
+        run: flutter pub get
+
+      - name: Flutter analyze
+        run: flutter analyze --no-pub
+
+      - name: Flutter test
+        run: flutter test --no-pub
