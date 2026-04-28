@@ -6,6 +6,10 @@ final moderationApiProvider = Provider((ref) {
   return ModerationApi(ref.read(apiClientProvider).dio);
 });
 
+final moderationStatsProvider = FutureProvider<ModerationStats>(
+  (ref) => ref.read(moderationApiProvider).getStats(),
+);
+
 final moderationQueueProvider =
     AsyncNotifierProvider<ModerationQueueNotifier, List<ModerationQueueItem>>(
   ModerationQueueNotifier.new,

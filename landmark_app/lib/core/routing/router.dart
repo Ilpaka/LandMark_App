@@ -13,7 +13,7 @@ import '../../features/journal/presentation/pages/journal_feed_page.dart';
 import '../../features/favorites/presentation/pages/favorites_list_page.dart';
 import '../../features/trips/presentation/pages/public_trips_page.dart';
 import '../../features/notifications/presentation/pages/notifications_feed_page.dart';
-import '../../features/admin/presentation/pages/moderation_queue_page.dart';
+import '../../features/admin/presentation/pages/admin_dashboard_page.dart';
 import '../../features/profile/presentation/pages/profile_page.dart';
 
 final routerProvider = Provider<GoRouter>((ref) {
@@ -58,7 +58,7 @@ final routerProvider = Provider<GoRouter>((ref) {
           GoRoute(path: '/main/favorites', builder: (_, __) => const FavoritesListPage()),
           GoRoute(path: '/main/notifications', builder: (_, __) => const NotificationsFeedPage()),
           GoRoute(path: '/main/profile', builder: (_, __) => const ProfilePage()),
-          GoRoute(path: '/main/admin', builder: (_, __) => const ModerationQueuePage()),
+          GoRoute(path: '/main/admin', builder: (_, __) => const AdminDashboardPage()),
         ],
       ),
     ],

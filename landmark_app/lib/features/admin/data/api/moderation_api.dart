@@ -30,9 +30,29 @@ class ModerationQueueItem {
       );
 }
 
+class ModerationStats {
+  final int pending;
+  final int approved;
+  final int rejected;
+  final int total;
+  const ModerationStats({required this.pending, required this.approved, required this.rejected, required this.total});
+
+  factory ModerationStats.fromJson(Map<String, dynamic> j) => ModerationStats(
+        pending: j['pending'] as int? ?? 0,
+        approved: j['approved'] as int? ?? 0,
+        rejected: j['rejected'] as int? ?? 0,
+        total: j['total'] as int? ?? 0,
+      );
+}
+
 class ModerationApi {
   final Dio dio;
   ModerationApi(this.dio);
+
+  Future<ModerationStats> getStats() async {
+    final r = await dio.get<Map<String, dynamic>>('/v1/moderation/stats');
+    return ModerationStats.fromJson(r.data!);
+  }
 
   Future<List<ModerationQueueItem>> listQueue({String? cursor}) async {
     final params = <String, dynamic>{};

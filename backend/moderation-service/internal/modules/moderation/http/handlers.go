@@ -131,6 +131,18 @@ func (h *Handler) Reject(c *gin.Context) {
 	c.Status(http.StatusNoContent)
 }
 
+func (h *Handler) GetStats(c *gin.Context) {
+	if !requireAdmin(c) {
+		return
+	}
+	stats, err := h.Svc.GetStats(c.Request.Context())
+	if err != nil {
+		writeErr(c, err)
+		return
+	}
+	c.JSON(http.StatusOK, stats)
+}
+
 // InternalSubmit is called by places-service to enqueue a place for moderation
 func (h *Handler) InternalSubmit(c *gin.Context) {
 	var body struct {

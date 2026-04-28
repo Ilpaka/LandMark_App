@@ -89,6 +89,22 @@ func (s *Store) UpdateDecision(ctx context.Context, id uuid.UUID, status domain.
 	return err
 }
 
+func (s *Store) GetStats(ctx context.Context) (*domain.ModerationStats, error) {
+	var stats domain.ModerationStats
+	err := s.Pool.QueryRow(ctx, `
+		SELECT
+			COUNT(*) FILTER (WHERE status='pending'),
+			COUNT(*) FILTER (WHERE status='approved'),
+			COUNT(*) FILTER (WHERE status='rejected'),
+			COUNT(*)
+		FROM moderation.queue
+	`).Scan(&stats.Pending, &stats.Approved, &stats.Rejected, &stats.Total)
+	if err != nil {
+		return nil, err
+	}
+	return &stats, nil
+}
+
 func scanItem(row pgx.Row) (*domain.QueueItem, error) {
 	var item domain.QueueItem
 	var tt, st string

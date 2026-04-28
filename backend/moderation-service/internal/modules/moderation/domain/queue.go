@@ -37,3 +37,10 @@ type QueuePage struct {
 	Items      []QueueItem `json:"items"`
 	NextCursor string      `json:"next_cursor,omitempty"`
 }
+
+type ModerationStats struct {
+	Pending  int `json:"pending"`
+	Approved int `json:"approved"`
+	Rejected int `json:"rejected"`
+	Total    int `json:"total"`
+}

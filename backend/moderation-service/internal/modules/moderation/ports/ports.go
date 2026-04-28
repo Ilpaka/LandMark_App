@@ -12,6 +12,7 @@ type Store interface {
 	GetItemByTarget(ctx context.Context, targetType domain.TargetType, targetID uuid.UUID) (*domain.QueueItem, error)
 	ListPending(ctx context.Context, f domain.ListFilter) (*domain.QueuePage, error)
 	UpdateDecision(ctx context.Context, id uuid.UUID, status domain.ItemStatus, moderatorID uuid.UUID, note *string) error
+	GetStats(ctx context.Context) (*domain.ModerationStats, error)
 }
 
 type PlacesClient interface {
