@@ -54,6 +54,11 @@ class AuthNotifier extends StateNotifier<AuthState> {
     await _repo.signOut();
     state = AuthStateUnauthenticated();
   }
+
+  Future<void> deleteAccount() async {
+    await _repo.deleteAccount();
+    state = AuthStateUnauthenticated();
+  }
 }
 
 // A ChangeNotifier that GoRouter can use as refreshListenable.
