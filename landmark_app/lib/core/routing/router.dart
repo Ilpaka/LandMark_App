@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../features/auth/presentation/pages/welcome_page.dart';
@@ -12,6 +11,7 @@ import '../../features/map/presentation/pages/map_page.dart';
 import '../../features/trips/presentation/pages/trips_list_page.dart';
 import '../../features/journal/presentation/pages/journal_feed_page.dart';
 import '../../features/admin/presentation/pages/moderation_queue_page.dart';
+import '../../features/profile/presentation/pages/profile_page.dart';
 
 final routerProvider = Provider<GoRouter>((ref) {
   final refreshListenable = ref.read(authRouterNotifierProvider);
@@ -51,7 +51,7 @@ final routerProvider = Provider<GoRouter>((ref) {
           GoRoute(path: '/main/map', builder: (_, __) => const MapPage()),
           GoRoute(path: '/main/trips', builder: (_, __) => const TripsListPage()),
           GoRoute(path: '/main/journal', builder: (_, __) => const JournalFeedPage()),
-          GoRoute(path: '/main/profile', builder: (_, __) => const _StubPage(label: 'Профиль')),
+          GoRoute(path: '/main/profile', builder: (_, __) => const ProfilePage()),
           GoRoute(path: '/main/admin', builder: (_, __) => const ModerationQueuePage()),
         ],
       ),
@@ -59,11 +59,3 @@ final routerProvider = Provider<GoRouter>((ref) {
   );
 });
 
-class _StubPage extends StatelessWidget {
-  final String label;
-  const _StubPage({required this.label});
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(body: Center(child: Text(label, style: const TextStyle(fontSize: 24))));
-  }
-}
