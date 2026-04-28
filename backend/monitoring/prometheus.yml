@@ -1,0 +1,58 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+scrape_configs:
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+
+  - job_name: 'auth-service'
+    static_configs:
+      - targets: ['auth-service:8080']
+    metrics_path: /metrics
+
+  - job_name: 'profile-service'
+    static_configs:
+      - targets: ['profile-service:8080']
+    metrics_path: /metrics
+
+  - job_name: 'places-service'
+    static_configs:
+      - targets: ['places-service:8080']
+    metrics_path: /metrics
+
+  - job_name: 'trips-service'
+    static_configs:
+      - targets: ['trips-service:8080']
+    metrics_path: /metrics
+
+  - job_name: 'journal-service'
+    static_configs:
+      - targets: ['journal-service:8080']
+    metrics_path: /metrics
+
+  - job_name: 'media-service'
+    static_configs:
+      - targets: ['media-service:8080']
+    metrics_path: /metrics
+
+  - job_name: 'favorites-service'
+    static_configs:
+      - targets: ['favorites-service:8080']
+    metrics_path: /metrics
+
+  - job_name: 'notifications-service'
+    static_configs:
+      - targets: ['notifications-service:8080']
+    metrics_path: /metrics
+
+  - job_name: 'moderation-service'
+    static_configs:
+      - targets: ['moderation-service:8080']
+    metrics_path: /metrics
+
+  - job_name: 'api-gateway'
+    static_configs:
+      - targets: ['api-gateway:8080']
+    metrics_path: /metrics
