@@ -5,6 +5,7 @@ import '../../../../core/design/tokens.dart';
 import '../../../../core/design/typography.dart';
 import '../../domain/entities/entry.dart';
 import '../providers/journal_provider.dart';
+import '../../../../core/widgets/skeleton.dart';
 import 'create_entry_page.dart';
 
 class JournalFeedPage extends ConsumerWidget {
@@ -35,7 +36,7 @@ class JournalFeedPage extends ConsumerWidget {
                 itemCount: entries.length,
                 itemBuilder: (_, i) => _EntryCard(entry: entries[i]),
               ),
-        loading: () => const Center(child: CircularProgressIndicator(color: AppColors.primary)),
+        loading: () => const SkeletonListView(),
         error: (e, _) => Center(child: Text('Ошибка: $e')),
       ),
     );
