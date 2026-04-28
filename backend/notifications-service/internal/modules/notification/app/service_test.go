@@ -168,6 +168,70 @@ func TestUpsertDevice_InvalidPlatform(t *testing.T) {
 	}
 }
 
+// MarkRead_Delegates: MarkRead must delegate to the store without modification.
+func TestMarkRead_Delegates(t *testing.T) {
+	svc := &Service{Store: &mockStore{}}
+	if err := svc.MarkRead(context.Background(), uuid.New(), uuid.New()); err != nil {
+		t.Fatalf("unexpected error: %v", err)
+	}
+}
+
+// MarkAllRead_Delegates: MarkAllRead must delegate to the store.
+func TestMarkAllRead_Delegates(t *testing.T) {
+	svc := &Service{Store: &mockStore{}}
+	if err := svc.MarkAllRead(context.Background(), uuid.New()); err != nil {
+		t.Fatalf("unexpected error: %v", err)
+	}
+}
+
+// UnreadCount_Delegates: UnreadCount must delegate to the store.
+func TestUnreadCount_Delegates(t *testing.T) {
+	svc := &Service{Store: &mockStore{}}
+	n, err := svc.UnreadCount(context.Background(), uuid.New())
+	if err != nil {
+		t.Fatalf("unexpected error: %v", err)
+	}
+	if n != 0 {
+		t.Errorf("expected 0, got %d", n)
+	}
+}
+
+// UpsertDevice_ValidPlatforms: ios and android must pass through to the store.
+func TestUpsertDevice_ValidPlatforms(t *testing.T) {
+	dev := &domain.Device{ID: uuid.New(), Platform: "ios"}
+	store := &mockStore{upsertedDevice: dev}
+	svc := &Service{Store: store}
+
+	for _, platform := range []string{"ios", "android"} {
+		got, err := svc.UpsertDevice(context.Background(), uuid.New(), platform, "tok")
+		if err != nil {
+			t.Fatalf("platform %s: unexpected error: %v", platform, err)
+		}
+		if got == nil {
+			t.Errorf("platform %s: expected non-nil device", platform)
+		}
+	}
+}
+
+// UpdatePreferences_PatchField: patches a single field and expects it reflected.
+func TestUpdatePreferences_PatchField(t *testing.T) {
+	uid := uuid.New()
+	updated := &domain.Preferences{UserID: uid, PushMarketing: true}
+	store := &mockStore{
+		getPrefsErr:       domain.ErrNotFound, // triggers defaults
+		upsertPreferences: updated,
+	}
+	svc := &Service{Store: store}
+
+	prefs, err := svc.UpdatePreferences(context.Background(), uid, map[string]any{"push_marketing": true})
+	if err != nil {
+		t.Fatalf("unexpected error: %v", err)
+	}
+	if prefs == nil || !prefs.PushMarketing {
+		t.Errorf("expected PushMarketing=true, got %v", prefs)
+	}
+}
+
 // GetPreferences_Defaults: when the store returns ErrNotFound the service
 // must synthesise a default Preferences value rather than propagating the error.
 func TestGetPreferences_Defaults(t *testing.T) {
