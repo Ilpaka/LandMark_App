@@ -9,6 +9,7 @@ import '../providers/map_provider.dart';
 import '../../domain/entities/place.dart';
 import '../../../favorites/presentation/widgets/favorite_button.dart';
 import 'suggest_place_page.dart';
+import '../../../search/presentation/pages/search_page.dart';
 
 class MapPage extends ConsumerStatefulWidget {
   const MapPage({super.key});
@@ -109,8 +110,15 @@ class _MapPageState extends ConsumerState<MapPage> {
             top: MediaQuery.of(context).padding.top + 8,
             left: 16,
             right: 16,
-            child: _SearchBar(onSearch: (q) {
-              ref.read(mapBBoxProvider.notifier).state = PlacesQuery(q: q);
+            child: _SearchBarTap(onTap: () async {
+              final place = await Navigator.push<Place>(
+                context,
+                MaterialPageRoute(builder: (_) => const SearchPage()),
+              );
+              if (place != null && mounted) {
+                _mapController.move(LatLng(place.latitude, place.longitude), 14);
+                _showPlacePreview(place);
+              }
             }),
           ),
 
@@ -162,6 +170,36 @@ class _PlacePin extends StatelessWidget {
         boxShadow: const [BoxShadow(color: Colors.black26, blurRadius: 4, offset: Offset(0, 2))],
       ),
       child: const Icon(Icons.place, color: Colors.white, size: 20),
+    );
+  }
+}
+
+class _SearchBarTap extends StatelessWidget {
+  final VoidCallback onTap;
+  const _SearchBarTap({required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Material(
+        elevation: 4,
+        borderRadius: BorderRadius.circular(12),
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: const Row(
+            children: [
+              Icon(Icons.search, color: AppColors.textSecondary),
+              SizedBox(width: 12),
+              Text('Поиск мест...', style: TextStyle(color: AppColors.textSecondary, fontSize: 16)),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
