@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/design/tokens.dart';
+import '../../../../core/services/proximity_provider.dart';
 import '../../../profile/presentation/providers/profile_provider.dart';
 import '../providers/settings_provider.dart';
 
@@ -20,6 +21,9 @@ class SettingsPage extends ConsumerWidget {
         children: [
           _sectionHeader('Уведомления'),
           _NotifPrefsSection(),
+          const Divider(height: 1),
+          _sectionHeader('Геолокация'),
+          _ProximitySection(),
           const Divider(height: 1),
           _sectionHeader('Приватность'),
           _PrivacySection(),
@@ -87,6 +91,30 @@ class _NotifPrefsSection extends ConsumerWidget {
       subtitle: subtitle != null ? Text(subtitle, style: const TextStyle(fontSize: 12)) : null,
       activeThumbColor: AppColors.primary,
       onChanged: (v) => ref.read(notifPrefsProvider.notifier).toggle(key, v),
+    );
+  }
+}
+
+class _ProximitySection extends ConsumerWidget {
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final active = ref.watch(proximityActiveProvider);
+    return SwitchListTile(
+      value: active,
+      title: const Text('Уведомления о близких местах'),
+      subtitle: const Text(
+        'Получать уведомление при приближении к избранным POI',
+        style: TextStyle(fontSize: 12),
+      ),
+      secondary: const Icon(Icons.near_me_outlined),
+      activeThumbColor: AppColors.primary,
+      onChanged: (v) {
+        if (v) {
+          ref.read(proximityActiveProvider.notifier).enable();
+        } else {
+          ref.read(proximityActiveProvider.notifier).disable();
+        }
+      },
     );
   }
 }

@@ -93,7 +93,7 @@ func (s *Store) listTags(ctx context.Context, entryID uuid.UUID) ([]string, erro
 	return tags, rows.Err()
 }
 
-func (s *Store) ListEntries(ctx context.Context, authorID uuid.UUID, tripID *uuid.UUID, cursor string, limit int) ([]domain.Entry, string, error) {
+func (s *Store) ListEntries(ctx context.Context, authorID uuid.UUID, tripID *uuid.UUID, q, cursor string, limit int) ([]domain.Entry, string, error) {
 	args := []any{authorID}
 	where := "author_id = $1 AND deleted_at IS NULL"
 	argN := 2
@@ -101,6 +101,11 @@ func (s *Store) ListEntries(ctx context.Context, authorID uuid.UUID, tripID *uui
 	if tripID != nil {
 		where += fmt.Sprintf(" AND trip_id = $%d", argN)
 		args = append(args, *tripID)
+		argN++
+	}
+	if q != "" {
+		where += fmt.Sprintf(" AND (title ILIKE $%d OR body ILIKE $%d)", argN, argN)
+		args = append(args, "%"+q+"%")
 		argN++
 	}
 
@@ -118,10 +123,10 @@ func (s *Store) ListEntries(ctx context.Context, authorID uuid.UUID, tripID *uui
 	}
 
 	args = append(args, limit+1)
-	q := fmt.Sprintf(`SELECT %s FROM journal_entries WHERE %s ORDER BY occurred_at DESC, id DESC LIMIT $%d`,
+	sqlQ := fmt.Sprintf(`SELECT %s FROM journal_entries WHERE %s ORDER BY occurred_at DESC, id DESC LIMIT $%d`,
 		entryColumns, where, argN)
 
-	rows, err := s.db.Query(ctx, q, args...)
+	rows, err := s.db.Query(ctx, sqlQ, args...)
 	if err != nil {
 		return nil, "", err
 	}

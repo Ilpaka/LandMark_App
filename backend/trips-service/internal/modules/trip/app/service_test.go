@@ -39,7 +39,7 @@ func (m *mockStore) InsertTrip(_ context.Context, t domain.Trip) (*domain.Trip, 
 	return &t, nil
 }
 
-func (m *mockStore) ListTrips(_ context.Context, ownerID uuid.UUID, status, cursor string, limit int) ([]domain.Trip, string, error) {
+func (m *mockStore) ListTrips(_ context.Context, ownerID uuid.UUID, status, q, cursor string, limit int) ([]domain.Trip, string, error) {
 	var out []domain.Trip
 	for _, t := range m.trips {
 		if t.OwnerID == ownerID {

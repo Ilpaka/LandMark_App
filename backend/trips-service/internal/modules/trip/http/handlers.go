@@ -57,12 +57,13 @@ func (h *Handlers) ListTrips(c *gin.Context) {
 		return
 	}
 	status := c.Query("status")
+	q := c.Query("q")
 	cursor := c.Query("cursor")
 	limit := 20
 	if l, err := strconv.Atoi(c.Query("limit")); err == nil {
 		limit = l
 	}
-	trips, next, err := h.Svc.List(c.Request.Context(), *userID, status, cursor, limit)
+	trips, next, err := h.Svc.List(c.Request.Context(), *userID, status, q, cursor, limit)
 	if err != nil {
 		writeErr(c, err)
 		return

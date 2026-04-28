@@ -10,7 +10,7 @@ import (
 
 type Store interface {
 	InsertTrip(ctx context.Context, t domain.Trip) (*domain.Trip, error)
-	ListTrips(ctx context.Context, ownerID uuid.UUID, status, cursor string, limit int) ([]domain.Trip, string, error)
+	ListTrips(ctx context.Context, ownerID uuid.UUID, status, q, cursor string, limit int) ([]domain.Trip, string, error)
 	GetTrip(ctx context.Context, id uuid.UUID) (*domain.Trip, error)
 	UpdateTrip(ctx context.Context, id uuid.UUID, updates map[string]any) (*domain.Trip, error)
 	SetTripStatus(ctx context.Context, id uuid.UUID, status domain.TripStatus) error

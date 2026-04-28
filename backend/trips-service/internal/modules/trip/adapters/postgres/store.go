@@ -52,7 +52,7 @@ func (s *Store) GetTrip(ctx context.Context, id uuid.UUID) (*domain.Trip, error)
 	return &t, nil
 }
 
-func (s *Store) ListTrips(ctx context.Context, ownerID uuid.UUID, status, cursor string, limit int) ([]domain.Trip, string, error) {
+func (s *Store) ListTrips(ctx context.Context, ownerID uuid.UUID, status, q, cursor string, limit int) ([]domain.Trip, string, error) {
 	args := []any{ownerID}
 	where := "owner_id = $1 AND status != 'archived'"
 	argN := 2
@@ -60,6 +60,11 @@ func (s *Store) ListTrips(ctx context.Context, ownerID uuid.UUID, status, cursor
 	if status != "" {
 		where += fmt.Sprintf(" AND status = $%d", argN)
 		args = append(args, status)
+		argN++
+	}
+	if q != "" {
+		where += fmt.Sprintf(" AND title ILIKE $%d", argN)
+		args = append(args, "%"+q+"%")
 		argN++
 	}
 
@@ -77,10 +82,10 @@ func (s *Store) ListTrips(ctx context.Context, ownerID uuid.UUID, status, cursor
 	}
 
 	args = append(args, limit+1)
-	q := fmt.Sprintf(`SELECT %s FROM trips_trips WHERE %s ORDER BY updated_at DESC, id DESC LIMIT $%d`,
+	sqlQ := fmt.Sprintf(`SELECT %s FROM trips_trips WHERE %s ORDER BY updated_at DESC, id DESC LIMIT $%d`,
 		tripColumns, where, argN)
 
-	rows, err := s.db.Query(ctx, q, args...)
+	rows, err := s.db.Query(ctx, sqlQ, args...)
 	if err != nil {
 		return nil, "", err
 	}

@@ -35,11 +35,11 @@ func (s *Service) CreateDraft(ctx context.Context, ownerID uuid.UUID, title stri
 	return s.Store.InsertTrip(ctx, t)
 }
 
-func (s *Service) List(ctx context.Context, ownerID uuid.UUID, status string, cursor string, limit int) ([]domain.Trip, string, error) {
+func (s *Service) List(ctx context.Context, ownerID uuid.UUID, status, q, cursor string, limit int) ([]domain.Trip, string, error) {
 	if limit <= 0 || limit > 100 {
 		limit = 20
 	}
-	return s.Store.ListTrips(ctx, ownerID, status, cursor, limit)
+	return s.Store.ListTrips(ctx, ownerID, status, q, cursor, limit)
 }
 
 func (s *Service) Get(ctx context.Context, ownerID, tripID uuid.UUID) (*domain.Trip, error) {
