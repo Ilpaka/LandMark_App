@@ -33,6 +33,21 @@ class TripDetailPage extends ConsumerWidget {
               MaterialPageRoute(builder: (_) => TripMapPage(trip: trip)),
             ),
           ),
+          PopupMenuButton<String>(
+            onSelected: (v) => _onMenuAction(context, ref, v),
+            itemBuilder: (_) => [
+              if (trip.status == 'planned')
+                const PopupMenuItem(value: 'start', child: Text('Начать поездку')),
+              if (trip.status == 'in_progress')
+                const PopupMenuItem(value: 'complete', child: Text('Завершить поездку')),
+              if (trip.status == 'completed' || trip.status == 'in_progress')
+                const PopupMenuItem(value: 'plan', child: Text('Вернуть в запланированные')),
+              const PopupMenuItem(
+                value: 'delete',
+                child: Text('Удалить', style: TextStyle(color: Colors.red)),
+              ),
+            ],
+          ),
         ],
       ),
       body: stopsAsync.when(
@@ -88,6 +103,62 @@ class TripDetailPage extends ConsumerWidget {
       ),
     );
   }
+
+  Future<void> _onMenuAction(BuildContext context, WidgetRef ref, String action) async {
+    if (action == 'delete') {
+      final confirm = await showDialog<bool>(
+        context: context,
+        builder: (ctx) => AlertDialog(
+          title: const Text('Удалить поездку?'),
+          content: const Text('Все остановки будут удалены.'),
+          actions: [
+            TextButton(onPressed: () => Navigator.pop(ctx, false), child: const Text('Отмена')),
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(backgroundColor: Colors.red, foregroundColor: Colors.white),
+              onPressed: () => Navigator.pop(ctx, true),
+              child: const Text('Удалить'),
+            ),
+          ],
+        ),
+      );
+      if (confirm == true && context.mounted) {
+        await ref.read(tripsApiProvider).deleteTrip(trip.id);
+        ref.invalidate(tripsListProvider);
+        if (context.mounted) Navigator.pop(context);
+      }
+      return;
+    }
+    final newStatus = switch (action) {
+      'start' => 'in_progress',
+      'complete' => 'completed',
+      'plan' => 'planned',
+      _ => null,
+    };
+    if (newStatus == null) return;
+    try {
+      await ref.read(tripsApiProvider).updateTrip(trip.id, status: newStatus);
+      ref.invalidate(tripsListProvider);
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(_statusLabel(newStatus))),
+        );
+        Navigator.pop(context);
+      }
+    } catch (e) {
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Ошибка: $e')),
+        );
+      }
+    }
+  }
+
+  String _statusLabel(String status) => switch (status) {
+    'in_progress' => 'Поездка началась!',
+    'completed' => 'Поездка завершена',
+    'planned' => 'Поездка возвращена в запланированные',
+    _ => 'Статус обновлён',
+  };
 
   Future<void> _optimizeRoute(BuildContext context, WidgetRef ref) async {
     try {

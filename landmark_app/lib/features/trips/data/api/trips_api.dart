@@ -33,6 +33,15 @@ class TripsApi {
     return Trip.fromJson(r.data as Map<String, dynamic>);
   }
 
+  Future<Trip> updateTrip(String id, {String? title, String? subtitle, String? status}) async {
+    final body = <String, dynamic>{};
+    if (title != null) body['title'] = title;
+    if (subtitle != null) body['subtitle'] = subtitle;
+    if (status != null) body['status'] = status;
+    final r = await dio.patch('/v1/trips/$id', data: body);
+    return Trip.fromJson(r.data as Map<String, dynamic>);
+  }
+
   Future<void> deleteTrip(String id) => dio.delete('/v1/trips/$id');
 
   Future<List<Trip>> listPublicTrips({String? cursor, int limit = 20}) async {
