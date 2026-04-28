@@ -26,8 +26,8 @@ class _OtpPageState extends ConsumerState<OtpPage> {
 
   @override
   void dispose() {
-    for (final c in _controllers) c.dispose();
-    for (final f in _focusNodes) f.dispose();
+    for (final c in _controllers) { c.dispose(); }
+    for (final f in _focusNodes) { f.dispose(); }
     super.dispose();
   }
 
@@ -54,9 +54,9 @@ class _OtpPageState extends ConsumerState<OtpPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Text('Введите код', style: AppTypography.h2),
+              const Text('Введите код', style: AppTypography.h2),
               const SizedBox(height: AppSpacing.sm),
-              Text(
+              const Text(
                 'Мы отправили 6-значный код на вашу почту',
                 style: AppTypography.bodySmall,
               ),

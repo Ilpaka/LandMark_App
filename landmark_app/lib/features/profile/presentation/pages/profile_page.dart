@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/design/tokens.dart';
+import '../../domain/entities/profile.dart';
 import '../providers/profile_provider.dart';
 import '../../../auth/presentation/providers/auth_provider.dart' show authProvider, AuthStateAuthenticated; // ignore: unused_shown_name
 import 'edit_profile_page.dart';
@@ -64,7 +65,7 @@ class ProfilePage extends ConsumerWidget {
     );
   }
 
-  Widget _buildProfile(BuildContext context, WidgetRef ref, profile) {
+  Widget _buildProfile(BuildContext context, WidgetRef ref, UserProfile profile) {
     return ListView(
       children: [
         // Header

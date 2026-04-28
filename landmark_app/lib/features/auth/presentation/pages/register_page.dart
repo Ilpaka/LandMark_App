@@ -65,7 +65,7 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Text('Создать аккаунт', style: AppTypography.h2),
+                const Text('Создать аккаунт', style: AppTypography.h2),
                 const SizedBox(height: AppSpacing.xl),
                 WlTextField(
                   label: 'Имя',

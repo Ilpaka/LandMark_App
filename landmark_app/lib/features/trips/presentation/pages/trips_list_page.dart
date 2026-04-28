@@ -77,7 +77,7 @@ class _TripCard extends StatelessWidget {
         context,
         MaterialPageRoute(builder: (_) => TripDetailPage(trip: trip)),
       ),
-      borderRadius: BorderRadius.all(AppRadius.md),
+      borderRadius: const BorderRadius.all(AppRadius.md),
       child: Card(
       margin: const EdgeInsets.only(bottom: AppSpacing.md),
       shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(AppRadius.md)),

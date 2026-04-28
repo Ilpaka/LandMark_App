@@ -54,7 +54,7 @@ class _LoginPageState extends ConsumerState<LoginPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Text('Добро пожаловать', style: AppTypography.h2),
+                const Text('Добро пожаловать', style: AppTypography.h2),
                 const SizedBox(height: AppSpacing.xl),
                 WlTextField(
                   label: 'Email',
