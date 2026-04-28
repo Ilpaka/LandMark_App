@@ -139,7 +139,44 @@ class ProfilePage extends ConsumerWidget {
           title: const Text('Выйти', style: TextStyle(color: Colors.red)),
           onTap: () => _confirmSignOut(context, ref),
         ),
+        ListTile(
+          leading: const Icon(Icons.delete_forever_outlined, color: Colors.red),
+          title: const Text('Удалить аккаунт', style: TextStyle(color: Colors.red)),
+          subtitle: const Text('Необратимое действие', style: TextStyle(fontSize: 12, color: Colors.red)),
+          onTap: () => _confirmDeleteAccount(context, ref),
+        ),
       ],
+    );
+  }
+
+  void _confirmDeleteAccount(BuildContext context, WidgetRef ref) {
+    showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: const Text('Удалить аккаунт?'),
+        content: const Text(
+          'Все ваши данные будут безвозвратно удалены. Это действие нельзя отменить.',
+        ),
+        actions: [
+          TextButton(onPressed: () => Navigator.pop(ctx), child: const Text('Отмена')),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(backgroundColor: Colors.red, foregroundColor: Colors.white),
+            onPressed: () async {
+              Navigator.pop(ctx);
+              try {
+                await ref.read(authProvider.notifier).deleteAccount();
+              } catch (e) {
+                if (context.mounted) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text('Ошибка: $e')),
+                  );
+                }
+              }
+            },
+            child: const Text('Удалить'),
+          ),
+        ],
+      ),
     );
   }
 
