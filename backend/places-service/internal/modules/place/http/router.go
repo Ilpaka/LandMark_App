@@ -22,6 +22,9 @@ func Mount(svc *app.Service, internalKey string) *Stack {
 	v1 := r.Group("/v1")
 	{
 		v1.GET("/places/categories", h.ListCategories)
+		v1.POST("/places/categories", h.CreateCategory)
+		v1.PATCH("/places/categories/:id", h.UpdateCategory)
+		v1.DELETE("/places/categories/:id", h.DeleteCategory)
 		v1.GET("/places", h.ListPlaces)
 		v1.GET("/places/:id", h.GetPlace)
 		v1.POST("/places", h.CreatePlace)
