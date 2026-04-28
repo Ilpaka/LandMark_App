@@ -5,6 +5,7 @@ import '../../../../core/design/typography.dart';
 import '../../../../core/design/components/wl_button.dart';
 import '../../domain/entities/trip.dart';
 import '../providers/trips_provider.dart';
+import 'trip_detail_page.dart';
 
 class TripsListPage extends ConsumerWidget {
   const TripsListPage({super.key});
@@ -71,7 +72,13 @@ class _TripCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
+    return InkWell(
+      onTap: () => Navigator.push(
+        context,
+        MaterialPageRoute(builder: (_) => TripDetailPage(trip: trip)),
+      ),
+      borderRadius: BorderRadius.all(AppRadius.md),
+      child: Card(
       margin: const EdgeInsets.only(bottom: AppSpacing.md),
       shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(AppRadius.md)),
       child: Padding(
@@ -96,6 +103,7 @@ class _TripCard extends StatelessWidget {
           ],
         ),
       ),
+    ),
     );
   }
 }
