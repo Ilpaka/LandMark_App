@@ -79,3 +79,34 @@ func (s *Service) ListMedia(ctx context.Context, authorID, entryID uuid.UUID) ([
 	}
 	return s.Store.ListMedia(ctx, entryID)
 }
+
+// Reactions — any authenticated user may react (not just the author).
+
+func (s *Service) AddReaction(ctx context.Context, userID, entryID uuid.UUID, emoji string) error {
+	if emoji == "" {
+		return domain.ErrBadRequest
+	}
+	e, err := s.Store.GetEntry(ctx, entryID)
+	if err != nil || e == nil {
+		return domain.ErrNotFound
+	}
+	return s.Store.UpsertReaction(ctx, domain.Reaction{
+		EntryID: entryID, AuthorID: userID, Emoji: emoji,
+	})
+}
+
+func (s *Service) RemoveReaction(ctx context.Context, userID, entryID uuid.UUID, emoji string) error {
+	return s.Store.DeleteReaction(ctx, entryID, userID, emoji)
+}
+
+func (s *Service) ListReactions(ctx context.Context, entryID, callerID uuid.UUID) ([]domain.ReactionCount, []string, error) {
+	counts, err := s.Store.ListReactionCounts(ctx, entryID)
+	if err != nil {
+		return nil, nil, err
+	}
+	mine, err := s.Store.GetUserReactions(ctx, entryID, callerID)
+	if err != nil {
+		return nil, nil, err
+	}
+	return counts, mine, nil
+}

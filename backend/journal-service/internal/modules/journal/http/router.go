@@ -29,6 +29,9 @@ func Mount(svc *app.Service) *Stack {
 			entries.GET("/:id/media", h.ListMedia)
 			entries.POST("/:id/media", h.AddMedia)
 			entries.DELETE("/:id/media/:mid", h.RemoveMedia)
+			entries.GET("/:id/reactions", h.ListReactions)
+			entries.POST("/:id/reactions", h.AddReaction)
+			entries.DELETE("/:id/reactions/:emoji", h.RemoveReaction)
 		}
 	}
 
