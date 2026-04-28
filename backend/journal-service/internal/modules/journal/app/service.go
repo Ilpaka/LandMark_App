@@ -38,11 +38,11 @@ func (s *Service) Get(ctx context.Context, authorID, entryID uuid.UUID) (*domain
 	return e, nil
 }
 
-func (s *Service) List(ctx context.Context, authorID uuid.UUID, tripID *uuid.UUID, cursor string, limit int) ([]domain.Entry, string, error) {
+func (s *Service) List(ctx context.Context, authorID uuid.UUID, tripID *uuid.UUID, q, cursor string, limit int) ([]domain.Entry, string, error) {
 	if limit <= 0 || limit > 50 {
 		limit = 20
 	}
-	return s.Store.ListEntries(ctx, authorID, tripID, cursor, limit)
+	return s.Store.ListEntries(ctx, authorID, tripID, q, cursor, limit)
 }
 
 func (s *Service) Update(ctx context.Context, authorID, entryID uuid.UUID, updates map[string]any) (*domain.Entry, error) {

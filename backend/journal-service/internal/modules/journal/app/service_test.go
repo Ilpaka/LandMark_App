@@ -50,7 +50,7 @@ func (m *mockStore) GetEntry(ctx context.Context, id uuid.UUID) (*domain.Entry, 
 	return m.storedEntry, m.getErr
 }
 
-func (m *mockStore) ListEntries(ctx context.Context, authorID uuid.UUID, tripID *uuid.UUID, cursor string, limit int) ([]domain.Entry, string, error) {
+func (m *mockStore) ListEntries(ctx context.Context, authorID uuid.UUID, tripID *uuid.UUID, q, cursor string, limit int) ([]domain.Entry, string, error) {
 	return m.listEntries, m.listCursor, m.listErr
 }
 
