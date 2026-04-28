@@ -21,6 +21,7 @@ class MyProfileNotifier extends AsyncNotifier<UserProfile?> {
     String? bio,
     String? city,
     String? country,
+    String? avatarMediaId,
   }) async {
     final updated = await ref.read(profileApiProvider).updateMe(
       nickname: nickname,
@@ -28,6 +29,7 @@ class MyProfileNotifier extends AsyncNotifier<UserProfile?> {
       bio: bio,
       city: city,
       country: country,
+      avatarMediaId: avatarMediaId,
     );
     state = AsyncValue.data(updated);
   }

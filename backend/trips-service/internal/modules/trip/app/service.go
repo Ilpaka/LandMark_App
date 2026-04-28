@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"math"
 	"net/http"
 	"strings"
 	"time"
@@ -101,6 +102,47 @@ func (s *Service) ListPublic(ctx context.Context, excludeOwnerID uuid.UUID, curs
 type LatLng struct {
 	Lat float64 `json:"lat"`
 	Lng float64 `json:"lng"`
+}
+
+// OptimizeRoute reorders stops using nearest-neighbour heuristic and returns
+// the sorted stop IDs. Caller is responsible for persisting the new order.
+func (s *Service) OptimizeRoute(ctx context.Context, ownerID, tripID uuid.UUID) ([]uuid.UUID, error) {
+	stops, err := s.Store.ListStops(ctx, tripID)
+	if err != nil {
+		return nil, err
+	}
+	if len(stops) < 2 {
+		ids := make([]uuid.UUID, len(stops))
+		for i, st := range stops {
+			ids[i] = st.ID
+		}
+		return ids, nil
+	}
+
+	// Nearest-neighbour greedy heuristic starting from index 0
+	remaining := make([]domain.TripStop, len(stops))
+	copy(remaining, stops)
+	ordered := []uuid.UUID{remaining[0].ID}
+	current := remaining[0]
+	remaining = remaining[1:]
+
+	for len(remaining) > 0 {
+		bestIdx := 0
+		bestDist := math.MaxFloat64
+		for i, st := range remaining {
+			dLat := st.Latitude - current.Latitude
+			dLng := st.Longitude - current.Longitude
+			d := dLat*dLat + dLng*dLng
+			if d < bestDist {
+				bestDist = d
+				bestIdx = i
+			}
+		}
+		current = remaining[bestIdx]
+		ordered = append(ordered, current.ID)
+		remaining = append(remaining[:bestIdx], remaining[bestIdx+1:]...)
+	}
+	return ordered, nil
 }
 
 func (s *Service) GetRoute(ctx context.Context, ownerID, tripID uuid.UUID) ([]LatLng, error) {

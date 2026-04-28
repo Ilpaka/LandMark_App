@@ -37,6 +37,14 @@ class TripsApi {
     return list.map((e) => Trip.fromJson(e as Map<String, dynamic>)).toList();
   }
 
+  Future<List<String>> optimizeRoute(String tripId) async {
+    final r = await dio.post('/v1/trips/$tripId/optimize');
+    final data = r.data as Map<String, dynamic>;
+    return (data['ordered_stop_ids'] as List<dynamic>? ?? [])
+        .map((e) => e as String)
+        .toList();
+  }
+
   Future<List<Map<String, double>>> getRoute(String tripId) async {
     final r = await dio.get('/v1/trips/$tripId/route');
     final data = r.data as Map<String, dynamic>;

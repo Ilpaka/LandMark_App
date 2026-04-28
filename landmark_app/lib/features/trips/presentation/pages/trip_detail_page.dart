@@ -54,13 +54,47 @@ class TripDetailPage extends ConsumerWidget {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: AppColors.primary,
-        foregroundColor: Colors.white,
-        child: const Icon(Icons.add_location),
-        onPressed: () => _showAddStopDialog(context, ref),
+      floatingActionButton: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          FloatingActionButton.small(
+            heroTag: 'optimize',
+            backgroundColor: AppColors.surface,
+            foregroundColor: AppColors.primary,
+            tooltip: 'Оптимизировать маршрут',
+            child: const Icon(Icons.auto_fix_high),
+            onPressed: () => _optimizeRoute(context, ref),
+          ),
+          const SizedBox(height: 8),
+          FloatingActionButton(
+            heroTag: 'addStop',
+            backgroundColor: AppColors.primary,
+            foregroundColor: Colors.white,
+            child: const Icon(Icons.add_location),
+            onPressed: () => _showAddStopDialog(context, ref),
+          ),
+        ],
       ),
     );
+  }
+
+  Future<void> _optimizeRoute(BuildContext context, WidgetRef ref) async {
+    try {
+      await ref.read(tripsApiProvider).optimizeRoute(trip.id);
+      ref.invalidate(stopsProvider(trip.id));
+      ref.invalidate(tripRouteProvider(trip.id));
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Маршрут оптимизирован')),
+        );
+      }
+    } catch (e) {
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Ошибка оптимизации: $e')),
+        );
+      }
+    }
   }
 
   void _showAddStopDialog(BuildContext context, WidgetRef ref) {
