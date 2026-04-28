@@ -1,5 +1,11 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../data/api/favorites_api.dart';
+import '../../../map/domain/entities/place.dart';
+import '../../../map/presentation/providers/map_provider.dart';
+import '../../../trips/domain/entities/trip.dart';
+import '../../../trips/presentation/providers/trips_provider.dart';
+import '../../../journal/domain/entities/entry.dart';
+import '../../../journal/presentation/providers/journal_provider.dart';
 import '../../../../core/networking/api_client.dart';
 
 final favoritesApiProvider = Provider((ref) {
@@ -44,3 +50,37 @@ class FavoriteNotifier extends StateNotifier<AsyncValue<bool>> {
     }
   }
 }
+
+// ---------------------------------------------------------------------------
+// List providers — fetch favorites then resolve full objects in parallel
+// ---------------------------------------------------------------------------
+
+final favoritePlacesProvider = FutureProvider.autoDispose<List<Place>>((ref) async {
+  final api = ref.read(favoritesApiProvider);
+  final repo = ref.read(placesRepositoryProvider);
+  final items = await api.listFavorites(targetType: 'place');
+  final results = await Future.wait(
+    items.map((item) => repo.getPlace(item['target_id'] as String)),
+  );
+  return results;
+});
+
+final favoriteTripsProvider = FutureProvider.autoDispose<List<Trip>>((ref) async {
+  final api = ref.read(favoritesApiProvider);
+  final tripsApi = ref.read(tripsApiProvider);
+  final items = await api.listFavorites(targetType: 'trip');
+  final results = await Future.wait(
+    items.map((item) => tripsApi.getTrip(item['target_id'] as String)),
+  );
+  return results;
+});
+
+final favoriteEntriesProvider = FutureProvider.autoDispose<List<JournalEntry>>((ref) async {
+  final api = ref.read(favoritesApiProvider);
+  final journalApi = ref.read(journalApiProvider);
+  final items = await api.listFavorites(targetType: 'entry');
+  final results = await Future.wait(
+    items.map((item) => journalApi.getEntry(item['target_id'] as String)),
+  );
+  return results;
+});

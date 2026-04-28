@@ -10,6 +10,7 @@ import '../../features/main_shell/presentation/pages/main_shell_page.dart';
 import '../../features/map/presentation/pages/map_page.dart';
 import '../../features/trips/presentation/pages/trips_list_page.dart';
 import '../../features/journal/presentation/pages/journal_feed_page.dart';
+import '../../features/favorites/presentation/pages/favorites_list_page.dart';
 import '../../features/admin/presentation/pages/moderation_queue_page.dart';
 import '../../features/profile/presentation/pages/profile_page.dart';
 
@@ -51,6 +52,7 @@ final routerProvider = Provider<GoRouter>((ref) {
           GoRoute(path: '/main/map', builder: (_, __) => const MapPage()),
           GoRoute(path: '/main/trips', builder: (_, __) => const TripsListPage()),
           GoRoute(path: '/main/journal', builder: (_, __) => const JournalFeedPage()),
+          GoRoute(path: '/main/favorites', builder: (_, __) => const FavoritesListPage()),
           GoRoute(path: '/main/profile', builder: (_, __) => const ProfilePage()),
           GoRoute(path: '/main/admin', builder: (_, __) => const ModerationQueuePage()),
         ],

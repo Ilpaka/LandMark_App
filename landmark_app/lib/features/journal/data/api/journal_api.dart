@@ -15,6 +15,11 @@ class JournalApi {
     return list.map((e) => JournalEntry.fromJson(e as Map<String, dynamic>)).toList();
   }
 
+  Future<JournalEntry> getEntry(String id) async {
+    final r = await dio.get('/v1/journal/entries/$id');
+    return JournalEntry.fromJson(r.data as Map<String, dynamic>);
+  }
+
   Future<JournalEntry> createEntry({
     String? tripId,
     String? title,

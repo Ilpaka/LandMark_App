@@ -18,8 +18,9 @@ class MainShellPage extends ConsumerWidget {
     final loc = GoRouterState.of(context).matchedLocation;
     if (loc.startsWith('/main/trips')) return 1;
     if (loc.startsWith('/main/journal')) return 2;
-    if (loc.startsWith('/main/profile')) return 3;
-    if (isAdmin && loc.startsWith('/main/admin')) return 4;
+    if (loc.startsWith('/main/favorites')) return 3;
+    if (loc.startsWith('/main/profile')) return 4;
+    if (isAdmin && loc.startsWith('/main/admin')) return 5;
     return 0;
   }
 
@@ -39,14 +40,16 @@ class MainShellPage extends ConsumerWidget {
             case 0: context.go('/main/map'); break;
             case 1: context.go('/main/trips'); break;
             case 2: context.go('/main/journal'); break;
-            case 3: context.go('/main/profile'); break;
-            case 4: if (isAdmin) context.go('/main/admin'); break;
+            case 3: context.go('/main/favorites'); break;
+            case 4: context.go('/main/profile'); break;
+            case 5: if (isAdmin) context.go('/main/admin'); break;
           }
         },
         destinations: [
           const NavigationDestination(icon: Icon(Icons.map_outlined), selectedIcon: Icon(Icons.map), label: 'Карта'),
           const NavigationDestination(icon: Icon(Icons.luggage_outlined), selectedIcon: Icon(Icons.luggage), label: 'Поездки'),
           const NavigationDestination(icon: Icon(Icons.book_outlined), selectedIcon: Icon(Icons.book), label: 'Журнал'),
+          const NavigationDestination(icon: Icon(Icons.favorite_outline), selectedIcon: Icon(Icons.favorite), label: 'Избранное'),
           const NavigationDestination(icon: Icon(Icons.person_outline), selectedIcon: Icon(Icons.person), label: 'Профиль'),
           if (isAdmin)
             const NavigationDestination(
