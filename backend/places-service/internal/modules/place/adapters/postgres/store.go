@@ -93,9 +93,12 @@ func (s *Store) ListPlaces(ctx context.Context, f domain.ListFilter) ([]domain.P
 		argN += 4
 	}
 	if f.Q != "" {
-		where += fmt.Sprintf(" AND (p.title ILIKE $%d OR p.city ILIKE $%d)", argN, argN)
-		args = append(args, "%"+f.Q+"%")
-		argN++
+		// FTS via generated search_vector (migration 20260601000000_add_fts.sql);
+		// also keep ILIKE so searches degrade gracefully before migration runs.
+		where += fmt.Sprintf(` AND (p.title ILIKE $%d OR p.city ILIKE $%d OR
+			p.search_vector @@ plainto_tsquery('simple', $%d))`, argN, argN, argN+1)
+		args = append(args, "%"+f.Q+"%", f.Q)
+		argN += 2
 	}
 	if f.CategorySlug != "" {
 		where += fmt.Sprintf(` AND EXISTS(

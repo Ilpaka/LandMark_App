@@ -7,6 +7,7 @@ import '../../domain/entities/entry.dart';
 import '../providers/journal_provider.dart';
 import '../../../../core/widgets/skeleton.dart';
 import 'create_entry_page.dart';
+import 'entry_detail_page.dart';
 
 class JournalFeedPage extends ConsumerWidget {
   const JournalFeedPage({super.key});
@@ -50,7 +51,13 @@ class _EntryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final fmt = DateFormat('d MMM yyyy', 'ru_RU');
-    return Card(
+    return InkWell(
+      onTap: () => Navigator.push(
+        context,
+        MaterialPageRoute<void>(builder: (_) => EntryDetailPage(entry: entry)),
+      ),
+      borderRadius: const BorderRadius.all(AppRadius.md),
+      child: Card(
       margin: const EdgeInsets.only(bottom: AppSpacing.md),
       shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(AppRadius.md)),
       child: Padding(
@@ -84,7 +91,8 @@ class _EntryCard extends StatelessWidget {
           ],
         ),
       ),
-    );
+    ), // Card
+    ); // InkWell
   }
 
   String _moodEmoji(String mood) => switch (mood) {

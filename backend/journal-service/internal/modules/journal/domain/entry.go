@@ -24,3 +24,15 @@ type Entry struct {
 	UpdatedAt  time.Time
 	DeletedAt  *time.Time
 }
+
+type Reaction struct {
+	EntryID   uuid.UUID
+	AuthorID  uuid.UUID
+	Emoji     string
+	CreatedAt time.Time
+}
+
+type ReactionCount struct {
+	Emoji string
+	Count int
+}

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:latlong2/latlong.dart';
+import 'package:share_plus/share_plus.dart' show Share;
 import '../../../../core/design/tokens.dart';
 import '../../../../core/design/typography.dart';
 import '../providers/map_provider.dart';
@@ -352,7 +353,14 @@ class _PlacePreviewCard extends StatelessWidget {
               ),
             ),
             FavoriteButton(targetType: 'place', targetId: place.id, size: 26),
-            const SizedBox(width: 4),
+            IconButton(
+              icon: const Icon(Icons.share_outlined, size: 20),
+              tooltip: 'Поделиться',
+              onPressed: () => Share.share(
+                '${place.title}${place.city != null ? ', ${place.city}' : ''}\n'
+                'Lat: ${place.latitude}, Lng: ${place.longitude}',
+              ),
+            ),
             IconButton(icon: const Icon(Icons.close), onPressed: onClose),
           ],
         ),

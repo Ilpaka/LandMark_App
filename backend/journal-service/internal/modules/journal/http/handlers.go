@@ -250,3 +250,66 @@ func (h *Handlers) RemoveMedia(c *gin.Context) {
 	}
 	c.JSON(http.StatusOK, gin.H{"status": "ok"})
 }
+
+// ListReactions handles GET /v1/journal/entries/:id/reactions
+func (h *Handlers) ListReactions(c *gin.Context) {
+	userID, ok := requireUser(c)
+	if !ok {
+		return
+	}
+	id, err := uuid.Parse(c.Param("id"))
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "validation_error"})
+		return
+	}
+	counts, mine, err := h.Svc.ListReactions(c.Request.Context(), id, *userID)
+	if err != nil {
+		writeErr(c, err)
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{"counts": counts, "mine": mine})
+}
+
+// AddReaction handles POST /v1/journal/entries/:id/reactions
+func (h *Handlers) AddReaction(c *gin.Context) {
+	userID, ok := requireUser(c)
+	if !ok {
+		return
+	}
+	id, err := uuid.Parse(c.Param("id"))
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "validation_error"})
+		return
+	}
+	var req struct {
+		Emoji string `json:"emoji" binding:"required"`
+	}
+	if err := c.ShouldBindJSON(&req); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "validation_error"})
+		return
+	}
+	if err := h.Svc.AddReaction(c.Request.Context(), *userID, id, req.Emoji); err != nil {
+		writeErr(c, err)
+		return
+	}
+	c.JSON(http.StatusCreated, gin.H{"status": "ok"})
+}
+
+// RemoveReaction handles DELETE /v1/journal/entries/:id/reactions/:emoji
+func (h *Handlers) RemoveReaction(c *gin.Context) {
+	userID, ok := requireUser(c)
+	if !ok {
+		return
+	}
+	id, err := uuid.Parse(c.Param("id"))
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "validation_error"})
+		return
+	}
+	emoji := c.Param("emoji")
+	if err := h.Svc.RemoveReaction(c.Request.Context(), *userID, id, emoji); err != nil {
+		writeErr(c, err)
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{"status": "ok"})
+}

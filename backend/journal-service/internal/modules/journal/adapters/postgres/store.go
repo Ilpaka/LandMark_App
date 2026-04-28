@@ -220,3 +220,63 @@ func (s *Store) ListMedia(ctx context.Context, entryID uuid.UUID) ([]uuid.UUID, 
 	}
 	return ids, rows.Err()
 }
+
+func (s *Store) UpsertReaction(ctx context.Context, r domain.Reaction) error {
+	_, err := s.db.Exec(ctx, `
+		INSERT INTO journal_reactions (entry_id, author_id, emoji, created_at)
+		VALUES ($1, $2, $3, now())
+		ON CONFLICT (entry_id, author_id, emoji) DO NOTHING`,
+		r.EntryID, r.AuthorID, r.Emoji)
+	return err
+}
+
+func (s *Store) DeleteReaction(ctx context.Context, entryID, authorID uuid.UUID, emoji string) error {
+	_, err := s.db.Exec(ctx,
+		`DELETE FROM journal_reactions WHERE entry_id=$1 AND author_id=$2 AND emoji=$3`,
+		entryID, authorID, emoji)
+	return err
+}
+
+func (s *Store) ListReactionCounts(ctx context.Context, entryID uuid.UUID) ([]domain.ReactionCount, error) {
+	rows, err := s.db.Query(ctx,
+		`SELECT emoji, count(*) FROM journal_reactions WHERE entry_id=$1 GROUP BY emoji ORDER BY count(*) DESC`,
+		entryID)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	var out []domain.ReactionCount
+	for rows.Next() {
+		var rc domain.ReactionCount
+		if err := rows.Scan(&rc.Emoji, &rc.Count); err != nil {
+			return nil, err
+		}
+		out = append(out, rc)
+	}
+	if out == nil {
+		out = []domain.ReactionCount{}
+	}
+	return out, rows.Err()
+}
+
+func (s *Store) GetUserReactions(ctx context.Context, entryID, authorID uuid.UUID) ([]string, error) {
+	rows, err := s.db.Query(ctx,
+		`SELECT emoji FROM journal_reactions WHERE entry_id=$1 AND author_id=$2 ORDER BY created_at`,
+		entryID, authorID)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	var emojis []string
+	for rows.Next() {
+		var e string
+		if err := rows.Scan(&e); err != nil {
+			return nil, err
+		}
+		emojis = append(emojis, e)
+	}
+	if emojis == nil {
+		emojis = []string{}
+	}
+	return emojis, rows.Err()
+}

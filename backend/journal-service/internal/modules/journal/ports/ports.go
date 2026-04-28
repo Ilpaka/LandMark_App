@@ -16,4 +16,10 @@ type Store interface {
 	AddMedia(ctx context.Context, entryID, mediaID uuid.UUID, sortOrder int) error
 	RemoveMedia(ctx context.Context, entryID, mediaID uuid.UUID) error
 	ListMedia(ctx context.Context, entryID uuid.UUID) ([]uuid.UUID, error)
+
+	// Reactions
+	UpsertReaction(ctx context.Context, r domain.Reaction) error
+	DeleteReaction(ctx context.Context, entryID, authorID uuid.UUID, emoji string) error
+	ListReactionCounts(ctx context.Context, entryID uuid.UUID) ([]domain.ReactionCount, error)
+	GetUserReactions(ctx context.Context, entryID, authorID uuid.UUID) ([]string, error)
 }

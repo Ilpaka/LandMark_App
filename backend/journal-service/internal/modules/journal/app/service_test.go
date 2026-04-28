@@ -76,6 +76,15 @@ func (m *mockStore) ListMedia(ctx context.Context, entryID uuid.UUID) ([]uuid.UU
 	return nil, nil
 }
 
+func (m *mockStore) UpsertReaction(_ context.Context, _ domain.Reaction) error { return nil }
+func (m *mockStore) DeleteReaction(_ context.Context, _, _ uuid.UUID, _ string) error { return nil }
+func (m *mockStore) ListReactionCounts(_ context.Context, _ uuid.UUID) ([]domain.ReactionCount, error) {
+	return []domain.ReactionCount{}, nil
+}
+func (m *mockStore) GetUserReactions(_ context.Context, _, _ uuid.UUID) ([]string, error) {
+	return []string{}, nil
+}
+
 // ---------------------------------------------------------------------------
 // Helpers
 // ---------------------------------------------------------------------------
@@ -207,5 +216,48 @@ func TestDeleteEntry_Success(t *testing.T) {
 	}
 	if store.lastDeleteID != entryID {
 		t.Errorf("expected DeleteEntry to be called with %s, got %s", entryID, store.lastDeleteID)
+	}
+}
+
+// AddReaction_EmptyEmoji: empty emoji must be rejected with ErrBadRequest.
+func TestAddReaction_EmptyEmoji(t *testing.T) {
+	svc := New(&mockStore{storedEntry: &domain.Entry{ID: uuid.New()}})
+	err := svc.AddReaction(context.Background(), uuid.New(), uuid.New(), "")
+	if err != domain.ErrBadRequest {
+		t.Errorf("expected ErrBadRequest, got %v", err)
+	}
+}
+
+// AddReaction_EntryNotFound: reacting to a missing entry returns ErrNotFound.
+func TestAddReaction_EntryNotFound(t *testing.T) {
+	store := &mockStore{storedEntry: nil}
+	svc := New(store)
+	err := svc.AddReaction(context.Background(), uuid.New(), uuid.New(), "👍")
+	if err != domain.ErrNotFound {
+		t.Errorf("expected ErrNotFound, got %v", err)
+	}
+}
+
+// AddReaction_Success: a valid reaction on an existing entry succeeds.
+func TestAddReaction_Success(t *testing.T) {
+	entryID := uuid.New()
+	store := &mockStore{storedEntry: &domain.Entry{ID: entryID}}
+	svc := New(store)
+	if err := svc.AddReaction(context.Background(), uuid.New(), entryID, "❤️"); err != nil {
+		t.Fatalf("unexpected error: %v", err)
+	}
+}
+
+// ListReactions_Success: counts and mine slices are returned without error.
+func TestListReactions_Success(t *testing.T) {
+	entryID := uuid.New()
+	store := &mockStore{storedEntry: &domain.Entry{ID: entryID}}
+	svc := New(store)
+	counts, mine, err := svc.ListReactions(context.Background(), entryID, uuid.New())
+	if err != nil {
+		t.Fatalf("unexpected error: %v", err)
+	}
+	if counts == nil || mine == nil {
+		t.Error("expected non-nil slices")
 	}
 }
