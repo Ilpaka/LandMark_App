@@ -182,6 +182,78 @@ func (h *Handlers) ApprovePlace(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"status": "ok"})
 }
 
+func (h *Handlers) CreateCategory(c *gin.Context) {
+	_, role := userIDFromCtx(c)
+	if role != "admin" {
+		c.JSON(http.StatusForbidden, gin.H{"error": "admin only"})
+		return
+	}
+	var body struct {
+		Slug      string `json:"slug" binding:"required"`
+		Title     string `json:"title" binding:"required"`
+		Icon      string `json:"icon"`
+		Color     string `json:"color"`
+		SortOrder int    `json:"sort_order"`
+	}
+	if err := c.ShouldBindJSON(&body); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "validation_error"})
+		return
+	}
+	cat, err := h.Svc.CreateCategory(c.Request.Context(), body.Slug, body.Title, body.Icon, body.Color, body.SortOrder)
+	if err != nil {
+		writeErr(c, err)
+		return
+	}
+	c.JSON(http.StatusCreated, cat)
+}
+
+func (h *Handlers) UpdateCategory(c *gin.Context) {
+	_, role := userIDFromCtx(c)
+	if role != "admin" {
+		c.JSON(http.StatusForbidden, gin.H{"error": "admin only"})
+		return
+	}
+	id, err := uuid.Parse(c.Param("id"))
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "validation_error"})
+		return
+	}
+	var body struct {
+		Title     string `json:"title"`
+		Icon      string `json:"icon"`
+		Color     string `json:"color"`
+		SortOrder int    `json:"sort_order"`
+	}
+	if err := c.ShouldBindJSON(&body); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "validation_error"})
+		return
+	}
+	cat, err := h.Svc.UpdateCategory(c.Request.Context(), id, body.Title, body.Icon, body.Color, body.SortOrder)
+	if err != nil {
+		writeErr(c, err)
+		return
+	}
+	c.JSON(http.StatusOK, cat)
+}
+
+func (h *Handlers) DeleteCategory(c *gin.Context) {
+	_, role := userIDFromCtx(c)
+	if role != "admin" {
+		c.JSON(http.StatusForbidden, gin.H{"error": "admin only"})
+		return
+	}
+	id, err := uuid.Parse(c.Param("id"))
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "validation_error"})
+		return
+	}
+	if err := h.Svc.DeactivateCategory(c.Request.Context(), id); err != nil {
+		writeErr(c, err)
+		return
+	}
+	c.Status(http.StatusNoContent)
+}
+
 func (h *Handlers) RejectPlace(c *gin.Context) {
 	if c.GetHeader("X-Internal-Key") != h.InternalKey {
 		c.JSON(http.StatusUnauthorized, gin.H{"error": "unauthorized"})

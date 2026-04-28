@@ -4,6 +4,7 @@ import '../../../../core/design/tokens.dart';
 import '../providers/moderation_provider.dart';
 import '../../data/api/moderation_api.dart';
 import 'moderation_queue_page.dart';
+import 'categories_page.dart';
 
 class AdminDashboardPage extends ConsumerWidget {
   const AdminDashboardPage({super.key});
@@ -70,8 +71,9 @@ class AdminDashboardPage extends ConsumerWidget {
             icon: Icons.category_outlined,
             title: 'Категории мест',
             subtitle: 'Управление категориями POI',
-            onTap: () => ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text('Раздел в разработке')),
+            onTap: () => Navigator.push<void>(
+              context,
+              MaterialPageRoute(builder: (_) => const CategoriesPage()),
             ),
           ),
           const SizedBox(height: 8),

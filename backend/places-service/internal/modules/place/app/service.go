@@ -150,3 +150,11 @@ func (s *Service) CreateCategory(ctx context.Context, slug, title, icon, color s
 	}
 	return s.Store.InsertCategory(ctx, c)
 }
+
+func (s *Service) UpdateCategory(ctx context.Context, id uuid.UUID, title, icon, color string, sortOrder int) (*domain.Category, error) {
+	return s.Store.UpdateCategory(ctx, id, title, icon, color, sortOrder)
+}
+
+func (s *Service) DeactivateCategory(ctx context.Context, id uuid.UUID) error {
+	return s.Store.DeactivateCategory(ctx, id)
+}
