@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
@@ -5,7 +6,10 @@ import 'package:share_plus/share_plus.dart' show Share;
 import '../../../../core/design/tokens.dart';
 import '../../../../core/design/typography.dart';
 import '../../domain/entities/entry.dart';
+import '../providers/media_provider.dart';
 import '../widgets/reaction_bar.dart';
+import 'gallery_page.dart';
+import 'photo_view_page.dart';
 
 class EntryDetailPage extends ConsumerWidget {
   final JournalEntry entry;
@@ -55,6 +59,9 @@ class EntryDetailPage extends ConsumerWidget {
             Text(entry.body, style: AppTypography.body),
             const SizedBox(height: AppSpacing.xl),
 
+            // Медиа-полоса
+            _MediaStrip(entry: entry),
+
             // Reactions
             const Divider(height: 1),
             const SizedBox(height: AppSpacing.md),
@@ -88,4 +95,136 @@ class EntryDetailPage extends ConsumerWidget {
     'sad' => '😢',
     _ => '😊',
   };
+}
+
+// ---------------------------------------------------------------------------
+// Горизонтальная полоса миниатюр (JR-04 entry point)
+// ---------------------------------------------------------------------------
+
+class _MediaStrip extends ConsumerWidget {
+  final JournalEntry entry;
+  const _MediaStrip({required this.entry});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final mediaAsync = ref.watch(entryMediaProvider(entry.id));
+
+    return mediaAsync.when(
+      loading: () => const SizedBox(height: 90,
+        child: Center(child: CircularProgressIndicator(
+            color: AppColors.primary, strokeWidth: 2))),
+      error: (_, __) => const SizedBox.shrink(),
+      data: (ids) {
+        if (ids.isEmpty) return const SizedBox.shrink();
+
+        const thumbSize = 80.0;
+        final preview = ids.take(5).toList();
+
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(height: AppSpacing.md),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text('Фото (${ids.length})',
+                    style: const TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 14,
+                        color: AppColors.textSecondary)),
+                TextButton(
+                  onPressed: () => Navigator.push<void>(
+                    context,
+                    MaterialPageRoute(builder: (_) => GalleryPage(
+                      entryId: entry.id,
+                      entryTitle: entry.title,
+                    )),
+                  ),
+                  child: const Text('Все фото',
+                      style: TextStyle(color: AppColors.primary)),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: thumbSize,
+              child: ListView.separated(
+                scrollDirection: Axis.horizontal,
+                padding: EdgeInsets.zero,
+                itemCount: preview.length,
+                separatorBuilder: (_, __) =>
+                    const SizedBox(width: AppSpacing.xs),
+                itemBuilder: (_, i) {
+                  final isLast = i == 4 && ids.length > 5;
+                  return GestureDetector(
+                    onTap: () => Navigator.push<void>(
+                      context,
+                      MaterialPageRoute(builder: (_) => PhotoViewPage(
+                        mediaIds: ids,
+                        initialIndex: i,
+                      )),
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(8),
+                      child: Stack(
+                        children: [
+                          _ThumbImage(mediaId: preview[i], size: thumbSize),
+                          if (isLast)
+                            Container(
+                              width: thumbSize,
+                              height: thumbSize,
+                              color: Colors.black54,
+                              alignment: Alignment.center,
+                              child: Text('+${ids.length - 4}',
+                                  style: const TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w700)),
+                            ),
+                        ],
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+            const SizedBox(height: AppSpacing.md),
+            const Divider(height: 1),
+          ],
+        );
+      },
+    );
+  }
+}
+
+class _ThumbImage extends ConsumerWidget {
+  final String mediaId;
+  final double size;
+  const _ThumbImage({required this.mediaId, required this.size});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final urlAsync = ref.watch(mediaUrlProvider(mediaId));
+    return SizedBox(
+      width: size,
+      height: size,
+      child: urlAsync.when(
+        loading: () => Container(color: AppColors.surface),
+        error: (_, __) => Container(
+          color: AppColors.surface,
+          child: const Icon(Icons.broken_image_outlined,
+              color: AppColors.textSecondary, size: 28),
+        ),
+        data: (url) => CachedNetworkImage(
+          imageUrl: url,
+          fit: BoxFit.cover,
+          placeholder: (_, __) => Container(color: AppColors.surface),
+          errorWidget: (_, __, ___) => Container(
+            color: AppColors.surface,
+            child: const Icon(Icons.broken_image_outlined,
+                color: AppColors.textSecondary, size: 28),
+          ),
+        ),
+      ),
+    );
+  }
 }
