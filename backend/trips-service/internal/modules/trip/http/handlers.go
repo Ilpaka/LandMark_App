@@ -232,6 +232,25 @@ func (h *Handlers) ListPublicTrips(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"trips": trips, "next_cursor": next})
 }
 
+// OptimizeRoute handles POST /v1/trips/:id/optimize
+func (h *Handlers) OptimizeRoute(c *gin.Context) {
+	userID, ok := requireUser(c)
+	if !ok {
+		return
+	}
+	tripID, err := uuid.Parse(c.Param("id"))
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "validation_error"})
+		return
+	}
+	ids, err := h.Svc.OptimizeRoute(c.Request.Context(), *userID, tripID)
+	if err != nil {
+		writeErr(c, err)
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{"ordered_stop_ids": ids})
+}
+
 // GetRoute handles GET /v1/trips/:id/route
 func (h *Handlers) GetRoute(c *gin.Context) {
 	userID, ok := requireUser(c)

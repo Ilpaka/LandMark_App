@@ -21,6 +21,7 @@ class ProfileApi {
     String? bio,
     String? city,
     String? country,
+    String? avatarMediaId,
   }) async {
     final body = <String, dynamic>{};
     if (nickname != null) body['nickname'] = nickname;
@@ -28,6 +29,7 @@ class ProfileApi {
     if (bio != null) body['bio'] = bio;
     if (city != null) body['city'] = city;
     if (country != null) body['country'] = country;
+    if (avatarMediaId != null) body['avatar_media_id'] = avatarMediaId;
     final r = await dio.patch('/v1/profile/me', data: body);
     return UserProfile.fromJson(r.data as Map<String, dynamic>);
   }

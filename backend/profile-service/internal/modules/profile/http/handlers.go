@@ -57,11 +57,12 @@ func (h *Handler) UpdateMe(c *gin.Context) {
 		return
 	}
 	var body struct {
-		Nickname    *string `json:"nickname"`
-		DisplayName *string `json:"display_name"`
-		Bio         *string `json:"bio"`
-		City        *string `json:"city"`
-		Country     *string `json:"country"`
+		Nickname      *string    `json:"nickname"`
+		DisplayName   *string    `json:"display_name"`
+		Bio           *string    `json:"bio"`
+		City          *string    `json:"city"`
+		Country       *string    `json:"country"`
+		AvatarMediaID *uuid.UUID `json:"avatar_media_id"`
 	}
 	if err := c.ShouldBindJSON(&body); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "bad request"})
@@ -70,6 +71,7 @@ func (h *Handler) UpdateMe(c *gin.Context) {
 	p, err := h.Svc.UpdateProfile(c.Request.Context(), uid, domain.UpdateProfileInput{
 		Nickname: body.Nickname, DisplayName: body.DisplayName,
 		Bio: body.Bio, City: body.City, Country: body.Country,
+		AvatarMediaID: body.AvatarMediaID,
 	})
 	if err != nil {
 		writeErr(c, err)

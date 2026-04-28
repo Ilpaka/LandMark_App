@@ -56,6 +56,9 @@ func (s *Service) UpdateProfile(ctx context.Context, userID uuid.UUID, in domain
 	if in.Country != nil {
 		p.Country = in.Country
 	}
+	if in.AvatarMediaID != nil {
+		p.AvatarMediaID = in.AvatarMediaID
+	}
 	return s.Store.UpsertProfile(ctx, *p)
 }
 

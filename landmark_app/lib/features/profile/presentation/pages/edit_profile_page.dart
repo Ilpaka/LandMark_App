@@ -1,6 +1,10 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:image_picker/image_picker.dart';
 import '../../../../core/design/tokens.dart';
+import '../../../../core/networking/api_client.dart';
+import '../../../journal/data/api/media_api.dart';
 import '../../domain/entities/profile.dart';
 import '../providers/profile_provider.dart';
 
@@ -20,6 +24,8 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage> {
   late final _cityCtrl = TextEditingController(text: widget.profile?.city ?? '');
   late final _countryCtrl = TextEditingController(text: widget.profile?.country ?? '');
   bool _loading = false;
+  File? _avatarFile;
+  String? _newAvatarId;
 
   @override
   void dispose() {
@@ -29,6 +35,25 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage> {
     _cityCtrl.dispose();
     _countryCtrl.dispose();
     super.dispose();
+  }
+
+  Future<void> _pickAvatar() async {
+    final picker = ImagePicker();
+    final picked = await picker.pickImage(source: ImageSource.gallery, maxWidth: 512, imageQuality: 85);
+    if (picked == null) return;
+    setState(() => _avatarFile = File(picked.path));
+    try {
+      final mediaApi = MediaApi(ref.read(apiClientProvider).dio);
+      final id = await mediaApi.uploadFile(_avatarFile!, purpose: 'avatar');
+      setState(() => _newAvatarId = id);
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Ошибка загрузки аватара: $e')),
+        );
+      }
+      setState(() => _avatarFile = null);
+    }
   }
 
   Future<void> _save() async {
@@ -41,6 +66,7 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage> {
         bio: _bioCtrl.text.trim().isEmpty ? null : _bioCtrl.text.trim(),
         city: _cityCtrl.text.trim().isEmpty ? null : _cityCtrl.text.trim(),
         country: _countryCtrl.text.trim().isEmpty ? null : _countryCtrl.text.trim(),
+        avatarMediaId: _newAvatarId,
       );
       if (mounted) Navigator.of(context).pop();
     } catch (e) {
@@ -74,6 +100,47 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage> {
         child: ListView(
           padding: const EdgeInsets.all(16),
           children: [
+            Center(
+              child: GestureDetector(
+                onTap: _pickAvatar,
+                child: Stack(
+                  children: [
+                    CircleAvatar(
+                      radius: 48,
+                      backgroundColor: AppColors.primary.withValues(alpha: 0.15),
+                      backgroundImage: _avatarFile != null
+                          ? FileImage(_avatarFile!) as ImageProvider
+                          : null,
+                      child: _avatarFile == null
+                          ? Text(
+                              (widget.profile?.displayName.isNotEmpty == true
+                                  ? widget.profile!.displayName[0]
+                                  : '?').toUpperCase(),
+                              style: const TextStyle(
+                                fontSize: 36,
+                                color: AppColors.primary,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            )
+                          : null,
+                    ),
+                    Positioned(
+                      bottom: 0,
+                      right: 0,
+                      child: Container(
+                        padding: const EdgeInsets.all(6),
+                        decoration: const BoxDecoration(
+                          color: AppColors.primary,
+                          shape: BoxShape.circle,
+                        ),
+                        child: const Icon(Icons.camera_alt, size: 16, color: Colors.white),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(height: 20),
             _field(_nicknameCtrl, 'Никнейм', required: true,
                 hint: 'Только буквы, цифры, _'),
             const SizedBox(height: 12),

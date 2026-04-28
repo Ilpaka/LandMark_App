@@ -27,11 +27,12 @@ type PrivacySettings struct {
 }
 
 type UpdateProfileInput struct {
-	Nickname    *string
-	DisplayName *string
-	Bio         *string
-	City        *string
-	Country     *string
+	Nickname      *string
+	DisplayName   *string
+	Bio           *string
+	City          *string
+	Country       *string
+	AvatarMediaID *uuid.UUID
 }
 
 type UpdatePrivacyInput struct {
