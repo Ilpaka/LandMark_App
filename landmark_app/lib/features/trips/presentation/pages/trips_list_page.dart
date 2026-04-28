@@ -29,11 +29,7 @@ class TripsListPage extends ConsumerWidget {
       body: tripsAsync.when(
         data: (trips) => trips.isEmpty
             ? _EmptyTrips(onCreate: () => _showCreateDialog(context, ref))
-            : ListView.builder(
-                padding: const EdgeInsets.all(AppSpacing.md),
-                itemCount: trips.length,
-                itemBuilder: (_, i) => _TripCard(trip: trips[i]),
-              ),
+            : _PaginatedTripList(trips: trips),
         loading: () => const SkeletonListView(),
         error: (e, _) => const Center(child: Text('Ошибка загрузки', style: AppTypography.body)),
       ),
@@ -46,6 +42,41 @@ class TripsListPage extends ConsumerWidget {
       MaterialPageRoute(builder: (_) => const CreateTripPage()),
     );
     if (result == true) ref.invalidate(tripsListProvider);
+  }
+}
+
+class _PaginatedTripList extends ConsumerWidget {
+  final List<Trip> trips;
+  const _PaginatedTripList({required this.trips});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final notifier = ref.read(tripsListProvider.notifier);
+    return NotificationListener<ScrollNotification>(
+      onNotification: (n) {
+        if (n is ScrollEndNotification &&
+            n.metrics.extentAfter < 200 &&
+            notifier.hasMore) {
+          notifier.loadMore();
+        }
+        return false;
+      },
+      child: ListView.builder(
+        padding: const EdgeInsets.all(AppSpacing.md),
+        itemCount: trips.length + 1,
+        itemBuilder: (_, i) {
+          if (i == trips.length) {
+            return notifier.hasMore
+                ? const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 16),
+                    child: Center(child: CircularProgressIndicator(
+                        color: AppColors.primary, strokeWidth: 2)))
+                : const SizedBox.shrink();
+          }
+          return _TripCard(trip: trips[i]);
+        },
+      ),
+    );
   }
 }
 

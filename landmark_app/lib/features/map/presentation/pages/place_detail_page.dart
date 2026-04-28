@@ -104,10 +104,10 @@ class PlaceDetailPage extends ConsumerWidget {
   }
 
   Future<void> _addToTrip(BuildContext context, WidgetRef ref) async {
-    final trips = await ref.read(tripsApiProvider).listTrips();
+    final result = await ref.read(tripsApiProvider).listTrips();
     if (!context.mounted) return;
 
-    if (trips.isEmpty) {
+    if (result.trips.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Сначала создайте поездку')),
       );
@@ -118,7 +118,7 @@ class PlaceDetailPage extends ConsumerWidget {
       context: context,
       shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
-      builder: (_) => _TripPickerSheet(trips: trips),
+      builder: (_) => _TripPickerSheet(trips: result.trips),
     );
 
     if (selected == null || !context.mounted) return;
