@@ -1,7 +1,9 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../core/networking/api_client.dart';
 import '../core/storage/secure_storage.dart';
 import '../bootstrap/env.dart';
+import '../features/journal/data/local/draft_storage.dart';
 
 Future<List<Override>> buildProviderOverrides() async {
   final secureStorage = SecureStorageImpl();
@@ -19,8 +21,12 @@ Future<List<Override>> buildProviderOverrides() async {
     },
   );
 
+  final prefs = await SharedPreferences.getInstance();
+  final draftStorage = DraftStorage(prefs);
+
   return [
     secureStorageProvider.overrideWithValue(secureStorage),
     apiClientProvider.overrideWithValue(apiClient),
+    draftStorageProvider.overrideWithValue(draftStorage),
   ];
 }
