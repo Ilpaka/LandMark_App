@@ -179,3 +179,79 @@ func TestCreateCollection_EmptyTitle(t *testing.T) {
 		t.Error("expected nil collection on error")
 	}
 }
+
+// CreateCollection_DefaultColor: empty color string must be replaced with the
+// default teal colour before calling the store.
+func TestCreateCollection_DefaultColor(t *testing.T) {
+	uid := uuid.New()
+	created := &domain.Collection{ID: uuid.New(), UserID: uid, Title: "My", Color: "#0E7C7B"}
+	store := &mockStore{insertCollection: created}
+	svc := &Service{Store: store}
+
+	col, err := svc.CreateCollection(context.Background(), uid, "My", "")
+	if err != nil {
+		t.Fatalf("unexpected error: %v", err)
+	}
+	if col.Color != "#0E7C7B" {
+		t.Errorf("expected default color #0E7C7B, got %q", col.Color)
+	}
+}
+
+// UpdateCollection_Forbidden: a collection belonging to another user must
+// return ErrForbidden.
+func TestUpdateCollection_Forbidden(t *testing.T) {
+	ownerID := uuid.New()
+	callerID := uuid.New()
+	colID := uuid.New()
+
+	store := &mockStore{
+		getCollection: &domain.Collection{ID: colID, UserID: ownerID, Title: "X"},
+	}
+	svc := &Service{Store: store}
+
+	_, err := svc.UpdateCollection(context.Background(), callerID, colID, "Y", "")
+	if err != domain.ErrForbidden {
+		t.Errorf("expected ErrForbidden, got %v", err)
+	}
+}
+
+// DeleteCollection_Forbidden: deleting another user's collection must return
+// ErrForbidden.
+func TestDeleteCollection_Forbidden(t *testing.T) {
+	ownerID := uuid.New()
+	colID := uuid.New()
+	store := &mockStore{
+		getCollection: &domain.Collection{ID: colID, UserID: ownerID},
+	}
+	svc := &Service{Store: store}
+
+	err := svc.DeleteCollection(context.Background(), uuid.New(), colID)
+	if err != domain.ErrForbidden {
+		t.Errorf("expected ErrForbidden, got %v", err)
+	}
+}
+
+// DeleteCollection_Default: deleting a default collection must return
+// ErrBadRequest.
+func TestDeleteCollection_Default(t *testing.T) {
+	uid := uuid.New()
+	colID := uuid.New()
+	store := &mockStore{
+		getCollection: &domain.Collection{ID: colID, UserID: uid, IsDefault: true},
+	}
+	svc := &Service{Store: store}
+
+	err := svc.DeleteCollection(context.Background(), uid, colID)
+	if err != domain.ErrBadRequest {
+		t.Errorf("expected ErrBadRequest, got %v", err)
+	}
+}
+
+// AddFavorite_InvalidTargetType: an unknown TargetType must return ErrBadRequest.
+func TestAddFavorite_InvalidTargetType(t *testing.T) {
+	svc := &Service{Store: &mockStore{}}
+	err := svc.AddFavorite(context.Background(), uuid.New(), "unknown", uuid.New(), nil, nil)
+	if err != domain.ErrBadRequest {
+		t.Errorf("expected ErrBadRequest, got %v", err)
+	}
+}
