@@ -5,6 +5,7 @@ import '../../../../core/services/proximity_provider.dart';
 import '../../../profile/presentation/providers/profile_provider.dart';
 import '../providers/settings_provider.dart';
 import 'help_page.dart';
+import 'sync_page.dart';
 
 class SettingsPage extends ConsumerWidget {
   const SettingsPage({super.key});
@@ -28,6 +29,18 @@ class SettingsPage extends ConsumerWidget {
           const Divider(height: 1),
           _sectionHeader('Приватность'),
           _PrivacySection(),
+          const Divider(height: 1),
+          _sectionHeader('Данные'),
+          ListTile(
+            leading: const Icon(Icons.sync_outlined, color: AppColors.primary),
+            title: const Text('Синхронизация черновиков'),
+            subtitle: const Text('Неотправленные записи', style: TextStyle(fontSize: 12)),
+            trailing: const Icon(Icons.chevron_right, color: AppColors.textSecondary),
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute<void>(builder: (_) => const SyncPage()),
+            ),
+          ),
           const Divider(height: 1),
           _sectionHeader('О приложении'),
           ListTile(
