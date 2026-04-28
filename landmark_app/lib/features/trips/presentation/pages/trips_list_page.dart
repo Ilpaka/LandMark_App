@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/design/tokens.dart';
 import '../../../../core/design/typography.dart';
 import '../../../../core/design/components/wl_button.dart';
+import '../../../../core/widgets/skeleton.dart';
 import '../../domain/entities/trip.dart';
 import '../providers/trips_provider.dart';
 import 'trip_detail_page.dart';
@@ -32,7 +33,7 @@ class TripsListPage extends ConsumerWidget {
                 itemCount: trips.length,
                 itemBuilder: (_, i) => _TripCard(trip: trips[i]),
               ),
-        loading: () => const Center(child: CircularProgressIndicator(color: AppColors.primary)),
+        loading: () => const SkeletonListView(),
         error: (e, _) => const Center(child: Text('Ошибка загрузки', style: AppTypography.body)),
       ),
     );
