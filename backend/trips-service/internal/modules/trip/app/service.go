@@ -2,6 +2,10 @@ package app
 
 import (
 	"context"
+	"encoding/json"
+	"fmt"
+	"net/http"
+	"strings"
 	"time"
 
 	"github.com/google/uuid"
@@ -9,9 +13,12 @@ import (
 	"github.com/ilpaka/landmark_app/backend/trips-service/internal/modules/trip/ports"
 )
 
-type Service struct{ Store ports.Store }
+type Service struct {
+	Store   ports.Store
+	OSRMUrl string // e.g. "http://router.project-osrm.org"
+}
 
-func New(s ports.Store) *Service { return &Service{Store: s} }
+func New(s ports.Store, osrmURL string) *Service { return &Service{Store: s, OSRMUrl: osrmURL} }
 
 func (s *Service) CreateDraft(ctx context.Context, ownerID uuid.UUID, title string) (*domain.Trip, error) {
 	if title == "" {
@@ -82,4 +89,78 @@ func (s *Service) ListStops(ctx context.Context, ownerID, tripID uuid.UUID) ([]d
 
 func (s *Service) MarkVisited(ctx context.Context, ownerID uuid.UUID, stopID uuid.UUID, at time.Time) error {
 	return s.Store.MarkStopVisited(ctx, stopID, at)
+}
+
+func (s *Service) ListPublic(ctx context.Context, excludeOwnerID uuid.UUID, cursor string, limit int) ([]domain.Trip, string, error) {
+	if limit <= 0 || limit > 100 {
+		limit = 20
+	}
+	return s.Store.ListPublicTrips(ctx, excludeOwnerID, cursor, limit)
+}
+
+type LatLng struct {
+	Lat float64 `json:"lat"`
+	Lng float64 `json:"lng"`
+}
+
+func (s *Service) GetRoute(ctx context.Context, ownerID, tripID uuid.UUID) ([]LatLng, error) {
+	stops, err := s.Store.ListStops(ctx, tripID)
+	if err != nil {
+		return nil, err
+	}
+	if len(stops) < 2 {
+		coords := make([]LatLng, len(stops))
+		for i, st := range stops {
+			coords[i] = LatLng{Lat: st.Latitude, Lng: st.Longitude}
+		}
+		return coords, nil
+	}
+
+	coordParts := make([]string, len(stops))
+	for i, st := range stops {
+		coordParts[i] = fmt.Sprintf("%f,%f", st.Longitude, st.Latitude)
+	}
+	osrmBase := s.OSRMUrl
+	if osrmBase == "" {
+		osrmBase = "http://router.project-osrm.org"
+	}
+	url := fmt.Sprintf("%s/route/v1/driving/%s?overview=full&geometries=geojson",
+		osrmBase, strings.Join(coordParts, ";"))
+
+	req, err := http.NewRequestWithContext(ctx, http.MethodGet, url, nil)
+	if err != nil {
+		return nil, err
+	}
+	resp, err := http.DefaultClient.Do(req)
+	if err != nil {
+		// Fallback: straight-line waypoints
+		coords := make([]LatLng, len(stops))
+		for i, st := range stops {
+			coords[i] = LatLng{Lat: st.Latitude, Lng: st.Longitude}
+		}
+		return coords, nil
+	}
+	defer resp.Body.Close()
+
+	var osrmResp struct {
+		Routes []struct {
+			Geometry struct {
+				Coordinates [][]float64 `json:"coordinates"`
+			} `json:"geometry"`
+		} `json:"routes"`
+	}
+	if err := json.NewDecoder(resp.Body).Decode(&osrmResp); err != nil || len(osrmResp.Routes) == 0 {
+		coords := make([]LatLng, len(stops))
+		for i, st := range stops {
+			coords[i] = LatLng{Lat: st.Latitude, Lng: st.Longitude}
+		}
+		return coords, nil
+	}
+
+	coords := osrmResp.Routes[0].Geometry.Coordinates
+	result := make([]LatLng, len(coords))
+	for i, c := range coords {
+		result[i] = LatLng{Lng: c[0], Lat: c[1]}
+	}
+	return result, nil
 }

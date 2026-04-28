@@ -6,6 +6,7 @@ import '../../../../core/design/tokens.dart';
 import '../../domain/entities/trip.dart';
 import '../../domain/entities/stop.dart';
 import '../providers/stops_provider.dart';
+import '../providers/trips_provider.dart';
 
 class TripDetailPage extends ConsumerWidget {
   final Trip trip;
@@ -14,6 +15,7 @@ class TripDetailPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final stopsAsync = ref.watch(stopsProvider(trip.id));
+    final routeAsync = ref.watch(tripRouteProvider(trip.id));
 
     return Scaffold(
       appBar: AppBar(
@@ -30,7 +32,10 @@ class TripDetailPage extends ConsumerWidget {
             if (stops.isNotEmpty)
               SizedBox(
                 height: 220,
-                child: _StopsMap(stops: stops),
+                child: _StopsMap(
+                  stops: stops,
+                  osrmRoute: routeAsync.valueOrNull,
+                ),
               ),
             Expanded(
               child: stops.isEmpty
@@ -111,7 +116,8 @@ class TripDetailPage extends ConsumerWidget {
 
 class _StopsMap extends StatelessWidget {
   final List<TripStop> stops;
-  const _StopsMap({required this.stops});
+  final List<Map<String, double>>? osrmRoute;
+  const _StopsMap({required this.stops, this.osrmRoute});
 
   @override
   Widget build(BuildContext context) {
@@ -132,7 +138,9 @@ class _StopsMap extends StatelessWidget {
         PolylineLayer(
           polylines: [
             Polyline(
-              points: stops.map((s) => LatLng(s.latitude, s.longitude)).toList(),
+              points: osrmRoute != null && osrmRoute!.isNotEmpty
+                  ? osrmRoute!.map((c) => LatLng(c['lat']!, c['lng']!)).toList()
+                  : stops.map((s) => LatLng(s.latitude, s.longitude)).toList(),
               color: AppColors.primary,
               strokeWidth: 3,
             ),

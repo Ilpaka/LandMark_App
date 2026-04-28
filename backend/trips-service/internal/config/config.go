@@ -5,12 +5,14 @@ import "os"
 type Config struct {
 	HTTPAddr    string
 	DatabaseURL string
+	OSRMUrl     string
 }
 
 func Load() Config {
 	return Config{
 		HTTPAddr:    getenv("HTTP_ADDR", ":8080"),
 		DatabaseURL: os.Getenv("DATABASE_URL"),
+		OSRMUrl:     getenv("OSRM_URL", "http://router.project-osrm.org"),
 	}
 }
 

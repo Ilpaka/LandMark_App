@@ -82,6 +82,72 @@ func (s *Store) UpsertPrivacy(ctx context.Context, priv domain.PrivacySettings) 
 	return &p, nil
 }
 
+func (s *Store) Follow(ctx context.Context, followerID, followeeID uuid.UUID) error {
+	_, err := s.Pool.Exec(ctx,
+		`INSERT INTO profile.profile_follows(follower_id,followee_id) VALUES($1,$2) ON CONFLICT DO NOTHING`,
+		followerID, followeeID)
+	return err
+}
+
+func (s *Store) Unfollow(ctx context.Context, followerID, followeeID uuid.UUID) error {
+	_, err := s.Pool.Exec(ctx,
+		`DELETE FROM profile.profile_follows WHERE follower_id=$1 AND followee_id=$2`,
+		followerID, followeeID)
+	return err
+}
+
+func (s *Store) IsFollowing(ctx context.Context, followerID, followeeID uuid.UUID) (bool, error) {
+	var exists bool
+	err := s.Pool.QueryRow(ctx,
+		`SELECT EXISTS(SELECT 1 FROM profile.profile_follows WHERE follower_id=$1 AND followee_id=$2)`,
+		followerID, followeeID).Scan(&exists)
+	return exists, err
+}
+
+func (s *Store) ListFollowers(ctx context.Context, userID uuid.UUID, limit int) ([]domain.Profile, error) {
+	rows, err := s.Pool.Query(ctx,
+		`SELECT p.user_id,p.nickname,p.display_name,p.bio,p.avatar_media_id,p.city,p.country,p.created_at,p.updated_at
+         FROM profile.profile_follows f
+         JOIN profile.profile_profiles p ON p.user_id=f.follower_id
+         WHERE f.followee_id=$1 ORDER BY f.created_at DESC LIMIT $2`, userID, limit)
+	return collectProfiles(rows, err)
+}
+
+func (s *Store) ListFollowing(ctx context.Context, userID uuid.UUID, limit int) ([]domain.Profile, error) {
+	rows, err := s.Pool.Query(ctx,
+		`SELECT p.user_id,p.nickname,p.display_name,p.bio,p.avatar_media_id,p.city,p.country,p.created_at,p.updated_at
+         FROM profile.profile_follows f
+         JOIN profile.profile_profiles p ON p.user_id=f.followee_id
+         WHERE f.follower_id=$1 ORDER BY f.created_at DESC LIMIT $2`, userID, limit)
+	return collectProfiles(rows, err)
+}
+
+func (s *Store) FollowCounts(ctx context.Context, userID uuid.UUID) (followers int, following int, err error) {
+	err = s.Pool.QueryRow(ctx,
+		`SELECT
+           (SELECT COUNT(*) FROM profile.profile_follows WHERE followee_id=$1),
+           (SELECT COUNT(*) FROM profile.profile_follows WHERE follower_id=$1)`,
+		userID).Scan(&followers, &following)
+	return
+}
+
+func collectProfiles(rows pgx.Rows, queryErr error) ([]domain.Profile, error) {
+	if queryErr != nil {
+		return nil, queryErr
+	}
+	defer rows.Close()
+	var out []domain.Profile
+	for rows.Next() {
+		var p domain.Profile
+		if err := rows.Scan(&p.UserID, &p.Nickname, &p.DisplayName, &p.Bio, &p.AvatarMediaID,
+			&p.City, &p.Country, &p.CreatedAt, &p.UpdatedAt); err != nil {
+			return nil, err
+		}
+		out = append(out, p)
+	}
+	return out, rows.Err()
+}
+
 func scanProfile(row pgx.Row) (*domain.Profile, error) {
 	var p domain.Profile
 	if err := row.Scan(&p.UserID, &p.Nickname, &p.DisplayName, &p.Bio, &p.AvatarMediaID,

@@ -212,6 +212,44 @@ func (h *Handlers) AddStop(c *gin.Context) {
 	c.JSON(http.StatusCreated, st)
 }
 
+// ListPublicTrips handles GET /v1/trips/public
+func (h *Handlers) ListPublicTrips(c *gin.Context) {
+	var excludeOwner uuid.UUID
+	if raw := c.GetHeader("X-User-Id"); raw != "" {
+		excludeOwner, _ = uuid.Parse(raw)
+	}
+	cursor := c.Query("cursor")
+	limit := 20
+	if l, err := strconv.Atoi(c.Query("limit")); err == nil {
+		limit = l
+	}
+	trips, next, err := h.Svc.ListPublic(c.Request.Context(), excludeOwner, cursor, limit)
+	if err != nil {
+		writeErr(c, err)
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{"trips": trips, "next_cursor": next})
+}
+
+// GetRoute handles GET /v1/trips/:id/route
+func (h *Handlers) GetRoute(c *gin.Context) {
+	userID, ok := requireUser(c)
+	if !ok {
+		return
+	}
+	tripID, err := uuid.Parse(c.Param("id"))
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "validation_error"})
+		return
+	}
+	coords, err := h.Svc.GetRoute(c.Request.Context(), *userID, tripID)
+	if err != nil {
+		writeErr(c, err)
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{"coordinates": coords})
+}
+
 // MarkVisited handles POST /v1/trips/:id/stops/:sid/visit
 func (h *Handlers) MarkVisited(c *gin.Context) {
 	userID, ok := requireUser(c)

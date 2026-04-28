@@ -105,6 +105,83 @@ func (h *Handler) GetPrivacy(c *gin.Context) {
 	c.JSON(http.StatusOK, priv)
 }
 
+func (h *Handler) FollowUser(c *gin.Context) {
+	uid, ok := userID(c)
+	if !ok {
+		return
+	}
+	targetID, err := uuid.Parse(c.Param("user_id"))
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "bad user_id"})
+		return
+	}
+	if err := h.Svc.Follow(c.Request.Context(), uid, targetID); err != nil {
+		writeErr(c, err)
+		return
+	}
+	c.Status(http.StatusNoContent)
+}
+
+func (h *Handler) UnfollowUser(c *gin.Context) {
+	uid, ok := userID(c)
+	if !ok {
+		return
+	}
+	targetID, err := uuid.Parse(c.Param("user_id"))
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "bad user_id"})
+		return
+	}
+	if err := h.Svc.Unfollow(c.Request.Context(), uid, targetID); err != nil {
+		writeErr(c, err)
+		return
+	}
+	c.Status(http.StatusNoContent)
+}
+
+func (h *Handler) GetFollowStats(c *gin.Context) {
+	targetID, err := uuid.Parse(c.Param("user_id"))
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "bad user_id"})
+		return
+	}
+	requesterID, _ := uuid.Parse(c.GetHeader("X-User-Id"))
+	stats, err := h.Svc.GetFollowStats(c.Request.Context(), requesterID, targetID)
+	if err != nil {
+		writeErr(c, err)
+		return
+	}
+	c.JSON(http.StatusOK, stats)
+}
+
+func (h *Handler) ListFollowers(c *gin.Context) {
+	targetID, err := uuid.Parse(c.Param("user_id"))
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "bad user_id"})
+		return
+	}
+	profiles, err := h.Svc.ListFollowers(c.Request.Context(), targetID, 100)
+	if err != nil {
+		writeErr(c, err)
+		return
+	}
+	c.JSON(http.StatusOK, profiles)
+}
+
+func (h *Handler) ListFollowing(c *gin.Context) {
+	targetID, err := uuid.Parse(c.Param("user_id"))
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "bad user_id"})
+		return
+	}
+	profiles, err := h.Svc.ListFollowing(c.Request.Context(), targetID, 100)
+	if err != nil {
+		writeErr(c, err)
+		return
+	}
+	c.JSON(http.StatusOK, profiles)
+}
+
 func (h *Handler) UpdatePrivacy(c *gin.Context) {
 	uid, ok := userID(c)
 	if !ok {

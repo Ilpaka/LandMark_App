@@ -19,4 +19,5 @@ type Store interface {
 	UpdateStop(ctx context.Context, id uuid.UUID, updates map[string]any) (*domain.TripStop, error)
 	DeleteStop(ctx context.Context, id uuid.UUID) error
 	MarkStopVisited(ctx context.Context, id uuid.UUID, at time.Time) error
+	ListPublicTrips(ctx context.Context, excludeOwnerID uuid.UUID, cursor string, limit int) ([]domain.Trip, string, error)
 }

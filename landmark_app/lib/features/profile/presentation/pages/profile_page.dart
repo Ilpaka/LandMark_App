@@ -7,7 +7,9 @@ import '../../../auth/presentation/providers/auth_provider.dart' show authProvid
 import '../../../notifications/presentation/providers/notifications_provider.dart';
 import '../../../notifications/presentation/pages/notifications_feed_page.dart';
 import 'edit_profile_page.dart';
+import 'followers_page.dart';
 import '../../../settings/presentation/pages/settings_page.dart';
+import '../providers/follow_provider.dart';
 
 class ProfilePage extends ConsumerWidget {
   const ProfilePage({super.key});
@@ -112,6 +114,8 @@ class ProfilePage extends ConsumerWidget {
                 ),
               ],
               const SizedBox(height: 16),
+              _MyFollowStats(userId: profile.userId),
+              const SizedBox(height: 16),
               OutlinedButton.icon(
                 icon: const Icon(Icons.edit_outlined, size: 16),
                 label: const Text('Редактировать'),
@@ -159,6 +163,66 @@ class ProfilePage extends ConsumerWidget {
       ),
     );
   }
+}
+
+class _MyFollowStats extends ConsumerWidget {
+  final String userId;
+  const _MyFollowStats({required this.userId});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final statsAsync = ref.watch(followStatsProvider(userId));
+    return statsAsync.when(
+      loading: () => const SizedBox(height: 32),
+      error: (_, __) => const SizedBox.shrink(),
+      data: (stats) => Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          _FollowStat(
+            count: stats.followersCount,
+            label: 'подписчиков',
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (_) => FollowersPage(userId: userId, showFollowers: true),
+              ),
+            ),
+          ),
+          const SizedBox(width: 40),
+          _FollowStat(
+            count: stats.followingCount,
+            label: 'подписок',
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (_) => FollowersPage(userId: userId, showFollowers: false),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _FollowStat extends StatelessWidget {
+  final int count;
+  final String label;
+  final VoidCallback onTap;
+  const _FollowStat({required this.count, required this.label, required this.onTap});
+
+  @override
+  Widget build(BuildContext context) => GestureDetector(
+    onTap: onTap,
+    child: Column(
+      children: [
+        Text('$count',
+            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w700, color: AppColors.textPrimary)),
+        const SizedBox(height: 2),
+        Text(label, style: const TextStyle(fontSize: 12, color: AppColors.textSecondary)),
+      ],
+    ),
+  );
 }
 
 class _NotificationBell extends ConsumerWidget {
