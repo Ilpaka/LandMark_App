@@ -19,6 +19,14 @@ class MediaApi {
     return r.data!['url'] as String;
   }
 
+  /// Прикрепляет ранее загруженный mediaId к записи журнала.
+  Future<void> attachMedia(String entryId, String mediaId, int sortOrder) async {
+    await dio.post('/v1/journal/entries/$entryId/media', data: {
+      'media_id': mediaId,
+      'sort_order': sortOrder,
+    });
+  }
+
   /// Загружает файл и возвращает mediaId.
   Future<String> uploadFile(File file, {String purpose = 'avatar'}) async {
     // 1. Request presigned upload URL
