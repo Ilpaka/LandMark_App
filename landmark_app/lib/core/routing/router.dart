@@ -8,6 +8,10 @@ import '../../features/auth/presentation/pages/otp_page.dart';
 import '../../features/auth/presentation/providers/auth_provider.dart';
 import '../../features/splash/presentation/pages/splash_page.dart';
 import '../../features/main_shell/presentation/pages/main_shell_page.dart';
+import '../../features/map/presentation/pages/map_page.dart';
+import '../../features/trips/presentation/pages/trips_list_page.dart';
+import '../../features/journal/presentation/pages/journal_feed_page.dart';
+import '../../features/admin/presentation/pages/moderation_queue_page.dart';
 
 final routerProvider = Provider<GoRouter>((ref) {
   final refreshListenable = ref.read(authRouterNotifierProvider);
@@ -44,10 +48,11 @@ final routerProvider = Provider<GoRouter>((ref) {
       ShellRoute(
         builder: (_, __, child) => MainShellPage(child: child),
         routes: [
-          GoRoute(path: '/main/map', builder: (_, __) => const _StubPage(label: 'Карта')),
-          GoRoute(path: '/main/trips', builder: (_, __) => const _StubPage(label: 'Поездки')),
-          GoRoute(path: '/main/journal', builder: (_, __) => const _StubPage(label: 'Журнал')),
+          GoRoute(path: '/main/map', builder: (_, __) => const MapPage()),
+          GoRoute(path: '/main/trips', builder: (_, __) => const TripsListPage()),
+          GoRoute(path: '/main/journal', builder: (_, __) => const JournalFeedPage()),
           GoRoute(path: '/main/profile', builder: (_, __) => const _StubPage(label: 'Профиль')),
+          GoRoute(path: '/main/admin', builder: (_, __) => const ModerationQueuePage()),
         ],
       ),
     ],

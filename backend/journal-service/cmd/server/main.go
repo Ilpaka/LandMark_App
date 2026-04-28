@@ -1,31 +1,38 @@
 package main
 
 import (
+	"context"
 	"log/slog"
-	"net/http"
 	"os"
 
-	"github.com/gin-gonic/gin"
+	"github.com/jackc/pgx/v5/pgxpool"
+	"github.com/ilpaka/landmark_app/backend/journal-service/internal/config"
+	"github.com/ilpaka/landmark_app/backend/journal-service/internal/modules/journal/adapters/postgres"
+	"github.com/ilpaka/landmark_app/backend/journal-service/internal/modules/journal/app"
+	journalhttp "github.com/ilpaka/landmark_app/backend/journal-service/internal/modules/journal/http"
 )
 
 func main() {
 	log := slog.New(slog.NewJSONHandler(os.Stdout, nil))
 	slog.SetDefault(log)
 
-	r := gin.New()
-	r.Use(gin.Recovery())
+	cfg := config.Load()
 
-	r.GET("/healthz", func(c *gin.Context) {
-		c.JSON(http.StatusOK, gin.H{"status": "ok"})
-	})
-
-	addr := os.Getenv("HTTP_ADDR")
-	if addr == "" {
-		addr = ":8080"
+	ctx := context.Background()
+	pool, err := pgxpool.New(ctx, cfg.DatabaseURL)
+	if err != nil {
+		log.Error("pg", "err", err)
+		os.Exit(1)
 	}
-	log.Info("starting server", "addr", addr)
-	if err := r.Run(addr); err != nil {
-		log.Error("server error", "err", err)
+	defer pool.Close()
+
+	store := postgres.New(pool)
+	svc := app.New(store)
+	stack := journalhttp.Mount(svc)
+
+	log.Info("starting journal-service", "addr", cfg.HTTPAddr)
+	if err := stack.Engine.Run(cfg.HTTPAddr); err != nil {
+		log.Error("server fatal", "err", err)
 		os.Exit(1)
 	}
 }
