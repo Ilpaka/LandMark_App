@@ -40,3 +40,15 @@ type UpdatePrivacyInput struct {
 	JournalVisibility *string
 	AnalyticsEnabled  *bool
 }
+
+type Follow struct {
+	FollowerID uuid.UUID `json:"follower_id"`
+	FolloweeID uuid.UUID `json:"followee_id"`
+	CreatedAt  time.Time `json:"created_at"`
+}
+
+type FollowStats struct {
+	FollowersCount int  `json:"followers_count"`
+	FollowingCount int  `json:"following_count"`
+	IsFollowing    bool `json:"is_following"`
+}

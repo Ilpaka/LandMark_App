@@ -71,6 +71,40 @@ func (s *Service) GetPrivacy(ctx context.Context, userID uuid.UUID) (*domain.Pri
 	return priv, err
 }
 
+func (s *Service) Follow(ctx context.Context, followerID, followeeID uuid.UUID) error {
+	if followerID == followeeID {
+		return domain.ErrBadRequest
+	}
+	return s.Store.Follow(ctx, followerID, followeeID)
+}
+
+func (s *Service) Unfollow(ctx context.Context, followerID, followeeID uuid.UUID) error {
+	return s.Store.Unfollow(ctx, followerID, followeeID)
+}
+
+func (s *Service) GetFollowStats(ctx context.Context, requesterID, targetID uuid.UUID) (*domain.FollowStats, error) {
+	followers, following, err := s.Store.FollowCounts(ctx, targetID)
+	if err != nil {
+		return nil, err
+	}
+	isFollowing := false
+	if requesterID != uuid.Nil && requesterID != targetID {
+		isFollowing, err = s.Store.IsFollowing(ctx, requesterID, targetID)
+		if err != nil {
+			return nil, err
+		}
+	}
+	return &domain.FollowStats{FollowersCount: followers, FollowingCount: following, IsFollowing: isFollowing}, nil
+}
+
+func (s *Service) ListFollowers(ctx context.Context, userID uuid.UUID, limit int) ([]domain.Profile, error) {
+	return s.Store.ListFollowers(ctx, userID, limit)
+}
+
+func (s *Service) ListFollowing(ctx context.Context, userID uuid.UUID, limit int) ([]domain.Profile, error) {
+	return s.Store.ListFollowing(ctx, userID, limit)
+}
+
 func (s *Service) UpdatePrivacy(ctx context.Context, userID uuid.UUID, in domain.UpdatePrivacyInput) (*domain.PrivacySettings, error) {
 	priv, err := s.GetPrivacy(ctx, userID)
 	if err != nil {

@@ -27,7 +27,7 @@ func main() {
 	defer pool.Close()
 
 	store := postgres.New(pool)
-	svc := app.New(store)
+	svc := app.New(store, cfg.OSRMUrl)
 	stack := triphttp.Mount(svc)
 
 	log.Info("starting trips-service", "addr", cfg.HTTPAddr)

@@ -6,6 +6,7 @@ import '../../../../core/design/components/wl_button.dart';
 import '../../../../core/widgets/skeleton.dart';
 import '../../domain/entities/trip.dart';
 import '../providers/trips_provider.dart';
+import 'create_trip_page.dart';
 import 'trip_detail_page.dart';
 
 class TripsListPage extends ConsumerWidget {
@@ -39,31 +40,12 @@ class TripsListPage extends ConsumerWidget {
     );
   }
 
-  void _showCreateDialog(BuildContext context, WidgetRef ref) {
-    final ctrl = TextEditingController();
-    showDialog(
-      context: context,
-      builder: (ctx) => AlertDialog(
-        title: const Text('Новая поездка'),
-        content: TextField(
-          controller: ctrl,
-          autofocus: true,
-          decoration: const InputDecoration(hintText: 'Название поездки'),
-        ),
-        actions: [
-          TextButton(onPressed: () => Navigator.pop(ctx), child: const Text('Отмена')),
-          TextButton(
-            onPressed: () async {
-              if (ctrl.text.trim().isEmpty) return;
-              Navigator.pop(ctx);
-              await ref.read(tripsApiProvider).createTrip(ctrl.text.trim());
-              ref.invalidate(tripsListProvider);
-            },
-            child: const Text('Создать'),
-          ),
-        ],
-      ),
+  Future<void> _showCreateDialog(BuildContext context, WidgetRef ref) async {
+    final result = await Navigator.push<bool>(
+      context,
+      MaterialPageRoute(builder: (_) => const CreateTripPage()),
     );
+    if (result == true) ref.invalidate(tripsListProvider);
   }
 }
 

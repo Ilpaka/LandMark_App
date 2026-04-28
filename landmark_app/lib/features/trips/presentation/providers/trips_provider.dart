@@ -8,3 +8,11 @@ final tripsApiProvider = Provider((ref) => TripsApi(ref.read(apiClientProvider).
 final tripsListProvider = FutureProvider.autoDispose<List<Trip>>((ref) {
   return ref.read(tripsApiProvider).listTrips();
 });
+
+final publicTripsProvider = FutureProvider.autoDispose<List<Trip>>((ref) {
+  return ref.read(tripsApiProvider).listPublicTrips();
+});
+
+final tripRouteProvider = FutureProvider.autoDispose.family<List<Map<String, double>>, String>((ref, tripId) {
+  return ref.read(tripsApiProvider).getRoute(tripId);
+});

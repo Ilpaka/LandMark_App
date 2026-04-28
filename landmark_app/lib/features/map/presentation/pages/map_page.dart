@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:share_plus/share_plus.dart' show Share;
 import '../../../../core/design/tokens.dart';
 import '../../../../core/design/typography.dart';
 import '../providers/map_provider.dart';
 import '../../domain/entities/place.dart';
 import '../../../favorites/presentation/widgets/favorite_button.dart';
+import 'place_detail_page.dart';
 import 'suggest_place_page.dart';
 import '../../../search/presentation/pages/search_page.dart';
 
@@ -354,11 +354,11 @@ class _PlacePreviewCard extends StatelessWidget {
             ),
             FavoriteButton(targetType: 'place', targetId: place.id, size: 26),
             IconButton(
-              icon: const Icon(Icons.share_outlined, size: 20),
-              tooltip: 'Поделиться',
-              onPressed: () => Share.share(
-                '${place.title}${place.city != null ? ', ${place.city}' : ''}\n'
-                'Lat: ${place.latitude}, Lng: ${place.longitude}',
+              icon: const Icon(Icons.open_in_new, size: 20),
+              tooltip: 'Подробнее',
+              onPressed: () => Navigator.push<void>(
+                context,
+                MaterialPageRoute(builder: (_) => PlaceDetailPage(place: place)),
               ),
             ),
             IconButton(icon: const Icon(Icons.close), onPressed: onClose),

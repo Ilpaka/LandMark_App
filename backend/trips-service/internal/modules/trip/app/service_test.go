@@ -123,12 +123,16 @@ func (m *mockStore) MarkStopVisited(_ context.Context, id uuid.UUID, at time.Tim
 	return nil
 }
 
+func (m *mockStore) ListPublicTrips(_ context.Context, _ uuid.UUID, _ string, _ int) ([]domain.Trip, string, error) {
+	return []domain.Trip{}, "", nil
+}
+
 // ---------------------------------------------------------------------------
 // Helper
 // ---------------------------------------------------------------------------
 
 func newService(st *mockStore) *app.Service {
-	return app.New(st)
+	return app.New(st, "")
 }
 
 // seedTrip inserts a trip owned by ownerID into the store and returns it.

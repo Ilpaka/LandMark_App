@@ -224,3 +224,53 @@ func (s *Store) MarkStopVisited(ctx context.Context, id uuid.UUID, at time.Time)
 	_, err := s.db.Exec(ctx, `UPDATE trips_stops SET visited_at=$2 WHERE id=$1`, id, at)
 	return err
 }
+
+func (s *Store) ListPublicTrips(ctx context.Context, excludeOwnerID uuid.UUID, cursor string, limit int) ([]domain.Trip, string, error) {
+	where := "status IN ('planned','in_progress','completed') AND owner_id != $1"
+	args := []any{excludeOwnerID}
+	argN := 2
+
+	if cursor != "" {
+		decoded, err := base64.StdEncoding.DecodeString(cursor)
+		if err == nil {
+			parts := strings.SplitN(string(decoded), "|", 2)
+			if len(parts) == 2 {
+				where += fmt.Sprintf(" AND (updated_at, id) < ($%d::timestamptz, $%d::uuid)", argN, argN+1)
+				args = append(args, parts[0], parts[1])
+				argN += 2
+			}
+		}
+	}
+
+	args = append(args, limit+1)
+	q := fmt.Sprintf(`SELECT %s FROM trips_trips WHERE %s ORDER BY updated_at DESC, id DESC LIMIT $%d`,
+		tripColumns, where, argN)
+
+	rows, err := s.db.Query(ctx, q, args...)
+	if err != nil {
+		return nil, "", err
+	}
+	defer rows.Close()
+
+	var trips []domain.Trip
+	for rows.Next() {
+		var t domain.Trip
+		if err := scanTrip(rows, &t); err != nil {
+			return nil, "", err
+		}
+		trips = append(trips, t)
+	}
+	if err := rows.Err(); err != nil {
+		return nil, "", err
+	}
+
+	var nextCursor string
+	if len(trips) > limit {
+		last := trips[limit-1]
+		trips = trips[:limit]
+		nextCursor = base64.StdEncoding.EncodeToString([]byte(
+			last.UpdatedAt.UTC().Format(time.RFC3339Nano) + "|" + last.ID.String(),
+		))
+	}
+	return trips, nextCursor, nil
+}
