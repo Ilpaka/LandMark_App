@@ -32,13 +32,46 @@ class JournalFeedPage extends ConsumerWidget {
       body: entriesAsync.when(
         data: (entries) => entries.isEmpty
             ? const _EmptyJournal()
-            : ListView.builder(
-                padding: const EdgeInsets.all(AppSpacing.md),
-                itemCount: entries.length,
-                itemBuilder: (_, i) => _EntryCard(entry: entries[i]),
-              ),
+            : _PaginatedList(entries: entries),
         loading: () => const SkeletonListView(),
         error: (e, _) => Center(child: Text('Ошибка: $e')),
+      ),
+    );
+  }
+}
+
+class _PaginatedList extends ConsumerWidget {
+  final List<JournalEntry> entries;
+  const _PaginatedList({required this.entries});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final notifier = ref.read(journalFeedProvider.notifier);
+
+    return NotificationListener<ScrollNotification>(
+      onNotification: (n) {
+        if (n is ScrollEndNotification &&
+            n.metrics.extentAfter < 200 &&
+            notifier.hasMore) {
+          notifier.loadMore();
+        }
+        return false;
+      },
+      child: ListView.builder(
+        padding: const EdgeInsets.all(AppSpacing.md),
+        itemCount: entries.length + 1,
+        itemBuilder: (_, i) {
+          if (i == entries.length) {
+            return notifier.hasMore
+                ? const Padding(
+                    padding: EdgeInsets.symmetric(vertical: 16),
+                    child: Center(
+                        child: CircularProgressIndicator(
+                            color: AppColors.primary, strokeWidth: 2)))
+                : const SizedBox.shrink();
+          }
+          return _EntryCard(entry: entries[i]);
+        },
       ),
     );
   }
@@ -51,48 +84,51 @@ class _EntryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final fmt = DateFormat('d MMM yyyy', 'ru_RU');
-    return InkWell(
-      onTap: () => Navigator.push(
-        context,
-        MaterialPageRoute<void>(builder: (_) => EntryDetailPage(entry: entry)),
-      ),
-      borderRadius: const BorderRadius.all(AppRadius.md),
-      child: Card(
-      margin: const EdgeInsets.only(bottom: AppSpacing.md),
-      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(AppRadius.md)),
-      child: Padding(
-        padding: const EdgeInsets.all(AppSpacing.md),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
+    return Padding(
+      padding: const EdgeInsets.only(bottom: AppSpacing.md),
+      child: InkWell(
+        onTap: () => Navigator.push(
+          context,
+          MaterialPageRoute<void>(builder: (_) => EntryDetailPage(entry: entry)),
+        ),
+        borderRadius: const BorderRadius.all(AppRadius.md),
+        child: Card(
+          margin: EdgeInsets.zero,
+          shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(AppRadius.md)),
+          child: Padding(
+            padding: const EdgeInsets.all(AppSpacing.md),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Expanded(
-                  child: Text(
-                    entry.title ?? 'Запись от ${fmt.format(entry.occurredAt)}',
-                    style: AppTypography.h3,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                  ),
+                Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        entry.title ?? 'Запись от ${fmt.format(entry.occurredAt)}',
+                        style: AppTypography.h3,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                    if (entry.mood != null)
+                      Text(_moodEmoji(entry.mood!), style: const TextStyle(fontSize: 20)),
+                  ],
                 ),
-                if (entry.mood != null)
-                  Text(_moodEmoji(entry.mood!), style: const TextStyle(fontSize: 20)),
+                const SizedBox(height: AppSpacing.sm),
+                Text(
+                  entry.body,
+                  style: AppTypography.body,
+                  maxLines: 3,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                const SizedBox(height: AppSpacing.sm),
+                Text(fmt.format(entry.occurredAt), style: AppTypography.caption),
               ],
             ),
-            const SizedBox(height: AppSpacing.sm),
-            Text(
-              entry.body,
-              style: AppTypography.body,
-              maxLines: 3,
-              overflow: TextOverflow.ellipsis,
-            ),
-            const SizedBox(height: AppSpacing.sm),
-            Text(fmt.format(entry.occurredAt), style: AppTypography.caption),
-          ],
+          ),
         ),
       ),
-    ), // Card
-    ); // InkWell
+    );
   }
 
   String _moodEmoji(String mood) => switch (mood) {

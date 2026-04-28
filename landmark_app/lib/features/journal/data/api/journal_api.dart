@@ -5,14 +5,22 @@ class JournalApi {
   final Dio dio;
   JournalApi(this.dio);
 
-  Future<List<JournalEntry>> listEntries({String? tripId, int limit = 20}) async {
+  Future<({List<JournalEntry> entries, String? nextCursor})> listEntries({
+    String? tripId,
+    String? cursor,
+    int limit = 20,
+  }) async {
     final r = await dio.get('/v1/journal/entries', queryParameters: {
       if (tripId != null) 'trip_id': tripId,
+      if (cursor != null) 'cursor': cursor,
       'limit': limit,
     });
     final data = r.data as Map<String, dynamic>;
     final list = data['entries'] as List<dynamic>? ?? [];
-    return list.map((e) => JournalEntry.fromJson(e as Map<String, dynamic>)).toList();
+    return (
+      entries: list.map((e) => JournalEntry.fromJson(e as Map<String, dynamic>)).toList(),
+      nextCursor: data['next_cursor'] as String?,
+    );
   }
 
   Future<JournalEntry> getEntry(String id) async {
