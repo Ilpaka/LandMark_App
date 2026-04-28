@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/design/tokens.dart';
 import '../../domain/entities/profile.dart';
 import '../providers/follow_provider.dart';
+import '../widgets/user_avatar.dart';
 import 'public_profile_page.dart';
 
 class FollowersPage extends ConsumerWidget {
@@ -49,12 +50,10 @@ class _ProfileTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: CircleAvatar(
-        backgroundColor: AppColors.primary.withValues(alpha: 0.15),
-        child: Text(
-          (profile.displayName.isNotEmpty ? profile.displayName[0] : '?').toUpperCase(),
-          style: const TextStyle(color: AppColors.primary, fontWeight: FontWeight.w600),
-        ),
+      leading: UserAvatar(
+        displayName: profile.displayName,
+        mediaId: profile.avatarMediaId,
+        radius: 22,
       ),
       title: Text(profile.displayName,
           style: const TextStyle(fontWeight: FontWeight.w600, color: AppColors.textPrimary)),

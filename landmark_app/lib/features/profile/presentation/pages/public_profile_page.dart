@@ -4,6 +4,7 @@ import '../../../../core/design/tokens.dart';
 import '../../data/api/follow_api.dart';
 import '../../domain/entities/profile.dart';
 import '../providers/follow_provider.dart';
+import '../widgets/user_avatar.dart';
 import 'followers_page.dart';
 
 class PublicProfilePage extends ConsumerWidget {
@@ -58,13 +59,10 @@ class _ProfileBody extends StatelessWidget {
           color: AppColors.surface,
           child: Column(
             children: [
-              CircleAvatar(
+              UserAvatar(
+                displayName: profile.displayName,
+                mediaId: profile.avatarMediaId,
                 radius: 44,
-                backgroundColor: AppColors.primary.withValues(alpha: 0.15),
-                child: Text(
-                  (profile.displayName.isNotEmpty ? profile.displayName[0] : '?').toUpperCase(),
-                  style: const TextStyle(fontSize: 36, color: AppColors.primary, fontWeight: FontWeight.w600),
-                ),
               ),
               const SizedBox(height: 12),
               Text(
