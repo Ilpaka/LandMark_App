@@ -1,0 +1,5 @@
+# OWASP ZAP baseline scan — run manually or in nightly CI, e.g.:
+#   docker run --rm -t ghcr.io/zaproxy/zaproxy:stable zap-baseline.py -t http://host.docker.internal:8080
+#
+# Tune rules in ZAP config or export a session after manual review; this file documents the intent
+# (passive scan, no auth state machine) per Phase 15 security checklist.
