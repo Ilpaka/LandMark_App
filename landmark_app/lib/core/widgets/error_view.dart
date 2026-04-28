@@ -1,0 +1,31 @@
+import 'package:flutter/material.dart';
+import '../design/tokens.dart';
+import '../design/typography.dart';
+
+class ErrorView extends StatelessWidget {
+  final String message;
+  final VoidCallback? onRetry;
+
+  const ErrorView({super.key, required this.message, this.onRetry});
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(AppSpacing.xl),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Icon(Icons.error_outline, size: 48, color: AppColors.error),
+            const SizedBox(height: AppSpacing.md),
+            Text(message, style: AppTypography.body, textAlign: TextAlign.center),
+            if (onRetry != null) ...[
+              const SizedBox(height: AppSpacing.md),
+              TextButton(onPressed: onRetry, child: const Text('Повторить')),
+            ],
+          ],
+        ),
+      ),
+    );
+  }
+}

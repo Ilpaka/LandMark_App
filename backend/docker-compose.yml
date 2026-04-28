@@ -1,0 +1,208 @@
+name: landmark
+
+x-common-env: &common-env
+  APP_ENV: development
+  LOG_LEVEL: info
+  REDIS_URL: redis://redis:6379/0
+  OTEL_EXPORTER_OTLP_ENDPOINT: ${OTEL_EXPORTER_OTLP_ENDPOINT:-}
+  INTERNAL_API_KEY: ${INTERNAL_API_KEY:-dev-internal-key-change-me}
+
+x-go-build: &go-build
+  restart: unless-stopped
+  networks: [landmark-internal]
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: landmark
+      POSTGRES_PASSWORD: landmark
+      POSTGRES_DB: landmark
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./scripts/init-db.sql:/docker-entrypoint-initdb.d/01-init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U landmark -d landmark"]
+      interval: 3s
+      timeout: 5s
+      retries: 20
+    networks: [landmark-internal]
+
+  redis:
+    image: redis:7-alpine
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 3s
+      timeout: 3s
+      retries: 10
+    networks: [landmark-internal]
+
+  minio:
+    image: minio/minio:latest
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: minioadmin
+    volumes: [miniodata:/data]
+    ports:
+      - "9001:9001"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/ready"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    networks: [landmark-internal]
+
+  minio-init:
+    image: minio/mc:latest
+    depends_on:
+      minio: {condition: service_healthy}
+    entrypoint: ["/bin/sh", "-c"]
+    command:
+      - |
+        mc alias set local http://minio:9000 minioadmin minioadmin;
+        mc mb -p local/landmark-media || true;
+        mc anonymous set none local/landmark-media;
+    networks: [landmark-internal]
+
+  mailhog:
+    image: mailhog/mailhog:latest
+    ports:
+      - "8025:8025"
+    networks: [landmark-internal]
+
+  auth-service:
+    <<: *go-build
+    build:
+      context: .
+      dockerfile: auth-service/Dockerfile
+    environment:
+      <<: *common-env
+      DATABASE_URL: postgres://landmark:landmark@postgres:5432/landmark?sslmode=disable&search_path=auth,public
+      JWT_PRIVATE_KEY_PATH: /app/keys/jwt_rsa.pem
+      JWT_PUBLIC_KEY_PATH: /app/keys/jwt_rsa.pub.pem
+      JWT_ISSUER: landmark.app
+      JWT_AUDIENCE: landmark-clients
+      AUTH_PEPPER: ${AUTH_PEPPER:-dev-pepper-change-me-32-bytes-min!}
+      PROFILE_SERVICE_URL: http://profile-service:8080
+      OTEL_SERVICE_NAME: landmark-auth-api
+      SMTP_HOST: mailhog
+      SMTP_PORT: "1025"
+      SMTP_FROM: no-reply@landmark.local
+    volumes:
+      - authkeys:/app/keys
+    depends_on:
+      postgres: {condition: service_healthy}
+      redis: {condition: service_healthy}
+
+  profile-service:
+    <<: *go-build
+    build: { context: ., dockerfile: profile-service/Dockerfile }
+    environment:
+      <<: *common-env
+      DATABASE_URL: postgres://landmark:landmark@postgres:5432/landmark?sslmode=disable&search_path=profile,public
+      OTEL_SERVICE_NAME: landmark-profile-api
+    depends_on: { postgres: {condition: service_healthy} }
+
+  places-service:
+    <<: *go-build
+    build: { context: ., dockerfile: places-service/Dockerfile }
+    environment:
+      <<: *common-env
+      DATABASE_URL: postgres://landmark:landmark@postgres:5432/landmark?sslmode=disable&search_path=places,public
+      MEDIA_SERVICE_URL: http://media-service:8080
+      OTEL_SERVICE_NAME: landmark-places-api
+    depends_on: { postgres: {condition: service_healthy}, redis: {condition: service_healthy} }
+
+  trips-service:
+    <<: *go-build
+    build: { context: ., dockerfile: trips-service/Dockerfile }
+    environment:
+      <<: *common-env
+      DATABASE_URL: postgres://landmark:landmark@postgres:5432/landmark?sslmode=disable&search_path=trips,public
+      OTEL_SERVICE_NAME: landmark-trips-api
+    depends_on: { postgres: {condition: service_healthy} }
+
+  journal-service:
+    <<: *go-build
+    build: { context: ., dockerfile: journal-service/Dockerfile }
+    environment:
+      <<: *common-env
+      DATABASE_URL: postgres://landmark:landmark@postgres:5432/landmark?sslmode=disable&search_path=journal,public
+      MEDIA_SERVICE_URL: http://media-service:8080
+      TRIPS_SERVICE_URL: http://trips-service:8080
+      OTEL_SERVICE_NAME: landmark-journal-api
+    depends_on: { postgres: {condition: service_healthy} }
+
+  media-service:
+    <<: *go-build
+    build: { context: ., dockerfile: media-service/Dockerfile }
+    environment:
+      <<: *common-env
+      DATABASE_URL: postgres://landmark:landmark@postgres:5432/landmark?sslmode=disable&search_path=media,public
+      S3_ENDPOINT: http://minio:9000
+      S3_REGION: us-east-1
+      S3_ACCESS_KEY: minioadmin
+      S3_SECRET_KEY: minioadmin
+      S3_BUCKET: landmark-media
+      S3_USE_PATH_STYLE: "true"
+      OTEL_SERVICE_NAME: landmark-media-api
+    depends_on:
+      postgres: {condition: service_healthy}
+      minio-init: {condition: service_completed_successfully}
+
+  favorites-service:
+    <<: *go-build
+    build: { context: ., dockerfile: favorites-service/Dockerfile }
+    environment:
+      <<: *common-env
+      DATABASE_URL: postgres://landmark:landmark@postgres:5432/landmark?sslmode=disable&search_path=favorites,public
+      OTEL_SERVICE_NAME: landmark-favorites-api
+    depends_on: { postgres: {condition: service_healthy} }
+
+  notifications-service:
+    <<: *go-build
+    build: { context: ., dockerfile: notifications-service/Dockerfile }
+    environment:
+      <<: *common-env
+      DATABASE_URL: postgres://landmark:landmark@postgres:5432/landmark?sslmode=disable&search_path=notifications,public
+      SMTP_HOST: mailhog
+      SMTP_PORT: "1025"
+      SMTP_FROM: no-reply@landmark.local
+      FCM_SERVICE_ACCOUNT_PATH: ${FCM_SERVICE_ACCOUNT_PATH:-}
+      OTEL_SERVICE_NAME: landmark-notifications-api
+    depends_on: { postgres: {condition: service_healthy}, redis: {condition: service_healthy} }
+
+  moderation-service:
+    <<: *go-build
+    build: { context: ., dockerfile: moderation-service/Dockerfile }
+    environment:
+      <<: *common-env
+      DATABASE_URL: postgres://landmark:landmark@postgres:5432/landmark?sslmode=disable&search_path=moderation,public
+      PLACES_SERVICE_URL: http://places-service:8080
+      OTEL_SERVICE_NAME: landmark-moderation-api
+    depends_on: { postgres: {condition: service_healthy}, places-service: {condition: service_started} }
+
+  api-gateway:
+    <<: *go-build
+    build: { context: ., dockerfile: api-gateway/Dockerfile }
+    ports:
+      - "8080:8080"
+    environment:
+      <<: *common-env
+      AUTH_JWKS_URL: http://auth-service:8080/v1/auth/jwks
+      JWT_ISSUER: landmark.app
+      JWT_AUDIENCE: landmark-clients
+      OTEL_SERVICE_NAME: landmark-api-gateway
+      CORS_ORIGINS: ${CORS_ORIGINS:-*}
+    depends_on:
+      auth-service: {condition: service_started}
+
+volumes:
+  pgdata:
+  miniodata:
+  authkeys:
+
+networks:
+  landmark-internal:
+    driver: bridge
