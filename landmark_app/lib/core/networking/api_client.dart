@@ -1,7 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final apiClientProvider = Provider<ApiClient>((ref) => throw UnimplementedError());
+final apiClientProvider =
+    Provider<ApiClient>((ref) => throw UnimplementedError());
 
 class ApiClient {
   final Dio _dio;
@@ -34,8 +35,10 @@ class ApiClient {
           if (err.response?.statusCode == 401) {
             try {
               final refresh = await getRefreshToken();
-              if (refresh != null) {
-                final r = await _dio.post<Map<String, dynamic>>('/v1/auth/refresh', data: {'refresh_token': refresh});
+              if (refresh != null && refresh.isNotEmpty) {
+                final r = await _dio.post<Map<String, dynamic>>(
+                    '/v1/auth/refresh',
+                    data: {'refresh_token': refresh});
                 final body = r.data!;
                 final newAccess = body['access_token'] as String;
                 final newRefresh = body['refresh_token'] as String;

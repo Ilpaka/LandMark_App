@@ -35,7 +35,8 @@ class NotificationPreferences {
         pushTripReminders: pushTripReminders ?? this.pushTripReminders,
         pushModerationResult: pushModerationResult ?? this.pushModerationResult,
         pushMarketing: pushMarketing ?? this.pushMarketing,
-        emailModerationResult: emailModerationResult ?? this.emailModerationResult,
+        emailModerationResult:
+            emailModerationResult ?? this.emailModerationResult,
         emailMarketing: emailMarketing ?? this.emailMarketing,
       );
 }
@@ -49,7 +50,8 @@ class SettingsApi {
     return NotificationPreferences.fromJson(r.data as Map<String, dynamic>);
   }
 
-  Future<NotificationPreferences> updateNotifPrefs(Map<String, dynamic> patch) async {
+  Future<NotificationPreferences> updateNotifPrefs(
+      Map<String, dynamic> patch) async {
     final r = await dio.patch('/v1/notifications/preferences', data: patch);
     return NotificationPreferences.fromJson(r.data as Map<String, dynamic>);
   }

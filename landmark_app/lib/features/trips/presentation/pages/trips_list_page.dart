@@ -31,7 +31,8 @@ class TripsListPage extends ConsumerWidget {
             ? _EmptyTrips(onCreate: () => _showCreateDialog(context, ref))
             : _PaginatedTripList(trips: trips),
         loading: () => const SkeletonListView(),
-        error: (e, _) => const Center(child: Text('Ошибка загрузки', style: AppTypography.body)),
+        error: (e, _) => const Center(
+            child: Text('Ошибка загрузки', style: AppTypography.body)),
       ),
     );
   }
@@ -69,8 +70,9 @@ class _PaginatedTripList extends ConsumerWidget {
             return notifier.hasMore
                 ? const Padding(
                     padding: EdgeInsets.symmetric(vertical: 16),
-                    child: Center(child: CircularProgressIndicator(
-                        color: AppColors.primary, strokeWidth: 2)))
+                    child: Center(
+                        child: CircularProgressIndicator(
+                            color: AppColors.primary, strokeWidth: 2)))
                 : const SizedBox.shrink();
           }
           return _TripCard(trip: trips[i]);
@@ -93,31 +95,38 @@ class _TripCard extends StatelessWidget {
       ),
       borderRadius: const BorderRadius.all(AppRadius.md),
       child: Card(
-      margin: const EdgeInsets.only(bottom: AppSpacing.md),
-      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(AppRadius.md)),
-      child: Padding(
-        padding: const EdgeInsets.all(AppSpacing.md),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                Expanded(child: Text(trip.title, style: AppTypography.h3)),
-                _StatusChip(status: trip.status),
-              ],
-            ),
-            const SizedBox(height: AppSpacing.sm),
-            Row(
-              children: [
-                _CountBadge(icon: Icons.place, count: trip.stopsCount, label: 'точек'),
-                const SizedBox(width: AppSpacing.md),
-                _CountBadge(icon: Icons.book, count: trip.entriesCount, label: 'записей'),
-              ],
-            ),
-          ],
+        margin: const EdgeInsets.only(bottom: AppSpacing.md),
+        shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(AppRadius.md)),
+        child: Padding(
+          padding: const EdgeInsets.all(AppSpacing.md),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Expanded(child: Text(trip.title, style: AppTypography.h3)),
+                  _StatusChip(status: trip.status),
+                ],
+              ),
+              const SizedBox(height: AppSpacing.sm),
+              Row(
+                children: [
+                  _CountBadge(
+                      icon: Icons.place,
+                      count: trip.stopsCount,
+                      label: 'точек'),
+                  const SizedBox(width: AppSpacing.md),
+                  _CountBadge(
+                      icon: Icons.book,
+                      count: trip.entriesCount,
+                      label: 'записей'),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
-    ),
     );
   }
 }
@@ -127,50 +136,52 @@ class _StatusChip extends StatelessWidget {
   const _StatusChip({required this.status});
 
   Color get _color => switch (status) {
-    'draft' => AppColors.textSecondary,
-    'planned' => AppColors.warning,
-    'in_progress' => AppColors.primary,
-    'completed' => AppColors.success,
-    _ => AppColors.textSecondary,
-  };
+        'draft' => AppColors.textSecondary,
+        'planned' => AppColors.warning,
+        'in_progress' => AppColors.primary,
+        'completed' => AppColors.success,
+        _ => AppColors.textSecondary,
+      };
 
   String get _label => switch (status) {
-    'draft' => 'Черновик',
-    'planned' => 'Запланировано',
-    'in_progress' => 'В поездке',
-    'completed' => 'Завершено',
-    _ => status,
-  };
+        'draft' => 'Черновик',
+        'planned' => 'Запланировано',
+        'in_progress' => 'В поездке',
+        'completed' => 'Завершено',
+        _ => status,
+      };
 
   @override
   Widget build(BuildContext context) => Container(
-    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-    decoration: BoxDecoration(
-      color: _color.withValues(alpha: 0.1),
-      borderRadius: BorderRadius.circular(12),
-    ),
-    child: Text(
-      _label,
-      style: TextStyle(fontSize: 11, color: _color, fontWeight: FontWeight.w500),
-    ),
-  );
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+        decoration: BoxDecoration(
+          color: _color.withValues(alpha: 0.1),
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Text(
+          _label,
+          style: TextStyle(
+              fontSize: 11, color: _color, fontWeight: FontWeight.w500),
+        ),
+      );
 }
 
 class _CountBadge extends StatelessWidget {
   final IconData icon;
   final int count;
   final String label;
-  const _CountBadge({required this.icon, required this.count, required this.label});
+  const _CountBadge(
+      {required this.icon, required this.count, required this.label});
 
   @override
   Widget build(BuildContext context) => Row(
-    mainAxisSize: MainAxisSize.min,
-    children: [
-      Icon(icon, size: 14, color: AppColors.textSecondary),
-      const SizedBox(width: 4),
-      Text('$count $label', style: AppTypography.caption),
-    ],
-  );
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(icon, size: 14, color: AppColors.textSecondary),
+          const SizedBox(width: 4),
+          Text('$count $label', style: AppTypography.caption),
+        ],
+      );
 }
 
 class _EmptyTrips extends StatelessWidget {
@@ -179,20 +190,22 @@ class _EmptyTrips extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Center(
-    child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        const Icon(Icons.luggage_outlined, size: 64, color: AppColors.textSecondary),
-        const SizedBox(height: 16),
-        const Text('Нет поездок', style: AppTypography.h3),
-        const SizedBox(height: 8),
-        const Text('Создайте первую поездку', style: AppTypography.bodySmall),
-        const SizedBox(height: 24),
-        SizedBox(
-          width: 200,
-          child: WlButton(label: 'Создать поездку', onPressed: onCreate),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Icon(Icons.luggage_outlined,
+                size: 64, color: AppColors.textSecondary),
+            const SizedBox(height: 16),
+            const Text('Нет поездок', style: AppTypography.h3),
+            const SizedBox(height: 8),
+            const Text('Создайте первую поездку',
+                style: AppTypography.bodySmall),
+            const SizedBox(height: 24),
+            SizedBox(
+              width: 200,
+              child: WlButton(label: 'Создать поездку', onPressed: onCreate),
+            ),
+          ],
         ),
-      ],
-    ),
-  );
+      );
 }

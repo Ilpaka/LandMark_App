@@ -46,7 +46,10 @@ class _MapPageState extends ConsumerState<MapPage> {
       final bounds = camera.visibleBounds;
       final category = ref.read(selectedCategoryProvider);
       ref.read(mapBBoxProvider.notifier).state = PlacesQuery(
-        south: bounds.south, west: bounds.west, north: bounds.north, east: bounds.east,
+        south: bounds.south,
+        west: bounds.west,
+        north: bounds.north,
+        east: bounds.east,
         categorySlug: category,
       );
     });
@@ -82,7 +85,8 @@ class _MapPageState extends ConsumerState<MapPage> {
               initialCenter: const LatLng(55.7558, 37.6173), // Москва
               initialZoom: 5,
               onMapEvent: (event) {
-                if (event is MapEventMoveEnd || event is MapEventScrollWheelZoom) {
+                if (event is MapEventMoveEnd ||
+                    event is MapEventScrollWheelZoom) {
                   _onMapMoved(_mapController.camera);
                 }
               },
@@ -93,15 +97,19 @@ class _MapPageState extends ConsumerState<MapPage> {
                 userAgentPackageName: 'com.landmark.app',
               ),
               MarkerLayer(
-                markers: placesAsync.valueOrNull?.map((place) => Marker(
-                  point: LatLng(place.latitude, place.longitude),
-                  width: 40,
-                  height: 40,
-                  child: GestureDetector(
-                    onTap: () => _showPlacePreview(place),
-                    child: _PlacePin(selected: _selectedPlace?.id == place.id),
-                  ),
-                )).toList() ?? [],
+                markers: placesAsync.valueOrNull
+                        ?.map((place) => Marker(
+                              point: LatLng(place.latitude, place.longitude),
+                              width: 40,
+                              height: 40,
+                              child: GestureDetector(
+                                onTap: () => _showPlacePreview(place),
+                                child: _PlacePin(
+                                    selected: _selectedPlace?.id == place.id),
+                              ),
+                            ))
+                        .toList() ??
+                    [],
               ),
             ],
           ),
@@ -117,7 +125,8 @@ class _MapPageState extends ConsumerState<MapPage> {
                 MaterialPageRoute(builder: (_) => const SearchPage()),
               );
               if (place != null && mounted) {
-                _mapController.move(LatLng(place.latitude, place.longitude), 14);
+                _mapController.move(
+                    LatLng(place.latitude, place.longitude), 14);
                 _showPlacePreview(place);
               }
             }),
@@ -137,7 +146,8 @@ class _MapPageState extends ConsumerState<MapPage> {
               bottom: 100,
               left: 0,
               right: 0,
-              child: Center(child: CircularProgressIndicator(color: AppColors.primary)),
+              child: Center(
+                  child: CircularProgressIndicator(color: AppColors.primary)),
             ),
 
           // Preview нижней карточки
@@ -168,7 +178,9 @@ class _PlacePin extends StatelessWidget {
         color: selected ? AppColors.accent : AppColors.primary,
         shape: BoxShape.circle,
         border: Border.all(color: Colors.white, width: 2),
-        boxShadow: const [BoxShadow(color: Colors.black26, blurRadius: 4, offset: Offset(0, 2))],
+        boxShadow: const [
+          BoxShadow(color: Colors.black26, blurRadius: 4, offset: Offset(0, 2))
+        ],
       ),
       child: const Icon(Icons.place, color: Colors.white, size: 20),
     );
@@ -196,7 +208,9 @@ class _SearchBarTap extends StatelessWidget {
             children: [
               Icon(Icons.search, color: AppColors.textSecondary),
               SizedBox(width: 12),
-              Text('Поиск мест...', style: TextStyle(color: AppColors.textSecondary, fontSize: 16)),
+              Text('Поиск мест...',
+                  style:
+                      TextStyle(color: AppColors.textSecondary, fontSize: 16)),
             ],
           ),
         ),
@@ -243,7 +257,8 @@ class _SearchBarState extends State<_SearchBar> {
                 )
               : null,
           border: InputBorder.none,
-          contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+          contentPadding:
+              const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
         ),
         onSubmitted: widget.onSearch,
         onChanged: (_) => setState(() {}),
@@ -285,11 +300,14 @@ class _CategoryFilter extends ConsumerWidget {
                 );
               },
               child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                 decoration: BoxDecoration(
                   color: isSelected ? AppColors.primary : Colors.white,
                   borderRadius: BorderRadius.circular(20),
-                  boxShadow: const [BoxShadow(color: Colors.black12, blurRadius: 4)],
+                  boxShadow: const [
+                    BoxShadow(color: Colors.black12, blurRadius: 4)
+                  ],
                 ),
                 child: Text(
                   cat.title,
@@ -333,7 +351,8 @@ class _PlacePreviewCard extends StatelessWidget {
                 color: AppColors.primary.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(12),
               ),
-              child: const Icon(Icons.place, color: AppColors.primary, size: 28),
+              child:
+                  const Icon(Icons.place, color: AppColors.primary, size: 28),
             ),
             const SizedBox(width: 12),
             Expanded(
@@ -358,7 +377,8 @@ class _PlacePreviewCard extends StatelessWidget {
               tooltip: 'Подробнее',
               onPressed: () => Navigator.push<void>(
                 context,
-                MaterialPageRoute(builder: (_) => PlaceDetailPage(place: place)),
+                MaterialPageRoute(
+                    builder: (_) => PlaceDetailPage(place: place)),
               ),
             ),
             IconButton(icon: const Icon(Icons.close), onPressed: onClose),

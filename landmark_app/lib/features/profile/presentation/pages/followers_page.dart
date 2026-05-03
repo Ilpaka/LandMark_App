@@ -9,7 +9,8 @@ import 'public_profile_page.dart';
 class FollowersPage extends ConsumerWidget {
   final String userId;
   final bool showFollowers;
-  const FollowersPage({super.key, required this.userId, required this.showFollowers});
+  const FollowersPage(
+      {super.key, required this.userId, required this.showFollowers});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -25,13 +26,15 @@ class FollowersPage extends ConsumerWidget {
         elevation: 0,
       ),
       body: listAsync.when(
-        loading: () => const Center(child: CircularProgressIndicator(color: AppColors.primary)),
+        loading: () => const Center(
+            child: CircularProgressIndicator(color: AppColors.primary)),
         error: (e, _) => Center(child: Text('Ошибка: $e')),
         data: (profiles) => profiles.isEmpty
             ? Center(
                 child: Text(
                   showFollowers ? 'Нет подписчиков' : 'Нет подписок',
-                  style: const TextStyle(color: AppColors.textSecondary, fontSize: 16),
+                  style: const TextStyle(
+                      color: AppColors.textSecondary, fontSize: 16),
                 ),
               )
             : ListView.builder(
@@ -56,12 +59,14 @@ class _ProfileTile extends StatelessWidget {
         radius: 22,
       ),
       title: Text(profile.displayName,
-          style: const TextStyle(fontWeight: FontWeight.w600, color: AppColors.textPrimary)),
+          style: const TextStyle(
+              fontWeight: FontWeight.w600, color: AppColors.textPrimary)),
       subtitle: Text('@${profile.nickname}',
           style: const TextStyle(color: AppColors.textSecondary, fontSize: 13)),
       onTap: () => Navigator.push(
         context,
-        MaterialPageRoute(builder: (_) => PublicProfilePage(userId: profile.userId)),
+        MaterialPageRoute(
+            builder: (_) => PublicProfilePage(userId: profile.userId)),
       ),
     );
   }

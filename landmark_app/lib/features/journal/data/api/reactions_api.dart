@@ -20,7 +20,8 @@ class ReactionsApi {
   const ReactionsApi(this.dio);
 
   Future<EntryReactions> list(String entryId) async {
-    final r = await dio.get<Map<String, dynamic>>('/v1/journal/entries/$entryId/reactions');
+    final r = await dio
+        .get<Map<String, dynamic>>('/v1/journal/entries/$entryId/reactions');
     final body = r.data!;
     return EntryReactions(
       counts: (body['counts'] as List<dynamic>)
@@ -31,7 +32,8 @@ class ReactionsApi {
   }
 
   Future<void> add(String entryId, String emoji) =>
-      dio.post<void>('/v1/journal/entries/$entryId/reactions', data: {'emoji': emoji});
+      dio.post<void>('/v1/journal/entries/$entryId/reactions',
+          data: {'emoji': emoji});
 
   Future<void> remove(String entryId, String emoji) =>
       dio.delete<void>('/v1/journal/entries/$entryId/reactions/$emoji');

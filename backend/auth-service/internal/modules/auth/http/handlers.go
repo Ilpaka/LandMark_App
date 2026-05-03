@@ -33,12 +33,14 @@ func (h *Handlers) Register(c *gin.Context) {
 		writeErr(c, domain.ErrBadRequest)
 		return
 	}
-	verID, err := h.Svc.RegisterEmail(c.Request.Context(), req.Email, req.Password, req.Name)
+	verID, plainCode, err := h.Svc.RegisterEmail(c.Request.Context(), req.Email, req.Password, req.Name)
 	if err != nil {
 		writeErr(c, err)
 		return
 	}
-	c.JSON(http.StatusOK, gin.H{"status": "ok", "verification_id": verID.String()})
+	// dev_code возвращается для демо: код OTP сразу виден клиенту,
+	// чтобы можно было показать его в push-уведомлении без почтовой инфраструктуры.
+	c.JSON(http.StatusOK, gin.H{"status": "ok", "verification_id": verID.String(), "dev_code": plainCode})
 }
 
 func validPassword(s string) bool {

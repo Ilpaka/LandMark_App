@@ -35,7 +35,9 @@ class AdminDashboardPage extends ConsumerWidget {
           // Stats cards
           statsAsync.when(
             loading: () => const _StatsCardsSkeleton(),
-            error: (e, _) => _ErrorCard(error: e, onRetry: () => ref.invalidate(moderationStatsProvider)),
+            error: (e, _) => _ErrorCard(
+                error: e,
+                onRetry: () => ref.invalidate(moderationStatsProvider)),
             data: (stats) => _StatsGrid(stats: stats),
           ),
           const SizedBox(height: 24),
@@ -54,7 +56,9 @@ class AdminDashboardPage extends ConsumerWidget {
             icon: Icons.pending_actions_outlined,
             title: 'Очередь модерации',
             subtitle: statsAsync.maybeWhen(
-              data: (s) => s.pending > 0 ? '${s.pending} ожидает проверки' : 'Нет заявок',
+              data: (s) => s.pending > 0
+                  ? '${s.pending} ожидает проверки'
+                  : 'Нет заявок',
               orElse: () => 'Заявки на проверку мест',
             ),
             badgeCount: statsAsync.maybeWhen(
@@ -112,14 +116,16 @@ class _StatsGrid extends StatelessWidget {
         const SizedBox(height: 12),
         Row(
           children: [
-            Expanded(child: _StatCard(
+            Expanded(
+                child: _StatCard(
               label: 'Ожидает',
               value: stats.pending,
               color: Colors.orange,
               icon: Icons.hourglass_empty,
             )),
             const SizedBox(width: 10),
-            Expanded(child: _StatCard(
+            Expanded(
+                child: _StatCard(
               label: 'Одобрено',
               value: stats.approved,
               color: Colors.green,
@@ -130,14 +136,16 @@ class _StatsGrid extends StatelessWidget {
         const SizedBox(height: 10),
         Row(
           children: [
-            Expanded(child: _StatCard(
+            Expanded(
+                child: _StatCard(
               label: 'Отклонено',
               value: stats.rejected,
               color: Colors.red,
               icon: Icons.cancel_outlined,
             )),
             const SizedBox(width: 10),
-            Expanded(child: _StatCard(
+            Expanded(
+                child: _StatCard(
               label: 'Всего',
               value: stats.total,
               color: AppColors.primary,
@@ -155,7 +163,11 @@ class _StatCard extends StatelessWidget {
   final int value;
   final Color color;
   final IconData icon;
-  const _StatCard({required this.label, required this.value, required this.color, required this.icon});
+  const _StatCard(
+      {required this.label,
+      required this.value,
+      required this.color,
+      required this.icon});
 
   @override
   Widget build(BuildContext context) {
@@ -183,7 +195,8 @@ class _StatCard extends StatelessWidget {
               ),
               Text(
                 label,
-                style: const TextStyle(fontSize: 12, color: AppColors.textSecondary),
+                style: const TextStyle(
+                    fontSize: 12, color: AppColors.textSecondary),
               ),
             ],
           ),
@@ -235,23 +248,29 @@ class _ActionCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(title,
-                        style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 15)),
+                        style: const TextStyle(
+                            fontWeight: FontWeight.w600, fontSize: 15)),
                     const SizedBox(height: 2),
                     Text(subtitle,
-                        style: const TextStyle(fontSize: 13, color: AppColors.textSecondary)),
+                        style: const TextStyle(
+                            fontSize: 13, color: AppColors.textSecondary)),
                   ],
                 ),
               ),
               if (badgeCount > 0)
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
                   decoration: BoxDecoration(
                     color: Colors.orange,
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Text(
                     '$badgeCount',
-                    style: const TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.w700),
+                    style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 12,
+                        fontWeight: FontWeight.w700),
                   ),
                 )
               else
@@ -272,19 +291,35 @@ class _StatsCardsSkeleton extends StatelessWidget {
     return Column(
       children: [
         Row(children: [
-          Expanded(child: Container(height: 80, decoration: BoxDecoration(
-            color: AppColors.surface, borderRadius: BorderRadius.circular(12)))),
+          Expanded(
+              child: Container(
+                  height: 80,
+                  decoration: BoxDecoration(
+                      color: AppColors.surface,
+                      borderRadius: BorderRadius.circular(12)))),
           const SizedBox(width: 10),
-          Expanded(child: Container(height: 80, decoration: BoxDecoration(
-            color: AppColors.surface, borderRadius: BorderRadius.circular(12)))),
+          Expanded(
+              child: Container(
+                  height: 80,
+                  decoration: BoxDecoration(
+                      color: AppColors.surface,
+                      borderRadius: BorderRadius.circular(12)))),
         ]),
         const SizedBox(height: 10),
         Row(children: [
-          Expanded(child: Container(height: 80, decoration: BoxDecoration(
-            color: AppColors.surface, borderRadius: BorderRadius.circular(12)))),
+          Expanded(
+              child: Container(
+                  height: 80,
+                  decoration: BoxDecoration(
+                      color: AppColors.surface,
+                      borderRadius: BorderRadius.circular(12)))),
           const SizedBox(width: 10),
-          Expanded(child: Container(height: 80, decoration: BoxDecoration(
-            color: AppColors.surface, borderRadius: BorderRadius.circular(12)))),
+          Expanded(
+              child: Container(
+                  height: 80,
+                  decoration: BoxDecoration(
+                      color: AppColors.surface,
+                      borderRadius: BorderRadius.circular(12)))),
         ]),
       ],
     );
@@ -306,8 +341,9 @@ class _ErrorCard extends StatelessWidget {
           children: [
             const Icon(Icons.error_outline, color: Colors.red),
             const SizedBox(width: 12),
-            Expanded(child: Text('Ошибка загрузки: $error',
-                style: const TextStyle(fontSize: 13))),
+            Expanded(
+                child: Text('Ошибка загрузки: $error',
+                    style: const TextStyle(fontSize: 13))),
             TextButton(onPressed: onRetry, child: const Text('Повтор')),
           ],
         ),

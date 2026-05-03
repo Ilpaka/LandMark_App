@@ -30,7 +30,9 @@ class ReactionBar extends ConsumerWidget {
                   emoji: rc.emoji,
                   count: rc.count,
                   isActive: isActive,
-                  onTap: () => ref.read(reactionsProvider(entryId).notifier).toggle(rc.emoji),
+                  onTap: () => ref
+                      .read(reactionsProvider(entryId).notifier)
+                      .toggle(rc.emoji),
                 );
               }).toList(),
             ),
@@ -68,7 +70,8 @@ class ReactionBar extends ConsumerWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text('Реакция', style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16)),
+            const Text('Реакция',
+                style: TextStyle(fontWeight: FontWeight.w600, fontSize: 16)),
             const SizedBox(height: AppSpacing.md),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -82,9 +85,13 @@ class ReactionBar extends ConsumerWidget {
                   child: Container(
                     padding: const EdgeInsets.all(8),
                     decoration: BoxDecoration(
-                      color: isActive ? AppColors.primary.withValues(alpha: 0.1) : null,
+                      color: isActive
+                          ? AppColors.primary.withValues(alpha: 0.1)
+                          : null,
                       borderRadius: BorderRadius.circular(12),
-                      border: isActive ? Border.all(color: AppColors.primary) : null,
+                      border: isActive
+                          ? Border.all(color: AppColors.primary)
+                          : null,
                     ),
                     child: Text(e, style: const TextStyle(fontSize: 28)),
                   ),
@@ -120,7 +127,9 @@ class _ReactionChip extends StatelessWidget {
         duration: const Duration(milliseconds: 150),
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
         decoration: BoxDecoration(
-          color: isActive ? AppColors.primary.withValues(alpha: 0.1) : AppColors.surface,
+          color: isActive
+              ? AppColors.primary.withValues(alpha: 0.1)
+              : AppColors.surface,
           border: Border.all(
             color: isActive ? AppColors.primary : AppColors.border,
           ),

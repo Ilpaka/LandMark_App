@@ -17,34 +17,34 @@ const (
 )
 
 type Trip struct {
-	ID           uuid.UUID
-	OwnerID      uuid.UUID
-	Title        string
-	Subtitle     *string
-	StartDate    *time.Time
-	EndDate      *time.Time
-	CoverMediaID *uuid.UUID
-	Status       TripStatus
-	Region       *string
-	CenterLat    *float64
-	CenterLng    *float64
-	StopsCount   int
-	EntriesCount int
-	PhotosCount  int
-	CreatedAt    time.Time
-	UpdatedAt    time.Time
+	ID           uuid.UUID  `json:"id"`
+	OwnerID      uuid.UUID  `json:"owner_id"`
+	Title        string     `json:"title"`
+	Subtitle     *string    `json:"subtitle"`
+	StartDate    *time.Time `json:"start_date"`
+	EndDate      *time.Time `json:"end_date"`
+	CoverMediaID *uuid.UUID `json:"cover_media_id"`
+	Status       TripStatus `json:"status"`
+	Region       *string    `json:"region"`
+	CenterLat    *float64   `json:"center_lat"`
+	CenterLng    *float64   `json:"center_lng"`
+	StopsCount   int        `json:"stops_count"`
+	EntriesCount int        `json:"entries_count"`
+	PhotosCount  int        `json:"photos_count"`
+	CreatedAt    time.Time  `json:"created_at"`
+	UpdatedAt    time.Time  `json:"updated_at"`
 }
 
 type TripStop struct {
-	ID        uuid.UUID
-	TripID    uuid.UUID
-	PlaceID   *uuid.UUID
-	Title     string
-	Latitude  float64
-	Longitude float64
-	PlannedAt *time.Time
-	VisitedAt *time.Time
-	Notes     *string
-	SortOrder int
-	CreatedAt time.Time
+	ID        uuid.UUID  `json:"id"`
+	TripID    uuid.UUID  `json:"trip_id"`
+	PlaceID   *uuid.UUID `json:"place_id"`
+	Title     string     `json:"title"`
+	Latitude  float64    `json:"latitude"`
+	Longitude float64    `json:"longitude"`
+	PlannedAt *time.Time `json:"planned_at"`
+	VisitedAt *time.Time `json:"visited_at"`
+	Notes     *string    `json:"notes"`
+	SortOrder int        `json:"sort_order"`
+	CreatedAt time.Time  `json:"created_at"`
 }

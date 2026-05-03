@@ -19,7 +19,8 @@ class ModerationQueueItem {
     required this.createdAt,
   });
 
-  factory ModerationQueueItem.fromJson(Map<String, dynamic> j) => ModerationQueueItem(
+  factory ModerationQueueItem.fromJson(Map<String, dynamic> j) =>
+      ModerationQueueItem(
         id: j['id'] as String,
         targetType: j['target_type'] as String,
         targetId: j['target_id'] as String,
@@ -35,7 +36,11 @@ class ModerationStats {
   final int approved;
   final int rejected;
   final int total;
-  const ModerationStats({required this.pending, required this.approved, required this.rejected, required this.total});
+  const ModerationStats(
+      {required this.pending,
+      required this.approved,
+      required this.rejected,
+      required this.total});
 
   factory ModerationStats.fromJson(Map<String, dynamic> j) => ModerationStats(
         pending: j['pending'] as int? ?? 0,

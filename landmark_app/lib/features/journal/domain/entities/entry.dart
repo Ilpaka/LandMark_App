@@ -24,15 +24,15 @@ class JournalEntry {
   });
 
   factory JournalEntry.fromJson(Map<String, dynamic> j) => JournalEntry(
-    id: j['id'] as String,
-    authorId: j['author_id'] as String,
-    tripId: j['trip_id'] as String?,
-    title: j['title'] as String?,
-    body: j['body'] as String? ?? '',
-    mood: j['mood'] as String?,
-    rating: j['rating'] as int?,
-    occurredAt: DateTime.parse(j['occurred_at'] as String),
-    createdAt: DateTime.parse(j['created_at'] as String),
-    tags: (j['tags'] as List<dynamic>?)?.cast<String>() ?? [],
-  );
+        id: j['id'] as String,
+        authorId: j['author_id'] as String,
+        tripId: j['trip_id'] as String?,
+        title: j['title'] as String?,
+        body: j['body'] as String? ?? '',
+        mood: j['mood'] as String?,
+        rating: j['rating'] as int?,
+        occurredAt: DateTime.parse(j['occurred_at'] as String),
+        createdAt: DateTime.parse(j['created_at'] as String),
+        tags: (j['tags'] as List<dynamic>?)?.cast<String>() ?? [],
+      );
 }

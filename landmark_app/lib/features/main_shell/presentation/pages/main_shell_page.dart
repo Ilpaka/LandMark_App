@@ -38,22 +38,54 @@ class MainShellPage extends ConsumerWidget {
         indicatorColor: AppColors.primary.withValues(alpha: 0.15),
         onDestinationSelected: (i) {
           switch (i) {
-            case 0: context.go('/main/map'); break;
-            case 1: context.go('/main/trips'); break;
-            case 2: context.go('/main/journal'); break;
-            case 3: context.go('/main/feed'); break;
-            case 4: context.go('/main/favorites'); break;
-            case 5: context.go('/main/profile'); break;
-            case 6: if (isAdmin) context.go('/main/admin'); break;
+            case 0:
+              context.go('/main/map');
+              break;
+            case 1:
+              context.go('/main/trips');
+              break;
+            case 2:
+              context.go('/main/journal');
+              break;
+            case 3:
+              context.go('/main/feed');
+              break;
+            case 4:
+              context.go('/main/favorites');
+              break;
+            case 5:
+              context.go('/main/profile');
+              break;
+            case 6:
+              if (isAdmin) context.go('/main/admin');
+              break;
           }
         },
         destinations: [
-          const NavigationDestination(icon: Icon(Icons.map_outlined), selectedIcon: Icon(Icons.map), label: 'Карта'),
-          const NavigationDestination(icon: Icon(Icons.luggage_outlined), selectedIcon: Icon(Icons.luggage), label: 'Поездки'),
-          const NavigationDestination(icon: Icon(Icons.book_outlined), selectedIcon: Icon(Icons.book), label: 'Журнал'),
-          const NavigationDestination(icon: Icon(Icons.explore_outlined), selectedIcon: Icon(Icons.explore), label: 'Лента'),
-          const NavigationDestination(icon: Icon(Icons.favorite_outline), selectedIcon: Icon(Icons.favorite), label: 'Избранное'),
-          const NavigationDestination(icon: Icon(Icons.person_outline), selectedIcon: Icon(Icons.person), label: 'Профиль'),
+          const NavigationDestination(
+              icon: Icon(Icons.map_outlined),
+              selectedIcon: Icon(Icons.map),
+              label: 'Карта'),
+          const NavigationDestination(
+              icon: Icon(Icons.luggage_outlined),
+              selectedIcon: Icon(Icons.luggage),
+              label: 'Поездки'),
+          const NavigationDestination(
+              icon: Icon(Icons.book_outlined),
+              selectedIcon: Icon(Icons.book),
+              label: 'Журнал'),
+          const NavigationDestination(
+              icon: Icon(Icons.explore_outlined),
+              selectedIcon: Icon(Icons.explore),
+              label: 'Лента'),
+          const NavigationDestination(
+              icon: Icon(Icons.favorite_outline),
+              selectedIcon: Icon(Icons.favorite),
+              label: 'Избранное'),
+          const NavigationDestination(
+              icon: Icon(Icons.person_outline),
+              selectedIcon: Icon(Icons.person),
+              label: 'Профиль'),
           if (isAdmin)
             const NavigationDestination(
               icon: Icon(Icons.admin_panel_settings_outlined),

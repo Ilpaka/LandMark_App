@@ -84,6 +84,21 @@ func (m *mockStore) UpdateDecision(_ context.Context, id uuid.UUID, status domai
 	return nil
 }
 
+func (m *mockStore) GetStats(_ context.Context) (*domain.ModerationStats, error) {
+	var stats domain.ModerationStats
+	for _, it := range m.items {
+		switch it.Status {
+		case domain.StatusPending:
+			stats.Pending++
+		case domain.StatusApproved:
+			stats.Approved++
+		case domain.StatusRejected:
+			stats.Rejected++
+		}
+	}
+	return &stats, nil
+}
+
 type mockPlaces struct {
 	approveErr error
 	rejectErr  error

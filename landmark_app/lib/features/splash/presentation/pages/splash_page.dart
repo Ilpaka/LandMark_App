@@ -40,7 +40,8 @@ class _SplashPageState extends ConsumerState<SplashPage> {
           children: [
             const Icon(Icons.explore, size: 80, color: Colors.white),
             const SizedBox(height: AppSpacing.md),
-            Text('Wanderlog', style: AppTypography.h1.copyWith(color: Colors.white)),
+            Text('Wanderlog',
+                style: AppTypography.h1.copyWith(color: Colors.white)),
             const SizedBox(height: AppSpacing.xxl),
             const CircularProgressIndicator(color: Colors.white),
           ],

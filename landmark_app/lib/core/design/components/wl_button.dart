@@ -24,7 +24,8 @@ class WlButton extends StatelessWidget {
           foregroundColor: AppColors.primary,
           side: const BorderSide(color: AppColors.primary),
           minimumSize: const Size(double.infinity, 52),
-          shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(AppRadius.md)),
+          shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(AppRadius.md)),
         ),
         child: loading ? const _LoadingIndicator() : Text(label),
       );
@@ -39,6 +40,8 @@ class WlButton extends StatelessWidget {
 class _LoadingIndicator extends StatelessWidget {
   const _LoadingIndicator();
   @override
-  Widget build(BuildContext context) =>
-      const SizedBox(width: 20, height: 20, child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2));
+  Widget build(BuildContext context) => const SizedBox(
+      width: 20,
+      height: 20,
+      child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2));
 }

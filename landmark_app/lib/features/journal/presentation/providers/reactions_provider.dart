@@ -11,8 +11,7 @@ final reactionsProvider =
   ReactionsNotifier.new,
 );
 
-class ReactionsNotifier
-    extends FamilyAsyncNotifier<EntryReactions, String> {
+class ReactionsNotifier extends FamilyAsyncNotifier<EntryReactions, String> {
   @override
   Future<EntryReactions> build(String entryId) =>
       ref.read(reactionsApiProvider).list(entryId);
@@ -36,12 +35,14 @@ class ReactionsNotifier
         if (newCounts[idx].count <= 1) {
           newCounts.removeAt(idx);
         } else {
-          newCounts[idx] = ReactionCount(emoji: emoji, count: newCounts[idx].count - 1);
+          newCounts[idx] =
+              ReactionCount(emoji: emoji, count: newCounts[idx].count - 1);
         }
       }
     } else {
       if (idx >= 0) {
-        newCounts[idx] = ReactionCount(emoji: emoji, count: newCounts[idx].count + 1);
+        newCounts[idx] =
+            ReactionCount(emoji: emoji, count: newCounts[idx].count + 1);
       } else {
         newCounts.add(ReactionCount(emoji: emoji, count: 1));
       }

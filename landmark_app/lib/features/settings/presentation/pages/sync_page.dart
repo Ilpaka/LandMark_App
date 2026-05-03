@@ -29,7 +29,8 @@ class SyncPage extends ConsumerWidget {
           if (!isOffline && drafts.isNotEmpty)
             TextButton(
               onPressed: () => ref.read(draftSyncProvider).flush(),
-              child: const Text('Синхр.', style: TextStyle(color: AppColors.primary)),
+              child: const Text('Синхр.',
+                  style: TextStyle(color: AppColors.primary)),
             ),
         ],
       ),
@@ -45,7 +46,9 @@ class SyncPage extends ConsumerWidget {
             child: Row(
               children: [
                 Icon(
-                  isOffline ? Icons.wifi_off : (drafts.isEmpty ? Icons.check_circle : Icons.sync),
+                  isOffline
+                      ? Icons.wifi_off
+                      : (drafts.isEmpty ? Icons.check_circle : Icons.sync),
                   color: Colors.white,
                   size: 18,
                 ),
@@ -56,7 +59,10 @@ class SyncPage extends ConsumerWidget {
                       : (drafts.isEmpty
                           ? 'Все записи синхронизированы'
                           : '${drafts.length} черновик(ов) ожидает отправки'),
-                  style: const TextStyle(color: Colors.white, fontSize: 13, fontWeight: FontWeight.w500),
+                  style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 13,
+                      fontWeight: FontWeight.w500),
                 ),
               ],
             ),
@@ -67,11 +73,13 @@ class SyncPage extends ConsumerWidget {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Icon(Icons.cloud_done_outlined, size: 64, color: AppColors.textSecondary),
+                    Icon(Icons.cloud_done_outlined,
+                        size: 64, color: AppColors.textSecondary),
                     SizedBox(height: 12),
                     Text(
                       'Нет неотправленных черновиков',
-                      style: TextStyle(fontSize: 16, color: AppColors.textSecondary),
+                      style: TextStyle(
+                          fontSize: 16, color: AppColors.textSecondary),
                     ),
                   ],
                 ),
@@ -88,7 +96,8 @@ class SyncPage extends ConsumerWidget {
                   return Card(
                     elevation: 0,
                     color: AppColors.surface,
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12)),
                     child: ListTile(
                       leading: Container(
                         width: 40,
@@ -97,7 +106,8 @@ class SyncPage extends ConsumerWidget {
                           color: AppColors.primary.withValues(alpha: 0.1),
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        child: const Icon(Icons.article_outlined, color: AppColors.primary, size: 22),
+                        child: const Icon(Icons.article_outlined,
+                            color: AppColors.primary, size: 22),
                       ),
                       title: Text(
                         draft.title.isNotEmpty ? draft.title : 'Без названия',
@@ -107,12 +117,16 @@ class SyncPage extends ConsumerWidget {
                       ),
                       subtitle: Text(
                         fmt.format(draft.createdAt),
-                        style: const TextStyle(fontSize: 12, color: AppColors.textSecondary),
+                        style: const TextStyle(
+                            fontSize: 12, color: AppColors.textSecondary),
                       ),
                       trailing: IconButton(
-                        icon: const Icon(Icons.delete_outline, color: Colors.red, size: 20),
+                        icon: const Icon(Icons.delete_outline,
+                            color: Colors.red, size: 20),
                         onPressed: () async {
-                          await ref.read(draftStorageProvider).removeDraft(draft.id);
+                          await ref
+                              .read(draftStorageProvider)
+                              .removeDraft(draft.id);
                           ref.invalidate(_draftsProvider);
                         },
                       ),

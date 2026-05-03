@@ -98,8 +98,7 @@ class _EmptyGallery extends StatelessWidget {
                 size: 64, color: AppColors.textSecondary),
             SizedBox(height: 16),
             Text('Нет фотографий',
-                style: TextStyle(
-                    fontSize: 18, color: AppColors.textSecondary)),
+                style: TextStyle(fontSize: 18, color: AppColors.textSecondary)),
             SizedBox(height: 8),
             Text('Добавьте фото при создании записи',
                 style: TextStyle(color: AppColors.textSecondary)),

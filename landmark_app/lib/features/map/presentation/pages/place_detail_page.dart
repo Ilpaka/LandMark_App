@@ -65,7 +65,8 @@ class PlaceDetailPage extends ConsumerWidget {
                   const SizedBox(height: AppSpacing.md),
 
                   // Описание
-                  if (place.description != null && place.description!.isNotEmpty) ...[
+                  if (place.description != null &&
+                      place.description!.isNotEmpty) ...[
                     Text(place.description!, style: AppTypography.body),
                     const SizedBox(height: AppSpacing.lg),
                   ],
@@ -125,12 +126,12 @@ class PlaceDetailPage extends ConsumerWidget {
 
     try {
       await ref.read(stopsApiProvider).addStop(
-        selected,
-        title: place.title,
-        latitude: place.latitude,
-        longitude: place.longitude,
-        placeId: place.id,
-      );
+            selected,
+            title: place.title,
+            latitude: place.latitude,
+            longitude: place.longitude,
+            placeId: place.id,
+          );
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('Место добавлено в маршрут')),
@@ -156,7 +157,8 @@ class _PlaceMap extends StatelessWidget {
       options: MapOptions(
         initialCenter: LatLng(place.latitude, place.longitude),
         initialZoom: 14,
-        interactionOptions: const InteractionOptions(flags: InteractiveFlag.none),
+        interactionOptions:
+            const InteractionOptions(flags: InteractiveFlag.none),
       ),
       children: [
         TileLayer(
@@ -166,14 +168,18 @@ class _PlaceMap extends StatelessWidget {
         MarkerLayer(markers: [
           Marker(
             point: LatLng(place.latitude, place.longitude),
-            width: 40, height: 40,
+            width: 40,
+            height: 40,
             child: Container(
               decoration: BoxDecoration(
                 color: AppColors.primary,
                 shape: BoxShape.circle,
                 border: Border.all(color: Colors.white, width: 2),
                 boxShadow: const [
-                  BoxShadow(color: Colors.black26, blurRadius: 4, offset: Offset(0, 2))
+                  BoxShadow(
+                      color: Colors.black26,
+                      blurRadius: 4,
+                      offset: Offset(0, 2))
                 ],
               ),
               child: const Icon(Icons.place, color: Colors.white, size: 20),
@@ -211,7 +217,8 @@ class _TripPickerSheet extends StatelessWidget {
       children: [
         const SizedBox(height: 12),
         Container(
-          width: 40, height: 4,
+          width: 40,
+          height: 4,
           decoration: BoxDecoration(
             color: AppColors.border,
             borderRadius: BorderRadius.circular(2),
@@ -223,7 +230,8 @@ class _TripPickerSheet extends StatelessWidget {
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
         ),
         ...trips.map((t) => ListTile(
-              leading: const Icon(Icons.luggage_outlined, color: AppColors.primary),
+              leading:
+                  const Icon(Icons.luggage_outlined, color: AppColors.primary),
               title: Text(t.title),
               onTap: () => Navigator.pop(context, t.id),
             )),

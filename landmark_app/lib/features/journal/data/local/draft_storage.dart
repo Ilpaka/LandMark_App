@@ -48,7 +48,9 @@ class DraftStorage {
     final raw = _prefs.getString(_kDraftsKey);
     if (raw == null) return [];
     final list = json.decode(raw) as List<dynamic>;
-    return list.map((e) => JournalDraft.fromJson(e as Map<String, dynamic>)).toList();
+    return list
+        .map((e) => JournalDraft.fromJson(e as Map<String, dynamic>))
+        .toList();
   }
 
   Future<void> saveDraft(JournalDraft draft) async {
@@ -59,15 +61,18 @@ class DraftStorage {
     } else {
       drafts.add(draft);
     }
-    await _prefs.setString(_kDraftsKey, json.encode(drafts.map((d) => d.toJson()).toList()));
+    await _prefs.setString(
+        _kDraftsKey, json.encode(drafts.map((d) => d.toJson()).toList()));
   }
 
   Future<void> removeDraft(String id) async {
     final drafts = getDrafts()..removeWhere((d) => d.id == id);
-    await _prefs.setString(_kDraftsKey, json.encode(drafts.map((d) => d.toJson()).toList()));
+    await _prefs.setString(
+        _kDraftsKey, json.encode(drafts.map((d) => d.toJson()).toList()));
   }
 }
 
 final draftStorageProvider = Provider<DraftStorage>((ref) {
-  throw UnimplementedError('Override draftStorageProvider in buildProviderOverrides');
+  throw UnimplementedError(
+      'Override draftStorageProvider in buildProviderOverrides');
 });

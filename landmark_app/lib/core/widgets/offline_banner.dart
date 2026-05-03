@@ -23,7 +23,10 @@ class OfflineBanner extends ConsumerWidget {
               SizedBox(width: 8),
               Text(
                 'Нет подключения к интернету',
-                style: TextStyle(color: Colors.white, fontSize: 13, fontWeight: FontWeight.w500),
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 13,
+                    fontWeight: FontWeight.w500),
               ),
             ],
           ),

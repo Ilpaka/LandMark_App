@@ -45,6 +45,7 @@ services:
       MINIO_ROOT_PASSWORD: minioadmin
     volumes: [miniodata:/data]
     ports:
+      - "9000:9000"
       - "9001:9001"
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/ready"]
@@ -66,7 +67,10 @@ services:
     networks: [landmark-internal]
 
   mailhog:
-    image: mailhog/mailhog:latest
+    image: axllent/mailpit:latest
+    environment:
+      MP_SMTP_AUTH_ACCEPT_ANY: "true"
+      MP_SMTP_AUTH_ALLOW_INSECURE: "true"
     ports:
       - "8025:8025"
     networks: [landmark-internal]
@@ -146,6 +150,13 @@ services:
       S3_SECRET_KEY: minioadmin
       S3_BUCKET: landmark-media
       S3_USE_PATH_STYLE: "true"
+      MINIO_ENDPOINT: localhost:9000
+      MINIO_PUBLIC_ENDPOINT: localhost:9000
+      MINIO_REGION: us-east-1
+      MINIO_ACCESS_KEY: minioadmin
+      MINIO_SECRET_KEY: minioadmin
+      MINIO_BUCKET: landmark-media
+      MINIO_USE_SSL: "false"
       OTEL_SERVICE_NAME: landmark-media-api
     depends_on:
       postgres: {condition: service_healthy}
@@ -190,7 +201,7 @@ services:
       - "8080:8080"
     environment:
       <<: *common-env
-      AUTH_JWKS_URL: http://auth-service:8080/v1/auth/jwks
+      AUTH_JWKS_URL: http://auth-service:8080/.well-known/jwks.json
       JWT_ISSUER: landmark.app
       JWT_AUDIENCE: landmark-clients
       OTEL_SERVICE_NAME: landmark-api-gateway
@@ -199,7 +210,7 @@ services:
       auth-service: {condition: service_started}
 
   prometheus:
-    image: prom/prometheus:v2.51.0
+    image: prom/prometheus:v2.54.1
     volumes:
       - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
       - promdata:/prometheus

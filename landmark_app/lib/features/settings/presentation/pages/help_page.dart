@@ -140,7 +140,8 @@ class _Section extends StatelessWidget {
         ),
         Card(
           margin: EdgeInsets.zero,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
           elevation: 0,
           color: AppColors.surface,
           child: Column(
@@ -161,7 +162,8 @@ class _HelpItem extends StatefulWidget {
   final IconData icon;
   final String question;
   final String answer;
-  const _HelpItem({required this.icon, required this.question, required this.answer});
+  const _HelpItem(
+      {required this.icon, required this.question, required this.answer});
 
   @override
   State<_HelpItem> createState() => _HelpItemState();
@@ -244,7 +246,9 @@ class _ContactTile extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text('Есть вопросы?',
-                      style: TextStyle(fontWeight: FontWeight.w600, color: AppColors.primary)),
+                      style: TextStyle(
+                          fontWeight: FontWeight.w600,
+                          color: AppColors.primary)),
                   SizedBox(height: 2),
                   Text('support@wanderlog.app',
                       style: TextStyle(fontSize: 13, color: AppColors.primary)),

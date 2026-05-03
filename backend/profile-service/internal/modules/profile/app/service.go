@@ -15,7 +15,15 @@ type Service struct {
 }
 
 func (s *Service) GetProfile(ctx context.Context, userID uuid.UUID) (*domain.Profile, error) {
-	return s.Store.GetProfile(ctx, userID)
+	p, err := s.Store.GetProfile(ctx, userID)
+	if err == domain.ErrNotFound {
+		return s.Store.UpsertProfile(ctx, domain.Profile{
+			UserID:      userID,
+			Nickname:    userID.String()[:8],
+			DisplayName: "User",
+		})
+	}
+	return p, err
 }
 
 func (s *Service) UpdateProfile(ctx context.Context, userID uuid.UUID, in domain.UpdateProfileInput) (*domain.Profile, error) {

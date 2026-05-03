@@ -34,8 +34,10 @@ class SettingsPage extends ConsumerWidget {
           ListTile(
             leading: const Icon(Icons.sync_outlined, color: AppColors.primary),
             title: const Text('Синхронизация черновиков'),
-            subtitle: const Text('Неотправленные записи', style: TextStyle(fontSize: 12)),
-            trailing: const Icon(Icons.chevron_right, color: AppColors.textSecondary),
+            subtitle: const Text('Неотправленные записи',
+                style: TextStyle(fontSize: 12)),
+            trailing:
+                const Icon(Icons.chevron_right, color: AppColors.textSecondary),
             onTap: () => Navigator.push(
               context,
               MaterialPageRoute<void>(builder: (_) => const SyncPage()),
@@ -46,7 +48,8 @@ class SettingsPage extends ConsumerWidget {
           ListTile(
             leading: const Icon(Icons.help_outline, color: AppColors.primary),
             title: const Text('Помощь и поддержка'),
-            trailing: const Icon(Icons.chevron_right, color: AppColors.textSecondary),
+            trailing:
+                const Icon(Icons.chevron_right, color: AppColors.textSecondary),
             onTap: () => Navigator.push(
               context,
               MaterialPageRoute<void>(builder: (_) => const HelpPage()),
@@ -55,7 +58,8 @@ class SettingsPage extends ConsumerWidget {
           const ListTile(
             leading: Icon(Icons.info_outline, color: AppColors.primary),
             title: Text('Версия приложения'),
-            trailing: Text('1.0.0', style: TextStyle(color: AppColors.textSecondary, fontSize: 14)),
+            trailing: Text('1.0.0',
+                style: TextStyle(color: AppColors.textSecondary, fontSize: 14)),
           ),
         ],
       ),
@@ -81,7 +85,9 @@ class _NotifPrefsSection extends ConsumerWidget {
     return prefsAsync.when(
       loading: () => const Padding(
         padding: EdgeInsets.all(16),
-        child: Center(child: CircularProgressIndicator(color: AppColors.primary, strokeWidth: 2)),
+        child: Center(
+            child: CircularProgressIndicator(
+                color: AppColors.primary, strokeWidth: 2)),
       ),
       error: (_, __) => const ListTile(
         leading: Icon(Icons.error_outline, color: Colors.red),
@@ -90,22 +96,30 @@ class _NotifPrefsSection extends ConsumerWidget {
       data: (prefs) => Column(
         children: [
           _toggle(
-            ref, 'Напоминания о поездках', prefs.pushTripReminders,
+            ref,
+            'Напоминания о поездках',
+            prefs.pushTripReminders,
             'push_trip_reminders',
             subtitle: 'Push-уведомления',
           ),
           _toggle(
-            ref, 'Результат модерации', prefs.pushModerationResult,
+            ref,
+            'Результат модерации',
+            prefs.pushModerationResult,
             'push_moderation_result',
             subtitle: 'Push-уведомления',
           ),
           _toggle(
-            ref, 'Результат модерации (email)', prefs.emailModerationResult,
+            ref,
+            'Результат модерации (email)',
+            prefs.emailModerationResult,
             'email_moderation_result',
             subtitle: 'Email-уведомления',
           ),
           _toggle(
-            ref, 'Маркетинговые (email)', prefs.emailMarketing,
+            ref,
+            'Маркетинговые (email)',
+            prefs.emailMarketing,
             'email_marketing',
             subtitle: 'Email-уведомления',
           ),
@@ -114,11 +128,14 @@ class _NotifPrefsSection extends ConsumerWidget {
     );
   }
 
-  Widget _toggle(WidgetRef ref, String title, bool value, String key, {String? subtitle}) {
+  Widget _toggle(WidgetRef ref, String title, bool value, String key,
+      {String? subtitle}) {
     return SwitchListTile(
       value: value,
       title: Text(title),
-      subtitle: subtitle != null ? Text(subtitle, style: const TextStyle(fontSize: 12)) : null,
+      subtitle: subtitle != null
+          ? Text(subtitle, style: const TextStyle(fontSize: 12))
+          : null,
       activeThumbColor: AppColors.primary,
       onChanged: (v) => ref.read(notifPrefsProvider.notifier).toggle(key, v),
     );
@@ -157,7 +174,9 @@ class _PrivacySection extends ConsumerWidget {
     return privacyAsync.when(
       loading: () => const Padding(
         padding: EdgeInsets.all(16),
-        child: Center(child: CircularProgressIndicator(color: AppColors.primary, strokeWidth: 2)),
+        child: Center(
+            child: CircularProgressIndicator(
+                color: AppColors.primary, strokeWidth: 2)),
       ),
       error: (_, __) => const ListTile(
         leading: Icon(Icons.error_outline, color: Colors.red),
@@ -166,35 +185,47 @@ class _PrivacySection extends ConsumerWidget {
       data: (privacy) => Column(
         children: [
           _dropdownTile(
-            ref, context,
+            ref,
+            context,
             'Профиль',
             privacy.profileVisibility,
             ['public', 'private'],
             ['Публичный', 'Приватный'],
-            (v) => ref.read(privacyProvider.notifier).save({'profile_visibility': v}),
+            (v) => ref
+                .read(privacyProvider.notifier)
+                .save({'profile_visibility': v}),
           ),
           _dropdownTile(
-            ref, context,
+            ref,
+            context,
             'Поездки',
             privacy.tripsVisibility,
             ['public', 'friends', 'private'],
             ['Публичные', 'Только друзья', 'Приватные'],
-            (v) => ref.read(privacyProvider.notifier).save({'trips_visibility': v}),
+            (v) => ref
+                .read(privacyProvider.notifier)
+                .save({'trips_visibility': v}),
           ),
           _dropdownTile(
-            ref, context,
+            ref,
+            context,
             'Журнал',
             privacy.journalVisibility,
             ['friends', 'private'],
             ['Только друзья', 'Приватный'],
-            (v) => ref.read(privacyProvider.notifier).save({'journal_visibility': v}),
+            (v) => ref
+                .read(privacyProvider.notifier)
+                .save({'journal_visibility': v}),
           ),
           SwitchListTile(
             value: privacy.analyticsEnabled,
             title: const Text('Аналитика'),
-            subtitle: const Text('Разрешить сбор аналитики', style: TextStyle(fontSize: 12)),
+            subtitle: const Text('Разрешить сбор аналитики',
+                style: TextStyle(fontSize: 12)),
             activeThumbColor: AppColors.primary,
-            onChanged: (v) => ref.read(privacyProvider.notifier).save({'analytics_enabled': v}),
+            onChanged: (v) => ref
+                .read(privacyProvider.notifier)
+                .save({'analytics_enabled': v}),
           ),
         ],
       ),
@@ -220,7 +251,9 @@ class _PrivacySection extends ConsumerWidget {
           values.length,
           (i) => DropdownMenuItem(value: values[i], child: Text(labels[i])),
         ),
-        onChanged: (v) { if (v != null) onChanged(v); },
+        onChanged: (v) {
+          if (v != null) onChanged(v);
+        },
       ),
     );
   }

@@ -7,8 +7,8 @@ class MediaApi {
 
   /// Возвращает список mediaId для записи журнала.
   Future<List<String>> getEntryMedia(String entryId) async {
-    final r = await dio.get<Map<String, dynamic>>(
-        '/v1/journal/entries/$entryId/media');
+    final r = await dio
+        .get<Map<String, dynamic>>('/v1/journal/entries/$entryId/media');
     final ids = r.data!['media_ids'] as List<dynamic>? ?? [];
     return ids.cast<String>();
   }
@@ -20,7 +20,8 @@ class MediaApi {
   }
 
   /// Прикрепляет ранее загруженный mediaId к записи журнала.
-  Future<void> attachMedia(String entryId, String mediaId, int sortOrder) async {
+  Future<void> attachMedia(
+      String entryId, String mediaId, int sortOrder) async {
     await dio.post('/v1/journal/entries/$entryId/media', data: {
       'media_id': mediaId,
       'sort_order': sortOrder,
@@ -28,34 +29,39 @@ class MediaApi {
   }
 
   /// Загружает файл и возвращает mediaId.
-  Future<String> uploadFile(File file, {String purpose = 'avatar'}) async {
-    // 1. Request presigned upload URL
-    final init = await dio.post<Map<String, dynamic>>('/v1/media/upload', data: {
-      'filename': file.path.split('/').last,
-      'content_type': _contentType(file.path),
-      'purpose': purpose,
-    });
-    final mediaId = init.data!['media_id'] as String;
-    final uploadUrl = init.data!['upload_url'] as String;
+  Future<String> uploadFile(File file, {String purpose = 'photo'}) async {
+    final mime = _contentType(file.path);
+    final size = await file.length();
 
-    // 2. PUT file to presigned URL (no auth header needed for S3/MinIO presigned)
+    // 1. Request presigned upload URL
+    final init =
+        await dio.post<Map<String, dynamic>>('/v1/media/uploads', data: {
+      'kind': purpose, // 'photo' or 'avatar'
+      'mime': mime,
+      'size_bytes': size,
+    });
+    final uploadId = init.data!['upload_id'] as String;
+    final presignedURL = init.data!['presigned_url'] as String;
+
+    // 2. PUT file to presigned URL (no auth header for S3/MinIO presigned)
     final uploadDio = Dio();
     await uploadDio.put(
-      uploadUrl,
+      presignedURL,
       data: file.openRead(),
       options: Options(
         headers: {
-          Headers.contentLengthHeader: await file.length(),
-          'Content-Type': _contentType(file.path),
+          Headers.contentLengthHeader: size,
+          'Content-Type': mime,
         },
         sendTimeout: const Duration(minutes: 2),
         receiveTimeout: const Duration(minutes: 2),
       ),
     );
 
-    // 3. Finalize
-    await dio.post('/v1/media/$mediaId/finalize');
-    return mediaId;
+    // 3. Finalize → returns Media with its own id
+    final fin = await dio.post<Map<String, dynamic>>(
+        '/v1/media/uploads/$uploadId/finalize');
+    return fin.data!['id'] as String;
   }
 
   String _contentType(String path) {

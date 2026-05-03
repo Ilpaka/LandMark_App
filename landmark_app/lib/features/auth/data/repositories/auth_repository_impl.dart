@@ -14,6 +14,10 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<User?> tryRestoreSession() async {
     final token = await _storage.read('auth.access');
     if (token == null || token.isEmpty) return null;
+    if (token.startsWith('mock-')) {
+      await _storage.deleteAll();
+      return null;
+    }
     try {
       final data = await _api.me();
       return User.fromJson(data);
@@ -26,13 +30,20 @@ class AuthRepositoryImpl implements AuthRepository {
   }
 
   @override
-  Future<String> register({required String name, required String email, required String password}) async {
+  Future<({String verificationId, String? devCode})> register(
+      {required String name,
+      required String email,
+      required String password}) async {
     final data = await _api.register(name, email, password);
-    return data['verification_id'] as String;
+    return (
+      verificationId: data['verification_id'] as String,
+      devCode: data['dev_code'] as String?,
+    );
   }
 
   @override
-  Future<void> verifyEmail({required String verificationId, required String code}) async {
+  Future<void> verifyEmail(
+      {required String verificationId, required String code}) async {
     await _api.verifyEmail(verificationId, code);
   }
 
@@ -41,7 +52,9 @@ class AuthRepositoryImpl implements AuthRepository {
     final data = await _api.login(email, password);
     await _storage.write('auth.access', data['access_token'] as String);
     await _storage.write('auth.refresh', data['refresh_token'] as String);
-    return User.fromJson(data['user'] as Map<String, dynamic>? ?? data);
+    final userJson = data['user'] as Map<String, dynamic>?;
+    if (userJson != null) return User.fromJson(userJson);
+    return User.fromJson(await _api.me());
   }
 
   @override

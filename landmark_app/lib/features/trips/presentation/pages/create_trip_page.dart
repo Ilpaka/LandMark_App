@@ -45,21 +45,23 @@ class _CreateTripPageState extends ConsumerState<CreateTripPage> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(AppSpacing.lg),
-        child: _step == 0 ? _StepTitle(
-          titleCtrl: _titleCtrl,
-          subtitleCtrl: _subtitleCtrl,
-          onNext: () {
-            if (_titleCtrl.text.trim().isEmpty) return;
-            setState(() => _step = 1);
-          },
-        ) : _StepDates(
-          startDate: _startDate,
-          endDate: _endDate,
-          onStartPick: () => _pickDate(isStart: true),
-          onEndPick: () => _pickDate(isStart: false),
-          loading: _loading,
-          onCreate: _create,
-        ),
+        child: _step == 0
+            ? _StepTitle(
+                titleCtrl: _titleCtrl,
+                subtitleCtrl: _subtitleCtrl,
+                onNext: () {
+                  if (_titleCtrl.text.trim().isEmpty) return;
+                  setState(() => _step = 1);
+                },
+              )
+            : _StepDates(
+                startDate: _startDate,
+                endDate: _endDate,
+                onStartPick: () => _pickDate(isStart: true),
+                onEndPick: () => _pickDate(isStart: false),
+                loading: _loading,
+                onCreate: _create,
+              ),
       ),
     );
   }
@@ -69,10 +71,10 @@ class _CreateTripPageState extends ConsumerState<CreateTripPage> {
       context: context,
       initialDate: isStart
           ? (_startDate ?? DateTime.now())
-          : (_endDate ?? (_startDate ?? DateTime.now()).add(const Duration(days: 3))),
+          : (_endDate ??
+              (_startDate ?? DateTime.now()).add(const Duration(days: 3))),
       firstDate: DateTime(2020),
       lastDate: DateTime(2035),
-      locale: const Locale('ru'),
     );
     if (picked == null) return;
     setState(() {
@@ -252,7 +254,8 @@ class _DateRow extends StatelessWidget {
         child: Row(
           children: [
             Icon(icon,
-                color: date != null ? AppColors.primary : AppColors.textSecondary),
+                color:
+                    date != null ? AppColors.primary : AppColors.textSecondary),
             const SizedBox(width: 12),
             Expanded(
               child: Column(

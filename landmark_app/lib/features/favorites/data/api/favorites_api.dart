@@ -34,8 +34,7 @@ class FavoritesApi {
     if (cursor != null) params['cursor'] = cursor;
     final r = await dio.get('/v1/favorites', queryParameters: params);
     final data = r.data as Map<String, dynamic>;
-    return (data['items'] as List<dynamic>?)
-            ?.cast<Map<String, dynamic>>() ??
+    return (data['items'] as List<dynamic>?)?.cast<Map<String, dynamic>>() ??
         [];
   }
 }

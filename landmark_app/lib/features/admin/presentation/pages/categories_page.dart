@@ -31,7 +31,8 @@ class CategoriesPage extends ConsumerWidget {
         ],
       ),
       body: catsAsync.when(
-        loading: () => const Center(child: CircularProgressIndicator(color: AppColors.primary)),
+        loading: () => const Center(
+            child: CircularProgressIndicator(color: AppColors.primary)),
         error: (e, _) => Center(
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -50,9 +51,11 @@ class CategoriesPage extends ConsumerWidget {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Icon(Icons.category_outlined, size: 64, color: AppColors.textSecondary),
+                    Icon(Icons.category_outlined,
+                        size: 64, color: AppColors.textSecondary),
                     SizedBox(height: 12),
-                    Text('Нет категорий', style: TextStyle(color: AppColors.textSecondary)),
+                    Text('Нет категорий',
+                        style: TextStyle(color: AppColors.textSecondary)),
                   ],
                 ),
               )
@@ -74,7 +77,8 @@ class CategoriesPage extends ConsumerWidget {
     );
   }
 
-  void _showEditDialog(BuildContext context, WidgetRef ref, PlaceCategory? existing) {
+  void _showEditDialog(
+      BuildContext context, WidgetRef ref, PlaceCategory? existing) {
     showDialog<void>(
       context: context,
       builder: (ctx) => _CategoryDialog(
@@ -94,9 +98,11 @@ class CategoriesPage extends ConsumerWidget {
         title: const Text('Удалить категорию?'),
         content: Text('«${cat.title}» будет деактивирована.'),
         actions: [
-          TextButton(onPressed: () => Navigator.pop(ctx), child: const Text('Отмена')),
+          TextButton(
+              onPressed: () => Navigator.pop(ctx), child: const Text('Отмена')),
           ElevatedButton(
-            style: ElevatedButton.styleFrom(backgroundColor: Colors.red, foregroundColor: Colors.white),
+            style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.red, foregroundColor: Colors.white),
             onPressed: () async {
               Navigator.pop(ctx);
               try {
@@ -123,7 +129,8 @@ class _CategoryTile extends StatelessWidget {
   final PlaceCategory category;
   final VoidCallback onEdit;
   final VoidCallback onDelete;
-  const _CategoryTile({required this.category, required this.onEdit, required this.onDelete});
+  const _CategoryTile(
+      {required this.category, required this.onEdit, required this.onDelete});
 
   @override
   Widget build(BuildContext context) {
@@ -143,9 +150,11 @@ class _CategoryTile extends StatelessWidget {
           alignment: Alignment.center,
           child: Text(category.icon, style: const TextStyle(fontSize: 20)),
         ),
-        title: Text(category.title, style: const TextStyle(fontWeight: FontWeight.w500)),
+        title: Text(category.title,
+            style: const TextStyle(fontWeight: FontWeight.w500)),
         subtitle: Text('/${category.slug}',
-            style: const TextStyle(fontSize: 12, color: AppColors.textSecondary)),
+            style:
+                const TextStyle(fontSize: 12, color: AppColors.textSecondary)),
         trailing: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -228,7 +237,8 @@ class _CategoryDialogState extends ConsumerState<_CategoryDialog> {
         body['slug'] = _slugCtrl.text.trim();
         await dio.post('/v1/places/categories', data: body);
       } else {
-        await dio.patch('/v1/places/categories/${widget.existing!.id}', data: body);
+        await dio.patch('/v1/places/categories/${widget.existing!.id}',
+            data: body);
       }
       widget.onSaved();
     } catch (e) {
@@ -245,7 +255,8 @@ class _CategoryDialogState extends ConsumerState<_CategoryDialog> {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: Text(widget.existing == null ? 'Новая категория' : 'Изменить категорию'),
+      title: Text(
+          widget.existing == null ? 'Новая категория' : 'Изменить категорию'),
       content: SingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -253,7 +264,8 @@ class _CategoryDialogState extends ConsumerState<_CategoryDialog> {
             if (widget.existing == null)
               TextField(
                 controller: _slugCtrl,
-                decoration: const InputDecoration(labelText: 'Slug (en, без пробелов)'),
+                decoration:
+                    const InputDecoration(labelText: 'Slug (en, без пробелов)'),
               ),
             TextField(
               controller: _titleCtrl,
@@ -269,7 +281,8 @@ class _CategoryDialogState extends ConsumerState<_CategoryDialog> {
             ),
             TextField(
               controller: _orderCtrl,
-              decoration: const InputDecoration(labelText: 'Порядок сортировки'),
+              decoration:
+                  const InputDecoration(labelText: 'Порядок сортировки'),
               keyboardType: TextInputType.number,
             ),
           ],
@@ -281,10 +294,16 @@ class _CategoryDialogState extends ConsumerState<_CategoryDialog> {
           child: const Text('Отмена'),
         ),
         ElevatedButton(
-          style: ElevatedButton.styleFrom(backgroundColor: AppColors.primary, foregroundColor: Colors.white),
+          style: ElevatedButton.styleFrom(
+              backgroundColor: AppColors.primary,
+              foregroundColor: Colors.white),
           onPressed: _saving ? null : _save,
           child: _saving
-              ? const SizedBox(width: 16, height: 16, child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white))
+              ? const SizedBox(
+                  width: 16,
+                  height: 16,
+                  child: CircularProgressIndicator(
+                      strokeWidth: 2, color: Colors.white))
               : const Text('Сохранить'),
         ),
       ],

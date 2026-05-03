@@ -24,7 +24,8 @@ class _FavoritesMapPageState extends ConsumerState<FavoritesMapPage> {
     return Scaffold(
       appBar: AppBar(title: const Text('Избранное на карте')),
       body: placesAsync.when(
-        loading: () => const Center(child: CircularProgressIndicator(color: AppColors.primary)),
+        loading: () => const Center(
+            child: CircularProgressIndicator(color: AppColors.primary)),
         error: (e, _) => Center(child: Text('Ошибка: $e')),
         data: (places) {
           if (places.isEmpty) {
@@ -32,9 +33,11 @@ class _FavoritesMapPageState extends ConsumerState<FavoritesMapPage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(Icons.map_outlined, size: 64, color: AppColors.textSecondary),
+                  Icon(Icons.map_outlined,
+                      size: 64, color: AppColors.textSecondary),
                   SizedBox(height: 16),
-                  Text('Нет избранных мест', style: TextStyle(color: AppColors.textSecondary)),
+                  Text('Нет избранных мест',
+                      style: TextStyle(color: AppColors.textSecondary)),
                 ],
               ),
             );
@@ -52,19 +55,23 @@ class _FavoritesMapPageState extends ConsumerState<FavoritesMapPage> {
                 ),
                 children: [
                   TileLayer(
-                    urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+                    urlTemplate:
+                        'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
                     userAgentPackageName: 'com.landmark.app',
                   ),
                   MarkerLayer(
-                    markers: places.map((p) => Marker(
-                      point: LatLng(p.latitude, p.longitude),
-                      width: 40,
-                      height: 40,
-                      child: GestureDetector(
-                        onTap: () => setState(() => _selected = p),
-                        child: _FavoritePin(selected: _selected?.id == p.id),
-                      ),
-                    )).toList(),
+                    markers: places
+                        .map((p) => Marker(
+                              point: LatLng(p.latitude, p.longitude),
+                              width: 40,
+                              height: 40,
+                              child: GestureDetector(
+                                onTap: () => setState(() => _selected = p),
+                                child: _FavoritePin(
+                                    selected: _selected?.id == p.id),
+                              ),
+                            ))
+                        .toList(),
                   ),
                 ],
               ),
@@ -86,9 +93,12 @@ class _FavoritesMapPageState extends ConsumerState<FavoritesMapPage> {
   }
 
   LatLng _centerOf(List<Place> places) {
-    if (places.length == 1) return LatLng(places.first.latitude, places.first.longitude);
-    final lat = places.map((p) => p.latitude).reduce((a, b) => a + b) / places.length;
-    final lng = places.map((p) => p.longitude).reduce((a, b) => a + b) / places.length;
+    if (places.length == 1)
+      return LatLng(places.first.latitude, places.first.longitude);
+    final lat =
+        places.map((p) => p.latitude).reduce((a, b) => a + b) / places.length;
+    final lng =
+        places.map((p) => p.longitude).reduce((a, b) => a + b) / places.length;
     return LatLng(lat, lng);
   }
 }
@@ -104,7 +114,9 @@ class _FavoritePin extends StatelessWidget {
         color: selected ? AppColors.accent : Colors.red,
         shape: BoxShape.circle,
         border: Border.all(color: Colors.white, width: 2),
-        boxShadow: const [BoxShadow(color: Colors.black26, blurRadius: 4, offset: Offset(0, 2))],
+        boxShadow: const [
+          BoxShadow(color: Colors.black26, blurRadius: 4, offset: Offset(0, 2))
+        ],
       ),
       child: const Icon(Icons.favorite, color: Colors.white, size: 20),
     );
@@ -141,8 +153,10 @@ class _PlaceCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text(place.title, style: AppTypography.h3,
-                      maxLines: 1, overflow: TextOverflow.ellipsis),
+                  Text(place.title,
+                      style: AppTypography.h3,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis),
                   if (place.city != null)
                     Text(place.city!, style: AppTypography.bodySmall),
                 ],

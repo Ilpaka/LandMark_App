@@ -76,7 +76,6 @@ func (m *JWTMiddleware) extract(c *gin.Context) (*Claims, error) {
 }
 
 func (m *JWTMiddleware) inject(c *gin.Context, claims *Claims) {
-	c.Request.Header.Del("Authorization")
 	c.Request.Header.Del("X-User-Id")
 	c.Request.Header.Del("X-Role")
 	c.Request.Header.Del("X-Session-Id")

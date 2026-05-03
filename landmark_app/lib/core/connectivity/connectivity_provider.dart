@@ -23,7 +23,9 @@ final connectivityProvider = StreamProvider<bool>((ref) {
   });
 
   // Initial check
-  check().then((v) { if (!controller.isClosed) controller.add(v); });
+  check().then((v) {
+    if (!controller.isClosed) controller.add(v);
+  });
 
   ref.onDispose(() {
     timer.cancel();
@@ -34,8 +36,8 @@ final connectivityProvider = StreamProvider<bool>((ref) {
 
 final isOfflineProvider = Provider<bool>((ref) {
   return ref.watch(connectivityProvider).when(
-    data: (online) => !online,
-    loading: () => false,
-    error: (_, __) => true,
-  );
+        data: (online) => !online,
+        loading: () => false,
+        error: (_, __) => true,
+      );
 });

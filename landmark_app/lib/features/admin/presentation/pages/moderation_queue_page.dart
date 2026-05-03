@@ -25,7 +25,8 @@ class ModerationQueuePage extends ConsumerWidget {
         ],
       ),
       body: queueAsync.when(
-        loading: () => const Center(child: CircularProgressIndicator(color: AppColors.primary)),
+        loading: () => const Center(
+            child: CircularProgressIndicator(color: AppColors.primary)),
         error: (e, _) => Center(
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -44,9 +45,12 @@ class ModerationQueuePage extends ConsumerWidget {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Icon(Icons.check_circle_outline, size: 64, color: AppColors.primary),
+                    Icon(Icons.check_circle_outline,
+                        size: 64, color: AppColors.primary),
                     SizedBox(height: 12),
-                    Text('Очередь пуста', style: TextStyle(fontSize: 18, color: AppColors.textSecondary)),
+                    Text('Очередь пуста',
+                        style: TextStyle(
+                            fontSize: 18, color: AppColors.textSecondary)),
                   ],
                 ),
               )
@@ -82,27 +86,35 @@ class _QueueItemCard extends ConsumerWidget {
             Row(
               children: [
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                   decoration: BoxDecoration(
                     color: AppColors.primary.withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(8),
                   ),
                   child: Text(
                     item.targetType,
-                    style: const TextStyle(fontSize: 12, color: AppColors.primary, fontWeight: FontWeight.w600),
+                    style: const TextStyle(
+                        fontSize: 12,
+                        color: AppColors.primary,
+                        fontWeight: FontWeight.w600),
                   ),
                 ),
                 const Spacer(),
                 Text(
                   _formatDate(item.createdAt),
-                  style: const TextStyle(fontSize: 12, color: AppColors.textSecondary),
+                  style: const TextStyle(
+                      fontSize: 12, color: AppColors.textSecondary),
                 ),
               ],
             ),
             const SizedBox(height: 8),
-            Text('ID: ${item.targetId}', style: const TextStyle(fontSize: 13, fontFamily: 'monospace')),
+            Text('ID: ${item.targetId}',
+                style: const TextStyle(fontSize: 13, fontFamily: 'monospace')),
             const SizedBox(height: 4),
-            Text('От: ${item.submittedBy}', style: const TextStyle(fontSize: 12, color: AppColors.textSecondary)),
+            Text('От: ${item.submittedBy}',
+                style: const TextStyle(
+                    fontSize: 12, color: AppColors.textSecondary)),
             const SizedBox(height: 12),
             Row(
               children: [
@@ -113,7 +125,8 @@ class _QueueItemCard extends ConsumerWidget {
                     style: OutlinedButton.styleFrom(
                       foregroundColor: Colors.red,
                       side: const BorderSide(color: Colors.red),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8)),
                     ),
                     onPressed: () => _showRejectDialog(context, ref),
                   ),
@@ -126,9 +139,12 @@ class _QueueItemCard extends ConsumerWidget {
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.primary,
                       foregroundColor: Colors.white,
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8)),
                     ),
-                    onPressed: () => ref.read(moderationQueueProvider.notifier).approve(item.id),
+                    onPressed: () => ref
+                        .read(moderationQueueProvider.notifier)
+                        .approve(item.id),
                   ),
                 ),
               ],
@@ -155,12 +171,16 @@ class _QueueItemCard extends ConsumerWidget {
           autofocus: true,
         ),
         actions: [
-          TextButton(onPressed: () => Navigator.pop(ctx), child: const Text('Отмена')),
+          TextButton(
+              onPressed: () => Navigator.pop(ctx), child: const Text('Отмена')),
           ElevatedButton(
-            style: ElevatedButton.styleFrom(backgroundColor: Colors.red, foregroundColor: Colors.white),
+            style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.red, foregroundColor: Colors.white),
             onPressed: () {
               Navigator.pop(ctx);
-              ref.read(moderationQueueProvider.notifier).reject(item.id, ctrl.text.trim());
+              ref
+                  .read(moderationQueueProvider.notifier)
+                  .reject(item.id, ctrl.text.trim());
             },
             child: const Text('Отклонить'),
           ),

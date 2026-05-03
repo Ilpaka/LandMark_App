@@ -33,9 +33,9 @@ class _TripMapPageState extends ConsumerState<TripMapPage> {
     final lngs = stops.map((s) => s.longitude);
     final bounds = LatLngBounds(
       LatLng(lats.reduce((a, b) => a < b ? a : b),
-             lngs.reduce((a, b) => a < b ? a : b)),
+          lngs.reduce((a, b) => a < b ? a : b)),
       LatLng(lats.reduce((a, b) => a > b ? a : b),
-             lngs.reduce((a, b) => a > b ? a : b)),
+          lngs.reduce((a, b) => a > b ? a : b)),
     );
     _mapController.fitCamera(
       CameraFit.bounds(bounds: bounds, padding: const EdgeInsets.all(60)),
@@ -66,13 +66,13 @@ class _TripMapPageState extends ConsumerState<TripMapPage> {
         ],
       ),
       body: stopsAsync.when(
-        loading: () => const Center(child: CircularProgressIndicator(color: AppColors.primary)),
+        loading: () => const Center(
+            child: CircularProgressIndicator(color: AppColors.primary)),
         error: (e, _) => Center(child: Text('Ошибка: $e')),
         data: (stops) {
           final rawRoute = routeAsync.valueOrNull;
-          final route = rawRoute
-              ?.map((p) => LatLng(p['lat']!, p['lng']!))
-              .toList();
+          final route =
+              rawRoute?.map((p) => LatLng(p['lat']!, p['lng']!)).toList();
           return Stack(
             children: [
               FlutterMap(
@@ -87,7 +87,8 @@ class _TripMapPageState extends ConsumerState<TripMapPage> {
                 ),
                 children: [
                   TileLayer(
-                    urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+                    urlTemplate:
+                        'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
                     userAgentPackageName: 'com.wanderlog.app',
                   ),
                   // Route polyline
@@ -157,7 +158,8 @@ class _StopPin extends StatelessWidget {
   final int index;
   final bool isSelected;
   final DateTime? visitedAt;
-  const _StopPin({required this.index, required this.isSelected, this.visitedAt});
+  const _StopPin(
+      {required this.index, required this.isSelected, this.visitedAt});
 
   @override
   Widget build(BuildContext context) {
@@ -173,12 +175,15 @@ class _StopPin extends StatelessWidget {
         color: bg,
         shape: BoxShape.circle,
         border: Border.all(color: Colors.white, width: 2),
-        boxShadow: const [BoxShadow(color: Colors.black26, blurRadius: 4, offset: Offset(0, 2))],
+        boxShadow: const [
+          BoxShadow(color: Colors.black26, blurRadius: 4, offset: Offset(0, 2))
+        ],
       ),
       alignment: Alignment.center,
       child: Text(
         '$index',
-        style: const TextStyle(color: Colors.white, fontSize: 13, fontWeight: FontWeight.w700),
+        style: const TextStyle(
+            color: Colors.white, fontSize: 13, fontWeight: FontWeight.w700),
       ),
     );
   }
@@ -188,7 +193,8 @@ class _StopInfoCard extends StatelessWidget {
   final TripStop stop;
   final int index;
   final VoidCallback onClose;
-  const _StopInfoCard({required this.stop, required this.index, required this.onClose});
+  const _StopInfoCard(
+      {required this.stop, required this.index, required this.onClose});
 
   @override
   Widget build(BuildContext context) {
@@ -208,7 +214,8 @@ class _StopInfoCard extends StatelessWidget {
               ),
               alignment: Alignment.center,
               child: Text('$index',
-                  style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w700)),
+                  style: const TextStyle(
+                      color: Colors.white, fontWeight: FontWeight.w700)),
             ),
             const SizedBox(width: 12),
             Expanded(
@@ -217,13 +224,15 @@ class _StopInfoCard extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(stop.title,
-                      style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 15),
+                      style: const TextStyle(
+                          fontWeight: FontWeight.w600, fontSize: 15),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis),
                   if (stop.note != null && stop.note!.isNotEmpty) ...[
                     const SizedBox(height: 2),
                     Text(stop.note!,
-                        style: const TextStyle(fontSize: 13, color: AppColors.textSecondary),
+                        style: const TextStyle(
+                            fontSize: 13, color: AppColors.textSecondary),
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis),
                   ],
@@ -232,10 +241,12 @@ class _StopInfoCard extends StatelessWidget {
                       padding: EdgeInsets.only(top: 2),
                       child: Row(
                         children: [
-                          Icon(Icons.check_circle, size: 14, color: Colors.green),
+                          Icon(Icons.check_circle,
+                              size: 14, color: Colors.green),
                           SizedBox(width: 4),
                           Text('Посещено',
-                              style: TextStyle(fontSize: 12, color: Colors.green)),
+                              style:
+                                  TextStyle(fontSize: 12, color: Colors.green)),
                         ],
                       ),
                     ),

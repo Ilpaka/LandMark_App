@@ -32,7 +32,9 @@ class TripStop {
         longitude: (j['longitude'] as num).toDouble(),
         note: j['note'] as String?,
         order: j['order'] as int? ?? 0,
-        visitedAt: j['visited_at'] != null ? DateTime.parse(j['visited_at'] as String) : null,
+        visitedAt: j['visited_at'] != null
+            ? DateTime.parse(j['visited_at'] as String)
+            : null,
         createdAt: DateTime.parse(j['created_at'] as String),
       );
 }

@@ -8,12 +8,23 @@ class PlacesRepositoryImpl implements PlacesRepository {
 
   @override
   Future<List<Place>> listPlaces({
-    double? southLat, double? westLng, double? northLat, double? eastLng,
-    String? categorySlug, String? q, int limit = 100,
-  }) => _api.listPlaces(
-    southLat: southLat, westLng: westLng, northLat: northLat, eastLng: eastLng,
-    categorySlug: categorySlug, q: q, limit: limit,
-  );
+    double? southLat,
+    double? westLng,
+    double? northLat,
+    double? eastLng,
+    String? categorySlug,
+    String? q,
+    int limit = 100,
+  }) =>
+      _api.listPlaces(
+        southLat: southLat,
+        westLng: westLng,
+        northLat: northLat,
+        eastLng: eastLng,
+        categorySlug: categorySlug,
+        q: q,
+        limit: limit,
+      );
 
   @override
   Future<Place> getPlace(String id) => _api.getPlace(id);

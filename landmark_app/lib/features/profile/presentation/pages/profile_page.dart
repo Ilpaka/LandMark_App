@@ -3,7 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/design/tokens.dart';
 import '../../domain/entities/profile.dart';
 import '../providers/profile_provider.dart';
-import '../../../auth/presentation/providers/auth_provider.dart' show authProvider, AuthStateAuthenticated; // ignore: unused_shown_name
+import '../../../auth/presentation/providers/auth_provider.dart'
+    show authProvider, AuthStateAuthenticated; // ignore: unused_shown_name
 import '../../../notifications/presentation/providers/notifications_provider.dart';
 import '../../../notifications/presentation/pages/notifications_feed_page.dart';
 import 'edit_profile_page.dart';
@@ -37,7 +38,8 @@ class ProfilePage extends ConsumerWidget {
         ],
       ),
       body: profileAsync.when(
-        loading: () => const Center(child: CircularProgressIndicator(color: AppColors.primary)),
+        loading: () => const Center(
+            child: CircularProgressIndicator(color: AppColors.primary)),
         error: (e, _) => _buildEmpty(context, ref),
         data: (profile) => profile == null
             ? _buildEmpty(context, ref)
@@ -51,14 +53,18 @@ class ProfilePage extends ConsumerWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const Icon(Icons.person_outline, size: 72, color: AppColors.textSecondary),
+          const Icon(Icons.person_outline,
+              size: 72, color: AppColors.textSecondary),
           const SizedBox(height: 16),
-          const Text('Профиль не настроен', style: TextStyle(fontSize: 18, color: AppColors.textSecondary)),
+          const Text('Профиль не настроен',
+              style: TextStyle(fontSize: 18, color: AppColors.textSecondary)),
           const SizedBox(height: 24),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
-              backgroundColor: AppColors.primary, foregroundColor: Colors.white,
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+              backgroundColor: AppColors.primary,
+              foregroundColor: Colors.white,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12)),
             ),
             onPressed: () => Navigator.push(
               context,
@@ -71,7 +77,8 @@ class ProfilePage extends ConsumerWidget {
     );
   }
 
-  Widget _buildProfile(BuildContext context, WidgetRef ref, UserProfile profile) {
+  Widget _buildProfile(
+      BuildContext context, WidgetRef ref, UserProfile profile) {
     return ListView(
       children: [
         // Header
@@ -87,26 +94,35 @@ class ProfilePage extends ConsumerWidget {
               ),
               const SizedBox(height: 12),
               Text(profile.displayName,
-                  style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w700, color: AppColors.textPrimary)),
+                  style: const TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.w700,
+                      color: AppColors.textPrimary)),
               const SizedBox(height: 4),
               Text('@${profile.nickname}',
-                  style: const TextStyle(fontSize: 15, color: AppColors.textSecondary)),
+                  style: const TextStyle(
+                      fontSize: 15, color: AppColors.textSecondary)),
               if (profile.bio != null && profile.bio!.isNotEmpty) ...[
                 const SizedBox(height: 8),
                 Text(profile.bio!,
                     textAlign: TextAlign.center,
-                    style: const TextStyle(fontSize: 14, color: AppColors.textSecondary)),
+                    style: const TextStyle(
+                        fontSize: 14, color: AppColors.textSecondary)),
               ],
               if (profile.city != null || profile.country != null) ...[
                 const SizedBox(height: 8),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Icon(Icons.location_on_outlined, size: 16, color: AppColors.textSecondary),
+                    const Icon(Icons.location_on_outlined,
+                        size: 16, color: AppColors.textSecondary),
                     const SizedBox(width: 4),
                     Text(
-                      [profile.city, profile.country].where((s) => s != null).join(', '),
-                      style: const TextStyle(fontSize: 13, color: AppColors.textSecondary),
+                      [profile.city, profile.country]
+                          .where((s) => s != null)
+                          .join(', '),
+                      style: const TextStyle(
+                          fontSize: 13, color: AppColors.textSecondary),
                     ),
                   ],
                 ),
@@ -120,11 +136,13 @@ class ProfilePage extends ConsumerWidget {
                 style: OutlinedButton.styleFrom(
                   foregroundColor: AppColors.primary,
                   side: const BorderSide(color: AppColors.primary),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20)),
                 ),
                 onPressed: () => Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (_) => EditProfilePage(profile: profile)),
+                  MaterialPageRoute(
+                      builder: (_) => EditProfilePage(profile: profile)),
                 ),
               ),
             ],
@@ -139,8 +157,10 @@ class ProfilePage extends ConsumerWidget {
         ),
         ListTile(
           leading: const Icon(Icons.delete_forever_outlined, color: Colors.red),
-          title: const Text('Удалить аккаунт', style: TextStyle(color: Colors.red)),
-          subtitle: const Text('Необратимое действие', style: TextStyle(fontSize: 12, color: Colors.red)),
+          title: const Text('Удалить аккаунт',
+              style: TextStyle(color: Colors.red)),
+          subtitle: const Text('Необратимое действие',
+              style: TextStyle(fontSize: 12, color: Colors.red)),
           onTap: () => _confirmDeleteAccount(context, ref),
         ),
       ],
@@ -156,9 +176,11 @@ class ProfilePage extends ConsumerWidget {
           'Все ваши данные будут безвозвратно удалены. Это действие нельзя отменить.',
         ),
         actions: [
-          TextButton(onPressed: () => Navigator.pop(ctx), child: const Text('Отмена')),
+          TextButton(
+              onPressed: () => Navigator.pop(ctx), child: const Text('Отмена')),
           ElevatedButton(
-            style: ElevatedButton.styleFrom(backgroundColor: Colors.red, foregroundColor: Colors.white),
+            style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.red, foregroundColor: Colors.white),
             onPressed: () async {
               Navigator.pop(ctx);
               try {
@@ -185,9 +207,11 @@ class ProfilePage extends ConsumerWidget {
         title: const Text('Выход'),
         content: const Text('Вы уверены, что хотите выйти?'),
         actions: [
-          TextButton(onPressed: () => Navigator.pop(ctx), child: const Text('Отмена')),
+          TextButton(
+              onPressed: () => Navigator.pop(ctx), child: const Text('Отмена')),
           ElevatedButton(
-            style: ElevatedButton.styleFrom(backgroundColor: Colors.red, foregroundColor: Colors.white),
+            style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.red, foregroundColor: Colors.white),
             onPressed: () {
               Navigator.pop(ctx);
               ref.read(authProvider.notifier).signOut();
@@ -219,7 +243,8 @@ class _MyFollowStats extends ConsumerWidget {
             onTap: () => Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (_) => FollowersPage(userId: userId, showFollowers: true),
+                builder: (_) =>
+                    FollowersPage(userId: userId, showFollowers: true),
               ),
             ),
           ),
@@ -230,7 +255,8 @@ class _MyFollowStats extends ConsumerWidget {
             onTap: () => Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (_) => FollowersPage(userId: userId, showFollowers: false),
+                builder: (_) =>
+                    FollowersPage(userId: userId, showFollowers: false),
               ),
             ),
           ),
@@ -244,20 +270,26 @@ class _FollowStat extends StatelessWidget {
   final int count;
   final String label;
   final VoidCallback onTap;
-  const _FollowStat({required this.count, required this.label, required this.onTap});
+  const _FollowStat(
+      {required this.count, required this.label, required this.onTap});
 
   @override
   Widget build(BuildContext context) => GestureDetector(
-    onTap: onTap,
-    child: Column(
-      children: [
-        Text('$count',
-            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w700, color: AppColors.textPrimary)),
-        const SizedBox(height: 2),
-        Text(label, style: const TextStyle(fontSize: 12, color: AppColors.textSecondary)),
-      ],
-    ),
-  );
+        onTap: onTap,
+        child: Column(
+          children: [
+            Text('$count',
+                style: const TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w700,
+                    color: AppColors.textPrimary)),
+            const SizedBox(height: 2),
+            Text(label,
+                style: const TextStyle(
+                    fontSize: 12, color: AppColors.textSecondary)),
+          ],
+        ),
+      );
 }
 
 class _NotificationBell extends ConsumerWidget {

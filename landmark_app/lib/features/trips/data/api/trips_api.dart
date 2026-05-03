@@ -33,7 +33,8 @@ class TripsApi {
     return Trip.fromJson(r.data as Map<String, dynamic>);
   }
 
-  Future<Trip> updateTrip(String id, {String? title, String? subtitle, String? status}) async {
+  Future<Trip> updateTrip(String id,
+      {String? title, String? subtitle, String? status}) async {
     final body = <String, dynamic>{};
     if (title != null) body['title'] = title;
     if (subtitle != null) body['subtitle'] = subtitle;
@@ -68,7 +69,10 @@ class TripsApi {
     final coords = data['coordinates'] as List<dynamic>? ?? [];
     return coords.map((c) {
       final m = c as Map<String, dynamic>;
-      return {'lat': (m['lat'] as num).toDouble(), 'lng': (m['lng'] as num).toDouble()};
+      return {
+        'lat': (m['lat'] as num).toDouble(),
+        'lng': (m['lng'] as num).toDouble()
+      };
     }).toList();
   }
 }

@@ -26,9 +26,11 @@ class PublicTripsPage extends ConsumerWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const Icon(Icons.cloud_off_outlined, size: 48, color: AppColors.textSecondary),
+              const Icon(Icons.cloud_off_outlined,
+                  size: 48, color: AppColors.textSecondary),
               const SizedBox(height: 12),
-              const Text('Ошибка загрузки', style: TextStyle(color: AppColors.textSecondary)),
+              const Text('Ошибка загрузки',
+                  style: TextStyle(color: AppColors.textSecondary)),
               const SizedBox(height: 12),
               TextButton(
                 onPressed: () => ref.invalidate(publicTripsProvider),
@@ -42,10 +44,12 @@ class PublicTripsPage extends ConsumerWidget {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Icon(Icons.explore_outlined, size: 64, color: AppColors.textSecondary),
+                    Icon(Icons.explore_outlined,
+                        size: 64, color: AppColors.textSecondary),
                     SizedBox(height: 16),
                     Text('Нет публичных поездок',
-                        style: TextStyle(fontSize: 18, color: AppColors.textSecondary)),
+                        style: TextStyle(
+                            fontSize: 18, color: AppColors.textSecondary)),
                   ],
                 ),
               )
@@ -86,7 +90,8 @@ class _PublicTripCard extends StatelessWidget {
                 children: [
                   Expanded(
                     child: Text(trip.title,
-                        style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
+                        style: const TextStyle(
+                            fontSize: 16, fontWeight: FontWeight.w600)),
                   ),
                   _StatusBadge(status: trip.status),
                 ],
@@ -94,18 +99,25 @@ class _PublicTripCard extends StatelessWidget {
               if (trip.subtitle != null && trip.subtitle!.isNotEmpty) ...[
                 const SizedBox(height: 6),
                 Text(trip.subtitle!,
-                    style: const TextStyle(fontSize: 13, color: AppColors.textSecondary),
+                    style: const TextStyle(
+                        fontSize: 13, color: AppColors.textSecondary),
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis),
               ],
               const SizedBox(height: 10),
               Row(
                 children: [
-                  _MetaItem(icon: Icons.place_outlined, text: '${trip.stopsCount} точек'),
+                  _MetaItem(
+                      icon: Icons.place_outlined,
+                      text: '${trip.stopsCount} точек'),
                   const SizedBox(width: 16),
-                  _MetaItem(icon: Icons.book_outlined, text: '${trip.entriesCount} записей'),
+                  _MetaItem(
+                      icon: Icons.book_outlined,
+                      text: '${trip.entriesCount} записей'),
                   const SizedBox(width: 16),
-                  _MetaItem(icon: Icons.photo_outlined, text: '${trip.photosCount} фото'),
+                  _MetaItem(
+                      icon: Icons.photo_outlined,
+                      text: '${trip.photosCount} фото'),
                 ],
               ),
             ],
@@ -142,7 +154,8 @@ class _StatusBadge extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
         ),
         child: Text(_label,
-            style: TextStyle(fontSize: 11, color: _color, fontWeight: FontWeight.w600)),
+            style: TextStyle(
+                fontSize: 11, color: _color, fontWeight: FontWeight.w600)),
       );
 }
 
@@ -157,7 +170,9 @@ class _MetaItem extends StatelessWidget {
         children: [
           Icon(icon, size: 14, color: AppColors.textSecondary),
           const SizedBox(width: 4),
-          Text(text, style: const TextStyle(fontSize: 12, color: AppColors.textSecondary)),
+          Text(text,
+              style: const TextStyle(
+                  fontSize: 12, color: AppColors.textSecondary)),
         ],
       );
 }

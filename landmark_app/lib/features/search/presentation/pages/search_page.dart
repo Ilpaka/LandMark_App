@@ -55,7 +55,8 @@ class _SearchPageState extends ConsumerState<SearchPage>
       return;
     }
     setState(() => _loading = true);
-    _debounce = Timer(const Duration(milliseconds: 400), () => _search(q.trim()));
+    _debounce =
+        Timer(const Duration(milliseconds: 400), () => _search(q.trim()));
   }
 
   Future<void> _search(String q) async {
@@ -76,7 +77,8 @@ class _SearchPageState extends ConsumerState<SearchPage>
               .map((e) => Trip.fromJson(e as Map<String, dynamic>))
               .toList();
         }).catchError((_) => <Trip>[]),
-        dio.get('/v1/journal/entries', queryParameters: {'q': q, 'limit': 20}).then((r) {
+        dio.get('/v1/journal/entries',
+            queryParameters: {'q': q, 'limit': 20}).then((r) {
           final data = r.data as Map<String, dynamic>;
           return (data['entries'] as List<dynamic>? ?? [])
               .map((e) => JournalEntry.fromJson(e as Map<String, dynamic>))
@@ -137,14 +139,21 @@ class _SearchPageState extends ConsumerState<SearchPage>
           unselectedLabelColor: AppColors.textSecondary,
           indicatorColor: AppColors.primary,
           tabs: [
-            Tab(text: 'Места${_places.isNotEmpty ? " (${_places.length})" : ""}'),
-            Tab(text: 'Поездки${_trips.isNotEmpty ? " (${_trips.length})" : ""}'),
-            Tab(text: 'Записи${_entries.isNotEmpty ? " (${_entries.length})" : ""}'),
+            Tab(
+                text:
+                    'Места${_places.isNotEmpty ? " (${_places.length})" : ""}'),
+            Tab(
+                text:
+                    'Поездки${_trips.isNotEmpty ? " (${_trips.length})" : ""}'),
+            Tab(
+                text:
+                    'Записи${_entries.isNotEmpty ? " (${_entries.length})" : ""}'),
           ],
         ),
       ),
       body: _loading
-          ? const Center(child: CircularProgressIndicator(color: AppColors.primary))
+          ? const Center(
+              child: CircularProgressIndicator(color: AppColors.primary))
           : TabBarView(
               controller: _tabCtrl,
               children: [
@@ -176,16 +185,20 @@ class _PlacesTab extends StatelessWidget {
         final p = places[i];
         return ListTile(
           leading: Container(
-            width: 40, height: 40,
+            width: 40,
+            height: 40,
             decoration: BoxDecoration(
               color: AppColors.primary.withValues(alpha: 0.1),
               borderRadius: BorderRadius.circular(8),
             ),
             child: const Icon(Icons.place, color: AppColors.primary, size: 20),
           ),
-          title: Text(p.title, style: const TextStyle(fontWeight: FontWeight.w600)),
+          title: Text(p.title,
+              style: const TextStyle(fontWeight: FontWeight.w600)),
           subtitle: p.city != null
-              ? Text(p.city!, style: const TextStyle(fontSize: 12, color: AppColors.textSecondary))
+              ? Text(p.city!,
+                  style: const TextStyle(
+                      fontSize: 12, color: AppColors.textSecondary))
               : null,
           onTap: () => Navigator.push(
             context,
@@ -214,16 +227,19 @@ class _TripsTab extends StatelessWidget {
         final t = trips[i];
         return ListTile(
           leading: Container(
-            width: 40, height: 40,
+            width: 40,
+            height: 40,
             decoration: BoxDecoration(
               color: AppColors.accent.withValues(alpha: 0.1),
               borderRadius: BorderRadius.circular(8),
             ),
             child: const Icon(Icons.luggage, color: AppColors.accent, size: 20),
           ),
-          title: Text(t.title, style: const TextStyle(fontWeight: FontWeight.w600)),
+          title: Text(t.title,
+              style: const TextStyle(fontWeight: FontWeight.w600)),
           subtitle: Text('${t.stopsCount} точек · ${t.status}',
-              style: const TextStyle(fontSize: 12, color: AppColors.textSecondary)),
+              style: const TextStyle(
+                  fontSize: 12, color: AppColors.textSecondary)),
           onTap: () => Navigator.push(
             context,
             MaterialPageRoute(builder: (_) => TripDetailPage(trip: t)),
@@ -251,12 +267,14 @@ class _EntriesTab extends StatelessWidget {
         final e = entries[i];
         return ListTile(
           leading: Container(
-            width: 40, height: 40,
+            width: 40,
+            height: 40,
             decoration: BoxDecoration(
               color: Colors.teal.withValues(alpha: 0.1),
               borderRadius: BorderRadius.circular(8),
             ),
-            child: const Icon(Icons.book_outlined, color: Colors.teal, size: 20),
+            child:
+                const Icon(Icons.book_outlined, color: Colors.teal, size: 20),
           ),
           title: Text(
             e.title?.isNotEmpty == true ? e.title! : e.body,
@@ -265,8 +283,11 @@ class _EntriesTab extends StatelessWidget {
             style: const TextStyle(fontWeight: FontWeight.w600),
           ),
           subtitle: e.title?.isNotEmpty == true
-              ? Text(e.body, maxLines: 1, overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(fontSize: 12, color: AppColors.textSecondary))
+              ? Text(e.body,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(
+                      fontSize: 12, color: AppColors.textSecondary))
               : null,
           onTap: () => Navigator.push(
             context,
@@ -284,15 +305,17 @@ class _EmptyHint extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Center(
-    child: Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        const Icon(Icons.search, size: 56, color: AppColors.textSecondary),
-        const SizedBox(height: 12),
-        Text(hint, style: const TextStyle(color: AppColors.textSecondary, fontSize: 15)),
-      ],
-    ),
-  );
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Icon(Icons.search, size: 56, color: AppColors.textSecondary),
+            const SizedBox(height: 12),
+            Text(hint,
+                style: const TextStyle(
+                    color: AppColors.textSecondary, fontSize: 15)),
+          ],
+        ),
+      );
 }
 
 class _NoResults extends StatelessWidget {
@@ -300,13 +323,14 @@ class _NoResults extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => const Center(
-    child: Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Icon(Icons.search_off, size: 56, color: AppColors.textSecondary),
-        SizedBox(height: 12),
-        Text('Ничего не найдено', style: TextStyle(color: AppColors.textSecondary, fontSize: 15)),
-      ],
-    ),
-  );
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(Icons.search_off, size: 56, color: AppColors.textSecondary),
+            SizedBox(height: 12),
+            Text('Ничего не найдено',
+                style: TextStyle(color: AppColors.textSecondary, fontSize: 15)),
+          ],
+        ),
+      );
 }

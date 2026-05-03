@@ -5,7 +5,9 @@ import 'package:intl/intl.dart';
 import 'package:share_plus/share_plus.dart' show Share;
 import '../../../../core/design/tokens.dart';
 import '../../../../core/design/typography.dart';
+import '../../../../core/networking/api_client.dart';
 import '../../domain/entities/entry.dart';
+import '../providers/journal_provider.dart';
 import '../providers/media_provider.dart';
 import '../widgets/reaction_bar.dart';
 import 'gallery_page.dart';
@@ -28,6 +30,14 @@ class EntryDetailPage extends ConsumerWidget {
             tooltip: 'Поделиться',
             onPressed: () => _share(entry),
           ),
+          PopupMenuButton<String>(
+            onSelected: (v) => _onMenu(context, ref, v),
+            itemBuilder: (_) => [
+              const PopupMenuItem(
+                  value: 'delete',
+                  child: Text('Удалить', style: TextStyle(color: Colors.red))),
+            ],
+          ),
         ],
       ),
       body: SingleChildScrollView(
@@ -41,10 +51,12 @@ class EntryDetailPage extends ConsumerWidget {
                 const Icon(Icons.calendar_today_outlined,
                     size: 16, color: AppColors.textSecondary),
                 const SizedBox(width: AppSpacing.xs),
-                Text(fmt.format(entry.occurredAt), style: AppTypography.caption),
+                Text(fmt.format(entry.occurredAt),
+                    style: AppTypography.caption),
                 const Spacer(),
                 if (entry.mood != null)
-                  Text(_moodEmoji(entry.mood!), style: const TextStyle(fontSize: 20)),
+                  Text(_moodEmoji(entry.mood!),
+                      style: const TextStyle(fontSize: 20)),
               ],
             ),
             const SizedBox(height: AppSpacing.md),
@@ -66,7 +78,9 @@ class EntryDetailPage extends ConsumerWidget {
             const Divider(height: 1),
             const SizedBox(height: AppSpacing.md),
             const Text('Реакции',
-                style: TextStyle(fontWeight: FontWeight.w600, fontSize: 14,
+                style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 14,
                     color: AppColors.textSecondary)),
             const SizedBox(height: AppSpacing.sm),
             ReactionBar(entryId: entry.id),
@@ -75,6 +89,43 @@ class EntryDetailPage extends ConsumerWidget {
         ),
       ),
     );
+  }
+
+  Future<void> _onMenu(
+      BuildContext context, WidgetRef ref, String action) async {
+    if (action != 'delete') return;
+    final confirm = await showDialog<bool>(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: const Text('Удалить запись?'),
+        content: const Text('Запись будет безвозвратно удалена.'),
+        actions: [
+          TextButton(
+              onPressed: () => Navigator.pop(ctx, false),
+              child: const Text('Отмена')),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.red, foregroundColor: Colors.white),
+            onPressed: () => Navigator.pop(ctx, true),
+            child: const Text('Удалить'),
+          ),
+        ],
+      ),
+    );
+    if (confirm != true || !context.mounted) return;
+    try {
+      await ref
+          .read(apiClientProvider)
+          .dio
+          .delete('/v1/journal/entries/${entry.id}');
+      ref.invalidate(journalFeedProvider);
+      if (context.mounted) Navigator.pop(context);
+    } catch (e) {
+      if (context.mounted) {
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text('Ошибка: $e')));
+      }
+    }
   }
 
   void _share(JournalEntry entry) {
@@ -88,13 +139,13 @@ class EntryDetailPage extends ConsumerWidget {
   }
 
   String _moodEmoji(String mood) => switch (mood) {
-    'happy' => '😊',
-    'excited' => '🎉',
-    'calm' => '😌',
-    'tired' => '😴',
-    'sad' => '😢',
-    _ => '😊',
-  };
+        'happy' => '😊',
+        'excited' => '🎉',
+        'calm' => '😌',
+        'tired' => '😴',
+        'sad' => '😢',
+        _ => '😊',
+      };
 }
 
 // ---------------------------------------------------------------------------
@@ -110,9 +161,11 @@ class _MediaStrip extends ConsumerWidget {
     final mediaAsync = ref.watch(entryMediaProvider(entry.id));
 
     return mediaAsync.when(
-      loading: () => const SizedBox(height: 90,
-        child: Center(child: CircularProgressIndicator(
-            color: AppColors.primary, strokeWidth: 2))),
+      loading: () => const SizedBox(
+          height: 90,
+          child: Center(
+              child: CircularProgressIndicator(
+                  color: AppColors.primary, strokeWidth: 2))),
       error: (_, __) => const SizedBox.shrink(),
       data: (ids) {
         if (ids.isEmpty) return const SizedBox.shrink();
@@ -135,10 +188,11 @@ class _MediaStrip extends ConsumerWidget {
                 TextButton(
                   onPressed: () => Navigator.push<void>(
                     context,
-                    MaterialPageRoute(builder: (_) => GalleryPage(
-                      entryId: entry.id,
-                      entryTitle: entry.title,
-                    )),
+                    MaterialPageRoute(
+                        builder: (_) => GalleryPage(
+                              entryId: entry.id,
+                              entryTitle: entry.title,
+                            )),
                   ),
                   child: const Text('Все фото',
                       style: TextStyle(color: AppColors.primary)),
@@ -158,10 +212,11 @@ class _MediaStrip extends ConsumerWidget {
                   return GestureDetector(
                     onTap: () => Navigator.push<void>(
                       context,
-                      MaterialPageRoute(builder: (_) => PhotoViewPage(
-                        mediaIds: ids,
-                        initialIndex: i,
-                      )),
+                      MaterialPageRoute(
+                          builder: (_) => PhotoViewPage(
+                                mediaIds: ids,
+                                initialIndex: i,
+                              )),
                     ),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(8),

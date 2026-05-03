@@ -18,18 +18,22 @@ class AppNotification {
   });
 
   factory AppNotification.fromJson(Map<String, dynamic> j) => AppNotification(
-    id: j['id'] as String,
-    type: j['type'] as String? ?? 'info',
-    title: j['title'] as String? ?? '',
-    body: j['body'] as String? ?? '',
-    deepLink: j['deep_link'] as String?,
-    createdAt: DateTime.parse(j['created_at'] as String),
-    isRead: j['read_at'] != null,
-  );
+        id: j['id'] as String,
+        type: j['type'] as String? ?? 'info',
+        title: j['title'] as String? ?? '',
+        body: j['body'] as String? ?? '',
+        deepLink: j['deep_link'] as String?,
+        createdAt: DateTime.parse(j['created_at'] as String),
+        isRead: j['read_at'] != null,
+      );
 
   AppNotification copyWith({bool? isRead}) => AppNotification(
-    id: id, type: type, title: title, body: body,
-    deepLink: deepLink, createdAt: createdAt,
-    isRead: isRead ?? this.isRead,
-  );
+        id: id,
+        type: type,
+        title: title,
+        body: body,
+        deepLink: deepLink,
+        createdAt: createdAt,
+        isRead: isRead ?? this.isRead,
+      );
 }

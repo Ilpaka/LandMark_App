@@ -47,8 +47,7 @@ final notificationsFeedProvider =
   NotificationsFeedNotifier.new,
 );
 
-class NotificationsFeedNotifier
-    extends AsyncNotifier<NotificationsState> {
+class NotificationsFeedNotifier extends AsyncNotifier<NotificationsState> {
   @override
   Future<NotificationsState> build() => _fetch();
 

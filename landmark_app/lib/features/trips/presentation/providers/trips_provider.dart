@@ -3,7 +3,8 @@ import '../../domain/entities/trip.dart';
 import '../../data/api/trips_api.dart';
 import '../../../../core/networking/api_client.dart';
 
-final tripsApiProvider = Provider((ref) => TripsApi(ref.read(apiClientProvider).dio));
+final tripsApiProvider =
+    Provider((ref) => TripsApi(ref.read(apiClientProvider).dio));
 
 final tripsListProvider =
     AsyncNotifierProvider.autoDispose<TripsListNotifier, List<Trip>>(
@@ -29,7 +30,8 @@ class TripsListNotifier extends AutoDisposeAsyncNotifier<List<Trip>> {
   Future<void> loadMore() async {
     if (!_hasMore || _nextCursor == null) return;
     final current = state.valueOrNull ?? [];
-    final result = await ref.read(tripsApiProvider).listTrips(cursor: _nextCursor);
+    final result =
+        await ref.read(tripsApiProvider).listTrips(cursor: _nextCursor);
     _nextCursor = result.nextCursor;
     _hasMore = result.nextCursor != null;
     state = AsyncData([...current, ...result.trips]);
@@ -41,6 +43,7 @@ final publicTripsProvider = FutureProvider.autoDispose<List<Trip>>((ref) async {
   return result;
 });
 
-final tripRouteProvider = FutureProvider.autoDispose.family<List<Map<String, double>>, String>((ref, tripId) {
+final tripRouteProvider = FutureProvider.autoDispose
+    .family<List<Map<String, double>>, String>((ref, tripId) {
   return ref.read(tripsApiProvider).getRoute(tripId);
 });

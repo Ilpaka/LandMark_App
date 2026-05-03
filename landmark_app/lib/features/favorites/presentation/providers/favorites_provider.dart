@@ -13,9 +13,10 @@ final favoritesApiProvider = Provider((ref) {
 });
 
 // Tracks is-favorite state for a single (targetType, targetId) pair
-final isFavoriteProvider =
-    StateNotifierProvider.family<FavoriteNotifier, AsyncValue<bool>, (String, String)>(
-  (ref, key) => FavoriteNotifier(ref.read(favoritesApiProvider), key.$1, key.$2),
+final isFavoriteProvider = StateNotifierProvider.family<FavoriteNotifier,
+    AsyncValue<bool>, (String, String)>(
+  (ref, key) =>
+      FavoriteNotifier(ref.read(favoritesApiProvider), key.$1, key.$2),
 );
 
 class FavoriteNotifier extends StateNotifier<AsyncValue<bool>> {
@@ -23,7 +24,8 @@ class FavoriteNotifier extends StateNotifier<AsyncValue<bool>> {
   final String _type;
   final String _id;
 
-  FavoriteNotifier(this._api, this._type, this._id) : super(const AsyncValue.loading()) {
+  FavoriteNotifier(this._api, this._type, this._id)
+      : super(const AsyncValue.loading()) {
     _load();
   }
 
@@ -55,7 +57,8 @@ class FavoriteNotifier extends StateNotifier<AsyncValue<bool>> {
 // List providers — fetch favorites then resolve full objects in parallel
 // ---------------------------------------------------------------------------
 
-final favoritePlacesProvider = FutureProvider.autoDispose<List<Place>>((ref) async {
+final favoritePlacesProvider =
+    FutureProvider.autoDispose<List<Place>>((ref) async {
   final api = ref.read(favoritesApiProvider);
   final repo = ref.read(placesRepositoryProvider);
   final items = await api.listFavorites(targetType: 'place');
@@ -65,7 +68,8 @@ final favoritePlacesProvider = FutureProvider.autoDispose<List<Place>>((ref) asy
   return results;
 });
 
-final favoriteTripsProvider = FutureProvider.autoDispose<List<Trip>>((ref) async {
+final favoriteTripsProvider =
+    FutureProvider.autoDispose<List<Trip>>((ref) async {
   final api = ref.read(favoritesApiProvider);
   final tripsApi = ref.read(tripsApiProvider);
   final items = await api.listFavorites(targetType: 'trip');
@@ -75,7 +79,8 @@ final favoriteTripsProvider = FutureProvider.autoDispose<List<Trip>>((ref) async
   return results;
 });
 
-final favoriteEntriesProvider = FutureProvider.autoDispose<List<JournalEntry>>((ref) async {
+final favoriteEntriesProvider =
+    FutureProvider.autoDispose<List<JournalEntry>>((ref) async {
   final api = ref.read(favoritesApiProvider);
   final journalApi = ref.read(journalApiProvider);
   final items = await api.listFavorites(targetType: 'entry');

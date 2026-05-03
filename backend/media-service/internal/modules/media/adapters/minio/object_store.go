@@ -32,6 +32,7 @@ func New() (*ObjectStore, error) {
 	client, err := minio.New(endpoint, &minio.Options{
 		Creds:  credentials.NewStaticV4(accessKey, secretKey, ""),
 		Secure: useSSL,
+		Region: "us-east-1",
 	})
 	if err != nil {
 		return nil, err

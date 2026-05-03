@@ -17,8 +17,10 @@ class NotificationsApi {
   final Dio dio;
   const NotificationsApi(this.dio);
 
-  Future<NotificationsPage> list({String? cursor, bool unreadOnly = false}) async {
-    final r = await dio.get<Map<String, dynamic>>('/v1/notifications', queryParameters: {
+  Future<NotificationsPage> list(
+      {String? cursor, bool unreadOnly = false}) async {
+    final r = await dio
+        .get<Map<String, dynamic>>('/v1/notifications', queryParameters: {
       if (cursor != null) 'cursor': cursor,
       if (unreadOnly) 'unread': 'true',
     });
@@ -35,6 +37,5 @@ class NotificationsApi {
   Future<void> markRead(String id) =>
       dio.post<void>('/v1/notifications/$id/read');
 
-  Future<void> markAllRead() =>
-      dio.post<void>('/v1/notifications/read-all');
+  Future<void> markAllRead() => dio.post<void>('/v1/notifications/read-all');
 }

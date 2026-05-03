@@ -89,12 +89,14 @@ class _EntryCard extends StatelessWidget {
       child: InkWell(
         onTap: () => Navigator.push(
           context,
-          MaterialPageRoute<void>(builder: (_) => EntryDetailPage(entry: entry)),
+          MaterialPageRoute<void>(
+              builder: (_) => EntryDetailPage(entry: entry)),
         ),
         borderRadius: const BorderRadius.all(AppRadius.md),
         child: Card(
           margin: EdgeInsets.zero,
-          shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(AppRadius.md)),
+          shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(AppRadius.md)),
           child: Padding(
             padding: const EdgeInsets.all(AppSpacing.md),
             child: Column(
@@ -104,14 +106,16 @@ class _EntryCard extends StatelessWidget {
                   children: [
                     Expanded(
                       child: Text(
-                        entry.title ?? 'Запись от ${fmt.format(entry.occurredAt)}',
+                        entry.title ??
+                            'Запись от ${fmt.format(entry.occurredAt)}',
                         style: AppTypography.h3,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                       ),
                     ),
                     if (entry.mood != null)
-                      Text(_moodEmoji(entry.mood!), style: const TextStyle(fontSize: 20)),
+                      Text(_moodEmoji(entry.mood!),
+                          style: const TextStyle(fontSize: 20)),
                   ],
                 ),
                 const SizedBox(height: AppSpacing.sm),
@@ -122,7 +126,8 @@ class _EntryCard extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                 ),
                 const SizedBox(height: AppSpacing.sm),
-                Text(fmt.format(entry.occurredAt), style: AppTypography.caption),
+                Text(fmt.format(entry.occurredAt),
+                    style: AppTypography.caption),
               ],
             ),
           ),
@@ -132,13 +137,13 @@ class _EntryCard extends StatelessWidget {
   }
 
   String _moodEmoji(String mood) => switch (mood) {
-    'happy' => '😊',
-    'excited' => '🎉',
-    'calm' => '😌',
-    'tired' => '😴',
-    'sad' => '😢',
-    _ => '😊',
-  };
+        'happy' => '😊',
+        'excited' => '🎉',
+        'calm' => '😌',
+        'tired' => '😴',
+        'sad' => '😢',
+        _ => '😊',
+      };
 }
 
 class _EmptyJournal extends StatelessWidget {
@@ -146,25 +151,25 @@ class _EmptyJournal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => const Center(
-    child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Icon(Icons.book_outlined, size: 64, color: AppColors.textSecondary),
-        SizedBox(height: 16),
-        Text(
-          'Нет записей',
-          style: TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.w600,
-            color: AppColors.textPrimary,
-          ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(Icons.book_outlined, size: 64, color: AppColors.textSecondary),
+            SizedBox(height: 16),
+            Text(
+              'Нет записей',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w600,
+                color: AppColors.textPrimary,
+              ),
+            ),
+            SizedBox(height: 8),
+            Text(
+              'Нажмите + чтобы добавить запись',
+              style: TextStyle(color: AppColors.textSecondary),
+            ),
+          ],
         ),
-        SizedBox(height: 8),
-        Text(
-          'Нажмите + чтобы добавить запись',
-          style: TextStyle(color: AppColors.textSecondary),
-        ),
-      ],
-    ),
-  );
+      );
 }

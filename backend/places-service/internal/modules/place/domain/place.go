@@ -17,34 +17,34 @@ const (
 )
 
 type Category struct {
-	ID        uuid.UUID
-	Slug      string
-	Title     string
-	Icon      string
-	Color     string
-	SortOrder int
-	Active    bool
-	CreatedAt time.Time
+	ID        uuid.UUID `json:"id"`
+	Slug      string    `json:"slug"`
+	Title     string    `json:"title"`
+	Icon      string    `json:"icon"`
+	Color     string    `json:"color"`
+	SortOrder int       `json:"sort_order"`
+	Active    bool      `json:"active"`
+	CreatedAt time.Time `json:"created_at"`
 }
 
 type Place struct {
-	ID           uuid.UUID
-	Title        string
-	Description  string
-	Latitude     float64
-	Longitude    float64
-	Address      *string
-	City         *string
-	Country      *string
-	AuthorID     *uuid.UUID
-	Status       PlaceStatus
-	RejectReason *string
-	Source       string
-	CoverMediaID *uuid.UUID
-	CategoryIDs  []uuid.UUID
-	PublishedAt  *time.Time
-	CreatedAt    time.Time
-	UpdatedAt    time.Time
+	ID           uuid.UUID   `json:"id"`
+	Title        string      `json:"title"`
+	Description  string      `json:"description"`
+	Latitude     float64     `json:"latitude"`
+	Longitude    float64     `json:"longitude"`
+	Address      *string     `json:"address"`
+	City         *string     `json:"city"`
+	Country      *string     `json:"country"`
+	AuthorID     *uuid.UUID  `json:"author_id"`
+	Status       PlaceStatus `json:"status"`
+	RejectReason *string     `json:"reject_reason"`
+	Source       string      `json:"source"`
+	CoverMediaID *uuid.UUID  `json:"cover_media_id"`
+	CategoryIDs  []uuid.UUID `json:"category_ids"`
+	PublishedAt  *time.Time  `json:"published_at"`
+	CreatedAt    time.Time   `json:"created_at"`
+	UpdatedAt    time.Time   `json:"updated_at"`
 }
 
 type BBox struct {

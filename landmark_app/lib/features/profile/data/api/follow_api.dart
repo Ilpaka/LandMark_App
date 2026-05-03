@@ -18,7 +18,9 @@ class FollowStats {
         isFollowing: j['is_following'] as bool? ?? false,
       );
 
-  FollowStats copyWith({bool? isFollowing, int? followersCount, int? followingCount}) => FollowStats(
+  FollowStats copyWith(
+          {bool? isFollowing, int? followersCount, int? followingCount}) =>
+      FollowStats(
         followersCount: followersCount ?? this.followersCount,
         followingCount: followingCount ?? this.followingCount,
         isFollowing: isFollowing ?? this.isFollowing,
@@ -36,16 +38,21 @@ class FollowApi {
 
   Future<void> follow(String userId) => dio.post('/v1/profile/$userId/follow');
 
-  Future<void> unfollow(String userId) => dio.delete('/v1/profile/$userId/follow');
+  Future<void> unfollow(String userId) =>
+      dio.delete('/v1/profile/$userId/follow');
 
   Future<List<UserProfile>> listFollowers(String userId) async {
     final r = await dio.get('/v1/profile/$userId/followers');
-    return (r.data as List).map((e) => UserProfile.fromJson(e as Map<String, dynamic>)).toList();
+    return (r.data as List)
+        .map((e) => UserProfile.fromJson(e as Map<String, dynamic>))
+        .toList();
   }
 
   Future<List<UserProfile>> listFollowing(String userId) async {
     final r = await dio.get('/v1/profile/$userId/following');
-    return (r.data as List).map((e) => UserProfile.fromJson(e as Map<String, dynamic>)).toList();
+    return (r.data as List)
+        .map((e) => UserProfile.fromJson(e as Map<String, dynamic>))
+        .toList();
   }
 
   Future<UserProfile> getPublicProfile(String userId) async {

@@ -13,7 +13,8 @@ class StopsApi {
         .toList();
   }
 
-  Future<TripStop> addStop(String tripId, {
+  Future<TripStop> addStop(
+    String tripId, {
     required String title,
     required double latitude,
     required double longitude,

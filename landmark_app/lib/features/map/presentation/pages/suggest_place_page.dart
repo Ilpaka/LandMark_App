@@ -38,7 +38,8 @@ class _SuggestPlacePageState extends ConsumerState<SuggestPlacePage> {
       // 1. Create draft
       final createResp = await dio.post('/v1/places', data: {
         'title': _titleCtrl.text.trim(),
-        'description': _descCtrl.text.trim().isEmpty ? null : _descCtrl.text.trim(),
+        'description':
+            _descCtrl.text.trim().isEmpty ? null : _descCtrl.text.trim(),
         'latitude': double.parse(_latCtrl.text.trim()),
         'longitude': double.parse(_lngCtrl.text.trim()),
         'city': _cityCtrl.text.trim().isEmpty ? null : _cityCtrl.text.trim(),
@@ -84,9 +85,13 @@ class _SuggestPlacePageState extends ConsumerState<SuggestPlacePage> {
             _field(_descCtrl, 'Описание', maxLines: 4),
             const SizedBox(height: 12),
             Row(children: [
-              Expanded(child: _field(_latCtrl, 'Широта *', required: true, keyboard: TextInputType.number)),
+              Expanded(
+                  child: _field(_latCtrl, 'Широта *',
+                      required: true, keyboard: TextInputType.number)),
               const SizedBox(width: 12),
-              Expanded(child: _field(_lngCtrl, 'Долгота *', required: true, keyboard: TextInputType.number)),
+              Expanded(
+                  child: _field(_lngCtrl, 'Долгота *',
+                      required: true, keyboard: TextInputType.number)),
             ]),
             const SizedBox(height: 12),
             _field(_cityCtrl, 'Город'),
@@ -97,10 +102,15 @@ class _SuggestPlacePageState extends ConsumerState<SuggestPlacePage> {
                 backgroundColor: AppColors.primary,
                 foregroundColor: Colors.white,
                 minimumSize: const Size.fromHeight(48),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12)),
               ),
               child: _loading
-                  ? const SizedBox(height: 20, width: 20, child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2))
+                  ? const SizedBox(
+                      height: 20,
+                      width: 20,
+                      child: CircularProgressIndicator(
+                          color: Colors.white, strokeWidth: 2))
                   : const Text('Отправить на проверку'),
             ),
           ],

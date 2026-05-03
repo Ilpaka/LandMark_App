@@ -1,6 +1,7 @@
 package mediahttp
 
 import (
+	"log/slog"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -30,7 +31,8 @@ func writeErr(c *gin.Context, err error) {
 	case domain.ErrBadRequest:
 		c.JSON(http.StatusBadRequest, gin.H{"error": "bad request"})
 	default:
-		c.JSON(http.StatusInternalServerError, gin.H{"error": "internal"})
+		slog.Error("media handler internal error", "err", err.Error(), "path", c.Request.URL.Path)
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
 	}
 }
 

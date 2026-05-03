@@ -13,17 +13,18 @@ import (
 )
 
 // RegisterEmail creates a new account with email+password and sends a verification OTP.
-// Returns the verification row ID to pass to POST /v1/auth/verify-email.
-func (s *Service) RegisterEmail(ctx context.Context, email, password, name string) (uuid.UUID, error) {
+// Returns the verification row ID and the OTP plain code (for demo / dev mode).
+func (s *Service) RegisterEmail(ctx context.Context, email, password, name string) (uuid.UUID, string, error) {
 	if name == "" {
-		return uuid.Nil, domain.ErrBadRequest
+		return uuid.Nil, "", domain.ErrBadRequest
 	}
 	addr, norm, err := normalizeEmail(email)
 	if err != nil {
-		return uuid.Nil, err
+		return uuid.Nil, "", err
 	}
 
 	var verID uuid.UUID
+	var plainCode string
 	err = s.Store.WithTx(ctx, func(ctx context.Context, tx pgx.Tx) error {
 		existing, _ := s.Store.GetAccountByEmailNorm(ctx, tx, norm)
 		if existing != nil && existing.Status != domain.StatusDeleted {
@@ -36,7 +37,7 @@ func (s *Service) RegisterEmail(ctx context.Context, email, password, name strin
 			return err
 		}
 
-		hash, err := s.Hasher.Hash(password + s.Pepper)
+		hash, err := s.Hasher.Hash(password)
 		if err != nil {
 			return err
 		}
@@ -61,6 +62,7 @@ func (s *Service) RegisterEmail(ctx context.Context, email, password, name strin
 		}
 
 		verID = v.ID
+		plainCode = plain
 		go s.Mail.SendVerificationOTP(context.Background(), addr, plain)
 
 		return s.enqueueAudit(ctx, tx, ports.AuditEvent{
@@ -71,5 +73,5 @@ func (s *Service) RegisterEmail(ctx context.Context, email, password, name strin
 			CreatedAt: time.Now().UTC(),
 		})
 	})
-	return verID, err
+	return verID, plainCode, err
 }

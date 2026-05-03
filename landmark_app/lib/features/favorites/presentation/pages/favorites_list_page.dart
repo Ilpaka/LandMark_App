@@ -86,13 +86,15 @@ class _PlacesTab extends ConsumerWidget {
     final async = ref.watch(favoritePlacesProvider);
     return async.when(
       loading: () => const SkeletonListView(),
-      error: (e, _) => _ErrorView(message: '$e', onRetry: () => ref.invalidate(favoritePlacesProvider)),
+      error: (e, _) => _ErrorView(
+          message: '$e', onRetry: () => ref.invalidate(favoritePlacesProvider)),
       data: (places) => places.isEmpty
           ? const _EmptyFavorites(label: 'Нет избранных мест')
           : ListView.separated(
               padding: const EdgeInsets.all(AppSpacing.md),
               itemCount: places.length,
-              separatorBuilder: (_, __) => const SizedBox(height: AppSpacing.sm),
+              separatorBuilder: (_, __) =>
+                  const SizedBox(height: AppSpacing.sm),
               itemBuilder: (_, i) => _PlaceCard(place: places[i]),
             ),
     );
@@ -106,9 +108,11 @@ class _PlaceCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(AppRadius.md)),
+      shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(AppRadius.md)),
       child: ListTile(
-        contentPadding: const EdgeInsets.symmetric(horizontal: AppSpacing.md, vertical: AppSpacing.sm),
+        contentPadding: const EdgeInsets.symmetric(
+            horizontal: AppSpacing.md, vertical: AppSpacing.sm),
         leading: Container(
           width: 48,
           height: 48,
@@ -118,12 +122,17 @@ class _PlaceCard extends StatelessWidget {
           ),
           child: const Icon(Icons.place, color: AppColors.primary),
         ),
-        title: Text(place.title, style: AppTypography.h3, maxLines: 1, overflow: TextOverflow.ellipsis),
+        title: Text(place.title,
+            style: AppTypography.h3,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis),
         subtitle: place.city != null
-            ? Text('${place.city}${place.country != null ? ', ${place.country}' : ''}',
+            ? Text(
+                '${place.city}${place.country != null ? ', ${place.country}' : ''}',
                 style: AppTypography.caption)
             : null,
-        trailing: const Icon(Icons.chevron_right, color: AppColors.textSecondary),
+        trailing:
+            const Icon(Icons.chevron_right, color: AppColors.textSecondary),
         onTap: () {
           // Navigate to map and pan to place
           // For now show a simple detail sheet
@@ -182,13 +191,15 @@ class _TripsTab extends ConsumerWidget {
     final async = ref.watch(favoriteTripsProvider);
     return async.when(
       loading: () => const SkeletonListView(),
-      error: (e, _) => _ErrorView(message: '$e', onRetry: () => ref.invalidate(favoriteTripsProvider)),
+      error: (e, _) => _ErrorView(
+          message: '$e', onRetry: () => ref.invalidate(favoriteTripsProvider)),
       data: (trips) => trips.isEmpty
           ? const _EmptyFavorites(label: 'Нет избранных поездок')
           : ListView.separated(
               padding: const EdgeInsets.all(AppSpacing.md),
               itemCount: trips.length,
-              separatorBuilder: (_, __) => const SizedBox(height: AppSpacing.sm),
+              separatorBuilder: (_, __) =>
+                  const SizedBox(height: AppSpacing.sm),
               itemBuilder: (_, i) => _TripCard(trip: trips[i]),
             ),
     );
@@ -203,9 +214,11 @@ class _TripCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final fmt = DateFormat('d MMM yyyy', 'ru_RU');
     return Card(
-      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(AppRadius.md)),
+      shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(AppRadius.md)),
       child: ListTile(
-        contentPadding: const EdgeInsets.symmetric(horizontal: AppSpacing.md, vertical: AppSpacing.sm),
+        contentPadding: const EdgeInsets.symmetric(
+            horizontal: AppSpacing.md, vertical: AppSpacing.sm),
         leading: Container(
           width: 48,
           height: 48,
@@ -215,9 +228,14 @@ class _TripCard extends StatelessWidget {
           ),
           child: const Icon(Icons.luggage, color: AppColors.accent),
         ),
-        title: Text(trip.title, style: AppTypography.h3, maxLines: 1, overflow: TextOverflow.ellipsis),
-        subtitle: Text(fmt.format(trip.createdAt), style: AppTypography.caption),
-        trailing: const Icon(Icons.chevron_right, color: AppColors.textSecondary),
+        title: Text(trip.title,
+            style: AppTypography.h3,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis),
+        subtitle:
+            Text(fmt.format(trip.createdAt), style: AppTypography.caption),
+        trailing:
+            const Icon(Icons.chevron_right, color: AppColors.textSecondary),
         onTap: () => Navigator.push<void>(
           context,
           MaterialPageRoute(builder: (_) => TripDetailPage(trip: trip)),
@@ -239,13 +257,16 @@ class _EntriesTab extends ConsumerWidget {
     final async = ref.watch(favoriteEntriesProvider);
     return async.when(
       loading: () => const SkeletonListView(),
-      error: (e, _) => _ErrorView(message: '$e', onRetry: () => ref.invalidate(favoriteEntriesProvider)),
+      error: (e, _) => _ErrorView(
+          message: '$e',
+          onRetry: () => ref.invalidate(favoriteEntriesProvider)),
       data: (entries) => entries.isEmpty
           ? const _EmptyFavorites(label: 'Нет избранных записей')
           : ListView.separated(
               padding: const EdgeInsets.all(AppSpacing.md),
               itemCount: entries.length,
-              separatorBuilder: (_, __) => const SizedBox(height: AppSpacing.sm),
+              separatorBuilder: (_, __) =>
+                  const SizedBox(height: AppSpacing.sm),
               itemBuilder: (_, i) => _EntryCard(entry: entries[i]),
             ),
     );
@@ -260,9 +281,11 @@ class _EntryCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final fmt = DateFormat('d MMM yyyy', 'ru_RU');
     return Card(
-      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(AppRadius.md)),
+      shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(AppRadius.md)),
       child: ListTile(
-        contentPadding: const EdgeInsets.symmetric(horizontal: AppSpacing.md, vertical: AppSpacing.sm),
+        contentPadding: const EdgeInsets.symmetric(
+            horizontal: AppSpacing.md, vertical: AppSpacing.sm),
         leading: Container(
           width: 48,
           height: 48,
@@ -278,8 +301,12 @@ class _EntryCard extends StatelessWidget {
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
         ),
-        subtitle: Text(entry.body, style: AppTypography.caption, maxLines: 2, overflow: TextOverflow.ellipsis),
-        trailing: const Icon(Icons.chevron_right, color: AppColors.textSecondary),
+        subtitle: Text(entry.body,
+            style: AppTypography.caption,
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis),
+        trailing:
+            const Icon(Icons.chevron_right, color: AppColors.textSecondary),
         onTap: () => Navigator.push<void>(
           context,
           MaterialPageRoute(builder: (_) => EntryDetailPage(entry: entry)),
@@ -299,18 +326,22 @@ class _EmptyFavorites extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Center(
-    child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        const Icon(Icons.favorite_border, size: 64, color: AppColors.textSecondary),
-        const SizedBox(height: 16),
-        Text(label, style: const TextStyle(fontSize: 18, color: AppColors.textSecondary)),
-        const SizedBox(height: 8),
-        const Text('Добавляйте места, поездки и записи в избранное',
-            style: TextStyle(color: AppColors.textSecondary), textAlign: TextAlign.center),
-      ],
-    ),
-  );
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Icon(Icons.favorite_border,
+                size: 64, color: AppColors.textSecondary),
+            const SizedBox(height: 16),
+            Text(label,
+                style: const TextStyle(
+                    fontSize: 18, color: AppColors.textSecondary)),
+            const SizedBox(height: 8),
+            const Text('Добавляйте места, поездки и записи в избранное',
+                style: TextStyle(color: AppColors.textSecondary),
+                textAlign: TextAlign.center),
+          ],
+        ),
+      );
 }
 
 class _ErrorView extends StatelessWidget {
@@ -320,15 +351,17 @@ class _ErrorView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Center(
-    child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        const Icon(Icons.error_outline, size: 48, color: AppColors.textSecondary),
-        const SizedBox(height: 12),
-        const Text('Ошибка загрузки', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
-        const SizedBox(height: 8),
-        TextButton(onPressed: onRetry, child: const Text('Повторить')),
-      ],
-    ),
-  );
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Icon(Icons.error_outline,
+                size: 48, color: AppColors.textSecondary),
+            const SizedBox(height: 12),
+            const Text('Ошибка загрузки',
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
+            const SizedBox(height: 8),
+            TextButton(onPressed: onRetry, child: const Text('Повторить')),
+          ],
+        ),
+      );
 }

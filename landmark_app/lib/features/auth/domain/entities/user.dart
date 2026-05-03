@@ -14,7 +14,7 @@ class User {
   });
 
   factory User.fromJson(Map<String, dynamic> j) => User(
-        id: j['id'] as String,
+        id: (j['id'] ?? j['user_id'] ?? j['sub'] ?? '') as String,
         role: j['role'] as String? ?? 'user',
         emailVerified: j['email_verified'] as bool? ?? false,
         email: j['email'] as String?,

@@ -18,7 +18,9 @@ class JournalApi {
     final data = r.data as Map<String, dynamic>;
     final list = data['entries'] as List<dynamic>? ?? [];
     return (
-      entries: list.map((e) => JournalEntry.fromJson(e as Map<String, dynamic>)).toList(),
+      entries: list
+          .map((e) => JournalEntry.fromJson(e as Map<String, dynamic>))
+          .toList(),
       nextCursor: data['next_cursor'] as String?,
     );
   }

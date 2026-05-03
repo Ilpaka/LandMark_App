@@ -18,22 +18,37 @@ class PlacesQuery {
   final double? south, west, north, east;
   final String? categorySlug;
   final String? q;
-  const PlacesQuery({this.south, this.west, this.north, this.east, this.categorySlug, this.q});
+  const PlacesQuery(
+      {this.south,
+      this.west,
+      this.north,
+      this.east,
+      this.categorySlug,
+      this.q});
 
   @override
   bool operator ==(Object other) =>
-      other is PlacesQuery && south == other.south && west == other.west &&
-      north == other.north && east == other.east &&
-      categorySlug == other.categorySlug && q == other.q;
+      other is PlacesQuery &&
+      south == other.south &&
+      west == other.west &&
+      north == other.north &&
+      east == other.east &&
+      categorySlug == other.categorySlug &&
+      q == other.q;
   @override
   int get hashCode => Object.hash(south, west, north, east, categorySlug, q);
 }
 
-final placesProvider = FutureProvider.family.autoDispose<List<Place>, PlacesQuery>((ref, query) {
+final placesProvider =
+    FutureProvider.family.autoDispose<List<Place>, PlacesQuery>((ref, query) {
   return ref.read(placesRepositoryProvider).listPlaces(
-    southLat: query.south, westLng: query.west, northLat: query.north, eastLng: query.east,
-    categorySlug: query.categorySlug, q: query.q,
-  );
+        southLat: query.south,
+        westLng: query.west,
+        northLat: query.north,
+        eastLng: query.east,
+        categorySlug: query.categorySlug,
+        q: query.q,
+      );
 });
 
 // Провайдер текущего выбранного фильтра категорий

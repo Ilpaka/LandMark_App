@@ -85,7 +85,8 @@ class _PhotoSlide extends ConsumerWidget {
         child: CircularProgressIndicator(color: AppColors.primary),
       ),
       error: (_, __) => const Center(
-        child: Icon(Icons.broken_image_outlined, color: Colors.white54, size: 64),
+        child:
+            Icon(Icons.broken_image_outlined, color: Colors.white54, size: 64),
       ),
       data: (url) => InteractiveViewer(
         minScale: 0.8,

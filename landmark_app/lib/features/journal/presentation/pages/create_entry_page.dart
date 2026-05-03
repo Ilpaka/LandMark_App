@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
@@ -53,7 +54,8 @@ class _CreateEntryPageState extends ConsumerState<CreateEntryPage> {
           mainAxisSize: MainAxisSize.min,
           children: [
             ListTile(
-              leading: const Icon(Icons.camera_alt_outlined, color: AppColors.primary),
+              leading: const Icon(Icons.camera_alt_outlined,
+                  color: AppColors.primary),
               title: const Text('Камера'),
               onTap: () {
                 Navigator.pop(context);
@@ -61,7 +63,8 @@ class _CreateEntryPageState extends ConsumerState<CreateEntryPage> {
               },
             ),
             ListTile(
-              leading: const Icon(Icons.photo_library_outlined, color: AppColors.primary),
+              leading: const Icon(Icons.photo_library_outlined,
+                  color: AppColors.primary),
               title: const Text('Галерея'),
               onTap: () {
                 Navigator.pop(context);
@@ -84,30 +87,59 @@ class _CreateEntryPageState extends ConsumerState<CreateEntryPage> {
       _error = null;
     });
     try {
-      // Upload photos
+      // Photos are best-effort — failure doesn't block saving the entry.
       final mediaApi = MediaApi(ref.read(apiClientProvider).dio);
       final mediaIds = <String>[];
+      int photoFailures = 0;
       for (final photo in _photos) {
-        final id = await mediaApi.uploadFile(photo, purpose: 'journal');
-        mediaIds.add(id);
+        try {
+          final id = await mediaApi.uploadFile(photo, purpose: 'photo');
+          mediaIds.add(id);
+        } catch (e) {
+          photoFailures++;
+          debugPrint('Photo upload failed: $e');
+        }
       }
       _uploadedMediaIds.addAll(mediaIds);
 
       // Create entry
       final entry = await ref.read(journalApiProvider).createEntry(
-        title: _titleCtrl.text.trim().isEmpty ? null : _titleCtrl.text.trim(),
-        body: _bodyCtrl.text.trim(),
-        mood: _selectedMood,
-      );
+            title:
+                _titleCtrl.text.trim().isEmpty ? null : _titleCtrl.text.trim(),
+            body: _bodyCtrl.text.trim(),
+            mood: _selectedMood,
+          );
 
-      // Attach media
+      // Attach media — also best-effort.
       for (var i = 0; i < mediaIds.length; i++) {
-        await mediaApi.attachMedia(entry.id, mediaIds[i], i);
+        try {
+          await mediaApi.attachMedia(entry.id, mediaIds[i], i);
+        } catch (e) {
+          debugPrint('Attach media failed: $e');
+        }
       }
 
-      if (mounted) Navigator.pop(context, true);
-    } catch (e) {
-      setState(() => _error = 'Не удалось сохранить запись');
+      if (mounted) {
+        if (photoFailures > 0) {
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text(
+                'Запись сохранена, но не удалось загрузить фото ($photoFailures)'),
+          ));
+        }
+        Navigator.pop(context, true);
+      }
+    } catch (e, st) {
+      String msg;
+      if (e is DioException) {
+        final code = e.response?.statusCode;
+        final body = e.response?.data?.toString() ?? e.message ?? '';
+        final url = e.requestOptions.uri.toString();
+        msg = 'HTTP ${code ?? '?'} · $url\n$body';
+      } else {
+        msg = '$e';
+      }
+      debugPrint('CreateEntry failed: $msg\n$st');
+      setState(() => _error = msg);
     } finally {
       if (mounted) setState(() => _loading = false);
     }
@@ -121,7 +153,8 @@ class _CreateEntryPageState extends ConsumerState<CreateEntryPage> {
         actions: [
           TextButton(
             onPressed: _loading ? null : _submit,
-            child: const Text('Сохранить', style: TextStyle(color: AppColors.primary)),
+            child: const Text('Сохранить',
+                style: TextStyle(color: AppColors.primary)),
           ),
         ],
       ),
@@ -153,13 +186,16 @@ class _CreateEntryPageState extends ConsumerState<CreateEntryPage> {
             Row(
               children: [
                 const Text('Фото',
-                    style: TextStyle(fontWeight: FontWeight.w600, fontSize: 14)),
+                    style:
+                        TextStyle(fontWeight: FontWeight.w600, fontSize: 14)),
                 const Spacer(),
                 TextButton.icon(
                   onPressed: _showPickerSheet,
-                  icon: const Icon(Icons.add_photo_alternate_outlined, size: 18),
+                  icon:
+                      const Icon(Icons.add_photo_alternate_outlined, size: 18),
                   label: const Text('Добавить'),
-                  style: TextButton.styleFrom(foregroundColor: AppColors.primary),
+                  style:
+                      TextButton.styleFrom(foregroundColor: AppColors.primary),
                 ),
               ],
             ),
@@ -182,7 +218,8 @@ class _CreateEntryPageState extends ConsumerState<CreateEntryPage> {
                             border: Border.all(color: AppColors.border),
                             borderRadius: BorderRadius.circular(10),
                           ),
-                          child: const Icon(Icons.add, color: AppColors.textSecondary),
+                          child: const Icon(Icons.add,
+                              color: AppColors.textSecondary),
                         ),
                       );
                     }
@@ -205,7 +242,8 @@ class _CreateEntryPageState extends ConsumerState<CreateEntryPage> {
                                 color: Colors.black54,
                                 shape: BoxShape.circle,
                               ),
-                              child: const Icon(Icons.close, size: 14, color: Colors.white),
+                              child: const Icon(Icons.close,
+                                  size: 14, color: Colors.white),
                             ),
                           ),
                         ),
@@ -224,10 +262,11 @@ class _CreateEntryPageState extends ConsumerState<CreateEntryPage> {
               spacing: 8,
               children: _moods
                   .map((m) => GestureDetector(
-                        onTap: () => setState(
-                            () => _selectedMood = _selectedMood == m.$1 ? null : m.$1),
+                        onTap: () => setState(() => _selectedMood =
+                            _selectedMood == m.$1 ? null : m.$1),
                         child: Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 12, vertical: 6),
                           decoration: BoxDecoration(
                             color: _selectedMood == m.$1
                                 ? AppColors.primary
@@ -261,7 +300,8 @@ class _CreateEntryPageState extends ConsumerState<CreateEntryPage> {
             ],
             const SizedBox(height: AppSpacing.xl),
             if (_loading)
-              const Center(child: CircularProgressIndicator(color: AppColors.primary)),
+              const Center(
+                  child: CircularProgressIndicator(color: AppColors.primary)),
           ],
         ),
       ),

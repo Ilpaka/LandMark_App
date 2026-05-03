@@ -36,14 +36,15 @@ class ProximityService {
     await _notifs.initialize(
       const InitializationSettings(android: androidInit, iOS: iosInit),
     );
-    await _notifs.resolvePlatformSpecificImplementation<
+    await _notifs
+        .resolvePlatformSpecificImplementation<
             AndroidFlutterLocalNotificationsPlugin>()
         ?.createNotificationChannel(const AndroidNotificationChannel(
-      'proximity',
-      'Рядом с местами',
-      description: 'Уведомления при приближении к избранным местам',
-      importance: Importance.defaultImportance,
-    ));
+          'proximity',
+          'Рядом с местами',
+          description: 'Уведомления при приближении к избранным местам',
+          importance: Importance.defaultImportance,
+        ));
   }
 
   Future<bool> requestPermission() async {
@@ -80,8 +81,8 @@ class ProximityService {
 
   void _onPosition(Position pos) {
     for (final place in watchedPlaces) {
-      final dist =
-          _haversine(pos.latitude, pos.longitude, place.latitude, place.longitude);
+      final dist = _haversine(
+          pos.latitude, pos.longitude, place.latitude, place.longitude);
       if (dist <= _kRadiusMeters) {
         _maybeNotify(place);
       }
@@ -116,10 +117,7 @@ class ProximityService {
     final dLat = _toRad(lat2 - lat1);
     final dLon = _toRad(lon2 - lon1);
     final a = sin(dLat / 2) * sin(dLat / 2) +
-        cos(_toRad(lat1)) *
-            cos(_toRad(lat2)) *
-            sin(dLon / 2) *
-            sin(dLon / 2);
+        cos(_toRad(lat1)) * cos(_toRad(lat2)) * sin(dLon / 2) * sin(dLon / 2);
     return r * 2 * atan2(sqrt(a), sqrt(1 - a));
   }
 

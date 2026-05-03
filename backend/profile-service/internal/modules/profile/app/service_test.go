@@ -74,6 +74,30 @@ func (m *mockStore) UpsertPrivacy(_ context.Context, s domain.PrivacySettings) (
 	return &s, nil
 }
 
+func (m *mockStore) Follow(_ context.Context, _ uuid.UUID, _ uuid.UUID) error {
+	return nil
+}
+
+func (m *mockStore) Unfollow(_ context.Context, _ uuid.UUID, _ uuid.UUID) error {
+	return nil
+}
+
+func (m *mockStore) IsFollowing(_ context.Context, _ uuid.UUID, _ uuid.UUID) (bool, error) {
+	return false, nil
+}
+
+func (m *mockStore) ListFollowers(_ context.Context, _ uuid.UUID, _ int) ([]domain.Profile, error) {
+	return nil, nil
+}
+
+func (m *mockStore) ListFollowing(_ context.Context, _ uuid.UUID, _ int) ([]domain.Profile, error) {
+	return nil, nil
+}
+
+func (m *mockStore) FollowCounts(_ context.Context, _ uuid.UUID) (int, int, error) {
+	return 0, 0, nil
+}
+
 func newSvc(st *mockStore) *app.Service {
 	return &app.Service{Store: st}
 }
@@ -96,11 +120,22 @@ func TestGetProfile_Existing(t *testing.T) {
 	}
 }
 
-func TestGetProfile_NotFound(t *testing.T) {
+func TestGetProfile_BootstrapsWhenMissing(t *testing.T) {
 	st := newMockStore()
-	_, err := newSvc(st).GetProfile(context.Background(), uuid.New())
-	if err != domain.ErrNotFound {
-		t.Fatalf("want ErrNotFound, got %v", err)
+	uid := uuid.New()
+
+	p, err := newSvc(st).GetProfile(context.Background(), uid)
+	if err != nil {
+		t.Fatalf("unexpected error: %v", err)
+	}
+	if p.UserID != uid {
+		t.Fatalf("got UserID %s, want %s", p.UserID, uid)
+	}
+	if p.DisplayName != "User" {
+		t.Errorf("got DisplayName %q, want %q", p.DisplayName, "User")
+	}
+	if _, ok := st.profiles[uid]; !ok {
+		t.Error("expected profile to be persisted by bootstrap")
 	}
 }
 

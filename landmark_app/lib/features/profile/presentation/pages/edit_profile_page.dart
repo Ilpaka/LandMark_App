@@ -18,11 +18,15 @@ class EditProfilePage extends ConsumerStatefulWidget {
 
 class _EditProfilePageState extends ConsumerState<EditProfilePage> {
   final _formKey = GlobalKey<FormState>();
-  late final _nicknameCtrl = TextEditingController(text: widget.profile?.nickname ?? '');
-  late final _displayNameCtrl = TextEditingController(text: widget.profile?.displayName ?? '');
+  late final _nicknameCtrl =
+      TextEditingController(text: widget.profile?.nickname ?? '');
+  late final _displayNameCtrl =
+      TextEditingController(text: widget.profile?.displayName ?? '');
   late final _bioCtrl = TextEditingController(text: widget.profile?.bio ?? '');
-  late final _cityCtrl = TextEditingController(text: widget.profile?.city ?? '');
-  late final _countryCtrl = TextEditingController(text: widget.profile?.country ?? '');
+  late final _cityCtrl =
+      TextEditingController(text: widget.profile?.city ?? '');
+  late final _countryCtrl =
+      TextEditingController(text: widget.profile?.country ?? '');
   bool _loading = false;
   File? _avatarFile;
   String? _newAvatarId;
@@ -39,7 +43,8 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage> {
 
   Future<void> _pickAvatar() async {
     final picker = ImagePicker();
-    final picked = await picker.pickImage(source: ImageSource.gallery, maxWidth: 512, imageQuality: 85);
+    final picked = await picker.pickImage(
+        source: ImageSource.gallery, maxWidth: 512, imageQuality: 85);
     if (picked == null) return;
     setState(() => _avatarFile = File(picked.path));
     try {
@@ -61,13 +66,15 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage> {
     setState(() => _loading = true);
     try {
       await ref.read(myProfileProvider.notifier).save(
-        nickname: _nicknameCtrl.text.trim(),
-        displayName: _displayNameCtrl.text.trim(),
-        bio: _bioCtrl.text.trim().isEmpty ? null : _bioCtrl.text.trim(),
-        city: _cityCtrl.text.trim().isEmpty ? null : _cityCtrl.text.trim(),
-        country: _countryCtrl.text.trim().isEmpty ? null : _countryCtrl.text.trim(),
-        avatarMediaId: _newAvatarId,
-      );
+            nickname: _nicknameCtrl.text.trim(),
+            displayName: _displayNameCtrl.text.trim(),
+            bio: _bioCtrl.text.trim().isEmpty ? null : _bioCtrl.text.trim(),
+            city: _cityCtrl.text.trim().isEmpty ? null : _cityCtrl.text.trim(),
+            country: _countryCtrl.text.trim().isEmpty
+                ? null
+                : _countryCtrl.text.trim(),
+            avatarMediaId: _newAvatarId,
+          );
       if (mounted) Navigator.of(context).pop();
     } catch (e) {
       if (mounted) {
@@ -91,7 +98,9 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage> {
         actions: [
           TextButton(
             onPressed: _loading ? null : _save,
-            child: const Text('Сохранить', style: TextStyle(color: AppColors.primary, fontWeight: FontWeight.w600)),
+            child: const Text('Сохранить',
+                style: TextStyle(
+                    color: AppColors.primary, fontWeight: FontWeight.w600)),
           ),
         ],
       ),
@@ -107,15 +116,17 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage> {
                   children: [
                     CircleAvatar(
                       radius: 48,
-                      backgroundColor: AppColors.primary.withValues(alpha: 0.15),
+                      backgroundColor:
+                          AppColors.primary.withValues(alpha: 0.15),
                       backgroundImage: _avatarFile != null
                           ? FileImage(_avatarFile!) as ImageProvider
                           : null,
                       child: _avatarFile == null
                           ? Text(
                               (widget.profile?.displayName.isNotEmpty == true
-                                  ? widget.profile!.displayName[0]
-                                  : '?').toUpperCase(),
+                                      ? widget.profile!.displayName[0]
+                                      : '?')
+                                  .toUpperCase(),
                               style: const TextStyle(
                                 fontSize: 36,
                                 color: AppColors.primary,
@@ -133,7 +144,8 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage> {
                           color: AppColors.primary,
                           shape: BoxShape.circle,
                         ),
-                        child: const Icon(Icons.camera_alt, size: 16, color: Colors.white),
+                        child: const Icon(Icons.camera_alt,
+                            size: 16, color: Colors.white),
                       ),
                     ),
                   ],
@@ -141,8 +153,8 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage> {
               ),
             ),
             const SizedBox(height: 20),
-            _field(_nicknameCtrl, 'Никнейм', required: true,
-                hint: 'Только буквы, цифры, _'),
+            _field(_nicknameCtrl, 'Никнейм',
+                required: true, hint: 'Только буквы, цифры, _'),
             const SizedBox(height: 12),
             _field(_displayNameCtrl, 'Отображаемое имя', required: true),
             const SizedBox(height: 12),
@@ -153,7 +165,8 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage> {
             _field(_countryCtrl, 'Страна'),
             if (_loading) ...[
               const SizedBox(height: 24),
-              const Center(child: CircularProgressIndicator(color: AppColors.primary)),
+              const Center(
+                  child: CircularProgressIndicator(color: AppColors.primary)),
             ],
           ],
         ),
@@ -161,7 +174,9 @@ class _EditProfilePageState extends ConsumerState<EditProfilePage> {
     );
   }
 
-  Widget _field(TextEditingController ctrl, String label, {
+  Widget _field(
+    TextEditingController ctrl,
+    String label, {
     bool required = false,
     int maxLines = 1,
     String? hint,

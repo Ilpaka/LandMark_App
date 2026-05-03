@@ -37,11 +37,14 @@ class TripDetailPage extends ConsumerWidget {
             onSelected: (v) => _onMenuAction(context, ref, v),
             itemBuilder: (_) => [
               if (trip.status == 'planned')
-                const PopupMenuItem(value: 'start', child: Text('Начать поездку')),
+                const PopupMenuItem(
+                    value: 'start', child: Text('Начать поездку')),
               if (trip.status == 'in_progress')
-                const PopupMenuItem(value: 'complete', child: Text('Завершить поездку')),
+                const PopupMenuItem(
+                    value: 'complete', child: Text('Завершить поездку')),
               if (trip.status == 'completed' || trip.status == 'in_progress')
-                const PopupMenuItem(value: 'plan', child: Text('Вернуть в запланированные')),
+                const PopupMenuItem(
+                    value: 'plan', child: Text('Вернуть в запланированные')),
               const PopupMenuItem(
                 value: 'delete',
                 child: Text('Удалить', style: TextStyle(color: Colors.red)),
@@ -51,7 +54,8 @@ class TripDetailPage extends ConsumerWidget {
         ],
       ),
       body: stopsAsync.when(
-        loading: () => const Center(child: CircularProgressIndicator(color: AppColors.primary)),
+        loading: () => const Center(
+            child: CircularProgressIndicator(color: AppColors.primary)),
         error: (e, _) => Center(child: Text('Ошибка: $e')),
         data: (stops) => Column(
           children: [
@@ -104,7 +108,8 @@ class TripDetailPage extends ConsumerWidget {
     );
   }
 
-  Future<void> _onMenuAction(BuildContext context, WidgetRef ref, String action) async {
+  Future<void> _onMenuAction(
+      BuildContext context, WidgetRef ref, String action) async {
     if (action == 'delete') {
       final confirm = await showDialog<bool>(
         context: context,
@@ -112,9 +117,12 @@ class TripDetailPage extends ConsumerWidget {
           title: const Text('Удалить поездку?'),
           content: const Text('Все остановки будут удалены.'),
           actions: [
-            TextButton(onPressed: () => Navigator.pop(ctx, false), child: const Text('Отмена')),
+            TextButton(
+                onPressed: () => Navigator.pop(ctx, false),
+                child: const Text('Отмена')),
             ElevatedButton(
-              style: ElevatedButton.styleFrom(backgroundColor: Colors.red, foregroundColor: Colors.white),
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.red, foregroundColor: Colors.white),
               onPressed: () => Navigator.pop(ctx, true),
               child: const Text('Удалить'),
             ),
@@ -154,11 +162,11 @@ class TripDetailPage extends ConsumerWidget {
   }
 
   String _statusLabel(String status) => switch (status) {
-    'in_progress' => 'Поездка началась!',
-    'completed' => 'Поездка завершена',
-    'planned' => 'Поездка возвращена в запланированные',
-    _ => 'Статус обновлён',
-  };
+        'in_progress' => 'Поездка началась!',
+        'completed' => 'Поездка завершена',
+        'planned' => 'Поездка возвращена в запланированные',
+        _ => 'Статус обновлён',
+      };
 
   Future<void> _optimizeRoute(BuildContext context, WidgetRef ref) async {
     try {
@@ -193,22 +201,39 @@ class TripDetailPage extends ConsumerWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              TextField(controller: titleCtrl, decoration: const InputDecoration(labelText: 'Название *')),
+              TextField(
+                  controller: titleCtrl,
+                  decoration: const InputDecoration(labelText: 'Название *')),
               const SizedBox(height: 8),
               Row(children: [
-                Expanded(child: TextField(controller: latCtrl, decoration: const InputDecoration(labelText: 'Широта *'), keyboardType: TextInputType.number)),
+                Expanded(
+                    child: TextField(
+                        controller: latCtrl,
+                        decoration:
+                            const InputDecoration(labelText: 'Широта *'),
+                        keyboardType: TextInputType.number)),
                 const SizedBox(width: 8),
-                Expanded(child: TextField(controller: lngCtrl, decoration: const InputDecoration(labelText: 'Долгота *'), keyboardType: TextInputType.number)),
+                Expanded(
+                    child: TextField(
+                        controller: lngCtrl,
+                        decoration:
+                            const InputDecoration(labelText: 'Долгота *'),
+                        keyboardType: TextInputType.number)),
               ]),
               const SizedBox(height: 8),
-              TextField(controller: noteCtrl, decoration: const InputDecoration(labelText: 'Заметка')),
+              TextField(
+                  controller: noteCtrl,
+                  decoration: const InputDecoration(labelText: 'Заметка')),
             ],
           ),
         ),
         actions: [
-          TextButton(onPressed: () => Navigator.pop(ctx), child: const Text('Отмена')),
+          TextButton(
+              onPressed: () => Navigator.pop(ctx), child: const Text('Отмена')),
           ElevatedButton(
-            style: ElevatedButton.styleFrom(backgroundColor: AppColors.primary, foregroundColor: Colors.white),
+            style: ElevatedButton.styleFrom(
+                backgroundColor: AppColors.primary,
+                foregroundColor: Colors.white),
             onPressed: () {
               final title = titleCtrl.text.trim();
               final lat = double.tryParse(latCtrl.text.trim());
@@ -216,11 +241,13 @@ class TripDetailPage extends ConsumerWidget {
               if (title.isEmpty || lat == null || lng == null) return;
               Navigator.pop(ctx);
               ref.read(stopsProvider(trip.id).notifier).addStop(
-                title: title,
-                latitude: lat,
-                longitude: lng,
-                note: noteCtrl.text.trim().isEmpty ? null : noteCtrl.text.trim(),
-              );
+                    title: title,
+                    latitude: lat,
+                    longitude: lng,
+                    note: noteCtrl.text.trim().isEmpty
+                        ? null
+                        : noteCtrl.text.trim(),
+                  );
             },
             child: const Text('Добавить'),
           ),
@@ -240,7 +267,8 @@ class _StopsMap extends StatelessWidget {
     final center = stops.isNotEmpty
         ? LatLng(
             stops.map((s) => s.latitude).reduce((a, b) => a + b) / stops.length,
-            stops.map((s) => s.longitude).reduce((a, b) => a + b) / stops.length,
+            stops.map((s) => s.longitude).reduce((a, b) => a + b) /
+                stops.length,
           )
         : const LatLng(55.7558, 37.6173);
 
@@ -263,20 +291,31 @@ class _StopsMap extends StatelessWidget {
           ],
         ),
         MarkerLayer(
-          markers: stops.asMap().entries.map((e) => Marker(
-            point: LatLng(e.value.latitude, e.value.longitude),
-            width: 32, height: 32,
-            child: Container(
-              decoration: BoxDecoration(
-                color: e.value.visitedAt != null ? Colors.green : AppColors.primary,
-                shape: BoxShape.circle,
-                border: Border.all(color: Colors.white, width: 2),
-              ),
-              child: Center(
-                child: Text('${e.key + 1}', style: const TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.bold)),
-              ),
-            ),
-          )).toList(),
+          markers: stops
+              .asMap()
+              .entries
+              .map((e) => Marker(
+                    point: LatLng(e.value.latitude, e.value.longitude),
+                    width: 32,
+                    height: 32,
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: e.value.visitedAt != null
+                            ? Colors.green
+                            : AppColors.primary,
+                        shape: BoxShape.circle,
+                        border: Border.all(color: Colors.white, width: 2),
+                      ),
+                      child: Center(
+                        child: Text('${e.key + 1}',
+                            style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 12,
+                                fontWeight: FontWeight.bold)),
+                      ),
+                    ),
+                  ))
+              .toList(),
         ),
       ],
     );
@@ -287,7 +326,8 @@ class _StopCard extends ConsumerWidget {
   final TripStop stop;
   final String tripId;
   final int index;
-  const _StopCard({required this.stop, required this.tripId, required this.index});
+  const _StopCard(
+      {required this.stop, required this.tripId, required this.index});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -301,12 +341,18 @@ class _StopCard extends ConsumerWidget {
           foregroundColor: Colors.white,
           child: visited ? const Icon(Icons.check, size: 18) : Text('$index'),
         ),
-        title: Text(stop.title, style: const TextStyle(fontWeight: FontWeight.w600)),
-        subtitle: stop.note != null ? Text(stop.note!, style: const TextStyle(fontSize: 12)) : null,
+        title: Text(stop.title,
+            style: const TextStyle(fontWeight: FontWeight.w600)),
+        subtitle: stop.note != null
+            ? Text(stop.note!, style: const TextStyle(fontSize: 12))
+            : null,
         trailing: !visited
             ? TextButton(
-                child: const Text('Посещено', style: TextStyle(color: AppColors.primary, fontSize: 12)),
-                onPressed: () => ref.read(stopsProvider(tripId).notifier).markVisited(stop.id),
+                child: const Text('Посещено',
+                    style: TextStyle(color: AppColors.primary, fontSize: 12)),
+                onPressed: () => ref
+                    .read(stopsProvider(tripId).notifier)
+                    .markVisited(stop.id),
               )
             : const Icon(Icons.check_circle, color: Colors.green),
       ),
@@ -326,9 +372,11 @@ class _EmptyStops extends StatelessWidget {
         children: [
           Icon(Icons.route, size: 64, color: AppColors.textSecondary),
           SizedBox(height: 12),
-          Text('Нет остановок', style: TextStyle(fontSize: 18, color: AppColors.textSecondary)),
+          Text('Нет остановок',
+              style: TextStyle(fontSize: 18, color: AppColors.textSecondary)),
           SizedBox(height: 8),
-          Text('Добавьте точки маршрута', style: TextStyle(color: AppColors.textSecondary)),
+          Text('Добавьте точки маршрута',
+              style: TextStyle(color: AppColors.textSecondary)),
         ],
       ),
     );

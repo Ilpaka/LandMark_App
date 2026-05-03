@@ -41,10 +41,13 @@ final routerProvider = Provider<GoRouter>((ref) {
       GoRoute(
         path: '/auth/otp',
         builder: (_, state) {
-          final extra = state.extra as Map<String, String>?;
+          final extra = state.extra as Map<String, String?>?;
           return OtpPage(
             verificationId: extra?['verification_id'] ?? '',
             kind: extra?['kind'] ?? 'registration',
+            devCode: extra?['dev_code'],
+            email: extra?['email'],
+            password: extra?['password'],
           );
         },
       ),
@@ -52,16 +55,26 @@ final routerProvider = Provider<GoRouter>((ref) {
         builder: (_, __, child) => MainShellPage(child: child),
         routes: [
           GoRoute(path: '/main/map', builder: (_, __) => const MapPage()),
-          GoRoute(path: '/main/trips', builder: (_, __) => const TripsListPage()),
-          GoRoute(path: '/main/journal', builder: (_, __) => const JournalFeedPage()),
-          GoRoute(path: '/main/feed', builder: (_, __) => const PublicTripsPage()),
-          GoRoute(path: '/main/favorites', builder: (_, __) => const FavoritesListPage()),
-          GoRoute(path: '/main/notifications', builder: (_, __) => const NotificationsFeedPage()),
-          GoRoute(path: '/main/profile', builder: (_, __) => const ProfilePage()),
-          GoRoute(path: '/main/admin', builder: (_, __) => const AdminDashboardPage()),
+          GoRoute(
+              path: '/main/trips', builder: (_, __) => const TripsListPage()),
+          GoRoute(
+              path: '/main/journal',
+              builder: (_, __) => const JournalFeedPage()),
+          GoRoute(
+              path: '/main/feed', builder: (_, __) => const PublicTripsPage()),
+          GoRoute(
+              path: '/main/favorites',
+              builder: (_, __) => const FavoritesListPage()),
+          GoRoute(
+              path: '/main/notifications',
+              builder: (_, __) => const NotificationsFeedPage()),
+          GoRoute(
+              path: '/main/profile', builder: (_, __) => const ProfilePage()),
+          GoRoute(
+              path: '/main/admin',
+              builder: (_, __) => const AdminDashboardPage()),
         ],
       ),
     ],
   );
 });
-

@@ -16,8 +16,11 @@ final authRepositoryProvider = Provider<AuthRepository>((ref) {
 
 // Auth state
 sealed class AuthState {}
+
 class AuthStateUnknown extends AuthState {}
+
 class AuthStateUnauthenticated extends AuthState {}
+
 class AuthStateAuthenticated extends AuthState {
   final User user;
   AuthStateAuthenticated(this.user);
@@ -32,10 +35,13 @@ class AuthNotifier extends StateNotifier<AuthState> {
 
   Future<void> _bootstrap() async {
     final user = await _repo.tryRestoreSession();
-    state = user == null ? AuthStateUnauthenticated() : AuthStateAuthenticated(user);
+    state = user == null
+        ? AuthStateUnauthenticated()
+        : AuthStateAuthenticated(user);
   }
 
-  Future<String> register(String name, String email, String password) async {
+  Future<({String verificationId, String? devCode})> register(
+      String name, String email, String password) async {
     return _repo.register(name: name, email: email, password: password);
   }
 
@@ -48,7 +54,8 @@ class AuthNotifier extends StateNotifier<AuthState> {
     state = AuthStateAuthenticated(user);
   }
 
-  Future<void> forgotPassword(String email) => _repo.forgotPassword(email: email);
+  Future<void> forgotPassword(String email) =>
+      _repo.forgotPassword(email: email);
 
   Future<void> signOut() async {
     await _repo.signOut();

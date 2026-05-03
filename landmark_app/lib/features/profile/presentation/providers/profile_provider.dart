@@ -7,7 +7,8 @@ final profileApiProvider = Provider((ref) {
   return ProfileApi(ref.read(apiClientProvider).dio);
 });
 
-final myProfileProvider = AsyncNotifierProvider<MyProfileNotifier, UserProfile?>(
+final myProfileProvider =
+    AsyncNotifierProvider<MyProfileNotifier, UserProfile?>(
   MyProfileNotifier.new,
 );
 
@@ -24,13 +25,13 @@ class MyProfileNotifier extends AsyncNotifier<UserProfile?> {
     String? avatarMediaId,
   }) async {
     final updated = await ref.read(profileApiProvider).updateMe(
-      nickname: nickname,
-      displayName: displayName,
-      bio: bio,
-      city: city,
-      country: country,
-      avatarMediaId: avatarMediaId,
-    );
+          nickname: nickname,
+          displayName: displayName,
+          bio: bio,
+          city: city,
+          country: country,
+          avatarMediaId: avatarMediaId,
+        );
     state = AsyncValue.data(updated);
   }
 }

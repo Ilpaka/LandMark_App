@@ -39,7 +39,9 @@ class WelcomePage extends StatelessWidget {
                     borderRadius: BorderRadius.all(AppRadius.md),
                   ),
                 ),
-                child: const Text('Начать', style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
+                child: const Text('Начать',
+                    style:
+                        TextStyle(fontSize: 16, fontWeight: FontWeight.w600)),
               ),
               const SizedBox(height: AppSpacing.md),
               TextButton(

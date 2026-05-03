@@ -7,32 +7,32 @@ import (
 )
 
 type Entry struct {
-	ID         uuid.UUID
-	AuthorID   uuid.UUID
-	TripID     *uuid.UUID
-	PlaceID    *uuid.UUID
-	Latitude   *float64
-	Longitude  *float64
-	Title      *string
-	Body       string
-	Mood       *string
-	Rating     *int
-	OccurredAt time.Time
-	MediaIDs   []uuid.UUID
-	Tags       []string
-	CreatedAt  time.Time
-	UpdatedAt  time.Time
-	DeletedAt  *time.Time
+	ID         uuid.UUID   `json:"id"`
+	AuthorID   uuid.UUID   `json:"author_id"`
+	TripID     *uuid.UUID  `json:"trip_id"`
+	PlaceID    *uuid.UUID  `json:"place_id"`
+	Latitude   *float64    `json:"latitude"`
+	Longitude  *float64    `json:"longitude"`
+	Title      *string     `json:"title"`
+	Body       string      `json:"body"`
+	Mood       *string     `json:"mood"`
+	Rating     *int        `json:"rating"`
+	OccurredAt time.Time   `json:"occurred_at"`
+	MediaIDs   []uuid.UUID `json:"media_ids"`
+	Tags       []string    `json:"tags"`
+	CreatedAt  time.Time   `json:"created_at"`
+	UpdatedAt  time.Time   `json:"updated_at"`
+	DeletedAt  *time.Time  `json:"deleted_at,omitempty"`
 }
 
 type Reaction struct {
-	EntryID   uuid.UUID
-	AuthorID  uuid.UUID
-	Emoji     string
-	CreatedAt time.Time
+	EntryID   uuid.UUID `json:"entry_id"`
+	AuthorID  uuid.UUID `json:"author_id"`
+	Emoji     string    `json:"emoji"`
+	CreatedAt time.Time `json:"created_at"`
 }
 
 type ReactionCount struct {
-	Emoji string
-	Count int
+	Emoji string `json:"emoji"`
+	Count int    `json:"count"`
 }

@@ -21,8 +21,9 @@ class NotificationsFeedPage extends ConsumerWidget {
           feedAsync.valueOrNull?.unreadCount != null &&
                   feedAsync.valueOrNull!.unreadCount > 0
               ? TextButton(
-                  onPressed: () =>
-                      ref.read(notificationsFeedProvider.notifier).markAllRead(),
+                  onPressed: () => ref
+                      .read(notificationsFeedProvider.notifier)
+                      .markAllRead(),
                   child: const Text('Прочитать все',
                       style: TextStyle(color: AppColors.primary)),
                 )

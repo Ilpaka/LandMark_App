@@ -19,7 +19,8 @@ class NotifPrefsNotifier extends AsyncNotifier<NotificationPreferences> {
   Future<void> toggle(String key, bool value) async {
     final current = state.valueOrNull;
     if (current == null) return;
-    final updated = await ref.read(settingsApiProvider).updateNotifPrefs({key: value});
+    final updated =
+        await ref.read(settingsApiProvider).updateNotifPrefs({key: value});
     state = AsyncValue.data(updated);
   }
 }

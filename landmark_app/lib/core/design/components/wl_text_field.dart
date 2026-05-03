@@ -37,7 +37,8 @@ class WlTextField extends StatelessWidget {
         hintText: hint,
         suffixIcon: showToggle
             ? IconButton(
-                icon: Icon(obscureText ? Icons.visibility_off : Icons.visibility),
+                icon:
+                    Icon(obscureText ? Icons.visibility_off : Icons.visibility),
                 onPressed: onToggleObscure,
               )
             : null,

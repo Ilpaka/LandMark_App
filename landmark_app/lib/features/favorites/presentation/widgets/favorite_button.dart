@@ -24,9 +24,11 @@ class FavoriteButton extends ConsumerWidget {
       loading: () => SizedBox(
         width: size,
         height: size,
-        child: const CircularProgressIndicator(strokeWidth: 2, color: AppColors.primary),
+        child: const CircularProgressIndicator(
+            strokeWidth: 2, color: AppColors.primary),
       ),
-      error: (_, __) => Icon(Icons.favorite_border, size: size, color: Colors.grey),
+      error: (_, __) =>
+          Icon(Icons.favorite_border, size: size, color: Colors.grey),
       data: (isFav) => GestureDetector(
         onTap: () => ref.read(isFavoriteProvider(key).notifier).toggle(),
         child: Icon(
