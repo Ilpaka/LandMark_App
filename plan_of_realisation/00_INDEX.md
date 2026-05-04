@@ -99,4 +99,4 @@ LandMark_App/
 - [ ] auth-service запускается через `docker compose up auth-service` (см. `05` + `16`)
 - [ ] api-gateway маршрутизирует `/v1/auth/*` в auth-service (см. `14`)
 - [ ] Flutter проект собирается: `flutter run` показывает экран Splash → Welcome (см. `20`)
-- [ ] Полная цепочка регистрация → подтверждение OTP → вход → `/v1/auth/me` работает end-to-end
+- [ ] Полная цепочка регистрация → подтверждение OTP → вход → `/v1/auth/me ` работает end-to-end
