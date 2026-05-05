@@ -204,6 +204,7 @@ type Store interface {
 	GetAccountByEmailNorm(ctx context.Context, tx pgx.Tx, emailNorm string) (*Account, error)
 	GetAccountByID(ctx context.Context, tx pgx.Tx, id uuid.UUID) (*Account, error)
 	GetAccountByPhoneE164(ctx context.Context, tx pgx.Tx, phoneE164 string) (*Account, error)
+	ListAccounts(ctx context.Context, tx pgx.Tx, query string, limit, offset int) ([]Account, error)
 	InsertAccount(ctx context.Context, tx pgx.Tx, email, emailNorm string, status domain.AccountStatus, role domain.Role) (*Account, error)
 	InsertAccountPhone(ctx context.Context, tx pgx.Tx, phoneE164 string, status domain.AccountStatus, role domain.Role) (*Account, error)
 	MarkAccountPhoneVerified(ctx context.Context, tx pgx.Tx, id uuid.UUID, at time.Time) error

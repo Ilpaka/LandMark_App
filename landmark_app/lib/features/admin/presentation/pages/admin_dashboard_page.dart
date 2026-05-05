@@ -5,6 +5,7 @@ import '../providers/moderation_provider.dart';
 import '../../data/api/moderation_api.dart';
 import 'moderation_queue_page.dart';
 import 'categories_page.dart';
+import 'users_page.dart';
 
 class AdminDashboardPage extends ConsumerWidget {
   const AdminDashboardPage({super.key});
@@ -84,9 +85,10 @@ class AdminDashboardPage extends ConsumerWidget {
           _ActionCard(
             icon: Icons.people_outline,
             title: 'Пользователи',
-            subtitle: 'Управление аккаунтами',
-            onTap: () => ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text('Раздел в разработке')),
+            subtitle: 'Поиск, блокировка, force-logout, аудит',
+            onTap: () => Navigator.push<void>(
+              context,
+              MaterialPageRoute(builder: (_) => const UsersPage()),
             ),
           ),
         ],

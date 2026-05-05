@@ -550,6 +550,24 @@ func mergeMeta(m map[string]any, k, v string) map[string]any {
 	return m
 }
 
+// AdminListUsers returns accounts with optional fragment match against
+// email_normalized / phone_e164. Requires admin actor.
+func (s *Service) AdminListUsers(ctx context.Context, actorID uuid.UUID, query string, limit, offset int) ([]ports.Account, error) {
+	var list []ports.Account
+	err := s.Store.WithTx(ctx, func(ctx context.Context, tx pgx.Tx) error {
+		actor, err := s.Store.GetAccountByID(ctx, tx, actorID)
+		if err != nil {
+			return err
+		}
+		if actor.Role != domain.RoleAdmin {
+			return domain.ErrForbidden
+		}
+		list, err = s.Store.ListAccounts(ctx, tx, query, limit, offset)
+		return err
+	})
+	return list, err
+}
+
 func (s *Service) AdminListAudit(ctx context.Context, actorID, target uuid.UUID, limit, offset int) ([]ports.AuditEvent, error) {
 	var list []ports.AuditEvent
 	err := s.Store.WithTx(ctx, func(ctx context.Context, tx pgx.Tx) error {

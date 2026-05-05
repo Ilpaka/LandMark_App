@@ -11,9 +11,11 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/jackc/pgx/v5/pgxpool"
 
+	"github.com/ilpaka/landmark_app/backend/auth-service/internal/bootstrap"
 	"github.com/ilpaka/landmark_app/backend/auth-service/internal/config"
 	"github.com/ilpaka/landmark_app/backend/auth-service/internal/httpserver"
 	redisx "github.com/ilpaka/landmark_app/backend/auth-service/internal/modules/auth/adapters/redis"
+	"github.com/ilpaka/landmark_app/backend/auth-service/internal/modules/auth/crypto"
 	"github.com/ilpaka/landmark_app/backend/auth-service/internal/modules/auth/worker"
 	"github.com/ilpaka/landmark_app/backend/pkg/observability"
 )
@@ -62,6 +64,24 @@ func main() {
 	if err != nil {
 		log.Error("http mount", "err", err)
 		os.Exit(1)
+	}
+
+	// Idempotent demo-admin bootstrap. Skipped silently when env vars are
+	// empty; non-fatal on error so a transient DB hiccup doesn't crash boot.
+	hasher := &crypto.Argon2idHasher{
+		Pepper:      cfg.Pepper,
+		MemoryKiB:   cfg.ArgonMemoryKiB,
+		Time:        cfg.ArgonIterations,
+		Parallelism: cfg.ArgonParallelism,
+		SaltLength:  16,
+		KeyLength:   32,
+	}
+	adminEmail := os.Getenv("ADMIN_BOOTSTRAP_EMAIL")
+	adminPass := os.Getenv("ADMIN_BOOTSTRAP_PASSWORD")
+	if err := bootstrap.EnsureAdmin(ctx, pool, hasher, adminEmail, adminPass); err != nil {
+		log.Warn("admin bootstrap failed", "err", err, "email", adminEmail)
+	} else if adminEmail != "" {
+		log.Info("admin bootstrap ok", "email", adminEmail)
 	}
 
 	srvCtx, cancel := context.WithCancel(context.Background())

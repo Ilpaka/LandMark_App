@@ -46,7 +46,11 @@ class AppTheme {
         style: ElevatedButton.styleFrom(
           backgroundColor: AppColors.primary,
           foregroundColor: Colors.white,
-          minimumSize: const Size(double.infinity, 52),
+          // Только высота. Ширина — intrinsic, чтобы кнопка не крашила layout
+          // в Row (unbounded width). Если кнопка должна тянуться по ширине
+          // на форме — оборачивайте её в SizedBox(width: double.infinity, …)
+          // или ставьте на форме вместо Row, либо используйте Expanded.
+          minimumSize: const Size(0, 52),
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(AppRadius.md),
           ),

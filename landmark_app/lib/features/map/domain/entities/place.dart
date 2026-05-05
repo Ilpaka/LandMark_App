@@ -1,3 +1,5 @@
+enum PlaceVisibility { public, private }
+
 class Place {
   final String id;
   final String title;
@@ -8,6 +10,7 @@ class Place {
   final String? country;
   final String? coverMediaId;
   final List<String> categorySlugs;
+  final PlaceVisibility visibility;
 
   const Place({
     required this.id,
@@ -19,7 +22,10 @@ class Place {
     this.country,
     this.coverMediaId,
     this.categorySlugs = const [],
+    this.visibility = PlaceVisibility.public,
   });
+
+  bool get isPrivate => visibility == PlaceVisibility.private;
 
   factory Place.fromJson(Map<String, dynamic> j) => Place(
         id: j['id'] as String,
@@ -32,6 +38,9 @@ class Place {
         coverMediaId: j['cover_media_id'] as String?,
         categorySlugs:
             (j['category_slugs'] as List<dynamic>?)?.cast<String>() ?? [],
+        visibility: (j['visibility'] as String?) == 'private'
+            ? PlaceVisibility.private
+            : PlaceVisibility.public,
       );
 }
 

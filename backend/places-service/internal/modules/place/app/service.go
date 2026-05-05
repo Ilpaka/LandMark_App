@@ -10,10 +10,17 @@ import (
 )
 
 type Service struct {
-	Store ports.Store
+	Store      ports.Store
+	Moderation ports.ModerationClient
 }
 
 func New(store ports.Store) *Service { return &Service{Store: store} }
+
+// NewWithModeration собирает сервис с клиентом модерации, чтобы Submit мог
+// постaвить место в очередь админ-панели.
+func NewWithModeration(store ports.Store, mod ports.ModerationClient) *Service {
+	return &Service{Store: store, Moderation: mod}
+}
 
 func (s *Service) ListCategories(ctx context.Context) ([]domain.Category, error) {
 	return s.Store.ListCategories(ctx)
@@ -34,12 +41,16 @@ func (s *Service) GetPlace(ctx context.Context, id uuid.UUID, userID *uuid.UUID,
 	if p == nil {
 		return nil, domain.ErrNotFound
 	}
-	// Guest and regular user only see published (or their own)
-	if p.Status != domain.StatusPublished {
-		if userID == nil {
+	isOwner := userID != nil && p.AuthorID != nil && *p.AuthorID == *userID
+	// Приватные — только владельцу (модерации не подлежат, админу не видны).
+	if p.Visibility == domain.VisibilityPrivate {
+		if !isOwner {
 			return nil, domain.ErrNotFound
 		}
-		isOwner := p.AuthorID != nil && *p.AuthorID == *userID
+		return p, nil
+	}
+	// Публичные неопубликованные — владельцу или админу.
+	if p.Status != domain.StatusPublished {
 		if !isOwner && role != "admin" {
 			return nil, domain.ErrNotFound
 		}
@@ -48,19 +59,37 @@ func (s *Service) GetPlace(ctx context.Context, id uuid.UUID, userID *uuid.UUID,
 }
 
 func (s *Service) CreateDraft(ctx context.Context, userID uuid.UUID, title string, lat, lng float64) (*domain.Place, error) {
+	return s.CreatePlace(ctx, userID, title, lat, lng, domain.VisibilityPublic)
+}
+
+// CreatePlace создаёт место с явной видимостью.
+//   - public: status=draft, дальше нужно дернуть Submit → модерация → published.
+//   - private: status сразу = published, published_at = now(), показывается
+//     только автору (фильтрация в ListPlaces по ViewerID).
+func (s *Service) CreatePlace(ctx context.Context, userID uuid.UUID, title string, lat, lng float64, visibility domain.PlaceVisibility) (*domain.Place, error) {
 	if title == "" {
 		return nil, domain.ErrBadRequest
 	}
+	if visibility != domain.VisibilityPublic && visibility != domain.VisibilityPrivate {
+		return nil, domain.ErrBadRequest
+	}
+	now := time.Now()
 	p := domain.Place{
-		ID:        uuid.New(),
-		Title:     title,
-		Latitude:  lat,
-		Longitude: lng,
-		AuthorID:  &userID,
-		Status:    domain.StatusDraft,
-		Source:    "user",
-		CreatedAt: time.Now(),
-		UpdatedAt: time.Now(),
+		ID:         uuid.New(),
+		Title:      title,
+		Latitude:   lat,
+		Longitude:  lng,
+		AuthorID:   &userID,
+		Source:     "user",
+		Visibility: visibility,
+		CreatedAt:  now,
+		UpdatedAt:  now,
+	}
+	if visibility == domain.VisibilityPrivate {
+		p.Status = domain.StatusPublished
+		p.PublishedAt = &now
+	} else {
+		p.Status = domain.StatusDraft
 	}
 	return s.Store.InsertPlace(ctx, p)
 }
@@ -93,17 +122,33 @@ func (s *Service) Submit(ctx context.Context, userID, placeID uuid.UUID) error {
 	if p.AuthorID == nil || *p.AuthorID != userID {
 		return domain.ErrForbidden
 	}
+	// Приватные места модерации не подлежат — они видны только автору.
+	if p.Visibility == domain.VisibilityPrivate {
+		return domain.ErrBadRequest
+	}
 	if p.Status != domain.StatusDraft {
 		return domain.ErrConflict
 	}
 	if err := s.Store.SetPlaceStatus(ctx, placeID, domain.StatusPendingModeration, nil); err != nil {
 		return err
 	}
-	return s.Store.InsertOutbox(ctx, "place", "place_submitted", map[string]any{
+	// Outbox — для аудита/будущего async-publisher'а.
+	_ = s.Store.InsertOutbox(ctx, "place", "place_submitted", map[string]any{
 		"place_id":     placeID.String(),
 		"author_id":    userID.String(),
 		"submitted_at": time.Now(),
 	})
+	// Синхронно ставим в очередь moderation-service. Без этого админ-панель
+	// никогда не увидит место. Идемпотентно на стороне moderation.
+	if s.Moderation != nil {
+		if err := s.Moderation.SubmitPlace(ctx, placeID, userID); err != nil {
+			// Откатываем статус — иначе место «застрянет» в pending без записи
+			// в очереди модерации.
+			_ = s.Store.SetPlaceStatus(ctx, placeID, domain.StatusDraft, nil)
+			return err
+		}
+	}
+	return nil
 }
 
 func (s *Service) ApprovePlace(ctx context.Context, placeID, adminID uuid.UUID) error {

@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"strings"
 	"time"
 
 	"github.com/google/uuid"
@@ -64,6 +65,51 @@ SELECT id, email, email_normalized, phone_e164, phone_verified_at, status, role,
        blocked_at, blocked_reason, deleted_at, created_at, updated_at
 FROM auth_accounts WHERE phone_e164=$1 AND deleted_at IS NULL`, phoneE164)
 	return scanAccount(row)
+}
+
+// ListAccounts returns active and blocked accounts (deleted_at IS NULL),
+// optionally filtered by a fragment matched against email_normalized or
+// phone_e164. Limit is clamped to [1,200], offset to [0, +inf).
+func (s *Store) ListAccounts(
+	ctx context.Context, tx pgx.Tx,
+	query string, limit, offset int,
+) ([]ports.Account, error) {
+	if limit <= 0 {
+		limit = 50
+	}
+	if limit > 200 {
+		limit = 200
+	}
+	if offset < 0 {
+		offset = 0
+	}
+	q := strings.TrimSpace(strings.ToLower(query))
+
+	rows, err := tx.Query(ctx, `
+SELECT id, email, email_normalized, phone_e164, phone_verified_at, status, role, email_verified_at, last_login_at,
+       blocked_at, blocked_reason, deleted_at, created_at, updated_at
+FROM auth_accounts
+WHERE deleted_at IS NULL
+  AND ($1 = '' OR email_normalized LIKE '%' || $1 || '%' OR phone_e164 LIKE '%' || $1 || '%')
+ORDER BY created_at DESC
+LIMIT $2 OFFSET $3`, q, limit, offset)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+
+	out := make([]ports.Account, 0, limit)
+	for rows.Next() {
+		acc, err := scanAccount(rows)
+		if err != nil {
+			return nil, err
+		}
+		out = append(out, *acc)
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
 func nullStrPtr(ns sql.NullString) *string {

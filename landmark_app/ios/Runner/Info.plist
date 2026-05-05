@@ -4,6 +4,14 @@
 <dict>
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Приложению нужен доступ к геолокации, чтобы показывать ближайшие места и работать с картой.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Приложению нужен доступ к геолокации, чтобы уведомлять о близости избранных мест в фоне.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Доступ нужен, чтобы прикреплять фотографии к местам и записям в журнале.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Доступ к камере нужен, чтобы делать снимки для записей и предлагаемых мест.</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>

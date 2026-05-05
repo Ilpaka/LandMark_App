@@ -93,6 +93,9 @@ services:
       SMTP_HOST: mailhog
       SMTP_PORT: "1025"
       SMTP_FROM: no-reply@landmark.local
+      # Demo admin account, idempotently reconciled on each start.
+      ADMIN_BOOTSTRAP_EMAIL: ${ADMIN_BOOTSTRAP_EMAIL:-admin@apple.com}
+      ADMIN_BOOTSTRAP_PASSWORD: ${ADMIN_BOOTSTRAP_PASSWORD:-AdminPass123456}
     volumes:
       - authkeys:/app/keys
     depends_on:
@@ -115,6 +118,7 @@ services:
       <<: *common-env
       DATABASE_URL: postgres://landmark:landmark@postgres:5432/landmark?sslmode=disable&search_path=places,public
       MEDIA_SERVICE_URL: http://media-service:8080
+      MODERATION_SERVICE_URL: http://moderation-service:8080
       OTEL_SERVICE_NAME: landmark-places-api
     depends_on: { postgres: {condition: service_healthy}, redis: {condition: service_healthy} }
 

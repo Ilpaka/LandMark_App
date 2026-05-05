@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" modified="2026-05-05" agent="LandMark App generator" version="22.0.0">
+  <diagram id="d1" name="Diagram">
+    <mxGraphModel dx="1422" dy="754" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2076" pageHeight="1240" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" value="LandMark App · топология сервисов и инфраструктуры" style="text;html=1;align=center;verticalAlign=middle;fontSize=22;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="60" y="24" width="1956" height="40" />
+        </mxCell>
+        <mxCell id="subtitle" value="9 микросервисов в один ряд · API Gateway проксирует 10 префиксов /v1/* · PostgreSQL schema-per-service · Redis для OTP/rate-limit · MinIO для медиа." style="text;html=1;align=center;verticalAlign=middle;fontSize=12;fontStyle=2;fontColor=#555;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="60" y="66" width="1956" height="22" />
+        </mxCell>
+        <mxCell id="client" value="&lt;b&gt;Mobile App&lt;/b&gt;&lt;br&gt;&lt;font color=#777&gt;Flutter · iOS / Android · landmark_app/&lt;/font&gt;" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=13;verticalAlign=middle;align=center;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="908" y="110" width="260" height="70" />
+        </mxCell>
+        <mxCell id="gw" value="&lt;b&gt;API Gateway&lt;/b&gt; · :8080 · Go/gin · JWT RS256 · CORS&lt;br&gt;&lt;font color=#cfd9e2&gt;/v1/auth · /v1/admin · /v1/profile · /v1/places · /v1/trips · /v1/journal · /v1/media · /v1/favorites · /v1/notifications · /v1/moderation&lt;/font&gt;" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;fillColor=#23445d;strokeColor=#0a1f33;fontColor=#ffffff;fontSize=13;verticalAlign=middle;align=center;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="60" y="230" width="1956" height="80" />
+        </mxCell>
+        <mxCell id="svc_trips" value="&lt;b&gt;trips-service&lt;/b&gt;&lt;br&gt;&lt;font color=#666&gt;Go · :8080&lt;/font&gt;&lt;br&gt;&lt;font color=#444&gt;поездки · stops · маршруты · life-cycle&lt;/font&gt;" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=11;verticalAlign=middle;align=center;spacingLeft=6;spacingRight=6;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="60" y="410" width="196" height="136" />
+        </mxCell>
+        <mxCell id="svc_journal" value="&lt;b&gt;journal-service&lt;/b&gt;&lt;br&gt;&lt;font color=#666&gt;Go · :8080&lt;/font&gt;&lt;br&gt;&lt;font color=#444&gt;записи · теги · реакции · лента c курсором&lt;/font&gt;" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=11;verticalAlign=middle;align=center;spacingLeft=6;spacingRight=6;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="280" y="410" width="196" height="136" />
+        </mxCell>
+        <mxCell id="svc_media" value="&lt;b&gt;media-service&lt;/b&gt;&lt;br&gt;&lt;font color=#666&gt;Go · :8080&lt;/font&gt;&lt;br&gt;&lt;font color=#444&gt;presigned URL · метаданные · MinIO&lt;/font&gt;" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;verticalAlign=middle;align=center;spacingLeft=6;spacingRight=6;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="500" y="410" width="196" height="136" />
+        </mxCell>
+        <mxCell id="svc_places" value="&lt;b&gt;places-service&lt;/b&gt;&lt;br&gt;&lt;font color=#666&gt;Go · :8080&lt;/font&gt;&lt;br&gt;&lt;font color=#444&gt;места · категории · FTS · seed POI&lt;/font&gt;" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;verticalAlign=middle;align=center;spacingLeft=6;spacingRight=6;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="720" y="410" width="196" height="136" />
+        </mxCell>
+        <mxCell id="svc_moderation" value="&lt;b&gt;moderation-service&lt;/b&gt;&lt;br&gt;&lt;font color=#666&gt;Go · :8080&lt;/font&gt;&lt;br&gt;&lt;font color=#444&gt;очередь · approve/reject · статистика админов&lt;/font&gt;" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;fillColor=#e6e6e6;strokeColor=#666666;fontSize=11;verticalAlign=middle;align=center;spacingLeft=6;spacingRight=6;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="940" y="410" width="196" height="136" />
+        </mxCell>
+        <mxCell id="svc_profile" value="&lt;b&gt;profile-service&lt;/b&gt;&lt;br&gt;&lt;font color=#666&gt;Go · :8080&lt;/font&gt;&lt;br&gt;&lt;font color=#444&gt;профиль · ник · приватность · подписки&lt;/font&gt;" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;verticalAlign=middle;align=center;spacingLeft=6;spacingRight=6;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1160" y="410" width="196" height="136" />
+        </mxCell>
+        <mxCell id="svc_auth" value="&lt;b&gt;auth-service&lt;/b&gt;&lt;br&gt;&lt;font color=#666&gt;Go · :8080&lt;/font&gt;&lt;br&gt;&lt;font color=#444&gt;регистрация · OTP · JWT · сессии · admin&lt;/font&gt;" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=11;verticalAlign=middle;align=center;spacingLeft=6;spacingRight=6;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1380" y="410" width="196" height="136" />
+        </mxCell>
+        <mxCell id="svc_favorites" value="&lt;b&gt;favorites-service&lt;/b&gt;&lt;br&gt;&lt;font color=#666&gt;Go · :8080&lt;/font&gt;&lt;br&gt;&lt;font color=#444&gt;коллекции · избранные места/поездки/записи&lt;/font&gt;" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;fillColor=#d4e1f5;strokeColor=#7794c4;fontSize=11;verticalAlign=middle;align=center;spacingLeft=6;spacingRight=6;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1600" y="410" width="196" height="136" />
+        </mxCell>
+        <mxCell id="svc_notifications" value="&lt;b&gt;notifications-service&lt;/b&gt;&lt;br&gt;&lt;font color=#666&gt;Go · :8080&lt;/font&gt;&lt;br&gt;&lt;font color=#444&gt;лента · push-токены · preferences&lt;/font&gt;" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;fillColor=#f5d5e0;strokeColor=#a64575;fontSize=11;verticalAlign=middle;align=center;spacingLeft=6;spacingRight=6;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1820" y="410" width="196" height="136" />
+        </mxCell>
+        <mxCell id="pg" value="&lt;b&gt;PostgreSQL 16&lt;/b&gt; · schema-per-service&lt;br&gt;&lt;font color=#777&gt;auth · profile · places · trips · journal · media · favorites · notifications · moderation&lt;/font&gt;" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=12;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=12;verticalAlign=middle;align=center;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="60" y="626" width="1956" height="110" />
+        </mxCell>
+        <mxCell id="redis" value="&lt;b&gt;Redis 7&lt;/b&gt;&lt;br&gt;&lt;font color=#777&gt;OTP · rate-limit · refresh-token revocation&lt;/font&gt;" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=12;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12;verticalAlign=middle;align=center;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1338" y="816" width="280" height="100" />
+        </mxCell>
+        <mxCell id="minio" value="&lt;b&gt;MinIO (S3)&lt;/b&gt;&lt;br&gt;&lt;font color=#777&gt;bucket landmark-media · presigned PUT/GET&lt;/font&gt;" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=12;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=12;verticalAlign=middle;align=center;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="458" y="816" width="280" height="100" />
+        </mxCell>
+        <mxCell id="otel" value="&lt;b&gt;Observability&lt;/b&gt;&lt;br&gt;&lt;font color=#777&gt;Prometheus · Grafana · OpenTelemetry · pkg/observability&lt;/font&gt;" style="rounded=1;arcSize=10;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=12;verticalAlign=middle;align=center;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1736" y="816" width="280" height="100" />
+        </mxCell>
+        <mxCell id="te_2000" value="HTTPS · JSON" style="endArrow=block;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;strokeColor=#23445d;strokeWidth=2;fontSize=10;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitDx=0;exitDy=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="client" target="gw">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="te_2001" value="" style="endArrow=block;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;strokeColor=#5a6f86;strokeWidth=1.5;fontSize=10;exitX=0.0556;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="gw" target="svc_trips">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="te_2002" value="" style="endArrow=block;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;strokeColor=#5a6f86;strokeWidth=1.5;fontSize=10;exitX=0.1667;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="gw" target="svc_journal">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="te_2003" value="" style="endArrow=block;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;strokeColor=#5a6f86;strokeWidth=1.5;fontSize=10;exitX=0.2778;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="gw" target="svc_media">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="te_2004" value="" style="endArrow=block;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;strokeColor=#5a6f86;strokeWidth=1.5;fontSize=10;exitX=0.3889;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="gw" target="svc_places">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="te_2005" value="" style="endArrow=block;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;strokeColor=#5a6f86;strokeWidth=1.5;fontSize=10;exitX=0.5000;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="gw" target="svc_moderation">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="te_2006" value="" style="endArrow=block;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;strokeColor=#5a6f86;strokeWidth=1.5;fontSize=10;exitX=0.6111;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="gw" target="svc_profile">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="te_2007" value="" style="endArrow=block;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;strokeColor=#5a6f86;strokeWidth=1.5;fontSize=10;exitX=0.7222;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="gw" target="svc_auth">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="te_2008" value="" style="endArrow=block;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;strokeColor=#5a6f86;strokeWidth=1.5;fontSize=10;exitX=0.8333;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="gw" target="svc_favorites">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="te_2009" value="" style="endArrow=block;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;strokeColor=#5a6f86;strokeWidth=1.5;fontSize=10;exitX=0.9444;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="gw" target="svc_notifications">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="te_2010" value="trip lookup" style="endArrow=open;html=1;rounded=0;dashed=1;dashPattern=8 4;edgeStyle=orthogonalEdgeStyle;strokeColor=#1a76c8;strokeWidth=1.5;fontSize=10;fontColor=#1a76c8;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;verticalAlign=bottom;labelBackgroundColor=#ffffff;labelBorderColor=none;" edge="1" parent="1" source="svc_journal" target="svc_trips">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="te_2011" value="media URL" style="endArrow=open;html=1;rounded=0;dashed=1;dashPattern=8 4;edgeStyle=orthogonalEdgeStyle;strokeColor=#1a76c8;strokeWidth=1.5;fontSize=10;fontColor=#1a76c8;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;labelBackgroundColor=#ffffff;labelBorderColor=none;" edge="1" parent="1" source="svc_journal" target="svc_media">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="te_2012" value="media URL" style="endArrow=open;html=1;rounded=0;dashed=1;dashPattern=8 4;edgeStyle=orthogonalEdgeStyle;strokeColor=#1a76c8;strokeWidth=1.5;fontSize=10;fontColor=#1a76c8;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;verticalAlign=bottom;labelBackgroundColor=#ffffff;labelBorderColor=none;" edge="1" parent="1" source="svc_places" target="svc_media">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="te_2013" value="approve/reject" style="endArrow=open;html=1;rounded=0;dashed=1;dashPattern=8 4;edgeStyle=orthogonalEdgeStyle;strokeColor=#1a76c8;strokeWidth=1.5;fontSize=10;fontColor=#1a76c8;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;verticalAlign=bottom;labelBackgroundColor=#ffffff;labelBorderColor=none;" edge="1" parent="1" source="svc_moderation" target="svc_places">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="te_2014" value="nickname reserve" style="endArrow=open;html=1;rounded=0;dashed=1;dashPattern=8 4;edgeStyle=orthogonalEdgeStyle;strokeColor=#1a76c8;strokeWidth=1.5;fontSize=10;fontColor=#1a76c8;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;verticalAlign=bottom;labelBackgroundColor=#ffffff;labelBorderColor=none;" edge="1" parent="1" source="svc_auth" target="svc_profile">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="te_2015" value="" style="endArrow=none;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;strokeColor=#9c8b3a;strokeWidth=1.4;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.0501;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="svc_trips" target="pg">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="te_2016" value="" style="endArrow=none;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;strokeColor=#9c8b3a;strokeWidth=1.4;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.1626;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="svc_journal" target="pg">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="te_2017" value="" style="endArrow=none;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;strokeColor=#9c8b3a;strokeWidth=1.4;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.2751;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="svc_media" target="pg">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="te_2018" value="" style="endArrow=none;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;strokeColor=#9c8b3a;strokeWidth=1.4;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.3875;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="svc_places" target="pg">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="te_2019" value="" style="endArrow=none;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;strokeColor=#9c8b3a;strokeWidth=1.4;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5000;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="svc_moderation" target="pg">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="te_2020" value="" style="endArrow=none;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;strokeColor=#9c8b3a;strokeWidth=1.4;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.6125;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="svc_profile" target="pg">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="te_2021" value="" style="endArrow=none;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;strokeColor=#9c8b3a;strokeWidth=1.4;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.7249;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="svc_auth" target="pg">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="te_2022" value="" style="endArrow=none;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;strokeColor=#9c8b3a;strokeWidth=1.4;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.8374;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="svc_favorites" target="pg">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="te_2023" value="" style="endArrow=none;html=1;rounded=0;edgeStyle=orthogonalEdgeStyle;strokeColor=#9c8b3a;strokeWidth=1.4;fontSize=10;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.9499;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="svc_notifications" target="pg">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="te_2024" value="OTP · rate-limit" style="endArrow=none;html=1;rounded=1;dashed=0;edgeStyle=none;strokeColor=#b85450;strokeWidth=1.8;fontSize=10;fontColor=#b85450;labelBackgroundColor=#ffffff;labelBorderColor=none;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="svc_auth" target="redis">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="2046" y="478" />
+              <mxPoint x="2046" y="866" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="te_2025" value="presigned PUT/GET" style="endArrow=none;html=1;rounded=1;dashed=0;edgeStyle=none;strokeColor=#82b366;strokeWidth=1.8;fontSize=10;fontColor=#82b366;labelBackgroundColor=#ffffff;labelBorderColor=none;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="svc_media" target="minio">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="30" y="478" />
+              <mxPoint x="30" y="866" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="te_2026" value="OTLP · /metrics (все сервисы)" style="endArrow=none;html=1;rounded=0;dashed=1;dashPattern=2 4;edgeStyle=orthogonalEdgeStyle;strokeColor=#aaaaaa;strokeWidth=1;fontSize=9;fontColor=#888;labelBackgroundColor=#ffffff;labelBorderColor=none;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="svc_notifications" target="otel">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="legend" value="&lt;b&gt;Легенда&lt;/b&gt;&amp;nbsp;&amp;nbsp;&lt;font color=#23445d&gt;━━ HTTPS Mobile→Gateway / Gateway→service&lt;/font&gt;&amp;nbsp;&amp;nbsp;&lt;font color=#1a76c8&gt;┄┄ внутренний HTTP между сервисами&lt;/font&gt;&lt;br&gt;&lt;font color=#9c8b3a&gt;━━ SQL · search_path schema&lt;/font&gt;&amp;nbsp;&amp;nbsp;&lt;font color=#b85450&gt;━━ Redis&lt;/font&gt;&amp;nbsp;&amp;nbsp;&lt;font color=#82b366&gt;━━ MinIO/S3&lt;/font&gt;&amp;nbsp;&amp;nbsp;&lt;font color=#888&gt;┄ OTel · /metrics (все сервисы)&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#cccccc;verticalAlign=middle;align=center;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="60" y="1168" width="1956" height="56" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

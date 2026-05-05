@@ -83,8 +83,17 @@ func (s *Store) GetCategoryBySlug(ctx context.Context, slug string) (*domain.Cat
 
 func (s *Store) ListPlaces(ctx context.Context, f domain.ListFilter) ([]domain.Place, error) {
 	args := []any{}
-	where := "WHERE p.status = 'published'"
+	// Видимость:
+	//   - публичные опубликованные — всем;
+	//   - приватные — только их автору (любого статуса, обычно сразу published).
+	where := "WHERE ((p.status = 'published' AND p.visibility = 'public')"
 	argN := 1
+	if f.ViewerID != nil {
+		where += fmt.Sprintf(" OR (p.visibility = 'private' AND p.author_id = $%d)", argN)
+		args = append(args, *f.ViewerID)
+		argN++
+	}
+	where += ")"
 
 	if f.BBox != nil {
 		where += fmt.Sprintf(" AND p.latitude BETWEEN $%d AND $%d AND p.longitude BETWEEN $%d AND $%d",
@@ -117,7 +126,7 @@ func (s *Store) ListPlaces(ctx context.Context, f domain.ListFilter) ([]domain.P
 	q := fmt.Sprintf(`
         SELECT p.id, p.title, p.description, p.latitude, p.longitude,
                p.address, p.city, p.country, p.author_id, p.status,
-               p.reject_reason, p.source, p.cover_media_id, p.published_at, p.created_at, p.updated_at,
+               p.reject_reason, p.source, p.visibility, p.cover_media_id, p.published_at, p.created_at, p.updated_at,
                COALESCE(
                  (SELECT array_agg(pc.category_id ORDER BY pc.category_id) FROM places_place_categories pc WHERE pc.place_id = p.id),
                  ARRAY[]::uuid[]
@@ -138,7 +147,7 @@ func (s *Store) ListPlaces(ctx context.Context, f domain.ListFilter) ([]domain.P
 		if err := rows.Scan(
 			&p.ID, &p.Title, &p.Description, &p.Latitude, &p.Longitude,
 			&p.Address, &p.City, &p.Country, &p.AuthorID, &p.Status,
-			&p.RejectReason, &p.Source, &p.CoverMediaID, &p.PublishedAt, &p.CreatedAt, &p.UpdatedAt,
+			&p.RejectReason, &p.Source, &p.Visibility, &p.CoverMediaID, &p.PublishedAt, &p.CreatedAt, &p.UpdatedAt,
 			&p.CategoryIDs,
 		); err != nil {
 			return nil, err
@@ -153,7 +162,7 @@ func (s *Store) GetPlace(ctx context.Context, id uuid.UUID) (*domain.Place, erro
 	err := s.db.QueryRow(ctx, `
         SELECT p.id, p.title, p.description, p.latitude, p.longitude,
                p.address, p.city, p.country, p.author_id, p.status,
-               p.reject_reason, p.source, p.cover_media_id, p.published_at, p.created_at, p.updated_at,
+               p.reject_reason, p.source, p.visibility, p.cover_media_id, p.published_at, p.created_at, p.updated_at,
                COALESCE(
                  (SELECT array_agg(pc.category_id ORDER BY pc.category_id) FROM places_place_categories pc WHERE pc.place_id = p.id),
                  ARRAY[]::uuid[]
@@ -162,7 +171,7 @@ func (s *Store) GetPlace(ctx context.Context, id uuid.UUID) (*domain.Place, erro
 	).Scan(
 		&p.ID, &p.Title, &p.Description, &p.Latitude, &p.Longitude,
 		&p.Address, &p.City, &p.Country, &p.AuthorID, &p.Status,
-		&p.RejectReason, &p.Source, &p.CoverMediaID, &p.PublishedAt, &p.CreatedAt, &p.UpdatedAt,
+		&p.RejectReason, &p.Source, &p.Visibility, &p.CoverMediaID, &p.PublishedAt, &p.CreatedAt, &p.UpdatedAt,
 		&p.CategoryIDs,
 	)
 	if errors.Is(err, pgx.ErrNoRows) {
@@ -175,18 +184,22 @@ func (s *Store) GetPlace(ctx context.Context, id uuid.UUID) (*domain.Place, erro
 }
 
 func (s *Store) InsertPlace(ctx context.Context, p domain.Place) (*domain.Place, error) {
+	if p.Visibility == "" {
+		p.Visibility = domain.VisibilityPublic
+	}
+	publishedAt := p.PublishedAt
 	err := s.db.QueryRow(ctx, `
         INSERT INTO places_places (id, title, description, latitude, longitude, address, city, country,
-            author_id, status, source, cover_media_id, created_at, updated_at)
-        VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14)
+            author_id, status, source, visibility, cover_media_id, published_at, created_at, updated_at)
+        VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15,$16)
         RETURNING id, title, description, latitude, longitude, address, city, country,
-                  author_id, status, reject_reason, source, cover_media_id, published_at, created_at, updated_at`,
+                  author_id, status, reject_reason, source, visibility, cover_media_id, published_at, created_at, updated_at`,
 		p.ID, p.Title, p.Description, p.Latitude, p.Longitude, p.Address, p.City, p.Country,
-		p.AuthorID, string(p.Status), p.Source, p.CoverMediaID, p.CreatedAt, p.UpdatedAt,
+		p.AuthorID, string(p.Status), p.Source, string(p.Visibility), p.CoverMediaID, publishedAt, p.CreatedAt, p.UpdatedAt,
 	).Scan(
 		&p.ID, &p.Title, &p.Description, &p.Latitude, &p.Longitude,
 		&p.Address, &p.City, &p.Country, &p.AuthorID, &p.Status,
-		&p.RejectReason, &p.Source, &p.CoverMediaID, &p.PublishedAt, &p.CreatedAt, &p.UpdatedAt,
+		&p.RejectReason, &p.Source, &p.Visibility, &p.CoverMediaID, &p.PublishedAt, &p.CreatedAt, &p.UpdatedAt,
 	)
 	p.CategoryIDs = []uuid.UUID{}
 	return &p, err
@@ -209,13 +222,13 @@ func (s *Store) UpdatePlace(ctx context.Context, id uuid.UUID, updates map[strin
 	err := s.db.QueryRow(ctx,
 		fmt.Sprintf(`UPDATE places_places SET %s WHERE id = $%d
                      RETURNING id, title, description, latitude, longitude, address, city, country,
-                               author_id, status, reject_reason, source, cover_media_id, published_at, created_at, updated_at`,
+                               author_id, status, reject_reason, source, visibility, cover_media_id, published_at, created_at, updated_at`,
 			strings.Join(sets, ", "), argN),
 		args...,
 	).Scan(
 		&p.ID, &p.Title, &p.Description, &p.Latitude, &p.Longitude,
 		&p.Address, &p.City, &p.Country, &p.AuthorID, &p.Status,
-		&p.RejectReason, &p.Source, &p.CoverMediaID, &p.PublishedAt, &p.CreatedAt, &p.UpdatedAt,
+		&p.RejectReason, &p.Source, &p.Visibility, &p.CoverMediaID, &p.PublishedAt, &p.CreatedAt, &p.UpdatedAt,
 	)
 	if errors.Is(err, pgx.ErrNoRows) {
 		return nil, domain.ErrNotFound

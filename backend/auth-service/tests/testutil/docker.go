@@ -120,7 +120,7 @@ func RequireAuthDocker(t *testing.T) *AuthDockerDeps {
 	t.Cleanup(func() { _ = pgRes.Close() })
 	_ = pgRes.Expire(180)
 
-	dsn := fmt.Sprintf("postgres://landmark:landmark@%s/landmark?sslmode=disable", pgRes.GetHostPort("5432/tcp"))
+	dsn := fmt.Sprintf("postgres://landmark:landmark@%s/landmark?sslmode=disable&search_path=auth,public", pgRes.GetHostPort("5432/tcp"))
 	if err := dp.Retry(func() error {
 		db, err := sql.Open("pgx", dsn)
 		if err != nil {

@@ -16,6 +16,13 @@ const (
 	StatusArchived          PlaceStatus = "archived"
 )
 
+type PlaceVisibility string
+
+const (
+	VisibilityPublic  PlaceVisibility = "public"
+	VisibilityPrivate PlaceVisibility = "private"
+)
+
 type Category struct {
 	ID        uuid.UUID `json:"id"`
 	Slug      string    `json:"slug"`
@@ -40,6 +47,7 @@ type Place struct {
 	Status       PlaceStatus `json:"status"`
 	RejectReason *string     `json:"reject_reason"`
 	Source       string      `json:"source"`
+	Visibility   PlaceVisibility `json:"visibility"`
 	CoverMediaID *uuid.UUID  `json:"cover_media_id"`
 	CategoryIDs  []uuid.UUID `json:"category_ids"`
 	PublishedAt  *time.Time  `json:"published_at"`
@@ -59,4 +67,7 @@ type ListFilter struct {
 	CategorySlug string
 	Q            string
 	Limit        int
+	// ViewerID — если задан, к выдаче добавляются приватные места этого
+	// пользователя. Если nil, отдаются только публичные опубликованные.
+	ViewerID *uuid.UUID
 }

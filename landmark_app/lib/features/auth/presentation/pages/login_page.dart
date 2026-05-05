@@ -18,15 +18,24 @@ class LoginPage extends ConsumerStatefulWidget {
 }
 
 class _LoginPageState extends ConsumerState<LoginPage> {
-  static const _demoEmail = 'demo@apple.com';
-  static const _demoPassword = 'DemoPass123456';
+  static const _userEmail = 'demo@apple.com';
+  static const _userPassword = 'DemoPass123456';
+  static const _adminEmail = 'admin@apple.com';
+  static const _adminPassword = 'AdminPass123456';
 
   final _formKey = GlobalKey<FormState>();
-  final _emailCtrl = TextEditingController(text: _demoEmail);
-  final _passwordCtrl = TextEditingController(text: _demoPassword);
+  final _emailCtrl = TextEditingController(text: _userEmail);
+  final _passwordCtrl = TextEditingController(text: _userPassword);
   bool _obscure = true;
   bool _loading = false;
   String? _error;
+
+  void _fillDemo({required bool admin}) {
+    setState(() {
+      _emailCtrl.text = admin ? _adminEmail : _userEmail;
+      _passwordCtrl.text = admin ? _adminPassword : _userPassword;
+    });
+  }
 
   @override
   void dispose() {
@@ -113,23 +122,62 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                     border: Border.all(
                         color: AppColors.primary.withValues(alpha: 0.3)),
                   ),
-                  child: Row(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Icon(Icons.info_outline, size: 18),
-                      const SizedBox(width: AppSpacing.sm),
-                      const Expanded(
-                        child: Text(
-                          'Демо-аккаунт: demo@apple.com / DemoPass123456',
-                          style: AppTypography.bodySmall,
-                        ),
+                      const Row(
+                        children: [
+                          Icon(Icons.info_outline, size: 18),
+                          SizedBox(width: AppSpacing.sm),
+                          Expanded(
+                            child: Text(
+                              'Демо-доступ',
+                              style: AppTypography.bodySmall,
+                            ),
+                          ),
+                        ],
                       ),
-                      TextButton(
-                        onPressed: () {
-                          _emailCtrl.text = _demoEmail;
-                          _passwordCtrl.text = _demoPassword;
-                          setState(() {});
-                        },
-                        child: const Text('Вставить'),
+                      const SizedBox(height: AppSpacing.sm),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: OutlinedButton.icon(
+                              icon: const Icon(Icons.person_outline,
+                                  size: 16),
+                              label: const Text('User'),
+                              style: OutlinedButton.styleFrom(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius:
+                                      BorderRadius.circular(8),
+                                ),
+                              ),
+                              onPressed: () => _fillDemo(admin: false),
+                            ),
+                          ),
+                          const SizedBox(width: AppSpacing.sm),
+                          Expanded(
+                            child: OutlinedButton.icon(
+                              icon: const Icon(Icons.shield_outlined,
+                                  size: 16),
+                              label: const Text('Admin'),
+                              style: OutlinedButton.styleFrom(
+                                foregroundColor: AppColors.primary,
+                                side: const BorderSide(
+                                    color: AppColors.primary),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius:
+                                      BorderRadius.circular(8),
+                                ),
+                              ),
+                              onPressed: () => _fillDemo(admin: true),
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: AppSpacing.xs),
+                      const Text(
+                        'User: demo@apple.com  ·  Admin: admin@apple.com',
+                        style: AppTypography.bodySmall,
                       ),
                     ],
                   ),

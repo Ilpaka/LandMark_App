@@ -7,6 +7,12 @@ import (
 	"github.com/ilpaka/landmark_app/backend/places-service/internal/modules/place/domain"
 )
 
+// ModerationClient — внешний клиент к moderation-service. Внедряется в
+// сервис, чтобы Submit мог поставить место в очередь модерации.
+type ModerationClient interface {
+	SubmitPlace(ctx context.Context, placeID, submittedBy uuid.UUID) error
+}
+
 type Store interface {
 	ListCategories(ctx context.Context) ([]domain.Category, error)
 	GetCategoryBySlug(ctx context.Context, slug string) (*domain.Category, error)

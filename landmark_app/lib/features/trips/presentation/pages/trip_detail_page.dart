@@ -3,6 +3,7 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:latlong2/latlong.dart';
 import '../../../../core/design/tokens.dart';
+import '../../../../core/widgets/location_picker_page.dart';
 import '../../domain/entities/trip.dart';
 import '../../domain/entities/stop.dart';
 import '../providers/stops_provider.dart';
@@ -188,71 +189,210 @@ class TripDetailPage extends ConsumerWidget {
   }
 
   void _showAddStopDialog(BuildContext context, WidgetRef ref) {
-    final titleCtrl = TextEditingController();
-    final latCtrl = TextEditingController();
-    final lngCtrl = TextEditingController();
-    final noteCtrl = TextEditingController();
-
+    // Подбираем стартовый центр карты по уже добавленным остановкам.
+    final stops = ref.read(stopsProvider(trip.id)).maybeWhen(
+          data: (data) => data,
+          orElse: () => const <TripStop>[],
+        );
+    final initial = stops.isNotEmpty
+        ? LatLng(stops.first.latitude, stops.first.longitude)
+        : null;
     showDialog(
       context: context,
-      builder: (ctx) => AlertDialog(
-        title: const Text('Добавить остановку'),
-        content: SingleChildScrollView(
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              TextField(
-                  controller: titleCtrl,
-                  decoration: const InputDecoration(labelText: 'Название *')),
-              const SizedBox(height: 8),
-              Row(children: [
-                Expanded(
-                    child: TextField(
-                        controller: latCtrl,
-                        decoration:
-                            const InputDecoration(labelText: 'Широта *'),
-                        keyboardType: TextInputType.number)),
-                const SizedBox(width: 8),
-                Expanded(
-                    child: TextField(
-                        controller: lngCtrl,
-                        decoration:
-                            const InputDecoration(labelText: 'Долгота *'),
-                        keyboardType: TextInputType.number)),
-              ]),
-              const SizedBox(height: 8),
-              TextField(
-                  controller: noteCtrl,
-                  decoration: const InputDecoration(labelText: 'Заметка')),
-            ],
-          ),
-        ),
-        actions: [
-          TextButton(
-              onPressed: () => Navigator.pop(ctx), child: const Text('Отмена')),
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-                backgroundColor: AppColors.primary,
-                foregroundColor: Colors.white),
-            onPressed: () {
-              final title = titleCtrl.text.trim();
-              final lat = double.tryParse(latCtrl.text.trim());
-              final lng = double.tryParse(lngCtrl.text.trim());
-              if (title.isEmpty || lat == null || lng == null) return;
-              Navigator.pop(ctx);
-              ref.read(stopsProvider(trip.id).notifier).addStop(
-                    title: title,
-                    latitude: lat,
-                    longitude: lng,
-                    note: noteCtrl.text.trim().isEmpty
-                        ? null
-                        : noteCtrl.text.trim(),
-                  );
-            },
-            child: const Text('Добавить'),
-          ),
-        ],
+      builder: (_) => _AddStopDialog(
+        initialCenter: initial,
+        onSubmit: ({
+          required String title,
+          required LatLng coords,
+          String? note,
+        }) {
+          ref.read(stopsProvider(trip.id).notifier).addStop(
+                title: title,
+                latitude: coords.latitude,
+                longitude: coords.longitude,
+                note: note,
+              );
+        },
       ),
+    );
+  }
+}
+
+class _AddStopDialog extends StatefulWidget {
+  const _AddStopDialog({required this.onSubmit, this.initialCenter});
+
+  final LatLng? initialCenter;
+  final void Function({
+    required String title,
+    required LatLng coords,
+    String? note,
+  }) onSubmit;
+
+  @override
+  State<_AddStopDialog> createState() => _AddStopDialogState();
+}
+
+class _AddStopDialogState extends State<_AddStopDialog> {
+  final _titleCtrl = TextEditingController();
+  final _noteCtrl = TextEditingController();
+  LatLng? _coords;
+  bool _showError = false;
+
+  @override
+  void dispose() {
+    _titleCtrl.dispose();
+    _noteCtrl.dispose();
+    super.dispose();
+  }
+
+  Future<void> _pickCoords() async {
+    final picked = await LocationPickerPage.show(
+      context,
+      initial: _coords ?? widget.initialCenter,
+      title: 'Где будет остановка?',
+    );
+    if (!mounted) return;
+    if (picked != null) {
+      setState(() {
+        _coords = picked;
+        _showError = false;
+      });
+    }
+  }
+
+  void _confirm() {
+    final title = _titleCtrl.text.trim();
+    final coords = _coords;
+    if (title.isEmpty || coords == null) {
+      setState(() => _showError = title.isEmpty || coords == null);
+      return;
+    }
+    Navigator.pop(context);
+    widget.onSubmit(
+      title: title,
+      coords: coords,
+      note: _noteCtrl.text.trim().isEmpty ? null : _noteCtrl.text.trim(),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final hasCoords = _coords != null;
+    final coordsBorder = _showError && !hasCoords
+        ? Colors.red
+        : hasCoords
+            ? AppColors.primary
+            : AppColors.border;
+
+    return AlertDialog(
+      title: const Text('Добавить остановку'),
+      content: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            TextField(
+              controller: _titleCtrl,
+              decoration: const InputDecoration(labelText: 'Название *'),
+            ),
+            const SizedBox(height: 12),
+            InkWell(
+              onTap: _pickCoords,
+              borderRadius: BorderRadius.circular(10),
+              child: Container(
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 12, vertical: 12),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(color: coordsBorder, width: 1),
+                ),
+                child: Row(
+                  children: [
+                    Icon(
+                      hasCoords
+                          ? Icons.location_on
+                          : Icons.add_location_alt_outlined,
+                      size: 20,
+                      color: hasCoords
+                          ? AppColors.primary
+                          : AppColors.textPrimary.withValues(alpha: 0.6),
+                    ),
+                    const SizedBox(width: 8),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            hasCoords
+                                ? 'Точка на карте *'
+                                : 'Выбрать точку на карте *',
+                            style: TextStyle(
+                              fontSize: 11,
+                              color: AppColors.textPrimary
+                                  .withValues(alpha: 0.7),
+                            ),
+                          ),
+                          const SizedBox(height: 2),
+                          Text(
+                            hasCoords
+                                ? '${_coords!.latitude.toStringAsFixed(5)}, '
+                                    '${_coords!.longitude.toStringAsFixed(5)}'
+                                : 'Координаты не выбраны',
+                            style: TextStyle(
+                              fontSize: 13,
+                              fontWeight: FontWeight.w600,
+                              color: hasCoords
+                                  ? AppColors.textPrimary
+                                  : AppColors.textPrimary
+                                      .withValues(alpha: 0.5),
+                              fontFeatures: const [
+                                FontFeature.tabularFigures()
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Icon(
+                      hasCoords ? Icons.edit : Icons.chevron_right,
+                      size: 18,
+                      color: AppColors.textPrimary.withValues(alpha: 0.5),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            if (_showError && !hasCoords) ...[
+              const SizedBox(height: 6),
+              const Text(
+                'Поставьте метку на карте',
+                style: TextStyle(fontSize: 12, color: Colors.red),
+              ),
+            ],
+            const SizedBox(height: 12),
+            TextField(
+              controller: _noteCtrl,
+              decoration: const InputDecoration(labelText: 'Заметка'),
+              maxLines: 2,
+            ),
+          ],
+        ),
+      ),
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.pop(context),
+          child: const Text('Отмена'),
+        ),
+        ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: AppColors.primary,
+            foregroundColor: Colors.white,
+          ),
+          onPressed: _confirm,
+          child: const Text('Добавить'),
+        ),
+      ],
     );
   }
 }

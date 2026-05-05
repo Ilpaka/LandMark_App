@@ -2,6 +2,7 @@ package authhttp
 
 import (
 	"net/http"
+	"strconv"
 	"strings"
 	"time"
 
@@ -632,6 +633,72 @@ func (h *Handlers) AdminForceLogout(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"status": "ok"})
 }
 
+// AdminListUsers GET /v1/admin/users — paginated list of users for the admin
+// dashboard. Query: ?q=fragment&limit=50&offset=0.
+func (h *Handlers) AdminListUsers(c *gin.Context) {
+	cl, ok := claimsFromCtx(c)
+	if !ok {
+		c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{"error": "unauthorized"})
+		return
+	}
+	q := c.Query("q")
+	limit := atoiOr(c.Query("limit"), 50)
+	offset := atoiOr(c.Query("offset"), 0)
+
+	users, err := h.Svc.AdminListUsers(c.Request.Context(), cl.Sub, q, limit, offset)
+	if err != nil {
+		writeErr(c, err)
+		return
+	}
+
+	out := make([]gin.H, 0, len(users))
+	for _, u := range users {
+		out = append(out, gin.H{
+			"id":                u.ID.String(),
+			"email":             nilStr(u.Email),
+			"phone_e164":        nilStr(u.PhoneE164),
+			"status":            string(u.Status),
+			"role":              string(u.Role),
+			"email_verified_at": nilTime(u.EmailVerifiedAt),
+			"phone_verified_at": nilTime(u.PhoneVerifiedAt),
+			"blocked_at":        nilTime(u.BlockedAt),
+			"blocked_reason":    nilStr(u.BlockedReason),
+			"last_login_at":     nilTime(u.LastLoginAt),
+			"created_at":        u.CreatedAt.Format(time.RFC3339),
+		})
+	}
+	c.JSON(http.StatusOK, gin.H{
+		"users":  out,
+		"limit":  limit,
+		"offset": offset,
+	})
+}
+
+func atoiOr(s string, def int) int {
+	if s == "" {
+		return def
+	}
+	n, err := strconv.Atoi(s)
+	if err != nil {
+		return def
+	}
+	return n
+}
+
+func nilStr(p *string) any {
+	if p == nil {
+		return nil
+	}
+	return *p
+}
+
+func nilTime(p *time.Time) any {
+	if p == nil {
+		return nil
+	}
+	return p.Format(time.RFC3339)
+}
+
 func (h *Handlers) AdminAudit(c *gin.Context) {
 	cl, ok := claimsFromCtx(c)
 	if !ok {
@@ -648,5 +715,22 @@ func (h *Handlers) AdminAudit(c *gin.Context) {
 		writeErr(c, err)
 		return
 	}
-	c.JSON(http.StatusOK, gin.H{"events": list})
+
+	out := make([]gin.H, 0, len(list))
+	for _, e := range list {
+		var userID any
+		if e.UserID != nil {
+			userID = e.UserID.String()
+		}
+		out = append(out, gin.H{
+			"id":         e.ID.String(),
+			"user_id":    userID,
+			"event_type": e.EventType,
+			"ip":         nilStr(e.IP),
+			"user_agent": nilStr(e.UserAgent),
+			"meta":       e.Meta,
+			"created_at": e.CreatedAt.Format(time.RFC3339),
+		})
+	}
+	c.JSON(http.StatusOK, gin.H{"events": out})
 }

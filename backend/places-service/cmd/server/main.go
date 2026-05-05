@@ -7,6 +7,7 @@ import (
 
 	"github.com/jackc/pgx/v5/pgxpool"
 	"github.com/ilpaka/landmark_app/backend/places-service/internal/config"
+	"github.com/ilpaka/landmark_app/backend/places-service/internal/modules/place/adapters/moderation"
 	"github.com/ilpaka/landmark_app/backend/places-service/internal/modules/place/adapters/postgres"
 	"github.com/ilpaka/landmark_app/backend/places-service/internal/modules/place/app"
 	placehttp "github.com/ilpaka/landmark_app/backend/places-service/internal/modules/place/http"
@@ -27,7 +28,8 @@ func main() {
 	defer pool.Close()
 
 	store := postgres.New(pool)
-	svc := app.New(store)
+	modClient := moderation.NewClient(cfg.ModerationServiceURL, cfg.InternalAPIKey)
+	svc := app.NewWithModeration(store, modClient)
 	stack := placehttp.Mount(svc, cfg.InternalAPIKey)
 
 	log.Info("starting places-service", "addr", cfg.HTTPAddr)

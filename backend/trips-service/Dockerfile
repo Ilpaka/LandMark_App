@@ -1,11 +1,17 @@
+# syntax=docker/dockerfile:1.7
 FROM golang:1.23-alpine AS build
 RUN apk add --no-cache git ca-certificates
+ENV GOPROXY=https://goproxy.cn,https://proxy.golang.org,direct \
+    GOSUMDB=sum.golang.google.cn
 WORKDIR /src/backend
 COPY trips-service/go.mod trips-service/go.sum ./trips-service/
-RUN cd trips-service && go mod download
+RUN --mount=type=cache,target=/go/pkg/mod,sharing=shared \
+    cd trips-service && go mod download
 COPY trips-service/ ./trips-service/
 WORKDIR /src/backend/trips-service
-RUN CGO_ENABLED=0 go build -trimpath -ldflags="-s -w" -o /out/server ./cmd/server && \
+RUN --mount=type=cache,target=/go/pkg/mod,sharing=shared \
+    --mount=type=cache,target=/root/.cache/go-build,sharing=shared \
+    CGO_ENABLED=0 go build -trimpath -ldflags="-s -w" -o /out/server ./cmd/server && \
     CGO_ENABLED=0 go build -trimpath -ldflags="-s -w" -o /out/migrate ./cmd/migrate
 
 FROM alpine:3.20

@@ -56,9 +56,11 @@ func (h *Handlers) ListCategories(c *gin.Context) {
 }
 
 func (h *Handlers) ListPlaces(c *gin.Context) {
+	viewerID, _ := userIDFromCtx(c)
 	f := domain.ListFilter{
 		Q:            c.Query("q"),
 		CategorySlug: c.Query("category"),
+		ViewerID:     viewerID,
 	}
 	if lim, err := strconv.Atoi(c.Query("limit")); err == nil {
 		f.Limit = lim
@@ -98,9 +100,10 @@ func (h *Handlers) GetPlace(c *gin.Context) {
 }
 
 type createPlaceReq struct {
-	Title     string  `json:"title" binding:"required,min=1,max=120"`
-	Latitude  float64 `json:"latitude"`
-	Longitude float64 `json:"longitude"`
+	Title      string  `json:"title" binding:"required,min=1,max=120"`
+	Latitude   float64 `json:"latitude"`
+	Longitude  float64 `json:"longitude"`
+	Visibility string  `json:"visibility"` // "public" (default) или "private"
 }
 
 func (h *Handlers) CreatePlace(c *gin.Context) {
@@ -114,7 +117,17 @@ func (h *Handlers) CreatePlace(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "validation_error"})
 		return
 	}
-	p, err := h.Svc.CreateDraft(c.Request.Context(), *userID, req.Title, req.Latitude, req.Longitude)
+	visibility := domain.VisibilityPublic
+	switch req.Visibility {
+	case "", "public":
+		visibility = domain.VisibilityPublic
+	case "private":
+		visibility = domain.VisibilityPrivate
+	default:
+		c.JSON(http.StatusBadRequest, gin.H{"error": "validation_error"})
+		return
+	}
+	p, err := h.Svc.CreatePlace(c.Request.Context(), *userID, req.Title, req.Latitude, req.Longitude, visibility)
 	if err != nil {
 		writeErr(c, err)
 		return

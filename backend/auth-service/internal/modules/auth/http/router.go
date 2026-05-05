@@ -40,6 +40,7 @@ func Mount(r *gin.RouterGroup, svc *app.Service, jwt ports.JWTSigner, rdb *redis
 
 	adm := r.Group("/admin")
 	adm.Use(authz, RequireAdmin())
+	adm.GET("/users", h.AdminListUsers)
 	adm.POST("/users/:id/block", h.AdminBlock)
 	adm.POST("/users/:id/unblock", h.AdminUnblock)
 	adm.POST("/users/:id/force-logout", h.AdminForceLogout)

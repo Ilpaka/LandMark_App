@@ -68,10 +68,18 @@ class _MapPageState extends ConsumerState<MapPage> {
 
     return Scaffold(
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: () => Navigator.push(
-          context,
-          MaterialPageRoute(builder: (_) => const SuggestPlacePage()),
-        ),
+        onPressed: () async {
+          await Navigator.push<void>(
+            context,
+            MaterialPageRoute(builder: (_) => const SuggestPlacePage()),
+          );
+          if (!mounted) return;
+          // Сбрасываем кэш списка мест: после возврата с suggest-страницы
+          // могла появиться новая приватная точка (публикуется сразу) или
+          // публичный draft (не виден до approve, но всё равно лучше
+          // перезапросить).
+          ref.invalidate(placesProvider);
+        },
         backgroundColor: AppColors.primary,
         foregroundColor: Colors.white,
         icon: const Icon(Icons.add_location_alt),
@@ -105,7 +113,9 @@ class _MapPageState extends ConsumerState<MapPage> {
                               child: GestureDetector(
                                 onTap: () => _showPlacePreview(place),
                                 child: _PlacePin(
-                                    selected: _selectedPlace?.id == place.id),
+                                  selected: _selectedPlace?.id == place.id,
+                                  isPrivate: place.isPrivate,
+                                ),
                               ),
                             ))
                         .toList() ??
@@ -169,20 +179,28 @@ class _MapPageState extends ConsumerState<MapPage> {
 
 class _PlacePin extends StatelessWidget {
   final bool selected;
-  const _PlacePin({this.selected = false});
+  final bool isPrivate;
+  const _PlacePin({this.selected = false, this.isPrivate = false});
 
   @override
   Widget build(BuildContext context) {
+    final color = selected
+        ? AppColors.accent
+        : (isPrivate ? AppColors.textSecondary : AppColors.primary);
     return Container(
       decoration: BoxDecoration(
-        color: selected ? AppColors.accent : AppColors.primary,
+        color: color,
         shape: BoxShape.circle,
         border: Border.all(color: Colors.white, width: 2),
         boxShadow: const [
           BoxShadow(color: Colors.black26, blurRadius: 4, offset: Offset(0, 2))
         ],
       ),
-      child: const Icon(Icons.place, color: Colors.white, size: 20),
+      child: Icon(
+        isPrivate ? Icons.lock : Icons.place,
+        color: Colors.white,
+        size: 18,
+      ),
     );
   }
 }
@@ -348,11 +366,19 @@ class _PlacePreviewCard extends StatelessWidget {
               width: 56,
               height: 56,
               decoration: BoxDecoration(
-                color: AppColors.primary.withValues(alpha: 0.1),
+                color: (place.isPrivate
+                        ? AppColors.textSecondary
+                        : AppColors.primary)
+                    .withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(12),
               ),
-              child:
-                  const Icon(Icons.place, color: AppColors.primary, size: 28),
+              child: Icon(
+                place.isPrivate ? Icons.lock : Icons.place,
+                color: place.isPrivate
+                    ? AppColors.textSecondary
+                    : AppColors.primary,
+                size: 28,
+              ),
             ),
             const SizedBox(width: 12),
             Expanded(

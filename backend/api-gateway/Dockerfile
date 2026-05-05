@@ -1,11 +1,17 @@
+# syntax=docker/dockerfile:1.7
 FROM golang:1.23-alpine AS build
 RUN apk add --no-cache git ca-certificates
+ENV GOPROXY=https://goproxy.cn,https://proxy.golang.org,direct \
+    GOSUMDB=sum.golang.google.cn
 WORKDIR /src/backend
 COPY api-gateway/go.mod api-gateway/go.sum ./api-gateway/
-RUN cd api-gateway && go mod download
+RUN --mount=type=cache,target=/go/pkg/mod,sharing=shared \
+    cd api-gateway && go mod download
 COPY api-gateway/ ./api-gateway/
 WORKDIR /src/backend/api-gateway
-RUN CGO_ENABLED=0 go build -trimpath -ldflags="-s -w" -o /out/server ./cmd/server
+RUN --mount=type=cache,target=/go/pkg/mod,sharing=shared \
+    --mount=type=cache,target=/root/.cache/go-build,sharing=shared \
+    CGO_ENABLED=0 go build -trimpath -ldflags="-s -w" -o /out/server ./cmd/server
 
 FROM alpine:3.20
 RUN apk add --no-cache ca-certificates && \

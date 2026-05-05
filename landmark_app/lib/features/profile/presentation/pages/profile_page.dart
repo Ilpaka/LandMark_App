@@ -4,7 +4,7 @@ import '../../../../core/design/tokens.dart';
 import '../../domain/entities/profile.dart';
 import '../providers/profile_provider.dart';
 import '../../../auth/presentation/providers/auth_provider.dart'
-    show authProvider, AuthStateAuthenticated; // ignore: unused_shown_name
+    show authProvider, AuthStateAuthenticated;
 import '../../../notifications/presentation/providers/notifications_provider.dart';
 import '../../../notifications/presentation/pages/notifications_feed_page.dart';
 import 'edit_profile_page.dart';
@@ -99,9 +99,51 @@ class ProfilePage extends ConsumerWidget {
                       fontWeight: FontWeight.w700,
                       color: AppColors.textPrimary)),
               const SizedBox(height: 4),
-              Text('@${profile.nickname}',
-                  style: const TextStyle(
-                      fontSize: 15, color: AppColors.textSecondary)),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text('@${profile.nickname}',
+                      style: const TextStyle(
+                          fontSize: 15, color: AppColors.textSecondary)),
+                  Consumer(
+                    builder: (context, ref, _) {
+                      final auth = ref.watch(authProvider);
+                      if (auth is! AuthStateAuthenticated) {
+                        return const SizedBox.shrink();
+                      }
+                      if (auth.user.role != 'admin') {
+                        return const SizedBox.shrink();
+                      }
+                      return Padding(
+                        padding: const EdgeInsets.only(left: 8),
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 8, vertical: 2),
+                          decoration: BoxDecoration(
+                            color: AppColors.primary.withValues(alpha: 0.12),
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          child: const Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Icon(Icons.shield_outlined,
+                                  size: 12, color: AppColors.primary),
+                              SizedBox(width: 4),
+                              Text('Admin',
+                                  style: TextStyle(
+                                    fontSize: 11,
+                                    fontWeight: FontWeight.w700,
+                                    color: AppColors.primary,
+                                  )),
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                  ),
+                ],
+              ),
               if (profile.bio != null && profile.bio!.isNotEmpty) ...[
                 const SizedBox(height: 8),
                 Text(profile.bio!,
