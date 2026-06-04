@@ -61,8 +61,8 @@ func validPassword(s string) bool {
 }
 
 type phoneCodeReq struct {
-	Phone   string  `json:"phone" binding:"required"`
-	Region  *string `json:"region"`
+	Phone  string  `json:"phone" binding:"required"`
+	Region *string `json:"region"`
 }
 
 // PhoneRequestCode POST /v1/auth/phone/code — send SMS OTP.
@@ -130,11 +130,11 @@ type phoneVerifyReq struct {
 }
 
 type loginReq struct {
-	Email        string  `json:"email" binding:"required,email"`
-	Password     string  `json:"password" binding:"required,min=1"`
-	DeviceID     *string `json:"device_id"`
-	DeviceName   *string `json:"device_name"`
-	Platform     *string `json:"platform"`
+	Email      string  `json:"email" binding:"required,email"`
+	Password   string  `json:"password" binding:"required,min=1"`
+	DeviceID   *string `json:"device_id"`
+	DeviceName *string `json:"device_name"`
+	Platform   *string `json:"platform"`
 }
 
 // Login POST /v1/auth/login — email + password; requires verified email on the account.
@@ -189,12 +189,12 @@ func (h *Handlers) PhoneVerify(c *gin.Context) {
 	ua := c.GetHeader("User-Agent")
 	pair, rl, err := h.Svc.VerifyPhoneCode(c.Request.Context(), app.PhoneVerifyInput{
 		VerificationID: id,
-		Code:             req.Code,
-		DeviceID:         req.DeviceID,
-		DeviceName:       req.DeviceName,
-		Platform:         req.Platform,
-		IP:               ipPtr,
-		UserAgent:        &ua,
+		Code:           req.Code,
+		DeviceID:       req.DeviceID,
+		DeviceName:     req.DeviceName,
+		Platform:       req.Platform,
+		IP:             ipPtr,
+		UserAgent:      &ua,
 	})
 	WriteRateLimitHeaders(c, rl)
 	if err != nil {
@@ -309,14 +309,14 @@ func (h *Handlers) Me(c *gin.Context) {
 		return
 	}
 	out := gin.H{
-		"user_id":          cl.Sub.String(),
-		"session_id":       cl.Session.String(),
-		"role":             string(cl.Role),
-		"has_password":     info.HasPassword,
-		"email_verified":   info.EmailVerified,
-		"phone_verified":   info.PhoneVerified,
-		"email":            info.Email,
-		"phone_e164":       info.PhoneE164,
+		"user_id":        cl.Sub.String(),
+		"session_id":     cl.Session.String(),
+		"role":           string(cl.Role),
+		"has_password":   info.HasPassword,
+		"email_verified": info.EmailVerified,
+		"phone_verified": info.PhoneVerified,
+		"email":          info.Email,
+		"phone_e164":     info.PhoneE164,
 	}
 	c.JSON(http.StatusOK, out)
 }
@@ -507,10 +507,10 @@ func (h *Handlers) ResetPasswordPhone(c *gin.Context) {
 	ua := c.GetHeader("User-Agent")
 	rl, err := h.Svc.ResetPasswordPhone(c.Request.Context(), app.ResetPasswordPhoneInput{
 		VerificationID: id,
-		Code:             req.Code,
-		NewPassword:      req.NewPassword,
-		IP:               ipPtr,
-		UserAgent:        &ua,
+		Code:           req.Code,
+		NewPassword:    req.NewPassword,
+		IP:             ipPtr,
+		UserAgent:      &ua,
 	})
 	WriteRateLimitHeaders(c, rl)
 	if err != nil {
@@ -522,7 +522,7 @@ func (h *Handlers) ResetPasswordPhone(c *gin.Context) {
 
 type changePwdReq struct {
 	CurrentPassword *string `json:"current_password"`
-	NewPassword      string  `json:"new_password" binding:"required,min=10,max=128"`
+	NewPassword     string  `json:"new_password" binding:"required,min=10,max=128"`
 }
 
 // ChangePassword sets the first password when current_password is omitted, otherwise changes the password.

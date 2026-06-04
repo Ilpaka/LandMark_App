@@ -17,12 +17,12 @@ type mockStore struct {
 	profiles map[uuid.UUID]*domain.Profile
 	privacy  map[uuid.UUID]*domain.PrivacySettings
 
-	getProfileErr    error
-	upsertProfileErr error
-	nicknameExists   bool
+	getProfileErr     error
+	upsertProfileErr  error
+	nicknameExists    bool
 	nicknameExistsErr error
-	getPrivacyErr    error
-	upsertPrivacyErr error
+	getPrivacyErr     error
+	upsertPrivacyErr  error
 }
 
 func newMockStore() *mockStore {

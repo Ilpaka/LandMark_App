@@ -1,11 +1,12 @@
 package domain
 
 import (
-	"time"
 	"github.com/google/uuid"
+	"time"
 )
 
 type UploadStatus string
+
 const (
 	UploadPending   UploadStatus = "pending"
 	UploadFinalized UploadStatus = "finalized"
@@ -13,21 +14,22 @@ const (
 )
 
 type MediaStatus string
+
 const (
 	MediaReady   MediaStatus = "ready"
 	MediaDeleted MediaStatus = "deleted"
 )
 
 type Upload struct {
-	ID         uuid.UUID    `json:"id"`
-	OwnerID    uuid.UUID    `json:"owner_id"`
-	Kind       string       `json:"kind"`
-	Mime       string       `json:"mime"`
-	SizeBytes  int64        `json:"size_bytes"`
-	ObjectKey  string       `json:"object_key"`
-	ExpiresAt  time.Time    `json:"expires_at"`
-	Status     UploadStatus `json:"status"`
-	CreatedAt  time.Time    `json:"created_at"`
+	ID        uuid.UUID    `json:"id"`
+	OwnerID   uuid.UUID    `json:"owner_id"`
+	Kind      string       `json:"kind"`
+	Mime      string       `json:"mime"`
+	SizeBytes int64        `json:"size_bytes"`
+	ObjectKey string       `json:"object_key"`
+	ExpiresAt time.Time    `json:"expires_at"`
+	Status    UploadStatus `json:"status"`
+	CreatedAt time.Time    `json:"created_at"`
 }
 
 type Media struct {

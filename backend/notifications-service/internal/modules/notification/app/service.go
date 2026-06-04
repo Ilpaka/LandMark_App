@@ -69,12 +69,26 @@ func (s *Service) UpdatePreferences(ctx context.Context, userID uuid.UUID, patch
 	if err != nil {
 		return nil, err
 	}
-	if v, ok := patch["push_trip_reminders"]; ok { prefs.PushTripReminders = v.(bool) }
-	if v, ok := patch["push_moderation_result"]; ok { prefs.PushModerationResult = v.(bool) }
-	if v, ok := patch["push_sync_status"]; ok { prefs.PushSyncStatus = v.(bool) }
-	if v, ok := patch["push_marketing"]; ok { prefs.PushMarketing = v.(bool) }
-	if v, ok := patch["email_welcome"]; ok { prefs.EmailWelcome = v.(bool) }
-	if v, ok := patch["email_moderation_result"]; ok { prefs.EmailModerationResult = v.(bool) }
-	if v, ok := patch["email_marketing"]; ok { prefs.EmailMarketing = v.(bool) }
+	if v, ok := patch["push_trip_reminders"]; ok {
+		prefs.PushTripReminders = v.(bool)
+	}
+	if v, ok := patch["push_moderation_result"]; ok {
+		prefs.PushModerationResult = v.(bool)
+	}
+	if v, ok := patch["push_sync_status"]; ok {
+		prefs.PushSyncStatus = v.(bool)
+	}
+	if v, ok := patch["push_marketing"]; ok {
+		prefs.PushMarketing = v.(bool)
+	}
+	if v, ok := patch["email_welcome"]; ok {
+		prefs.EmailWelcome = v.(bool)
+	}
+	if v, ok := patch["email_moderation_result"]; ok {
+		prefs.EmailModerationResult = v.(bool)
+	}
+	if v, ok := patch["email_marketing"]; ok {
+		prefs.EmailMarketing = v.(bool)
+	}
 	return s.Store.UpsertPreferences(ctx, *prefs)
 }

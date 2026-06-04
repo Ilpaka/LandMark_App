@@ -86,16 +86,16 @@ func (h *Handlers) CreateEntry(c *gin.Context) {
 		return
 	}
 	var req struct {
-		TripID     *uuid.UUID  `json:"trip_id"`
-		PlaceID    *uuid.UUID  `json:"place_id"`
-		Title      *string     `json:"title"`
-		Body       string      `json:"body"`
-		Mood       *string     `json:"mood"`
-		Rating     *int        `json:"rating"`
-		OccurredAt *time.Time  `json:"occurred_at"`
-		Tags       []string    `json:"tags"`
-		Latitude   *float64    `json:"latitude"`
-		Longitude  *float64    `json:"longitude"`
+		TripID     *uuid.UUID `json:"trip_id"`
+		PlaceID    *uuid.UUID `json:"place_id"`
+		Title      *string    `json:"title"`
+		Body       string     `json:"body"`
+		Mood       *string    `json:"mood"`
+		Rating     *int       `json:"rating"`
+		OccurredAt *time.Time `json:"occurred_at"`
+		Tags       []string   `json:"tags"`
+		Latitude   *float64   `json:"latitude"`
+		Longitude  *float64   `json:"longitude"`
 	}
 	if err := c.ShouldBindJSON(&req); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "validation_error"})

@@ -80,10 +80,11 @@ class _OtpPageState extends ConsumerState<OtpPage> {
         context.go('/auth/login');
       }
     } finally {
-      if (mounted)
+      if (mounted) {
         setState(() {
           _loading = false;
         });
+      }
     }
   }
 

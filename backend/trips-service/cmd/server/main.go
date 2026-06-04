@@ -5,11 +5,11 @@ import (
 	"log/slog"
 	"os"
 
-	"github.com/jackc/pgx/v5/pgxpool"
 	"github.com/ilpaka/landmark_app/backend/trips-service/internal/config"
 	"github.com/ilpaka/landmark_app/backend/trips-service/internal/modules/trip/adapters/postgres"
 	"github.com/ilpaka/landmark_app/backend/trips-service/internal/modules/trip/app"
 	triphttp "github.com/ilpaka/landmark_app/backend/trips-service/internal/modules/trip/http"
+	"github.com/jackc/pgx/v5/pgxpool"
 )
 
 func main() {

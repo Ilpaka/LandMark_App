@@ -12,12 +12,12 @@ import (
 
 // MeInfo is the extended /me payload (DB-backed fields).
 type MeInfo struct {
-	UserID          uuid.UUID
-	HasPassword     bool
-	Email           *string
-	EmailVerified   bool
-	PhoneE164       *string
-	PhoneVerified   bool
+	UserID        uuid.UUID
+	HasPassword   bool
+	Email         *string
+	EmailVerified bool
+	PhoneE164     *string
+	PhoneVerified bool
 }
 
 // Me loads account flags for the authenticated user.

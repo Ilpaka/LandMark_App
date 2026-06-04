@@ -35,24 +35,24 @@ type Category struct {
 }
 
 type Place struct {
-	ID           uuid.UUID   `json:"id"`
-	Title        string      `json:"title"`
-	Description  string      `json:"description"`
-	Latitude     float64     `json:"latitude"`
-	Longitude    float64     `json:"longitude"`
-	Address      *string     `json:"address"`
-	City         *string     `json:"city"`
-	Country      *string     `json:"country"`
-	AuthorID     *uuid.UUID  `json:"author_id"`
-	Status       PlaceStatus `json:"status"`
-	RejectReason *string     `json:"reject_reason"`
-	Source       string      `json:"source"`
+	ID           uuid.UUID       `json:"id"`
+	Title        string          `json:"title"`
+	Description  string          `json:"description"`
+	Latitude     float64         `json:"latitude"`
+	Longitude    float64         `json:"longitude"`
+	Address      *string         `json:"address"`
+	City         *string         `json:"city"`
+	Country      *string         `json:"country"`
+	AuthorID     *uuid.UUID      `json:"author_id"`
+	Status       PlaceStatus     `json:"status"`
+	RejectReason *string         `json:"reject_reason"`
+	Source       string          `json:"source"`
 	Visibility   PlaceVisibility `json:"visibility"`
-	CoverMediaID *uuid.UUID  `json:"cover_media_id"`
-	CategoryIDs  []uuid.UUID `json:"category_ids"`
-	PublishedAt  *time.Time  `json:"published_at"`
-	CreatedAt    time.Time   `json:"created_at"`
-	UpdatedAt    time.Time   `json:"updated_at"`
+	CoverMediaID *uuid.UUID      `json:"cover_media_id"`
+	CategoryIDs  []uuid.UUID     `json:"category_ids"`
+	PublishedAt  *time.Time      `json:"published_at"`
+	CreatedAt    time.Time       `json:"created_at"`
+	UpdatedAt    time.Time       `json:"updated_at"`
 }
 
 type BBox struct {

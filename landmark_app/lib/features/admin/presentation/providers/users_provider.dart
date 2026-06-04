@@ -11,8 +11,7 @@ final usersListProvider =
   UsersListNotifier.new,
 );
 
-class UsersListNotifier
-    extends FamilyAsyncNotifier<List<AdminUser>, String?> {
+class UsersListNotifier extends FamilyAsyncNotifier<List<AdminUser>, String?> {
   @override
   Future<List<AdminUser>> build(String? query) async {
     return ref.read(usersApiProvider).list(query: query);

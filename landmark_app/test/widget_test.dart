@@ -10,7 +10,8 @@ import 'package:landmark_app/core/storage/secure_storage.dart';
 import 'package:landmark_app/features/journal/data/local/draft_storage.dart';
 
 void main() {
-  testWidgets('App boots to splash without exception', (WidgetTester tester) async {
+  testWidgets('App boots to splash without exception',
+      (WidgetTester tester) async {
     SharedPreferences.setMockInitialValues({});
     final prefs = await SharedPreferences.getInstance();
 

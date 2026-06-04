@@ -19,14 +19,14 @@ type mockStore struct {
 	places map[uuid.UUID]*domain.Place
 
 	// control knobs
-	insertPlaceErr     error
-	updatePlaceErr     error
-	setPlaceStatusErr  error
-	insertOutboxErr    error
+	insertPlaceErr    error
+	updatePlaceErr    error
+	setPlaceStatusErr error
+	insertOutboxErr   error
 
 	// categories
-	categories         []domain.Category
-	insertCategoryErr  error
+	categories        []domain.Category
+	insertCategoryErr error
 }
 
 func newMockStore() *mockStore {

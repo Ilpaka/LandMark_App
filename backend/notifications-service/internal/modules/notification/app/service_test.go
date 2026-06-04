@@ -22,19 +22,19 @@ type mockStore struct {
 	listErr           error
 
 	// UpsertDevice
-	upsertedDevice *domain.Device
+	upsertedDevice  *domain.Device
 	upsertDeviceErr error
 
 	// GetPreferences
-	preferences    *domain.Preferences
-	getPrefsErr    error
+	preferences *domain.Preferences
+	getPrefsErr error
 
 	// UpsertPreferences
 	upsertPreferences    *domain.Preferences
 	upsertPreferencesErr error
 
 	// Capture args
-	lastListFilter  domain.ListFilter
+	lastListFilter   domain.ListFilter
 	lastUpsertDevice domain.Device
 }
 
@@ -89,7 +89,7 @@ func TestSend_EmptyTitle(t *testing.T) {
 	_, err := svc.Send(context.Background(), domain.SendInput{
 		UserID: uuid.New(),
 		Type:   "promo",
-		Title:  "",           // invalid
+		Title:  "", // invalid
 		Body:   "Some body",
 	})
 	if err != domain.ErrBadRequest {

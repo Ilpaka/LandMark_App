@@ -37,7 +37,7 @@ type Config struct {
 	// OTELExporterOTLPEndpoint is the OTLP/HTTP traces endpoint (e.g. http://127.0.0.1:4318 or .../v1/traces). Empty disables export.
 	OTELExporterOTLPEndpoint string
 	// SMSRUBAPIID is the api_id from https://sms.ru/ ; empty uses in-process log stub in MountAuth.
-	SMSRUBAPIID     string
+	SMSRUBAPIID       string
 	SMSRUBHTTPTimeout time.Duration
 }
 

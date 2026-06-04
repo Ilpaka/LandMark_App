@@ -14,16 +14,16 @@ import (
 
 type mockStore struct {
 	// InsertEntry
-	insertedEntry    *domain.Entry
-	insertErr        error
+	insertedEntry *domain.Entry
+	insertErr     error
 
 	// GetEntry
-	storedEntry    *domain.Entry
-	getErr         error
+	storedEntry *domain.Entry
+	getErr      error
 
 	// UpdateEntry
-	updatedEntry    *domain.Entry
-	updateErr       error
+	updatedEntry *domain.Entry
+	updateErr    error
 
 	// DeleteEntry
 	deleteErr error
@@ -76,7 +76,7 @@ func (m *mockStore) ListMedia(ctx context.Context, entryID uuid.UUID) ([]uuid.UU
 	return nil, nil
 }
 
-func (m *mockStore) UpsertReaction(_ context.Context, _ domain.Reaction) error { return nil }
+func (m *mockStore) UpsertReaction(_ context.Context, _ domain.Reaction) error        { return nil }
 func (m *mockStore) DeleteReaction(_ context.Context, _, _ uuid.UUID, _ string) error { return nil }
 func (m *mockStore) ListReactionCounts(_ context.Context, _ uuid.UUID) ([]domain.ReactionCount, error) {
 	return []domain.ReactionCount{}, nil

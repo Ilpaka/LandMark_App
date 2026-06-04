@@ -9,9 +9,9 @@ import (
 	"time"
 
 	"github.com/google/uuid"
+	"github.com/ilpaka/landmark_app/backend/journal-service/internal/modules/journal/domain"
 	"github.com/jackc/pgx/v5"
 	"github.com/jackc/pgx/v5/pgxpool"
-	"github.com/ilpaka/landmark_app/backend/journal-service/internal/modules/journal/domain"
 )
 
 type Store struct{ db *pgxpool.Pool }

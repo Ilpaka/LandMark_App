@@ -362,8 +362,8 @@ func TestAuthContract_OpenAPI_PhonePasswordResetFlow(t *testing.T) {
 	validateResponse(t, doc, valForgot, forgotResp, fb)
 
 	var forgotOut struct {
-		Status           string `json:"status"`
-		VerificationID   string `json:"verification_id"`
+		Status         string `json:"status"`
+		VerificationID string `json:"verification_id"`
 	}
 	require.NoError(t, json.Unmarshal(fb, &forgotOut))
 	require.Equal(t, "ok", forgotOut.Status)

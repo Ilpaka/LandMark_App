@@ -292,9 +292,8 @@ class _VisibilityChip extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 13,
                       fontWeight: FontWeight.w600,
-                      color: selected
-                          ? AppColors.primary
-                          : AppColors.textPrimary,
+                      color:
+                          selected ? AppColors.primary : AppColors.textPrimary,
                     ),
                   ),
                 ),
@@ -352,7 +351,9 @@ class _LocationPickerField extends StatelessWidget {
             Row(
               children: [
                 Icon(
-                  hasValue ? Icons.location_on : Icons.add_location_alt_outlined,
+                  hasValue
+                      ? Icons.location_on
+                      : Icons.add_location_alt_outlined,
                   size: 20,
                   color: hasValue
                       ? AppColors.primary
@@ -361,9 +362,7 @@ class _LocationPickerField extends StatelessWidget {
                 const SizedBox(width: 8),
                 Expanded(
                   child: Text(
-                    hasValue
-                        ? 'Точка на карте *'
-                        : 'Выбрать точку на карте *',
+                    hasValue ? 'Точка на карте *' : 'Выбрать точку на карте *',
                     style: TextStyle(
                       fontSize: 12,
                       color: AppColors.textPrimary.withValues(alpha: 0.7),

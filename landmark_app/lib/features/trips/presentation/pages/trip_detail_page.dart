@@ -300,8 +300,8 @@ class _AddStopDialogState extends State<_AddStopDialog> {
               onTap: _pickCoords,
               borderRadius: BorderRadius.circular(10),
               child: Container(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 12, vertical: 12),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   border: Border.all(color: coordsBorder, width: 1),
@@ -329,8 +329,8 @@ class _AddStopDialogState extends State<_AddStopDialog> {
                                 : 'Выбрать точку на карте *',
                             style: TextStyle(
                               fontSize: 11,
-                              color: AppColors.textPrimary
-                                  .withValues(alpha: 0.7),
+                              color:
+                                  AppColors.textPrimary.withValues(alpha: 0.7),
                             ),
                           ),
                           const SizedBox(height: 2),

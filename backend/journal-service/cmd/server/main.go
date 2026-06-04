@@ -5,11 +5,11 @@ import (
 	"log/slog"
 	"os"
 
-	"github.com/jackc/pgx/v5/pgxpool"
 	"github.com/ilpaka/landmark_app/backend/journal-service/internal/config"
 	"github.com/ilpaka/landmark_app/backend/journal-service/internal/modules/journal/adapters/postgres"
 	"github.com/ilpaka/landmark_app/backend/journal-service/internal/modules/journal/app"
 	journalhttp "github.com/ilpaka/landmark_app/backend/journal-service/internal/modules/journal/http"
+	"github.com/jackc/pgx/v5/pgxpool"
 )
 
 func main() {

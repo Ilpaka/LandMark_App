@@ -36,7 +36,7 @@ type mockStore struct {
 	deleteErr error
 
 	// Capture arguments for assertion
-	lastUpsertFav domain.Favorite
+	lastUpsertFav  domain.Favorite
 	lastListFilter domain.ListFavoritesFilter
 }
 

@@ -4,8 +4,9 @@ class AdminUser {
   final String id;
   final String? email;
   final String? phoneE164;
-  final String status; // active | pending_verification | blocked | deleted | new
-  final String role;   // user | admin | system
+  final String
+      status; // active | pending_verification | blocked | deleted | new
+  final String role; // user | admin | system
   final DateTime? emailVerifiedAt;
   final DateTime? phoneVerifiedAt;
   final DateTime? blockedAt;
@@ -43,8 +44,7 @@ class AdminUser {
 
   bool get isBlocked => status == 'blocked';
   bool get isAdmin => role == 'admin';
-  String get displayLabel =>
-      email ?? phoneE164 ?? id.substring(0, 8);
+  String get displayLabel => email ?? phoneE164 ?? id.substring(0, 8);
 }
 
 class AdminAuditEvent {
@@ -84,7 +84,8 @@ class UsersApi {
   final Dio _dio;
   UsersApi(this._dio);
 
-  Future<List<AdminUser>> list({String? query, int limit = 50, int offset = 0}) async {
+  Future<List<AdminUser>> list(
+      {String? query, int limit = 50, int offset = 0}) async {
     final resp = await _dio.get('/v1/admin/users', queryParameters: {
       if (query != null && query.isNotEmpty) 'q': query,
       'limit': limit,

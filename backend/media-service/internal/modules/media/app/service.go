@@ -20,8 +20,8 @@ var allowedMimes = map[string]bool{
 }
 
 type Service struct {
-	Store  ports.Store
-	S3     ports.ObjectStore
+	Store ports.Store
+	S3    ports.ObjectStore
 }
 
 func (s *Service) RequestUpload(ctx context.Context, ownerID uuid.UUID, kind, mime string, size int64) (*domain.PresignedUpload, error) {

@@ -5,12 +5,12 @@ import (
 	"log/slog"
 	"os"
 
-	"github.com/jackc/pgx/v5/pgxpool"
 	"github.com/ilpaka/landmark_app/backend/places-service/internal/config"
 	"github.com/ilpaka/landmark_app/backend/places-service/internal/modules/place/adapters/moderation"
 	"github.com/ilpaka/landmark_app/backend/places-service/internal/modules/place/adapters/postgres"
 	"github.com/ilpaka/landmark_app/backend/places-service/internal/modules/place/app"
 	placehttp "github.com/ilpaka/landmark_app/backend/places-service/internal/modules/place/http"
+	"github.com/jackc/pgx/v5/pgxpool"
 )
 
 func main() {

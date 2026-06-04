@@ -93,8 +93,9 @@ class _FavoritesMapPageState extends ConsumerState<FavoritesMapPage> {
   }
 
   LatLng _centerOf(List<Place> places) {
-    if (places.length == 1)
+    if (places.length == 1) {
       return LatLng(places.first.latitude, places.first.longitude);
+    }
     final lat =
         places.map((p) => p.latitude).reduce((a, b) => a + b) / places.length;
     final lng =

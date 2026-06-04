@@ -8,9 +8,9 @@ import (
 	"strings"
 
 	"github.com/google/uuid"
+	"github.com/ilpaka/landmark_app/backend/places-service/internal/modules/place/domain"
 	"github.com/jackc/pgx/v5"
 	"github.com/jackc/pgx/v5/pgxpool"
-	"github.com/ilpaka/landmark_app/backend/places-service/internal/modules/place/domain"
 )
 
 type Store struct{ db *pgxpool.Pool }

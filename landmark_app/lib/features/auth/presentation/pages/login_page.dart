@@ -67,10 +67,11 @@ class _LoginPageState extends ConsumerState<LoginPage> {
         _error = msg;
       });
     } finally {
-      if (mounted)
+      if (mounted) {
         setState(() {
           _loading = false;
         });
+      }
     }
   }
 
@@ -142,13 +143,11 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                         children: [
                           Expanded(
                             child: OutlinedButton.icon(
-                              icon: const Icon(Icons.person_outline,
-                                  size: 16),
+                              icon: const Icon(Icons.person_outline, size: 16),
                               label: const Text('User'),
                               style: OutlinedButton.styleFrom(
                                 shape: RoundedRectangleBorder(
-                                  borderRadius:
-                                      BorderRadius.circular(8),
+                                  borderRadius: BorderRadius.circular(8),
                                 ),
                               ),
                               onPressed: () => _fillDemo(admin: false),
@@ -157,16 +156,14 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                           const SizedBox(width: AppSpacing.sm),
                           Expanded(
                             child: OutlinedButton.icon(
-                              icon: const Icon(Icons.shield_outlined,
-                                  size: 16),
+                              icon: const Icon(Icons.shield_outlined, size: 16),
                               label: const Text('Admin'),
                               style: OutlinedButton.styleFrom(
                                 foregroundColor: AppColors.primary,
-                                side: const BorderSide(
-                                    color: AppColors.primary),
+                                side:
+                                    const BorderSide(color: AppColors.primary),
                                 shape: RoundedRectangleBorder(
-                                  borderRadius:
-                                      BorderRadius.circular(8),
+                                  borderRadius: BorderRadius.circular(8),
                                 ),
                               ),
                               onPressed: () => _fillDemo(admin: true),
@@ -193,8 +190,9 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                   onPressed: () async {
                     final storage = ref.read(secureStorageProvider);
                     await storage.deleteAll();
-                    final base = ref.read(apiClientProvider).dio.options.baseUrl;
-                    if (mounted) {
+                    final base =
+                        ref.read(apiClientProvider).dio.options.baseUrl;
+                    if (context.mounted) {
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                         content: Text('Сессия очищена. API: $base'),
                       ));

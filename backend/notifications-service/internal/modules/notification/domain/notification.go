@@ -2,8 +2,8 @@ package domain
 
 import (
 	"encoding/json"
-	"time"
 	"github.com/google/uuid"
+	"time"
 )
 
 type Notification struct {
@@ -19,12 +19,12 @@ type Notification struct {
 }
 
 type Device struct {
-	ID          uuid.UUID `json:"id"`
-	UserID      uuid.UUID `json:"user_id"`
-	Platform    string    `json:"platform"`
-	PushToken   string    `json:"push_token"`
-	LastSeenAt  time.Time `json:"last_seen_at"`
-	CreatedAt   time.Time `json:"created_at"`
+	ID         uuid.UUID `json:"id"`
+	UserID     uuid.UUID `json:"user_id"`
+	Platform   string    `json:"platform"`
+	PushToken  string    `json:"push_token"`
+	LastSeenAt time.Time `json:"last_seen_at"`
+	CreatedAt  time.Time `json:"created_at"`
 }
 
 type Preferences struct {
@@ -40,10 +40,10 @@ type Preferences struct {
 }
 
 type ListFilter struct {
-	UserID   uuid.UUID
+	UserID     uuid.UUID
 	UnreadOnly bool
-	Cursor   string
-	Limit    int
+	Cursor     string
+	Limit      int
 }
 
 type NotificationsPage struct {

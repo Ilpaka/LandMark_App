@@ -73,10 +73,11 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
         _error = 'Ошибка регистрации. Проверьте данные и попробуйте снова.';
       });
     } finally {
-      if (mounted)
+      if (mounted) {
         setState(() {
           _loading = false;
         });
+      }
     }
   }
 
@@ -121,8 +122,9 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
                   onToggleObscure: () => setState(() => _obscure = !_obscure),
                   textInputAction: TextInputAction.done,
                   validator: (v) {
-                    if (v == null || v.length < 10)
+                    if (v == null || v.length < 10) {
                       return 'Минимум 10 символов';
+                    }
                     if (!RegExp(r'[A-Za-z]').hasMatch(v)) return 'Нужна буква';
                     if (!RegExp(r'[0-9]').hasMatch(v)) return 'Нужна цифра';
                     return null;

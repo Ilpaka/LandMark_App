@@ -109,8 +109,7 @@ class _UsersPageState extends ConsumerState<UsersPage> {
                       child: ListView.separated(
                         padding: const EdgeInsets.all(16),
                         itemCount: users.length,
-                        separatorBuilder: (_, __) =>
-                            const SizedBox(height: 8),
+                        separatorBuilder: (_, __) => const SizedBox(height: 8),
                         itemBuilder: (_, i) => _UserTile(
                           user: users[i],
                           onTap: () => _openUserSheet(context, users[i]),
@@ -198,8 +197,7 @@ class _UserTile extends StatelessWidget {
                       runSpacing: 4,
                       children: [
                         _StatusChip(label: user.role, kind: _ChipKind.role),
-                        _StatusChip(
-                            label: user.status, kind: _ChipKind.status),
+                        _StatusChip(label: user.status, kind: _ChipKind.status),
                       ],
                     ),
                   ],
@@ -296,7 +294,8 @@ class _UserSheetState extends ConsumerState<_UserSheet> {
       await op();
       if (!mounted) return;
       Navigator.pop(context);
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(okMsg)));
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(okMsg)));
     } catch (e) {
       if (!mounted) return;
       ScaffoldMessenger.of(context)
@@ -370,8 +369,8 @@ class _UserSheetState extends ConsumerState<_UserSheet> {
             ),
             const SizedBox(height: 12),
             Text(u.displayLabel,
-                style: const TextStyle(
-                    fontSize: 18, fontWeight: FontWeight.w700)),
+                style:
+                    const TextStyle(fontSize: 18, fontWeight: FontWeight.w700)),
             const SizedBox(height: 4),
             SelectableText(
               'ID: ${u.id}',
@@ -388,9 +387,11 @@ class _UserSheetState extends ConsumerState<_UserSheet> {
                 _StatusChip(label: u.role, kind: _ChipKind.role),
                 _StatusChip(label: u.status, kind: _ChipKind.status),
                 if (u.emailVerifiedAt != null)
-                  const _StatusChip(label: 'email verified', kind: _ChipKind.status),
+                  const _StatusChip(
+                      label: 'email verified', kind: _ChipKind.status),
                 if (u.phoneVerifiedAt != null)
-                  const _StatusChip(label: 'phone verified', kind: _ChipKind.status),
+                  const _StatusChip(
+                      label: 'phone verified', kind: _ChipKind.status),
               ],
             ),
             const SizedBox(height: 16),
@@ -541,8 +542,7 @@ class _AuditSheet extends ConsumerWidget {
             ),
             const SizedBox(height: 12),
             const Text('Журнал событий',
-                style:
-                    TextStyle(fontSize: 17, fontWeight: FontWeight.w700)),
+                style: TextStyle(fontSize: 17, fontWeight: FontWeight.w700)),
             const SizedBox(height: 12),
             Expanded(
               child: asyncEvents.when(
@@ -553,13 +553,11 @@ class _AuditSheet extends ConsumerWidget {
                 data: (events) => events.isEmpty
                     ? const Center(
                         child: Text('Событий нет',
-                            style:
-                                TextStyle(color: AppColors.textSecondary)))
+                            style: TextStyle(color: AppColors.textSecondary)))
                     : ListView.separated(
                         padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
                         itemCount: events.length,
-                        separatorBuilder: (_, __) =>
-                            const Divider(height: 14),
+                        separatorBuilder: (_, __) => const Divider(height: 14),
                         itemBuilder: (_, i) {
                           final e = events[i];
                           return Column(

@@ -71,8 +71,7 @@ class _LocationPickerPageState extends State<LocationPickerPage> {
   void initState() {
     super.initState();
     final initialCenter = _normalize(widget.initial) ?? _fallbackCenter;
-    final initialZoom =
-        widget.initial != null ? _selectedZoom : _initialZoom;
+    final initialZoom = widget.initial != null ? _selectedZoom : _initialZoom;
     _centerNotifier = ValueNotifier<LatLng>(initialCenter);
     _zoomNotifier = ValueNotifier<double>(initialZoom);
 
@@ -152,8 +151,7 @@ class _LocationPickerPageState extends State<LocationPickerPage> {
   @override
   Widget build(BuildContext context) {
     final initialCenter = _normalize(widget.initial) ?? _fallbackCenter;
-    final initialZoom =
-        widget.initial != null ? _selectedZoom : _initialZoom;
+    final initialZoom = widget.initial != null ? _selectedZoom : _initialZoom;
 
     return Scaffold(
       appBar: AppBar(
@@ -173,8 +171,7 @@ class _LocationPickerPageState extends State<LocationPickerPage> {
                 builder: (context, constraints) {
                   // Если по какой-то причине констрейнты схлопнулись —
                   // показываем явный фолбэк, а не белый экран.
-                  if (constraints.maxHeight <= 0 ||
-                      constraints.maxWidth <= 0) {
+                  if (constraints.maxHeight <= 0 || constraints.maxWidth <= 0) {
                     return _ErrorState(
                       message:
                           'Карта не может отобразиться: недостаточно места '
@@ -227,8 +224,7 @@ class _Hint extends StatelessWidget {
             child: Text(
               'Двигайте карту, чтобы навести «прицел» на нужную точку. '
               'Тап по карте центрирует её на этой точке.',
-              style:
-                  TextStyle(fontSize: 12, color: AppColors.textPrimary),
+              style: TextStyle(fontSize: 12, color: AppColors.textPrimary),
             ),
           ),
         ],
@@ -359,8 +355,7 @@ class _BottomBar extends StatelessWidget {
               // иначе layout падает с BoxConstraints forces an infinite width
               // и весь body Scaffold уходит в белый экран.
               minimumSize: const Size(0, 48),
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
+              padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
               ),

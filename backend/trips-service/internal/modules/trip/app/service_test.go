@@ -19,9 +19,9 @@ type mockStore struct {
 	trips map[uuid.UUID]*domain.Trip
 	stops map[uuid.UUID]*domain.TripStop
 
-	insertTripErr  error
-	updateTripErr  error
-	insertStopErr  error
+	insertTripErr error
+	updateTripErr error
+	insertStopErr error
 }
 
 func newMockStore() *mockStore {

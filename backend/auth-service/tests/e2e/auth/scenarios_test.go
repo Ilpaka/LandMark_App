@@ -366,7 +366,7 @@ func TestE19_VerifyAfterExpiry(t *testing.T) {
 	require.NoError(t, err)
 	wv := h.post("/v1/auth/verify-email", map[string]any{
 		"verification_id": start.VerificationID,
-		"code":              code,
+		"code":            code,
 	})
 	require.Equal(t, http.StatusBadRequest, wv.Code, wv.Body.String())
 }
@@ -446,7 +446,7 @@ func TestE20_PhonePasswordResetHappyPath(t *testing.T) {
 	wf := h.post("/v1/auth/forgot-password/phone", map[string]any{"phone": ph})
 	require.Equal(t, http.StatusOK, wf.Code, wf.Body.String())
 	var forgot struct {
-		Status           string `json:"status"`
+		Status         string `json:"status"`
 		VerificationID string `json:"verification_id"`
 	}
 	require.NoError(t, json.Unmarshal(wf.Body.Bytes(), &forgot))

@@ -1,11 +1,12 @@
 package domain
 
 import (
-	"time"
 	"github.com/google/uuid"
+	"time"
 )
 
 type TargetType string
+
 const (
 	TargetPlace TargetType = "place"
 	TargetTrip  TargetType = "trip"

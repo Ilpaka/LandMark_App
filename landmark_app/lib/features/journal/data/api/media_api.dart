@@ -59,8 +59,8 @@ class MediaApi {
     );
 
     // 3. Finalize → returns Media with its own id
-    final fin = await dio.post<Map<String, dynamic>>(
-        '/v1/media/uploads/$uploadId/finalize');
+    final fin = await dio
+        .post<Map<String, dynamic>>('/v1/media/uploads/$uploadId/finalize');
     return fin.data!['id'] as String;
   }
 
