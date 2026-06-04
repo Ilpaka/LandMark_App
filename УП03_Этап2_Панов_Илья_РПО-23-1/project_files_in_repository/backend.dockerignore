@@ -1,0 +1,9 @@
+# Уменьшаем контекст сборки Go-сервисов (не влияет на COPY в Dockerfile).
+.git
+.gitignore
+**/.DS_Store
+**/*.log
+.env
+**/.env
+*.md
+**/*.md

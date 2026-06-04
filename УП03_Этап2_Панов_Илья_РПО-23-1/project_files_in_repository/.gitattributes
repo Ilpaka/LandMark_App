@@ -1,0 +1,8 @@
+# Нормализация переводов строк
+* text=auto
+*.bat text eol=crlf
+*.cmd text eol=crlf
+*.sh  text eol=lf
+*.go  text eol=lf
+*.dart text eol=lf
+Makefile text eol=lf
