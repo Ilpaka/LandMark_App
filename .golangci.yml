@@ -1,0 +1,18 @@
+# Конфигурация golangci-lint для Go-сервисов (опциональный глубокий линтер).
+# Запуск: make lint-strict  (или golangci-lint run ./... в каталоге сервиса)
+run:
+  timeout: 3m
+  tests: true
+linters:
+  enable:
+    - govet
+    - errcheck
+    - staticcheck
+    - ineffassign
+    - unused
+    - gofmt
+issues:
+  exclude-rules:
+    - path: _test\.go
+      linters:
+        - errcheck

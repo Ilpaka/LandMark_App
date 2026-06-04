@@ -30,7 +30,7 @@ start-backend.sh      запуск всего бэкенда одной кома
 
 ```bash
 # 1. Backend (нужен запущенный Docker Desktop)
-./start-backend.sh                       # = cd backend && docker compose up -d --build
+docker compose up --build                # из корня репозитория
 
 # 2. Проверка
 curl http://localhost:8080/healthz       # ожидается HTTP 200
@@ -38,6 +38,20 @@ curl http://localhost:8080/healthz       # ожидается HTTP 200
 # 3. Клиент
 cd landmark_app && flutter pub get && flutter run
 ```
+
+## Команды проекта
+
+Единый набор команд (подробности — в [INSTALL.md](INSTALL.md)):
+
+| Действие | Windows (BAT) | Make | Docker |
+|---|---|---|---|
+| Установка зависимостей | `scripts\setup.bat` | `make setup` | `docker compose build` |
+| Запуск backend | `scripts\run.bat` | `make run` | `docker compose up --build` |
+| Запуск клиента | `scripts\run-app.bat` | `make run-app` | `flutter run` |
+| Проверка качества | `scripts\check.bat` | `make check` | — |
+| Форматирование | `scripts\format.bat` | `make format` | — |
+| Логи | `scripts\logs.bat` | `make logs` | `docker compose logs -f` |
+| Остановка | `scripts\docker-down.bat` | `make docker-down` | `docker compose down` |
 
 Точки входа после запуска:
 

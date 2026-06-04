@@ -1,0 +1,20 @@
+# Общий .dockerignore проекта: не класть мусор в образы.
+.git
+.gitignore
+.github
+.gitattributes
+**/.DS_Store
+**/*.log
+.env
+**/.env
+node_modules
+.dart_tool
+build
+.idea
+.vscode
+docs
+screenshots
+WIKI
+plan_of_realisation
+УП03_*
+*.md

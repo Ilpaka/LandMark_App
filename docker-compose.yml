@@ -1,0 +1,12 @@
+# Корневой compose проекта LandMark (Wanderlog).
+# Поднимает весь backend (10 микросервисов + PostgreSQL, Redis, MinIO,
+# Mailpit, Prometheus, Grafana) одной командой из корня репозитория:
+#
+#     docker compose up --build
+#
+# Технически конфигурация сервисов вынесена в backend/docker-compose.yml
+# и подключается через include, чтобы не дублировать описание.
+name: landmark
+
+include:
+  - backend/docker-compose.yml
