@@ -1,0 +1,10 @@
+Репозиторий: https://github.com/Ilpaka/LandMark_App
+Ветка с работой по этапу 3: feat/third_stage
+
+Файлы развертывания в репозитории:
+  docker-compose.prod.yml
+  .env.production.example, .env.demo.example
+  DEPLOYMENT.md, DEMO_GUIDE.md, RELEASE_NOTES.md
+  scripts/deploy.bat, scripts/restart.bat, scripts/check_deploy.bat, scripts/build_release.bat
+  scripts/deploy.sh, scripts/restart.sh
+  deploy/nginx/landmark.conf, deploy/systemd/landmark.service

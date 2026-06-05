@@ -1,0 +1,20 @@
+Тестовые аккаунты demo-стенда LandMark
+======================================
+
+Это demo-значения из .env.demo.example. В реальном production задаются
+в .env.production и в репозиторий не коммитятся.
+
+Администратор приложения:
+  Логин:  admin@apple.com
+  Пароль: AdminPass123456
+
+Grafana (мониторинг, http://localhost:3000):
+  Логин:  admin
+  Пароль: admin
+
+MinIO Console (хранилище медиа, http://localhost:9001):
+  Логин:  minioadmin
+  Пароль: minioadmin
+
+Примечание: письма (OTP, сброс пароля) при регистрации новых пользователей
+приходят не на реальную почту, а в Mailpit — http://localhost:8025
