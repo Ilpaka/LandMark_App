@@ -80,3 +80,23 @@ flutter run                         # эмулятор Android / симулят�
 Проект **запускается полностью**: backend поднимается в Docker (16 контейнеров),
 сквозной сценарий авторизации работает, Go-тесты (14 пакетов) и Flutter-тесты
 (11 тестов) проходят. Подробности — в отчёте `01_Входной_аудит_проекта.docx`.
+
+## Скриншоты проверки
+
+### 1. Структура проекта
+![Структура проекта](screenshots/01_repo_structure.png)
+
+### 2. Установка зависимостей
+![Установка зависимостей](screenshots/02_install_dependencies.png)
+
+### 3. Файл .env.example (без секретов)
+![.env.example](screenshots/03_env_example.png)
+
+### 4. Успешный запуск backend
+![Успешный запуск](screenshots/04_success_run.png)
+
+### 5. Работающая программа
+![Работающая программа](screenshots/05_app_working.png)
+
+### 6. Состояние Git
+![git status](screenshots/06_git_status.png)
