@@ -1,0 +1,27 @@
+Где открыть результат
+======================
+
+Вариант развертывания: C — локальный demo-стенд через Docker.
+
+Проект LandMark — это система из 10 микросервисов с базой данных, поэтому он
+разворачивается как production/demo-стенд одной командой и открывается по
+локальному адресу (внешний публичный сервер для учебной демонстрации не
+используется).
+
+Запуск стенда:
+  Windows:  scripts\deploy.bat
+  Linux:    bash scripts/deploy.sh
+  вручную:  docker compose --env-file .env.production -f docker-compose.prod.yml up --build -d
+
+Адреса после запуска:
+  API Gateway   http://localhost:8080        (health-check: /healthz -> HTTP 200)
+  Grafana       http://localhost:3000        (логин admin)
+  Prometheus    http://localhost:9090
+  Mailpit       http://localhost:8025        (письма: OTP / сброс пароля)
+  MinIO Console http://localhost:9001
+
+Release-билд клиента (Flutter web):
+  scripts\build_release.bat  ->  landmark_app\build\web  и  release\project_release.zip
+
+Тот же docker-compose.prod.yml без изменений разворачивается на VPS/Linux —
+тогда вместо localhost используется домен/IP сервера (см. DEPLOYMENT.md, раздел 6).
