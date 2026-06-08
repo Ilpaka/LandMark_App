@@ -10,7 +10,7 @@ import (
 
 // Mount registers auth HTTP routes on r (typically /v1).
 func Mount(r *gin.RouterGroup, svc *app.Service, jwt ports.JWTSigner, rdb *redisx.Client) {
-	h := &Handlers{Svc: svc}
+	h := &Handlers{Svc: svc, ExposeDevCode: shouldExposeDevCode()}
 	authz := AuthMiddleware(jwt, rdb)
 
 	r.POST("/auth/register", h.Register)

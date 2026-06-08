@@ -1,0 +1,37 @@
+LandMark API test matrix
+Base URL: http://localhost:8080
+Run id:   3118426249
+------------------------------------------------------------
+[1] Health & public reads
+[PASS] health endpoint                    GET /healthz                   -> 200 (0.004966s)
+       body: {"status":"ok"}
+[PASS] public list places                 GET /v1/places                 -> 200 (0.034140s)
+       body: {"places":[{"id":"4b93df10-2a68-4daf-a7e3-d5942d3bdf21","title":"Казанский Кремль","description":"Историческая крепость в центре Казани, объект Ю
+------------------------------------------------------------
+[2] Auth flow (registration -> verify -> login)
+       register response: {"dev_code":"446059","status":"ok","verification_id":"44cf80f4-7f9a-485e-9651-0063fa0527d8"}
+[PASS] verify email                       POST /v1/auth/verify-email      -> 200 (0.032658s)
+       body: {"status":"ok"}
+       login OK, token acquired (len=734)
+------------------------------------------------------------
+[3] Authenticated requests + create (DB change)
+[PASS] profile/me WITH token              GET /v1/profile/me             -> 200 (0.031721s)
+       body: {"user_id":"31538e5d-0d83-4627-b2cc-d5d31310d9f2","nickname":"31538e5d","display_name":"User","created_at":"2026-06-08T16:25:53.017121Z","updated_at":"2026-06-08T16:25:53.017121Z"}
+[PASS] create trip (POST)                 POST /v1/trips                  -> 201 (0.044028s)
+       body: {"id":"c89ed9b1-553e-4c46-b76b-cfc207e5720e","owner_id":"31538e5d-0d83-4627-b2cc-d5d31310d9f2","title":"QA trip 3118426249","subtitle":null,"start_date":null,"end_date":null,"cover_media_id":null,"sta
+       [PASS] DB change verified: created trip is listed in GET /v1/trips
+------------------------------------------------------------
+[4] Error scenarios (must be handled, not 500)
+[PASS] login wrong password               POST /v1/auth/login             -> 401 (0.084794s)
+       body: {"error":"invalid_credentials"}
+[PASS] register invalid email             POST /v1/auth/register          -> 400 (0.006172s)
+       body: {"error":"bad_request"}
+[PASS] register short password            POST /v1/auth/register          -> 400 (0.003913s)
+       body: {"error":"bad_request"}
+[PASS] profile WITHOUT token              GET /v1/profile                -> 401 (0.004119s)
+       body: {"error":"unauthorized"}
+[PASS] place not found (uuid)             GET /v1/places/00000000-0000-0000-0000-000000000000 -> 404 (0.009037s)
+       body: {"error":"not_found"}
+------------------------------------------------------------
+RESULT: 12 passed, 0 failed
+ALL CHECKS PASSED
