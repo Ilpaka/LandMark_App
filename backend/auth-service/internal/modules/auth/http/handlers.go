@@ -2,6 +2,7 @@ package authhttp
 
 import (
 	"net/http"
+	"os"
 	"strconv"
 	"strings"
 	"time"
@@ -15,6 +16,20 @@ import (
 
 type Handlers struct {
 	Svc *app.Service
+	// ExposeDevCode, when true, returns the OTP verification code in the
+	// register HTTP response (demo convenience without mail infrastructure).
+	// It MUST stay false in production to avoid leaking the OTP to the client.
+	ExposeDevCode bool
+}
+
+// shouldExposeDevCode is production-safe by default: the OTP code is only
+// returned when AUTH_EXPOSE_DEV_CODE=true is explicitly set (demo stands),
+// or when the service runs outside production (APP_ENV != production).
+func shouldExposeDevCode() bool {
+	if strings.EqualFold(os.Getenv("AUTH_EXPOSE_DEV_CODE"), "true") {
+		return true
+	}
+	return !strings.EqualFold(os.Getenv("APP_ENV"), "production")
 }
 
 type registerReq struct {
@@ -39,9 +54,13 @@ func (h *Handlers) Register(c *gin.Context) {
 		writeErr(c, err)
 		return
 	}
-	// dev_code возвращается для демо: код OTP сразу виден клиенту,
-	// чтобы можно было показать его в push-уведомлении без почтовой инфраструктуры.
-	c.JSON(http.StatusOK, gin.H{"status": "ok", "verification_id": verID.String(), "dev_code": plainCode})
+	resp := gin.H{"status": "ok", "verification_id": verID.String()}
+	// dev_code is only exposed for demo stands (AUTH_EXPOSE_DEV_CODE=true or
+	// non-production APP_ENV). In production the OTP must travel only via email/SMS.
+	if h.ExposeDevCode {
+		resp["dev_code"] = plainCode
+	}
+	c.JSON(http.StatusOK, resp)
 }
 
 func validPassword(s string) bool {

@@ -1,0 +1,24 @@
+DEFECT BUG-02: OTP verification code leaked in register HTTP response
+======================================================================
+
+BEFORE FIX (previous image): handlers.go returned dev_code UNCONDITIONALLY,
+even with APP_ENV=production. Evidence from earlier API run:
+  register response: {"dev_code":"943818","status":"ok","verification_id":"..."}
+  -> the one-time OTP is exposed to any API client = account-takeover risk.
+
+FIX: gate dev_code behind shouldExposeDevCode() (AUTH_EXPOSE_DEV_CODE flag,
+     production-safe default) + plumb the var through docker-compose.prod.yml.
+
+------------------------------------------------------------------
+AFTER FIX, state 1 = PRODUCTION-SAFE (AUTH_EXPOSE_DEV_CODE=false):
+------------------------------------------------------------------
+register response: {"status":"ok","verification_id":"dd0ca65d-cd59-4b6f-8d69-6064933b494b"}
+  RESULT: dev_code ABSENT -> OTP no longer leaked (FIXED)
+
+------------------------------------------------------------------
+AFTER FIX, state 2 = DEMO OPT-IN (AUTH_EXPOSE_DEV_CODE=true):
+------------------------------------------------------------------
+register response: {"dev_code":"211139","status":"ok","verification_id":"a215f906-70ac-4816-847c-487d2550ef69"}
+  RESULT: dev_code present (expected for demo opt-in; demo flow works)
+
+Conclusion: production safe by default; demo keeps dev_code via explicit opt-in.

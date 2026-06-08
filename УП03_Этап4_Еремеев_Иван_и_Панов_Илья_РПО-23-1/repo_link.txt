@@ -1,0 +1,22 @@
+Репозиторий: https://github.com/Ilpaka/LandMark_App
+Ветка с работой по этапу 4: feat/fourth_stage
+
+Развёрнутый результат, который тестировался на этапе 4 (локальный demo-стенд из этапа 3):
+  Запуск:        docker compose --env-file .env.production -f docker-compose.prod.yml up -d
+  API Gateway:   http://localhost:8080      (health: http://localhost:8080/healthz)
+  Grafana:       http://localhost:3000
+  Mailpit:       http://localhost:8025
+  Prometheus:    http://localhost:9090
+  MinIO:         http://localhost:9001
+
+Что проверялось инструментами:
+  - API (curl): 12 проверок, коды 200/201/400/401/404, успешные и ошибочные сценарии
+  - Автотесты: go test ./... по 8 сервисам (14 пакетов, все ok)
+  - Производительность: измерение времени ответа API (curl) + k6-скрипт
+  - Web-интерфейс развёрнутой системы: Lighthouse (Grafana UI)
+  - Логи: docker compose logs, поиск критических ошибок (5xx/panic) — не найдены
+  - Дефекты и риски: docs/DEFECT_LOG.md, docs/RISK_REGISTER.md
+
+Примечание: мобильный клиент написан на Flutter; на этой машине SDK Flutter не установлен,
+поэтому web-сборка фронтенда не выполнялась. Проверка велась по контуру Backend/API +
+развёрнутые web-UI стенда (Grafana/Prometheus/Mailpit/MinIO).

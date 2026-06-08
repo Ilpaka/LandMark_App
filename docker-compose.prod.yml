@@ -46,6 +46,9 @@ services:
     environment:
       APP_ENV: production
       LOG_LEVEL: ${LOG_LEVEL:-info}
+      # OTP code is exposed in the register response only when explicitly opted in
+      # (demo stands set this in .env.production). Defaults to false = production-safe.
+      AUTH_EXPOSE_DEV_CODE: ${AUTH_EXPOSE_DEV_CODE:-false}
 
   profile-service:
     environment:

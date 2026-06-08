@@ -1,0 +1,657 @@
+grafana-1                | logger=settings t=2026-06-05T21:04:33.480402086Z level=info msg="Config overridden from Environment variable" var="GF_PATHS_DATA=/var/lib/grafana"
+grafana-1                | logger=settings t=2026-06-05T21:04:33.480403532Z level=info msg="Config overridden from Environment variable" var="GF_PATHS_LOGS=/var/log/grafana"
+favorites-service-1      | Running database migrations...
+favorites-service-1      | 2026/06/05 21:04:36 goose: no migrations to run. current version: 20260502170000
+favorites-service-1      | Starting server...
+favorites-service-1      | [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+favorites-service-1      |  - using env:	export GIN_MODE=release
+favorites-service-1      |  - using code:	gin.SetMode(gin.ReleaseMode)
+postgres-1               | 
+moderation-service-1     | Running database migrations...
+postgres-1               | PostgreSQL Database directory appears to contain a database; Skipping initialization
+postgres-1               | 
+postgres-1               | 2026-06-05 21:04:32.975 UTC [1] LOG:  starting PostgreSQL 16.11 on x86_64-pc-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit
+minio-init-1             | Added `local` successfully.
+redis-1                  | 1:C 05 Jun 2026 21:04:32.790 * oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+places-service-1         | Running database migrations...
+redis-1                  | 1:C 05 Jun 2026 21:04:32.790 * Redis version=7.4.7, bits=64, commit=00000000, modified=0, pid=1, just started
+places-service-1         | 2026/06/05 21:04:36 goose: no migrations to run. current version: 20260605000000
+grafana-1                | logger=settings t=2026-06-05T21:04:33.480404575Z level=info msg="Config overridden from Environment variable" var="GF_PATHS_PLUGINS=/var/lib/grafana/plugins"
+trips-service-1          | Running database migrations...
+minio-1                  | MinIO Object Storage Server
+trips-service-1          | 2026/06/05 21:04:36 goose: no migrations to run. current version: 20260502140000
+trips-service-1          | Starting server...
+trips-service-1          | [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+trips-service-1          |  - using env:	export GIN_MODE=release
+minio-1                  | Copyright: 2015-2026 MinIO, Inc.
+minio-1                  | License: GNU AGPLv3 - https://www.gnu.org/licenses/agpl-3.0.html
+minio-1                  | Version: RELEASE.2025-09-07T16-13-09Z (go1.24.6 linux/amd64)
+minio-1                  | 
+favorites-service-1      | 
+media-service-1          | Running database migrations...
+redis-1                  | 1:C 05 Jun 2026 21:04:32.790 # Warning: no config file specified, using the default config. In order to specify a config file use redis-server /path/to/redis.conf
+redis-1                  | 1:M 05 Jun 2026 21:04:32.791 * monotonic clock: POSIX clock_gettime
+redis-1                  | 1:M 05 Jun 2026 21:04:32.794 * Running mode=standalone, port=6379.
+redis-1                  | 1:M 05 Jun 2026 21:04:32.794 * Server initialized
+redis-1                  | 1:M 05 Jun 2026 21:04:32.795 * Ready to accept connections tcp
+redis-1                  | 1:signal-handler (1780693882) Received SIGTERM scheduling shutdown...
+redis-1                  | 1:M 05 Jun 2026 21:11:22.702 * User requested shutdown...
+redis-1                  | 1:M 05 Jun 2026 21:11:22.703 * Saving the final RDB snapshot before exiting.
+media-service-1          | 2026/06/05 21:04:39 goose: no migrations to run. current version: 20260502160000
+media-service-1          | Starting server...
+media-service-1          | [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+media-service-1          |  - using env:	export GIN_MODE=release
+minio-init-1             | Bucket created successfully `local/landmark-media`.
+minio-init-1             | Access permission for `local/landmark-media` is set to `private`
+minio-init-1             | Added `local` successfully.
+minio-init-1             | Bucket created successfully `local/landmark-media`.
+minio-init-1             | Access permission for `local/landmark-media` is set to `private`
+prometheus-1             | ts=2026-06-05T21:04:33.104Z caller=main.go:601 level=info msg="No time or size retention was set so using the default time retention" duration=15d
+places-service-1         | Starting server...
+prometheus-1             | ts=2026-06-05T21:04:33.104Z caller=main.go:645 level=info msg="Starting Prometheus Server" mode=server version="(version=2.54.1, branch=HEAD, revision=e6cfa720fbe6280153fab13090a483dbd40bece3)"
+prometheus-1             | ts=2026-06-05T21:04:33.104Z caller=main.go:650 level=info build_context="(go=go1.22.6, platform=linux/amd64, user=root@812ffd741951, date=20240827-10:56:41, tags=netgo,builtinassets,stringlabels)"
+notifications-service-1  | Running database migrations...
+notifications-service-1  | 2026/06/05 21:04:36 goose: no migrations to run. current version: 20260502180000
+notifications-service-1  | Starting server...
+notifications-service-1  | [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+notifications-service-1  |  - using env:	export GIN_MODE=release
+notifications-service-1  |  - using code:	gin.SetMode(gin.ReleaseMode)
+notifications-service-1  | 
+notifications-service-1  | [GIN-debug] GET    /healthz                  --> main.main.func1 (2 handlers)
+notifications-service-1  | [GIN-debug] GET    /v1/notifications         --> github.com/ilpaka/landmark_app/backend/notifications-service/internal/modules/notification/http.(*Handler).List-fm (2 handlers)
+notifications-service-1  | [GIN-debug] POST   /v1/notifications/:id/read --> github.com/ilpaka/landmark_app/backend/notifications-service/internal/modules/notification/http.(*Handler).MarkRead-fm (2 handlers)
+notifications-service-1  | [GIN-debug] POST   /v1/notifications/read-all --> github.com/ilpaka/landmark_app/backend/notifications-service/internal/modules/notification/http.(*Handler).MarkAllRead-fm (2 handlers)
+notifications-service-1  | [GIN-debug] POST   /v1/notifications/devices --> github.com/ilpaka/landmark_app/backend/notifications-service/internal/modules/notification/http.(*Handler).RegisterDevice-fm (2 handlers)
+notifications-service-1  | [GIN-debug] DELETE /v1/notifications/devices/:id --> github.com/ilpaka/landmark_app/backend/notifications-service/internal/modules/notification/http.(*Handler).UnregisterDevice-fm (2 handlers)
+notifications-service-1  | [GIN-debug] GET    /v1/notifications/preferences --> github.com/ilpaka/landmark_app/backend/notifications-service/internal/modules/notification/http.(*Handler).GetPreferences-fm (2 handlers)
+notifications-service-1  | [GIN-debug] PATCH  /v1/notifications/preferences --> github.com/ilpaka/landmark_app/backend/notifications-service/internal/modules/notification/http.(*Handler).UpdatePreferences-fm (2 handlers)
+notifications-service-1  | [GIN-debug] POST   /v1/internal/notifications/send --> github.com/ilpaka/landmark_app/backend/notifications-service/internal/modules/notification/http.(*Handler).InternalSend-fm (3 handlers)
+notifications-service-1  | {"time":"2026-06-05T21:04:36.733893961Z","level":"INFO","msg":"notifications-service started","addr":":8080"}
+notifications-service-1  | [GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+mailhog-1                | time="2026/06/05 21:04:32" level=info msg="[smtpd] enabling any authentication (insecure)"
+moderation-service-1     | 2026/06/05 21:04:37 goose: no migrations to run. current version: 20260502190001
+moderation-service-1     | Starting server...
+moderation-service-1     | [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+moderation-service-1     |  - using env:	export GIN_MODE=release
+moderation-service-1     |  - using code:	gin.SetMode(gin.ReleaseMode)
+moderation-service-1     | 
+minio-1                  | API: http://172.22.0.4:9000  http://127.0.0.1:9000 
+minio-1                  | WebUI: http://172.22.0.4:9001 http://127.0.0.1:9001  
+minio-1                  | 
+minio-1                  | Docs: https://docs.min.io
+minio-1                  | WARN: Detected default credentials 'minioadmin:minioadmin', we recommend that you change these values with 'MINIO_ROOT_USER' and 'MINIO_ROOT_PASSWORD' environment variables
+minio-1                  | INFO: Exiting on signal: TERMINATED
+minio-1                  | MinIO Object Storage Server
+trips-service-1          |  - using code:	gin.SetMode(gin.ReleaseMode)
+trips-service-1          | 
+trips-service-1          | [GIN-debug] GET    /healthz                  --> github.com/ilpaka/landmark_app/backend/trips-service/internal/modules/trip/http.Mount.func1 (2 handlers)
+trips-service-1          | [GIN-debug] GET    /v1/trips/public          --> github.com/ilpaka/landmark_app/backend/trips-service/internal/modules/trip/http.(*Handlers).ListPublicTrips-fm (2 handlers)
+trips-service-1          | [GIN-debug] GET    /v1/trips                 --> github.com/ilpaka/landmark_app/backend/trips-service/internal/modules/trip/http.(*Handlers).ListTrips-fm (2 handlers)
+trips-service-1          | [GIN-debug] POST   /v1/trips                 --> github.com/ilpaka/landmark_app/backend/trips-service/internal/modules/trip/http.(*Handlers).CreateTrip-fm (2 handlers)
+trips-service-1          | [GIN-debug] GET    /v1/trips/:id             --> github.com/ilpaka/landmark_app/backend/trips-service/internal/modules/trip/http.(*Handlers).GetTrip-fm (2 handlers)
+trips-service-1          | [GIN-debug] PATCH  /v1/trips/:id             --> github.com/ilpaka/landmark_app/backend/trips-service/internal/modules/trip/http.(*Handlers).UpdateTrip-fm (2 handlers)
+trips-service-1          | [GIN-debug] DELETE /v1/trips/:id             --> github.com/ilpaka/landmark_app/backend/trips-service/internal/modules/trip/http.(*Handlers).DeleteTrip-fm (2 handlers)
+trips-service-1          | [GIN-debug] GET    /v1/trips/:id/route       --> github.com/ilpaka/landmark_app/backend/trips-service/internal/modules/trip/http.(*Handlers).GetRoute-fm (2 handlers)
+trips-service-1          | [GIN-debug] POST   /v1/trips/:id/optimize    --> github.com/ilpaka/landmark_app/backend/trips-service/internal/modules/trip/http.(*Handlers).OptimizeRoute-fm (2 handlers)
+trips-service-1          | [GIN-debug] GET    /v1/trips/:id/stops       --> github.com/ilpaka/landmark_app/backend/trips-service/internal/modules/trip/http.(*Handlers).ListStops-fm (2 handlers)
+trips-service-1          | [GIN-debug] POST   /v1/trips/:id/stops       --> github.com/ilpaka/landmark_app/backend/trips-service/internal/modules/trip/http.(*Handlers).AddStop-fm (2 handlers)
+mailhog-1                | time="2026/06/05 21:04:32" level=info msg="[cors] allowed API origins: "
+media-service-1          |  - using code:	gin.SetMode(gin.ReleaseMode)
+mailhog-1                | time="2026/06/05 21:04:32" level=info msg="[smtpd] starting on [::]:1025 (no encryption)"
+redis-1                  | 1:M 05 Jun 2026 21:11:22.707 * DB saved on disk
+favorites-service-1      | [GIN-debug] GET    /healthz                  --> main.main.func1 (2 handlers)
+api-gateway-1            | Starting api-gateway...
+redis-1                  | 1:M 05 Jun 2026 21:11:22.707 # Redis is now ready to exit, bye bye...
+grafana-1                | logger=settings t=2026-06-05T21:04:33.480405536Z level=info msg="Config overridden from Environment variable" var="GF_PATHS_PROVISIONING=/etc/grafana/provisioning"
+prometheus-1             | ts=2026-06-05T21:04:33.104Z caller=main.go:651 level=info host_details="(Linux 6.6.87.2-microsoft-standard-WSL2 #1 SMP PREEMPT_DYNAMIC Thu Jun  5 18:30:46 UTC 2025 x86_64 451f5cbcfee4 localdomain)"
+grafana-1                | logger=settings t=2026-06-05T21:04:33.480419833Z level=info msg="Config overridden from Environment variable" var="GF_SECURITY_ADMIN_PASSWORD=*********"
+moderation-service-1     | [GIN-debug] GET    /healthz                  --> main.main.func1 (2 handlers)
+minio-1                  | Copyright: 2015-2026 MinIO, Inc.
+minio-1                  | License: GNU AGPLv3 - https://www.gnu.org/licenses/agpl-3.0.html
+minio-1                  | Version: RELEASE.2025-09-07T16-13-09Z (go1.24.6 linux/amd64)
+minio-1                  | 
+minio-1                  | API: http://172.22.0.5:9000  http://127.0.0.1:9000 
+media-service-1          | 
+media-service-1          | [GIN-debug] GET    /healthz                  --> main.main.func1 (2 handlers)
+media-service-1          | [GIN-debug] POST   /v1/media/uploads         --> github.com/ilpaka/landmark_app/backend/media-service/internal/modules/media/http.(*Handler).RequestUpload-fm (2 handlers)
+journal-service-1        | Running database migrations...
+redis-1                  | 1:C 08 Jun 2026 15:14:25.046 * oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+redis-1                  | 1:C 08 Jun 2026 15:14:25.047 * Redis version=7.4.7, bits=64, commit=00000000, modified=0, pid=1, just started
+api-gateway-1            | [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+journal-service-1        | 2026/06/05 21:04:36 goose: no migrations to run. current version: 20260601000000
+journal-service-1        | Starting server...
+trips-service-1          | [GIN-debug] POST   /v1/trips/:id/stops/:sid/visit --> github.com/ilpaka/landmark_app/backend/trips-service/internal/modules/trip/http.(*Handlers).MarkVisited-fm (2 handlers)
+journal-service-1        | [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+journal-service-1        |  - using env:	export GIN_MODE=release
+trips-service-1          | {"time":"2026-06-05T21:04:36.635056244Z","level":"INFO","msg":"starting trips-service","addr":":8080"}
+auth-service-1           | Running database migrations...
+auth-service-1           | 2026/06/08 16:25:39 goose: no migrations to run. current version: 20260425120000
+auth-service-1           | Starting server...
+auth-service-1           | {"time":"2026-06-08T16:25:39.927384483Z","level":"INFO","msg":"admin bootstrap ok","email":"admin@apple.com"}
+auth-service-1           | {"time":"2026-06-08T16:25:41.281139125Z","level":"INFO","msg":"verification otp","to":"demoopt.1032@example.com","code":"211139"}
+auth-service-1           | {"time":"2026-06-08T16:25:52.300342004Z","level":"INFO","msg":"verification otp","to":"qa.user.3118426249@example.com","code":"446059"}
+places-service-1         | [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+places-service-1         |  - using env:	export GIN_MODE=release
+minio-1                  | WebUI: http://172.22.0.5:9001 http://127.0.0.1:9001  
+redis-1                  | 1:C 08 Jun 2026 15:14:25.047 # Warning: no config file specified, using the default config. In order to specify a config file use redis-server /path/to/redis.conf
+journal-service-1        |  - using code:	gin.SetMode(gin.ReleaseMode)
+postgres-1               | 2026-06-05 21:04:32.975 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+postgres-1               | 2026-06-05 21:04:32.975 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+postgres-1               | 2026-06-05 21:04:32.978 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+grafana-1                | logger=settings t=2026-06-05T21:04:33.480421335Z level=info msg="Config overridden from Environment variable" var="GF_USERS_ALLOW_SIGN_UP=false"
+grafana-1                | logger=settings t=2026-06-05T21:04:33.480438533Z level=info msg=Target target=[all]
+trips-service-1          | [GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+places-service-1         |  - using code:	gin.SetMode(gin.ReleaseMode)
+api-gateway-1            |  - using env:	export GIN_MODE=release
+api-gateway-1            |  - using code:	gin.SetMode(gin.ReleaseMode)
+favorites-service-1      | [GIN-debug] GET    /v1/favorites             --> github.com/ilpaka/landmark_app/backend/favorites-service/internal/modules/favorite/http.(*Handler).ListFavorites-fm (2 handlers)
+favorites-service-1      | [GIN-debug] POST   /v1/favorites             --> github.com/ilpaka/landmark_app/backend/favorites-service/internal/modules/favorite/http.(*Handler).AddFavorite-fm (2 handlers)
+favorites-service-1      | [GIN-debug] DELETE /v1/favorites/:type/:id   --> github.com/ilpaka/landmark_app/backend/favorites-service/internal/modules/favorite/http.(*Handler).RemoveFavorite-fm (2 handlers)
+favorites-service-1      | [GIN-debug] GET    /v1/favorites/:type/:id   --> github.com/ilpaka/landmark_app/backend/favorites-service/internal/modules/favorite/http.(*Handler).CheckFavorite-fm (2 handlers)
+favorites-service-1      | [GIN-debug] GET    /v1/favorites/collections --> github.com/ilpaka/landmark_app/backend/favorites-service/internal/modules/favorite/http.(*Handler).ListCollections-fm (2 handlers)
+favorites-service-1      | [GIN-debug] POST   /v1/favorites/collections --> github.com/ilpaka/landmark_app/backend/favorites-service/internal/modules/favorite/http.(*Handler).CreateCollection-fm (2 handlers)
+prometheus-1             | ts=2026-06-05T21:04:33.104Z caller=main.go:652 level=info fd_limits="(soft=1048576, hard=1048576)"
+moderation-service-1     | [GIN-debug] POST   /v1/moderation/submit     --> github.com/ilpaka/landmark_app/backend/moderation-service/internal/modules/moderation/http.(*Handler).Submit-fm (2 handlers)
+moderation-service-1     | [GIN-debug] GET    /v1/moderation/stats      --> github.com/ilpaka/landmark_app/backend/moderation-service/internal/modules/moderation/http.(*Handler).GetStats-fm (2 handlers)
+moderation-service-1     | [GIN-debug] GET    /v1/moderation/queue      --> github.com/ilpaka/landmark_app/backend/moderation-service/internal/modules/moderation/http.(*Handler).ListQueue-fm (2 handlers)
+notifications-service-1  | Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+notifications-service-1  | [GIN-debug] Listening and serving HTTP on :8080
+notifications-service-1  | Running database migrations...
+notifications-service-1  | 2026/06/08 15:14:29 goose: no migrations to run. current version: 20260502180000
+trips-service-1          | Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+trips-service-1          | [GIN-debug] Listening and serving HTTP on :8080
+trips-service-1          | Running database migrations...
+trips-service-1          | 2026/06/08 15:14:29 goose: no migrations to run. current version: 20260502140000
+trips-service-1          | Starting server...
+redis-1                  | 1:M 08 Jun 2026 15:14:25.047 * monotonic clock: POSIX clock_gettime
+journal-service-1        | 
+journal-service-1        | [GIN-debug] GET    /healthz                  --> github.com/ilpaka/landmark_app/backend/journal-service/internal/modules/journal/http.Mount.func1 (2 handlers)
+journal-service-1        | [GIN-debug] GET    /v1/journal/entries       --> github.com/ilpaka/landmark_app/backend/journal-service/internal/modules/journal/http.(*Handlers).ListEntries-fm (2 handlers)
+journal-service-1        | [GIN-debug] POST   /v1/journal/entries       --> github.com/ilpaka/landmark_app/backend/journal-service/internal/modules/journal/http.(*Handlers).CreateEntry-fm (2 handlers)
+journal-service-1        | [GIN-debug] GET    /v1/journal/entries/:id   --> github.com/ilpaka/landmark_app/backend/journal-service/internal/modules/journal/http.(*Handlers).GetEntry-fm (2 handlers)
+journal-service-1        | [GIN-debug] PATCH  /v1/journal/entries/:id   --> github.com/ilpaka/landmark_app/backend/journal-service/internal/modules/journal/http.(*Handlers).UpdateEntry-fm (2 handlers)
+journal-service-1        | [GIN-debug] DELETE /v1/journal/entries/:id   --> github.com/ilpaka/landmark_app/backend/journal-service/internal/modules/journal/http.(*Handlers).DeleteEntry-fm (2 handlers)
+media-service-1          | [GIN-debug] POST   /v1/media/uploads/:id/finalize --> github.com/ilpaka/landmark_app/backend/media-service/internal/modules/media/http.(*Handler).FinalizeUpload-fm (2 handlers)
+api-gateway-1            | 
+mailhog-1                | time="2026/06/05 21:04:32" level=info msg="[http] starting on [::]:8025"
+mailhog-1                | time="2026/06/05 21:04:32" level=info msg="[http] accessible via http://localhost:8025/"
+mailhog-1                | [db] got terminated signal, shutting down
+mailhog-1                | time="2026/06/08 15:14:25" level=info msg="[smtpd] enabling any authentication (insecure)"
+favorites-service-1      | [GIN-debug] PATCH  /v1/favorites/collections/:id --> github.com/ilpaka/landmark_app/backend/favorites-service/internal/modules/favorite/http.(*Handler).UpdateCollection-fm (2 handlers)
+favorites-service-1      | [GIN-debug] DELETE /v1/favorites/collections/:id --> github.com/ilpaka/landmark_app/backend/favorites-service/internal/modules/favorite/http.(*Handler).DeleteCollection-fm (2 handlers)
+favorites-service-1      | {"time":"2026-06-05T21:04:36.661457375Z","level":"INFO","msg":"favorites-service started","addr":":8080"}
+prometheus-1             | ts=2026-06-05T21:04:33.104Z caller=main.go:653 level=info vm_limits="(soft=unlimited, hard=unlimited)"
+profile-service-1        | Running database migrations...
+grafana-1                | logger=settings t=2026-06-05T21:04:33.480446529Z level=info msg="Path Home" path=/usr/share/grafana
+notifications-service-1  | Starting server...
+notifications-service-1  | [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+places-service-1         | 
+media-service-1          | [GIN-debug] GET    /v1/media/:id             --> github.com/ilpaka/landmark_app/backend/media-service/internal/modules/media/http.(*Handler).GetMedia-fm (2 handlers)
+media-service-1          | [GIN-debug] GET    /v1/media/:id/url         --> github.com/ilpaka/landmark_app/backend/media-service/internal/modules/media/http.(*Handler).GetMediaURL-fm (2 handlers)
+media-service-1          | [GIN-debug] DELETE /v1/media/:id             --> github.com/ilpaka/landmark_app/backend/media-service/internal/modules/media/http.(*Handler).DeleteMedia-fm (2 handlers)
+api-gateway-1            | [GIN-debug] GET    /healthz                  --> main.main.func1 (2 handlers)
+api-gateway-1            | {"time":"2026-06-05T21:04:36.985081406Z","level":"INFO","msg":"api-gateway starting","addr":":8080"}
+api-gateway-1            | [GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+trips-service-1          | [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+trips-service-1          |  - using env:	export GIN_MODE=release
+trips-service-1          |  - using code:	gin.SetMode(gin.ReleaseMode)
+trips-service-1          | 
+prometheus-1             | ts=2026-06-05T21:04:33.108Z caller=web.go:571 level=info component=web msg="Start listening for connections" address=0.0.0.0:9090
+prometheus-1             | ts=2026-06-05T21:04:33.109Z caller=main.go:1160 level=info msg="Starting TSDB ..."
+prometheus-1             | ts=2026-06-05T21:04:33.111Z caller=repair.go:56 level=info component=tsdb msg="Found healthy block" mint=1780678581887 maxt=1780682400000 ulid=01KTCNZRGJE93B6PEPH9QH176Z
+journal-service-1        | [GIN-debug] GET    /v1/journal/entries/:id/media --> github.com/ilpaka/landmark_app/backend/journal-service/internal/modules/journal/http.(*Handlers).ListMedia-fm (2 handlers)
+journal-service-1        | [GIN-debug] POST   /v1/journal/entries/:id/media --> github.com/ilpaka/landmark_app/backend/journal-service/internal/modules/journal/http.(*Handlers).AddMedia-fm (2 handlers)
+journal-service-1        | [GIN-debug] DELETE /v1/journal/entries/:id/media/:mid --> github.com/ilpaka/landmark_app/backend/journal-service/internal/modules/journal/http.(*Handlers).RemoveMedia-fm (2 handlers)
+journal-service-1        | [GIN-debug] GET    /v1/journal/entries/:id/reactions --> github.com/ilpaka/landmark_app/backend/journal-service/internal/modules/journal/http.(*Handlers).ListReactions-fm (2 handlers)
+journal-service-1        | [GIN-debug] POST   /v1/journal/entries/:id/reactions --> github.com/ilpaka/landmark_app/backend/journal-service/internal/modules/journal/http.(*Handlers).AddReaction-fm (2 handlers)
+redis-1                  | 1:M 08 Jun 2026 15:14:25.049 * Running mode=standalone, port=6379.
+redis-1                  | 1:M 08 Jun 2026 15:14:25.049 * Server initialized
+api-gateway-1            | Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+favorites-service-1      | [GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+favorites-service-1      | Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+api-gateway-1            | [GIN-debug] Listening and serving HTTP on :8080
+api-gateway-1            | Starting api-gateway...
+api-gateway-1            | [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+api-gateway-1            |  - using env:	export GIN_MODE=release
+api-gateway-1            |  - using code:	gin.SetMode(gin.ReleaseMode)
+grafana-1                | logger=settings t=2026-06-05T21:04:33.480447966Z level=info msg="Path Data" path=/var/lib/grafana
+grafana-1                | logger=settings t=2026-06-05T21:04:33.48044914Z level=info msg="Path Logs" path=/var/log/grafana
+journal-service-1        | [GIN-debug] DELETE /v1/journal/entries/:id/reactions/:emoji --> github.com/ilpaka/landmark_app/backend/journal-service/internal/modules/journal/http.(*Handlers).RemoveReaction-fm (2 handlers)
+journal-service-1        | {"time":"2026-06-05T21:04:36.847627243Z","level":"INFO","msg":"starting journal-service","addr":":8080"}
+journal-service-1        | [GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+journal-service-1        | Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+journal-service-1        | [GIN-debug] Listening and serving HTTP on :8080
+mailhog-1                | time="2026/06/08 15:14:25" level=info msg="[cors] allowed API origins: "
+mailhog-1                | time="2026/06/08 15:14:25" level=info msg="[smtpd] starting on [::]:1025 (no encryption)"
+mailhog-1                | time="2026/06/08 15:14:25" level=info msg="[http] starting on [::]:8025"
+mailhog-1                | time="2026/06/08 15:14:25" level=info msg="[http] accessible via http://localhost:8025/"
+profile-service-1        | 2026/06/05 21:04:36 goose: no migrations to run. current version: 20260602000000
+profile-service-1        | Starting server...
+profile-service-1        | [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+profile-service-1        |  - using env:	export GIN_MODE=release
+places-service-1         | [GIN-debug] GET    /healthz                  --> github.com/ilpaka/landmark_app/backend/places-service/internal/modules/place/http.Mount.func1 (2 handlers)
+places-service-1         | [GIN-debug] GET    /v1/places/categories     --> github.com/ilpaka/landmark_app/backend/places-service/internal/modules/place/http.(*Handlers).ListCategories-fm (2 handlers)
+places-service-1         | [GIN-debug] POST   /v1/places/categories     --> github.com/ilpaka/landmark_app/backend/places-service/internal/modules/place/http.(*Handlers).CreateCategory-fm (2 handlers)
+postgres-1               | 2026-06-05 21:04:32.984 UTC [29] LOG:  database system was shut down at 2026-06-05 21:04:25 UTC
+postgres-1               | 2026-06-05 21:04:32.991 UTC [1] LOG:  database system is ready to accept connections
+redis-1                  | 1:M 08 Jun 2026 15:14:25.050 * Loading RDB produced by version 7.4.7
+redis-1                  | 1:M 08 Jun 2026 15:14:25.050 * RDB age 237783 seconds
+redis-1                  | 1:M 08 Jun 2026 15:14:25.050 * RDB memory usage when created 0.93 Mb
+redis-1                  | 1:M 08 Jun 2026 15:14:25.050 * Done loading RDB, keys loaded: 0, keys expired: 0.
+api-gateway-1            | 
+api-gateway-1            | [GIN-debug] GET    /healthz                  --> main.main.func1 (2 handlers)
+api-gateway-1            | {"time":"2026-06-08T15:14:29.266675285Z","level":"INFO","msg":"api-gateway starting","addr":":8080"}
+api-gateway-1            | [GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+api-gateway-1            | Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+api-gateway-1            | [GIN-debug] Listening and serving HTTP on :8080
+grafana-1                | logger=settings t=2026-06-05T21:04:33.480450273Z level=info msg="Path Plugins" path=/var/lib/grafana/plugins
+grafana-1                | logger=settings t=2026-06-05T21:04:33.480451348Z level=info msg="Path Provisioning" path=/etc/grafana/provisioning
+moderation-service-1     | [GIN-debug] POST   /v1/moderation/queue/:id/approve --> github.com/ilpaka/landmark_app/backend/moderation-service/internal/modules/moderation/http.(*Handler).Approve-fm (2 handlers)
+moderation-service-1     | [GIN-debug] POST   /v1/moderation/queue/:id/reject --> github.com/ilpaka/landmark_app/backend/moderation-service/internal/modules/moderation/http.(*Handler).Reject-fm (2 handlers)
+moderation-service-1     | [GIN-debug] POST   /v1/internal/moderation/submit --> github.com/ilpaka/landmark_app/backend/moderation-service/internal/modules/moderation/http.(*Handler).InternalSubmit-fm (3 handlers)
+minio-1                  | 
+minio-1                  | Docs: https://docs.min.io
+minio-1                  | WARN: Detected default credentials 'minioadmin:minioadmin', we recommend that you change these values with 'MINIO_ROOT_USER' and 'MINIO_ROOT_PASSWORD' environment variables
+trips-service-1          | [GIN-debug] GET    /healthz                  --> github.com/ilpaka/landmark_app/backend/trips-service/internal/modules/trip/http.Mount.func1 (2 handlers)
+prometheus-1             | ts=2026-06-05T21:04:33.111Z caller=tls_config.go:313 level=info component=web msg="Listening on" address=[::]:9090
+media-service-1          | {"time":"2026-06-05T21:04:39.163384225Z","level":"INFO","msg":"media-service started","addr":":8080"}
+trips-service-1          | [GIN-debug] GET    /v1/trips/public          --> github.com/ilpaka/landmark_app/backend/trips-service/internal/modules/trip/http.(*Handlers).ListPublicTrips-fm (2 handlers)
+trips-service-1          | [GIN-debug] GET    /v1/trips                 --> github.com/ilpaka/landmark_app/backend/trips-service/internal/modules/trip/http.(*Handlers).ListTrips-fm (2 handlers)
+trips-service-1          | [GIN-debug] POST   /v1/trips                 --> github.com/ilpaka/landmark_app/backend/trips-service/internal/modules/trip/http.(*Handlers).CreateTrip-fm (2 handlers)
+grafana-1                | logger=settings t=2026-06-05T21:04:33.480452574Z level=info msg="App mode production"
+grafana-1                | logger=sqlstore t=2026-06-05T21:04:33.482018161Z level=info msg="Connecting to DB" dbtype=sqlite3
+postgres-1               | 2026-06-05 21:09:33.021 UTC [27] LOG:  checkpoint starting: time
+favorites-service-1      | [GIN-debug] Listening and serving HTTP on :8080
+redis-1                  | 1:M 08 Jun 2026 15:14:25.050 * DB loaded from disk: 0.001 seconds
+postgres-1               | 2026-06-05 21:09:33.136 UTC [27] LOG:  checkpoint complete: wrote 4 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.103 s, sync=0.005 s, total=0.115 s; sync files=3, longest=0.004 s, average=0.002 s; distance=1 kB, estimate=1 kB; lsn=0/1C3DE88, redo lsn=0/1C3DE50
+postgres-1               | 2026-06-05 21:11:22.635 UTC [1] LOG:  received fast shutdown request
+postgres-1               | 2026-06-05 21:11:22.637 UTC [1] LOG:  aborting any active transactions
+prometheus-1             | ts=2026-06-05T21:04:33.111Z caller=tls_config.go:316 level=info component=web msg="TLS is disabled." http2=false address=[::]:9090
+journal-service-1        | Running database migrations...
+journal-service-1        | 2026/06/08 15:14:28 goose: no migrations to run. current version: 20260601000000
+journal-service-1        | Starting server...
+journal-service-1        | [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+journal-service-1        |  - using env:	export GIN_MODE=release
+trips-service-1          | [GIN-debug] GET    /v1/trips/:id             --> github.com/ilpaka/landmark_app/backend/trips-service/internal/modules/trip/http.(*Handlers).GetTrip-fm (2 handlers)
+trips-service-1          | [GIN-debug] PATCH  /v1/trips/:id             --> github.com/ilpaka/landmark_app/backend/trips-service/internal/modules/trip/http.(*Handlers).UpdateTrip-fm (2 handlers)
+trips-service-1          | [GIN-debug] DELETE /v1/trips/:id             --> github.com/ilpaka/landmark_app/backend/trips-service/internal/modules/trip/http.(*Handlers).DeleteTrip-fm (2 handlers)
+trips-service-1          | [GIN-debug] GET    /v1/trips/:id/route       --> github.com/ilpaka/landmark_app/backend/trips-service/internal/modules/trip/http.(*Handlers).GetRoute-fm (2 handlers)
+profile-service-1        |  - using code:	gin.SetMode(gin.ReleaseMode)
+media-service-1          | [GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+media-service-1          | Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+media-service-1          | [GIN-debug] Listening and serving HTTP on :8080
+media-service-1          | Running database migrations...
+favorites-service-1      | Running database migrations...
+favorites-service-1      | 2026/06/08 15:14:28 goose: no migrations to run. current version: 20260502170000
+favorites-service-1      | Starting server...
+favorites-service-1      | [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+favorites-service-1      |  - using env:	export GIN_MODE=release
+postgres-1               | 2026-06-05 21:11:22.639 UTC [1] LOG:  background worker "logical replication launcher" (PID 32) exited with exit code 1
+postgres-1               | 2026-06-05 21:11:22.640 UTC [27] LOG:  shutting down
+postgres-1               | 2026-06-05 21:11:22.641 UTC [27] LOG:  checkpoint starting: shutdown immediate
+trips-service-1          | [GIN-debug] POST   /v1/trips/:id/optimize    --> github.com/ilpaka/landmark_app/backend/trips-service/internal/modules/trip/http.(*Handlers).OptimizeRoute-fm (2 handlers)
+trips-service-1          | [GIN-debug] GET    /v1/trips/:id/stops       --> github.com/ilpaka/landmark_app/backend/trips-service/internal/modules/trip/http.(*Handlers).ListStops-fm (2 handlers)
+profile-service-1        | 
+trips-service-1          | [GIN-debug] POST   /v1/trips/:id/stops       --> github.com/ilpaka/landmark_app/backend/trips-service/internal/modules/trip/http.(*Handlers).AddStop-fm (2 handlers)
+grafana-1                | logger=migrator t=2026-06-05T21:04:33.486100268Z level=info msg="Starting DB migrations"
+trips-service-1          | [GIN-debug] POST   /v1/trips/:id/stops/:sid/visit --> github.com/ilpaka/landmark_app/backend/trips-service/internal/modules/trip/http.(*Handlers).MarkVisited-fm (2 handlers)
+redis-1                  | 1:M 08 Jun 2026 15:14:25.050 * Ready to accept connections tcp
+notifications-service-1  |  - using env:	export GIN_MODE=release
+notifications-service-1  |  - using code:	gin.SetMode(gin.ReleaseMode)
+postgres-1               | 2026-06-05 21:11:22.645 UTC [27] LOG:  checkpoint complete: wrote 0 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.001 s, sync=0.001 s, total=0.006 s; sync files=0, longest=0.000 s, average=0.000 s; distance=0 kB, estimate=1 kB; lsn=0/1C3DF38, redo lsn=0/1C3DF38
+postgres-1               | 2026-06-05 21:11:22.649 UTC [1] LOG:  database system is shut down
+postgres-1               | 
+journal-service-1        |  - using code:	gin.SetMode(gin.ReleaseMode)
+journal-service-1        | 
+journal-service-1        | [GIN-debug] GET    /healthz                  --> github.com/ilpaka/landmark_app/backend/journal-service/internal/modules/journal/http.Mount.func1 (2 handlers)
+profile-service-1        | [GIN-debug] GET    /healthz                  --> main.main.func1 (2 handlers)
+profile-service-1        | [GIN-debug] GET    /v1/profile/me            --> github.com/ilpaka/landmark_app/backend/profile-service/internal/modules/profile/http.(*Handler).GetMe-fm (2 handlers)
+profile-service-1        | [GIN-debug] PATCH  /v1/profile/me            --> github.com/ilpaka/landmark_app/backend/profile-service/internal/modules/profile/http.(*Handler).UpdateMe-fm (2 handlers)
+grafana-1                | logger=migrator t=2026-06-05T21:04:33.499689496Z level=info msg="migrations completed" performed=0 skipped=547 duration=536.901µs
+grafana-1                | logger=secrets t=2026-06-05T21:04:33.501832752Z level=info msg="Envelope encryption state" enabled=true currentprovider=secretKey.v1
+grafana-1                | logger=plugin.store t=2026-06-05T21:04:33.514354575Z level=info msg="Loading plugins..."
+notifications-service-1  | 
+places-service-1         | [GIN-debug] PATCH  /v1/places/categories/:id --> github.com/ilpaka/landmark_app/backend/places-service/internal/modules/place/http.(*Handlers).UpdateCategory-fm (2 handlers)
+postgres-1               | PostgreSQL Database directory appears to contain a database; Skipping initialization
+media-service-1          | 2026/06/08 15:14:31 goose: no migrations to run. current version: 20260502160000
+media-service-1          | Starting server...
+journal-service-1        | [GIN-debug] GET    /v1/journal/entries       --> github.com/ilpaka/landmark_app/backend/journal-service/internal/modules/journal/http.(*Handlers).ListEntries-fm (2 handlers)
+profile-service-1        | [GIN-debug] GET    /v1/profile/me/privacy    --> github.com/ilpaka/landmark_app/backend/profile-service/internal/modules/profile/http.(*Handler).GetPrivacy-fm (2 handlers)
+redis-1                  | 1:M 08 Jun 2026 16:14:26.092 * 1 changes in 3600 seconds. Saving...
+redis-1                  | 1:M 08 Jun 2026 16:14:26.093 * Background saving started by pid 5012
+redis-1                  | 5012:C 08 Jun 2026 16:14:26.100 * DB saved on disk
+favorites-service-1      |  - using code:	gin.SetMode(gin.ReleaseMode)
+favorites-service-1      | 
+favorites-service-1      | [GIN-debug] GET    /healthz                  --> main.main.func1 (2 handlers)
+prometheus-1             | ts=2026-06-05T21:04:33.115Z caller=head.go:626 level=info component=tsdb msg="Replaying on-disk memory mappable chunks if any"
+prometheus-1             | ts=2026-06-05T21:04:33.116Z caller=head.go:713 level=info component=tsdb msg="On-disk memory mappable chunks replay completed" duration=572.12µs
+prometheus-1             | ts=2026-06-05T21:04:33.116Z caller=head.go:721 level=info component=tsdb msg="Replaying WAL, this may take a while"
+prometheus-1             | ts=2026-06-05T21:04:33.125Z caller=head.go:793 level=info component=tsdb msg="WAL segment loaded" segment=0 maxSegment=2
+prometheus-1             | ts=2026-06-05T21:04:33.138Z caller=head.go:793 level=info component=tsdb msg="WAL segment loaded" segment=1 maxSegment=2
+prometheus-1             | ts=2026-06-05T21:04:33.138Z caller=head.go:793 level=info component=tsdb msg="WAL segment loaded" segment=2 maxSegment=2
+profile-service-1        | [GIN-debug] PATCH  /v1/profile/me/privacy    --> github.com/ilpaka/landmark_app/backend/profile-service/internal/modules/profile/http.(*Handler).UpdatePrivacy-fm (2 handlers)
+redis-1                  | 5012:C 08 Jun 2026 16:14:26.100 * Fork CoW for RDB: current 0 MB, peak 0 MB, average 0 MB
+profile-service-1        | [GIN-debug] GET    /v1/profile/:user_id      --> github.com/ilpaka/landmark_app/backend/profile-service/internal/modules/profile/http.(*Handler).GetPublic-fm (2 handlers)
+profile-service-1        | [GIN-debug] GET    /v1/profile/:user_id/stats --> github.com/ilpaka/landmark_app/backend/profile-service/internal/modules/profile/http.(*Handler).GetFollowStats-fm (2 handlers)
+profile-service-1        | [GIN-debug] POST   /v1/profile/:user_id/follow --> github.com/ilpaka/landmark_app/backend/profile-service/internal/modules/profile/http.(*Handler).FollowUser-fm (2 handlers)
+profile-service-1        | [GIN-debug] DELETE /v1/profile/:user_id/follow --> github.com/ilpaka/landmark_app/backend/profile-service/internal/modules/profile/http.(*Handler).UnfollowUser-fm (2 handlers)
+profile-service-1        | [GIN-debug] GET    /v1/profile/:user_id/followers --> github.com/ilpaka/landmark_app/backend/profile-service/internal/modules/profile/http.(*Handler).ListFollowers-fm (2 handlers)
+profile-service-1        | [GIN-debug] GET    /v1/profile/:user_id/following --> github.com/ilpaka/landmark_app/backend/profile-service/internal/modules/profile/http.(*Handler).ListFollowing-fm (2 handlers)
+notifications-service-1  | [GIN-debug] GET    /healthz                  --> main.main.func1 (2 handlers)
+notifications-service-1  | [GIN-debug] GET    /v1/notifications         --> github.com/ilpaka/landmark_app/backend/notifications-service/internal/modules/notification/http.(*Handler).List-fm (2 handlers)
+notifications-service-1  | [GIN-debug] POST   /v1/notifications/:id/read --> github.com/ilpaka/landmark_app/backend/notifications-service/internal/modules/notification/http.(*Handler).MarkRead-fm (2 handlers)
+trips-service-1          | {"time":"2026-06-08T15:14:29.068932799Z","level":"INFO","msg":"starting trips-service","addr":":8080"}
+redis-1                  | 1:M 08 Jun 2026 16:14:26.194 * Background saving terminated with success
+grafana-1                | logger=local.finder t=2026-06-05T21:04:33.577752033Z level=warn msg="Skipping finding plugins as directory does not exist" path=/usr/share/grafana/plugins-bundled
+grafana-1                | logger=plugin.store t=2026-06-05T21:04:33.577785174Z level=info msg="Plugins loaded" count=55 duration=63.431157ms
+grafana-1                | logger=query_data t=2026-06-05T21:04:33.584303115Z level=info msg="Query Service initialization"
+profile-service-1        | {"time":"2026-06-05T21:04:36.862545881Z","level":"INFO","msg":"profile-service started","addr":":8080"}
+moderation-service-1     | {"time":"2026-06-05T21:04:37.424869895Z","level":"INFO","msg":"moderation-service started","addr":":8080"}
+moderation-service-1     | [GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+moderation-service-1     | Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+journal-service-1        | [GIN-debug] POST   /v1/journal/entries       --> github.com/ilpaka/landmark_app/backend/journal-service/internal/modules/journal/http.(*Handlers).CreateEntry-fm (2 handlers)
+journal-service-1        | [GIN-debug] GET    /v1/journal/entries/:id   --> github.com/ilpaka/landmark_app/backend/journal-service/internal/modules/journal/http.(*Handlers).GetEntry-fm (2 handlers)
+notifications-service-1  | [GIN-debug] POST   /v1/notifications/read-all --> github.com/ilpaka/landmark_app/backend/notifications-service/internal/modules/notification/http.(*Handler).MarkAllRead-fm (2 handlers)
+notifications-service-1  | [GIN-debug] POST   /v1/notifications/devices --> github.com/ilpaka/landmark_app/backend/notifications-service/internal/modules/notification/http.(*Handler).RegisterDevice-fm (2 handlers)
+favorites-service-1      | [GIN-debug] GET    /v1/favorites             --> github.com/ilpaka/landmark_app/backend/favorites-service/internal/modules/favorite/http.(*Handler).ListFavorites-fm (2 handlers)
+trips-service-1          | [GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+favorites-service-1      | [GIN-debug] POST   /v1/favorites             --> github.com/ilpaka/landmark_app/backend/favorites-service/internal/modules/favorite/http.(*Handler).AddFavorite-fm (2 handlers)
+favorites-service-1      | [GIN-debug] DELETE /v1/favorites/:type/:id   --> github.com/ilpaka/landmark_app/backend/favorites-service/internal/modules/favorite/http.(*Handler).RemoveFavorite-fm (2 handlers)
+postgres-1               | 
+postgres-1               | 2026-06-08 15:14:25.143 UTC [1] LOG:  starting PostgreSQL 16.11 on x86_64-pc-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit
+postgres-1               | 2026-06-08 15:14:25.143 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+postgres-1               | 2026-06-08 15:14:25.143 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+prometheus-1             | ts=2026-06-05T21:04:33.138Z caller=head.go:830 level=info component=tsdb msg="WAL replay completed" checkpoint_replay_duration=54.748µs wal_replay_duration=22.522357ms wbl_replay_duration=40ns chunk_snapshot_load_duration=0s mmap_chunk_replay_duration=572.12µs total_replay_duration=23.17818ms
+prometheus-1             | ts=2026-06-05T21:04:33.140Z caller=main.go:1181 level=info fs_type=EXT4_SUPER_MAGIC
+prometheus-1             | ts=2026-06-05T21:04:33.140Z caller=main.go:1184 level=info msg="TSDB started"
+prometheus-1             | ts=2026-06-05T21:04:33.140Z caller=main.go:1367 level=info msg="Loading configuration file" filename=/etc/prometheus/prometheus.yml
+profile-service-1        | [GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+profile-service-1        | Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+profile-service-1        | [GIN-debug] Listening and serving HTTP on :8080
+profile-service-1        | Running database migrations...
+favorites-service-1      | [GIN-debug] GET    /v1/favorites/:type/:id   --> github.com/ilpaka/landmark_app/backend/favorites-service/internal/modules/favorite/http.(*Handler).CheckFavorite-fm (2 handlers)
+postgres-1               | 2026-06-08 15:14:25.148 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+postgres-1               | 2026-06-08 15:14:25.153 UTC [29] LOG:  database system was shut down at 2026-06-05 21:11:22 UTC
+postgres-1               | 2026-06-08 15:14:25.165 UTC [1] LOG:  database system is ready to accept connections
+places-service-1         | [GIN-debug] DELETE /v1/places/categories/:id --> github.com/ilpaka/landmark_app/backend/places-service/internal/modules/place/http.(*Handlers).DeleteCategory-fm (2 handlers)
+prometheus-1             | ts=2026-06-05T21:04:33.142Z caller=main.go:1404 level=info msg="updated GOGC" old=100 new=75
+prometheus-1             | ts=2026-06-05T21:04:33.142Z caller=main.go:1415 level=info msg="Completed loading of configuration file" filename=/etc/prometheus/prometheus.yml totalDuration=2.616129ms db_storage=1.595µs remote_storage=3.719µs web_handler=1.022µs query_engine=14.182µs scrape=281.994µs scrape_sd=148.059µs notify=1.069µs notify_sd=495ns rules=13.319µs tracing=54.024µs
+prometheus-1             | ts=2026-06-05T21:04:33.142Z caller=main.go:1145 level=info msg="Server is ready to receive web requests."
+journal-service-1        | [GIN-debug] PATCH  /v1/journal/entries/:id   --> github.com/ilpaka/landmark_app/backend/journal-service/internal/modules/journal/http.(*Handlers).UpdateEntry-fm (2 handlers)
+journal-service-1        | [GIN-debug] DELETE /v1/journal/entries/:id   --> github.com/ilpaka/landmark_app/backend/journal-service/internal/modules/journal/http.(*Handlers).DeleteEntry-fm (2 handlers)
+grafana-1                | logger=live.push_http t=2026-06-05T21:04:33.588064442Z level=info msg="Live Push Gateway initialization"
+grafana-1                | logger=ngalert.migration t=2026-06-05T21:04:33.592837018Z level=info msg=Starting
+moderation-service-1     | [GIN-debug] Listening and serving HTTP on :8080
+moderation-service-1     | Running database migrations...
+moderation-service-1     | 2026/06/08 15:14:29 goose: no migrations to run. current version: 20260502190001
+moderation-service-1     | Starting server...
+moderation-service-1     | [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+moderation-service-1     |  - using env:	export GIN_MODE=release
+moderation-service-1     |  - using code:	gin.SetMode(gin.ReleaseMode)
+moderation-service-1     | 
+moderation-service-1     | [GIN-debug] GET    /healthz                  --> main.main.func1 (2 handlers)
+trips-service-1          | Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+grafana-1                | logger=ngalert.state.manager t=2026-06-05T21:04:33.607828455Z level=info msg="Running in alternative execution of Error/NoData mode"
+notifications-service-1  | [GIN-debug] DELETE /v1/notifications/devices/:id --> github.com/ilpaka/landmark_app/backend/notifications-service/internal/modules/notification/http.(*Handler).UnregisterDevice-fm (2 handlers)
+grafana-1                | logger=infra.usagestats.collector t=2026-06-05T21:04:33.611162242Z level=info msg="registering usage stat providers" usageStatsProvidersLen=2
+notifications-service-1  | [GIN-debug] GET    /v1/notifications/preferences --> github.com/ilpaka/landmark_app/backend/notifications-service/internal/modules/notification/http.(*Handler).GetPreferences-fm (2 handlers)
+notifications-service-1  | [GIN-debug] PATCH  /v1/notifications/preferences --> github.com/ilpaka/landmark_app/backend/notifications-service/internal/modules/notification/http.(*Handler).UpdatePreferences-fm (2 handlers)
+prometheus-1             | ts=2026-06-05T21:04:33.142Z caller=manager.go:164 level=info component="rule manager" msg="Starting rule manager..."
+prometheus-1             | ts=2026-06-05T21:04:38.487Z caller=compact.go:571 level=info component=tsdb msg="write block resulted in empty block" mint=1780682400000 maxt=1780689600000 duration=12.204873ms
+prometheus-1             | ts=2026-06-05T21:04:38.488Z caller=head.go:1355 level=info component=tsdb msg="Head GC completed" caller=truncateMemory duration=995.314µs
+prometheus-1             | ts=2026-06-05T21:11:22.292Z caller=main.go:995 level=warn msg="Received an OS signal, exiting gracefully..." signal=terminated
+journal-service-1        | [GIN-debug] GET    /v1/journal/entries/:id/media --> github.com/ilpaka/landmark_app/backend/journal-service/internal/modules/journal/http.(*Handlers).ListMedia-fm (2 handlers)
+journal-service-1        | [GIN-debug] POST   /v1/journal/entries/:id/media --> github.com/ilpaka/landmark_app/backend/journal-service/internal/modules/journal/http.(*Handlers).AddMedia-fm (2 handlers)
+grafana-1                | logger=provisioning.plugins t=2026-06-05T21:04:33.637582839Z level=error msg="Failed to read plugin provisioning files from directory" path=/etc/grafana/provisioning/plugins error="open /etc/grafana/provisioning/plugins: no such file or directory"
+grafana-1                | logger=provisioning.notifiers t=2026-06-05T21:04:33.638272904Z level=error msg="Can't read alert notification provisioning files from directory" path=/etc/grafana/provisioning/notifiers error="open /etc/grafana/provisioning/notifiers: no such file or directory"
+grafana-1                | logger=provisioning.alerting t=2026-06-05T21:04:33.638612613Z level=error msg="can't read alerting provisioning files from directory" path=/etc/grafana/provisioning/alerting error="open /etc/grafana/provisioning/alerting: no such file or directory"
+grafana-1                | logger=provisioning.alerting t=2026-06-05T21:04:33.638623323Z level=info msg="starting to provision alerting"
+favorites-service-1      | [GIN-debug] GET    /v1/favorites/collections --> github.com/ilpaka/landmark_app/backend/favorites-service/internal/modules/favorite/http.(*Handler).ListCollections-fm (2 handlers)
+favorites-service-1      | [GIN-debug] POST   /v1/favorites/collections --> github.com/ilpaka/landmark_app/backend/favorites-service/internal/modules/favorite/http.(*Handler).CreateCollection-fm (2 handlers)
+places-service-1         | [GIN-debug] GET    /v1/places                --> github.com/ilpaka/landmark_app/backend/places-service/internal/modules/place/http.(*Handlers).ListPlaces-fm (2 handlers)
+media-service-1          | [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+postgres-1               | 2026-06-08 15:19:25.203 UTC [27] LOG:  checkpoint starting: time
+postgres-1               | 2026-06-08 15:19:25.361 UTC [27] LOG:  checkpoint complete: wrote 4 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.106 s, sync=0.014 s, total=0.159 s; sync files=3, longest=0.010 s, average=0.005 s; distance=1 kB, estimate=1 kB; lsn=0/1C3E4E0, redo lsn=0/1C3E4A8
+journal-service-1        | [GIN-debug] DELETE /v1/journal/entries/:id/media/:mid --> github.com/ilpaka/landmark_app/backend/journal-service/internal/modules/journal/http.(*Handlers).RemoveMedia-fm (2 handlers)
+grafana-1                | logger=provisioning.alerting t=2026-06-05T21:04:33.638660489Z level=info msg="finished to provision alerting"
+grafana-1                | logger=grafanaStorageLogger t=2026-06-05T21:04:33.638927443Z level=info msg="Storage starting"
+grafana-1                | logger=ngalert.state.manager t=2026-06-05T21:04:33.639440008Z level=info msg="Warming state cache for startup"
+grafana-1                | logger=ngalert.multiorg.alertmanager t=2026-06-05T21:04:33.64207722Z level=info msg="Starting MultiOrg Alertmanager"
+notifications-service-1  | [GIN-debug] POST   /v1/internal/notifications/send --> github.com/ilpaka/landmark_app/backend/notifications-service/internal/modules/notification/http.(*Handler).InternalSend-fm (3 handlers)
+favorites-service-1      | [GIN-debug] PATCH  /v1/favorites/collections/:id --> github.com/ilpaka/landmark_app/backend/favorites-service/internal/modules/favorite/http.(*Handler).UpdateCollection-fm (2 handlers)
+places-service-1         | [GIN-debug] GET    /v1/places/:id            --> github.com/ilpaka/landmark_app/backend/places-service/internal/modules/place/http.(*Handlers).GetPlace-fm (2 handlers)
+places-service-1         | [GIN-debug] POST   /v1/places                --> github.com/ilpaka/landmark_app/backend/places-service/internal/modules/place/http.(*Handlers).CreatePlace-fm (2 handlers)
+places-service-1         | [GIN-debug] PATCH  /v1/places/:id            --> github.com/ilpaka/landmark_app/backend/places-service/internal/modules/place/http.(*Handlers).UpdatePlace-fm (2 handlers)
+trips-service-1          | [GIN-debug] Listening and serving HTTP on :8080
+postgres-1               | 2026-06-08 15:27:45.744 UTC [27] LOG:  checkpoint starting: time
+journal-service-1        | [GIN-debug] GET    /v1/journal/entries/:id/reactions --> github.com/ilpaka/landmark_app/backend/journal-service/internal/modules/journal/http.(*Handlers).ListReactions-fm (2 handlers)
+prometheus-1             | ts=2026-06-05T21:11:22.292Z caller=main.go:1019 level=info msg="Stopping scrape discovery manager..."
+journal-service-1        | [GIN-debug] POST   /v1/journal/entries/:id/reactions --> github.com/ilpaka/landmark_app/backend/journal-service/internal/modules/journal/http.(*Handlers).AddReaction-fm (2 handlers)
+moderation-service-1     | [GIN-debug] POST   /v1/moderation/submit     --> github.com/ilpaka/landmark_app/backend/moderation-service/internal/modules/moderation/http.(*Handler).Submit-fm (2 handlers)
+moderation-service-1     | [GIN-debug] GET    /v1/moderation/stats      --> github.com/ilpaka/landmark_app/backend/moderation-service/internal/modules/moderation/http.(*Handler).GetStats-fm (2 handlers)
+moderation-service-1     | [GIN-debug] GET    /v1/moderation/queue      --> github.com/ilpaka/landmark_app/backend/moderation-service/internal/modules/moderation/http.(*Handler).ListQueue-fm (2 handlers)
+favorites-service-1      | [GIN-debug] DELETE /v1/favorites/collections/:id --> github.com/ilpaka/landmark_app/backend/favorites-service/internal/modules/favorite/http.(*Handler).DeleteCollection-fm (2 handlers)
+favorites-service-1      | {"time":"2026-06-08T15:14:29.002615234Z","level":"INFO","msg":"favorites-service started","addr":":8080"}
+favorites-service-1      | [GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+postgres-1               | 2026-06-08 15:27:47.956 UTC [27] LOG:  checkpoint complete: wrote 22 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=2.113 s, sync=0.062 s, total=2.212 s; sync files=22, longest=0.025 s, average=0.003 s; distance=12 kB, estimate=12 kB; lsn=0/1C416B0, redo lsn=0/1C41678
+favorites-service-1      | Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+favorites-service-1      | [GIN-debug] Listening and serving HTTP on :8080
+journal-service-1        | [GIN-debug] DELETE /v1/journal/entries/:id/reactions/:emoji --> github.com/ilpaka/landmark_app/backend/journal-service/internal/modules/journal/http.(*Handlers).RemoveReaction-fm (2 handlers)
+journal-service-1        | {"time":"2026-06-08T15:14:28.970420263Z","level":"INFO","msg":"starting journal-service","addr":":8080"}
+journal-service-1        | [GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+media-service-1          |  - using env:	export GIN_MODE=release
+journal-service-1        | Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+journal-service-1        | [GIN-debug] Listening and serving HTTP on :8080
+postgres-1               | 2026-06-08 15:37:46.003 UTC [27] LOG:  checkpoint starting: time
+prometheus-1             | ts=2026-06-05T21:11:22.292Z caller=main.go:1033 level=info msg="Stopping notify discovery manager..."
+prometheus-1             | ts=2026-06-05T21:11:22.292Z caller=manager.go:178 level=info component="rule manager" msg="Stopping rule manager..."
+prometheus-1             | ts=2026-06-05T21:11:22.292Z caller=manager.go:188 level=info component="rule manager" msg="Rule manager stopped"
+prometheus-1             | ts=2026-06-05T21:11:22.292Z caller=main.go:1070 level=info msg="Stopping scrape manager..."
+notifications-service-1  | {"time":"2026-06-08T15:14:29.058007442Z","level":"INFO","msg":"notifications-service started","addr":":8080"}
+places-service-1         | [GIN-debug] POST   /v1/places/:id/submit     --> github.com/ilpaka/landmark_app/backend/places-service/internal/modules/place/http.(*Handlers).SubmitPlace-fm (2 handlers)
+places-service-1         | [GIN-debug] POST   /v1/places/internal/:id/approve --> github.com/ilpaka/landmark_app/backend/places-service/internal/modules/place/http.(*Handlers).ApprovePlace-fm (2 handlers)
+places-service-1         | [GIN-debug] POST   /v1/places/internal/:id/reject --> github.com/ilpaka/landmark_app/backend/places-service/internal/modules/place/http.(*Handlers).RejectPlace-fm (2 handlers)
+prometheus-1             | ts=2026-06-05T21:11:22.292Z caller=main.go:1015 level=info msg="Scrape discovery manager stopped"
+prometheus-1             | ts=2026-06-05T21:11:22.292Z caller=main.go:1029 level=info msg="Notify discovery manager stopped"
+media-service-1          |  - using code:	gin.SetMode(gin.ReleaseMode)
+grafana-1                | logger=http.server t=2026-06-05T21:04:33.646850753Z level=info msg="HTTP Server Listen" address=[::]:3000 protocol=http subUrl= socket=
+grafana-1                | logger=provisioning.dashboard t=2026-06-05T21:04:33.656190967Z level=info msg="starting to provision dashboards"
+grafana-1                | logger=provisioning.dashboard t=2026-06-05T21:04:33.675253818Z level=info msg="finished to provision dashboards"
+grafana-1                | logger=ngalert.state.manager t=2026-06-05T21:04:33.687769935Z level=info msg="State cache has been initialized" states=0 duration=48.324291ms
+profile-service-1        | 2026/06/08 15:14:28 goose: no migrations to run. current version: 20260602000000
+prometheus-1             | ts=2026-06-05T21:11:22.293Z caller=main.go:1062 level=info msg="Scrape manager stopped"
+prometheus-1             | ts=2026-06-05T21:11:22.296Z caller=notifier.go:693 level=info component=notifier msg="Stopping notification manager..."
+prometheus-1             | ts=2026-06-05T21:11:22.296Z caller=notifier.go:386 level=info component=notifier msg="Draining any remaining notifications..."
+prometheus-1             | ts=2026-06-05T21:11:22.296Z caller=notifier.go:392 level=info component=notifier msg="Remaining notifications drained"
+moderation-service-1     | [GIN-debug] POST   /v1/moderation/queue/:id/approve --> github.com/ilpaka/landmark_app/backend/moderation-service/internal/modules/moderation/http.(*Handler).Approve-fm (2 handlers)
+media-service-1          | 
+media-service-1          | [GIN-debug] GET    /healthz                  --> main.main.func1 (2 handlers)
+profile-service-1        | Starting server...
+profile-service-1        | [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+grafana-1                | logger=ngalert.scheduler t=2026-06-05T21:04:33.687849363Z level=info msg="Starting scheduler" tickInterval=10s maxAttempts=1
+grafana-1                | logger=ticker t=2026-06-05T21:04:33.68796305Z level=info msg=starting first_tick=2026-06-05T21:04:40Z
+grafana-1                | logger=plugins.update.checker t=2026-06-05T21:04:33.890742768Z level=info msg="Update check succeeded" duration=251.388848ms
+places-service-1         | {"time":"2026-06-05T21:04:36.7501632Z","level":"INFO","msg":"starting places-service","addr":":8080"}
+places-service-1         | [GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+places-service-1         | Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+places-service-1         | [GIN-debug] Listening and serving HTTP on :8080
+places-service-1         | Running database migrations...
+profile-service-1        |  - using env:	export GIN_MODE=release
+profile-service-1        |  - using code:	gin.SetMode(gin.ReleaseMode)
+profile-service-1        | 
+media-service-1          | [GIN-debug] POST   /v1/media/uploads         --> github.com/ilpaka/landmark_app/backend/media-service/internal/modules/media/http.(*Handler).RequestUpload-fm (2 handlers)
+places-service-1         | 2026/06/08 15:14:28 goose: no migrations to run. current version: 20260605000000
+notifications-service-1  | [GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+postgres-1               | 2026-06-08 15:37:49.141 UTC [27] LOG:  checkpoint complete: wrote 32 buffers (0.2%); 0 WAL file(s) added, 0 removed, 0 recycled; write=3.118 s, sync=0.012 s, total=3.138 s; sync files=28, longest=0.004 s, average=0.001 s; distance=17 kB, estimate=17 kB; lsn=0/1C45E90, redo lsn=0/1C45E58
+postgres-1               | 2026-06-08 16:21:51.345 UTC [27] LOG:  checkpoint starting: time
+postgres-1               | 2026-06-08 16:21:53.022 UTC [27] LOG:  checkpoint complete: wrote 17 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.618 s, sync=0.048 s, total=1.678 s; sync files=17, longest=0.027 s, average=0.003 s; distance=19 kB, estimate=19 kB; lsn=0/1C4ABE0, redo lsn=0/1C4ABA8
+moderation-service-1     | [GIN-debug] POST   /v1/moderation/queue/:id/reject --> github.com/ilpaka/landmark_app/backend/moderation-service/internal/modules/moderation/http.(*Handler).Reject-fm (2 handlers)
+moderation-service-1     | [GIN-debug] POST   /v1/internal/moderation/submit --> github.com/ilpaka/landmark_app/backend/moderation-service/internal/modules/moderation/http.(*Handler).InternalSubmit-fm (3 handlers)
+moderation-service-1     | {"time":"2026-06-08T15:14:29.742459372Z","level":"INFO","msg":"moderation-service started","addr":":8080"}
+moderation-service-1     | [GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+moderation-service-1     | Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+moderation-service-1     | [GIN-debug] Listening and serving HTTP on :8080
+profile-service-1        | [GIN-debug] GET    /healthz                  --> main.main.func1 (2 handlers)
+postgres-1               | 2026-06-08 16:26:51.044 UTC [27] LOG:  checkpoint starting: time
+profile-service-1        | [GIN-debug] GET    /v1/profile/me            --> github.com/ilpaka/landmark_app/backend/profile-service/internal/modules/profile/http.(*Handler).GetMe-fm (2 handlers)
+postgres-1               | 2026-06-08 16:26:53.850 UTC [27] LOG:  checkpoint complete: wrote 28 buffers (0.2%); 0 WAL file(s) added, 0 removed, 0 recycled; write=2.721 s, sync=0.044 s, total=2.806 s; sync files=28, longest=0.026 s, average=0.002 s; distance=31 kB, estimate=31 kB; lsn=0/1C52850, redo lsn=0/1C52818
+profile-service-1        | [GIN-debug] PATCH  /v1/profile/me            --> github.com/ilpaka/landmark_app/backend/profile-service/internal/modules/profile/http.(*Handler).UpdateMe-fm (2 handlers)
+profile-service-1        | [GIN-debug] GET    /v1/profile/me/privacy    --> github.com/ilpaka/landmark_app/backend/profile-service/internal/modules/profile/http.(*Handler).GetPrivacy-fm (2 handlers)
+profile-service-1        | [GIN-debug] PATCH  /v1/profile/me/privacy    --> github.com/ilpaka/landmark_app/backend/profile-service/internal/modules/profile/http.(*Handler).UpdatePrivacy-fm (2 handlers)
+profile-service-1        | [GIN-debug] GET    /v1/profile/:user_id      --> github.com/ilpaka/landmark_app/backend/profile-service/internal/modules/profile/http.(*Handler).GetPublic-fm (2 handlers)
+profile-service-1        | [GIN-debug] GET    /v1/profile/:user_id/stats --> github.com/ilpaka/landmark_app/backend/profile-service/internal/modules/profile/http.(*Handler).GetFollowStats-fm (2 handlers)
+places-service-1         | Starting server...
+places-service-1         | [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+notifications-service-1  | Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+notifications-service-1  | [GIN-debug] Listening and serving HTTP on :8080
+media-service-1          | [GIN-debug] POST   /v1/media/uploads/:id/finalize --> github.com/ilpaka/landmark_app/backend/media-service/internal/modules/media/http.(*Handler).FinalizeUpload-fm (2 handlers)
+media-service-1          | [GIN-debug] GET    /v1/media/:id             --> github.com/ilpaka/landmark_app/backend/media-service/internal/modules/media/http.(*Handler).GetMedia-fm (2 handlers)
+profile-service-1        | [GIN-debug] POST   /v1/profile/:user_id/follow --> github.com/ilpaka/landmark_app/backend/profile-service/internal/modules/profile/http.(*Handler).FollowUser-fm (2 handlers)
+places-service-1         |  - using env:	export GIN_MODE=release
+places-service-1         |  - using code:	gin.SetMode(gin.ReleaseMode)
+places-service-1         | 
+media-service-1          | [GIN-debug] GET    /v1/media/:id/url         --> github.com/ilpaka/landmark_app/backend/media-service/internal/modules/media/http.(*Handler).GetMediaURL-fm (2 handlers)
+media-service-1          | [GIN-debug] DELETE /v1/media/:id             --> github.com/ilpaka/landmark_app/backend/media-service/internal/modules/media/http.(*Handler).DeleteMedia-fm (2 handlers)
+media-service-1          | {"time":"2026-06-08T15:14:31.751165289Z","level":"INFO","msg":"media-service started","addr":":8080"}
+places-service-1         | [GIN-debug] GET    /healthz                  --> github.com/ilpaka/landmark_app/backend/places-service/internal/modules/place/http.Mount.func1 (2 handlers)
+places-service-1         | [GIN-debug] GET    /v1/places/categories     --> github.com/ilpaka/landmark_app/backend/places-service/internal/modules/place/http.(*Handlers).ListCategories-fm (2 handlers)
+places-service-1         | [GIN-debug] POST   /v1/places/categories     --> github.com/ilpaka/landmark_app/backend/places-service/internal/modules/place/http.(*Handlers).CreateCategory-fm (2 handlers)
+places-service-1         | [GIN-debug] PATCH  /v1/places/categories/:id --> github.com/ilpaka/landmark_app/backend/places-service/internal/modules/place/http.(*Handlers).UpdateCategory-fm (2 handlers)
+media-service-1          | [GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+media-service-1          | Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+media-service-1          | [GIN-debug] Listening and serving HTTP on :8080
+profile-service-1        | [GIN-debug] DELETE /v1/profile/:user_id/follow --> github.com/ilpaka/landmark_app/backend/profile-service/internal/modules/profile/http.(*Handler).UnfollowUser-fm (2 handlers)
+places-service-1         | [GIN-debug] DELETE /v1/places/categories/:id --> github.com/ilpaka/landmark_app/backend/places-service/internal/modules/place/http.(*Handlers).DeleteCategory-fm (2 handlers)
+places-service-1         | [GIN-debug] GET    /v1/places                --> github.com/ilpaka/landmark_app/backend/places-service/internal/modules/place/http.(*Handlers).ListPlaces-fm (2 handlers)
+places-service-1         | [GIN-debug] GET    /v1/places/:id            --> github.com/ilpaka/landmark_app/backend/places-service/internal/modules/place/http.(*Handlers).GetPlace-fm (2 handlers)
+places-service-1         | [GIN-debug] POST   /v1/places                --> github.com/ilpaka/landmark_app/backend/places-service/internal/modules/place/http.(*Handlers).CreatePlace-fm (2 handlers)
+prometheus-1             | ts=2026-06-05T21:11:22.296Z caller=notifier.go:322 level=info component=notifier msg="Notification manager stopped"
+profile-service-1        | [GIN-debug] GET    /v1/profile/:user_id/followers --> github.com/ilpaka/landmark_app/backend/profile-service/internal/modules/profile/http.(*Handler).ListFollowers-fm (2 handlers)
+grafana-1                | logger=grafana.update.checker t=2026-06-05T21:04:33.894077894Z level=info msg="Update check succeeded" duration=254.726792ms
+grafana-1                | logger=grafana-apiserver t=2026-06-05T21:04:33.969192513Z level=info msg="Adding GroupVersion playlist.grafana.app v0alpha1 to ResourceManager"
+grafana-1                | logger=grafana-apiserver t=2026-06-05T21:04:33.971077392Z level=info msg="Adding GroupVersion featuretoggle.grafana.app v0alpha1 to ResourceManager"
+places-service-1         | [GIN-debug] PATCH  /v1/places/:id            --> github.com/ilpaka/landmark_app/backend/places-service/internal/modules/place/http.(*Handlers).UpdatePlace-fm (2 handlers)
+places-service-1         | [GIN-debug] POST   /v1/places/:id/submit     --> github.com/ilpaka/landmark_app/backend/places-service/internal/modules/place/http.(*Handlers).SubmitPlace-fm (2 handlers)
+places-service-1         | [GIN-debug] POST   /v1/places/internal/:id/approve --> github.com/ilpaka/landmark_app/backend/places-service/internal/modules/place/http.(*Handlers).ApprovePlace-fm (2 handlers)
+grafana-1                | logger=infra.usagestats t=2026-06-05T21:05:59.639866977Z level=info msg="Usage stats are ready to report"
+grafana-1                | logger=server t=2026-06-05T21:11:21.105832185Z level=info msg="Shutdown started" reason="System signal: terminated"
+places-service-1         | [GIN-debug] POST   /v1/places/internal/:id/reject --> github.com/ilpaka/landmark_app/backend/places-service/internal/modules/place/http.(*Handlers).RejectPlace-fm (2 handlers)
+profile-service-1        | [GIN-debug] GET    /v1/profile/:user_id/following --> github.com/ilpaka/landmark_app/backend/profile-service/internal/modules/profile/http.(*Handler).ListFollowing-fm (2 handlers)
+profile-service-1        | {"time":"2026-06-08T15:14:28.972212713Z","level":"INFO","msg":"profile-service started","addr":":8080"}
+profile-service-1        | [GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+profile-service-1        | Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+profile-service-1        | [GIN-debug] Listening and serving HTTP on :8080
+grafana-1                | logger=tracing t=2026-06-05T21:11:21.106793979Z level=info msg="Closing tracing"
+grafana-1                | logger=ticker t=2026-06-05T21:11:21.106915876Z level=info msg=stopped last_tick=2026-06-05T21:11:20Z
+grafana-1                | logger=grafana-apiserver t=2026-06-05T21:11:21.10724214Z level=info msg="StorageObjectCountTracker pruner is exiting"
+grafana-1                | logger=settings t=2026-06-08T15:14:26.02018243Z level=info msg="Starting Grafana" version=10.4.0 commit=03f502a94d17f7dc4e6c34acdf8428aedd986e4c branch=HEAD compiled=2026-06-08T15:14:26Z
+places-service-1         | {"time":"2026-06-08T15:14:29.016054097Z","level":"INFO","msg":"starting places-service","addr":":8080"}
+places-service-1         | [GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+grafana-1                | logger=settings t=2026-06-08T15:14:26.020937758Z level=info msg="Config loaded from" file=/usr/share/grafana/conf/defaults.ini
+places-service-1         | Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+grafana-1                | logger=settings t=2026-06-08T15:14:26.020957228Z level=info msg="Config loaded from" file=/etc/grafana/grafana.ini
+grafana-1                | logger=settings t=2026-06-08T15:14:26.020961024Z level=info msg="Config overridden from command line" arg="default.paths.data=/var/lib/grafana"
+grafana-1                | logger=settings t=2026-06-08T15:14:26.020963816Z level=info msg="Config overridden from command line" arg="default.paths.logs=/var/log/grafana"
+grafana-1                | logger=settings t=2026-06-08T15:14:26.020966395Z level=info msg="Config overridden from command line" arg="default.paths.plugins=/var/lib/grafana/plugins"
+grafana-1                | logger=settings t=2026-06-08T15:14:26.020968937Z level=info msg="Config overridden from command line" arg="default.paths.provisioning=/etc/grafana/provisioning"
+grafana-1                | logger=settings t=2026-06-08T15:14:26.020971502Z level=info msg="Config overridden from command line" arg="default.log.mode=console"
+grafana-1                | logger=settings t=2026-06-08T15:14:26.020982814Z level=info msg="Config overridden from Environment variable" var="GF_PATHS_DATA=/var/lib/grafana"
+grafana-1                | logger=settings t=2026-06-08T15:14:26.020985914Z level=info msg="Config overridden from Environment variable" var="GF_PATHS_LOGS=/var/log/grafana"
+prometheus-1             | ts=2026-06-05T21:11:22.296Z caller=main.go:1293 level=info msg="Notifier manager stopped"
+prometheus-1             | ts=2026-06-05T21:11:22.296Z caller=main.go:1305 level=info msg="See you next time!"
+grafana-1                | logger=settings t=2026-06-08T15:14:26.020988301Z level=info msg="Config overridden from Environment variable" var="GF_PATHS_PLUGINS=/var/lib/grafana/plugins"
+prometheus-1             | ts=2026-06-08T15:14:25.402Z caller=main.go:601 level=info msg="No time or size retention was set so using the default time retention" duration=15d
+grafana-1                | logger=settings t=2026-06-08T15:14:26.020990345Z level=info msg="Config overridden from Environment variable" var="GF_PATHS_PROVISIONING=/etc/grafana/provisioning"
+prometheus-1             | ts=2026-06-08T15:14:25.402Z caller=main.go:645 level=info msg="Starting Prometheus Server" mode=server version="(version=2.54.1, branch=HEAD, revision=e6cfa720fbe6280153fab13090a483dbd40bece3)"
+prometheus-1             | ts=2026-06-08T15:14:25.402Z caller=main.go:650 level=info build_context="(go=go1.22.6, platform=linux/amd64, user=root@812ffd741951, date=20240827-10:56:41, tags=netgo,builtinassets,stringlabels)"
+grafana-1                | logger=settings t=2026-06-08T15:14:26.02099241Z level=info msg="Config overridden from Environment variable" var="GF_SECURITY_ADMIN_PASSWORD=*********"
+places-service-1         | [GIN-debug] Listening and serving HTTP on :8080
+grafana-1                | logger=settings t=2026-06-08T15:14:26.020994692Z level=info msg="Config overridden from Environment variable" var="GF_USERS_ALLOW_SIGN_UP=false"
+grafana-1                | logger=settings t=2026-06-08T15:14:26.020999716Z level=info msg=Target target=[all]
+grafana-1                | logger=settings t=2026-06-08T15:14:26.021007794Z level=info msg="Path Home" path=/usr/share/grafana
+grafana-1                | logger=settings t=2026-06-08T15:14:26.021010704Z level=info msg="Path Data" path=/var/lib/grafana
+grafana-1                | logger=settings t=2026-06-08T15:14:26.02101325Z level=info msg="Path Logs" path=/var/log/grafana
+grafana-1                | logger=settings t=2026-06-08T15:14:26.021016005Z level=info msg="Path Plugins" path=/var/lib/grafana/plugins
+grafana-1                | logger=settings t=2026-06-08T15:14:26.021023581Z level=info msg="Path Provisioning" path=/etc/grafana/provisioning
+grafana-1                | logger=settings t=2026-06-08T15:14:26.021026148Z level=info msg="App mode production"
+grafana-1                | logger=sqlstore t=2026-06-08T15:14:26.023922747Z level=info msg="Connecting to DB" dbtype=sqlite3
+grafana-1                | logger=migrator t=2026-06-08T15:14:26.027515328Z level=info msg="Starting DB migrations"
+grafana-1                | logger=migrator t=2026-06-08T15:14:26.072296663Z level=info msg="migrations completed" performed=0 skipped=547 duration=2.246965ms
+prometheus-1             | ts=2026-06-08T15:14:25.403Z caller=main.go:651 level=info host_details="(Linux 6.6.87.2-microsoft-standard-WSL2 #1 SMP PREEMPT_DYNAMIC Thu Jun  5 18:30:46 UTC 2025 x86_64 451f5cbcfee4 localdomain)"
+prometheus-1             | ts=2026-06-08T15:14:25.403Z caller=main.go:652 level=info fd_limits="(soft=1048576, hard=1048576)"
+prometheus-1             | ts=2026-06-08T15:14:25.403Z caller=main.go:653 level=info vm_limits="(soft=unlimited, hard=unlimited)"
+prometheus-1             | ts=2026-06-08T15:14:25.412Z caller=web.go:571 level=info component=web msg="Start listening for connections" address=0.0.0.0:9090
+grafana-1                | logger=secrets t=2026-06-08T15:14:26.076916163Z level=info msg="Envelope encryption state" enabled=true currentprovider=secretKey.v1
+grafana-1                | logger=plugin.store t=2026-06-08T15:14:26.100762972Z level=info msg="Loading plugins..."
+prometheus-1             | ts=2026-06-08T15:14:25.414Z caller=main.go:1160 level=info msg="Starting TSDB ..."
+prometheus-1             | ts=2026-06-08T15:14:25.415Z caller=tls_config.go:313 level=info component=web msg="Listening on" address=[::]:9090
+prometheus-1             | ts=2026-06-08T15:14:25.415Z caller=tls_config.go:316 level=info component=web msg="TLS is disabled." http2=false address=[::]:9090
+prometheus-1             | ts=2026-06-08T15:14:25.417Z caller=repair.go:56 level=info component=tsdb msg="Found healthy block" mint=1780678581887 maxt=1780682400000 ulid=01KTCNZRGJE93B6PEPH9QH176Z
+prometheus-1             | ts=2026-06-08T15:14:25.421Z caller=head.go:626 level=info component=tsdb msg="Replaying on-disk memory mappable chunks if any"
+grafana-1                | logger=local.finder t=2026-06-08T15:14:26.248576643Z level=warn msg="Skipping finding plugins as directory does not exist" path=/usr/share/grafana/plugins-bundled
+grafana-1                | logger=plugin.store t=2026-06-08T15:14:26.248611379Z level=info msg="Plugins loaded" count=55 duration=147.848987ms
+prometheus-1             | ts=2026-06-08T15:14:25.423Z caller=head.go:713 level=info component=tsdb msg="On-disk memory mappable chunks replay completed" duration=1.813338ms
+grafana-1                | logger=query_data t=2026-06-08T15:14:26.261578544Z level=info msg="Query Service initialization"
+prometheus-1             | ts=2026-06-08T15:14:25.423Z caller=head.go:721 level=info component=tsdb msg="Replaying WAL, this may take a while"
+grafana-1                | logger=live.push_http t=2026-06-08T15:14:26.269778347Z level=info msg="Live Push Gateway initialization"
+prometheus-1             | ts=2026-06-08T15:14:25.435Z caller=head.go:793 level=info component=tsdb msg="WAL segment loaded" segment=0 maxSegment=4
+grafana-1                | logger=ngalert.migration t=2026-06-08T15:14:26.279141835Z level=info msg=Starting
+grafana-1                | logger=ngalert.state.manager t=2026-06-08T15:14:26.302715466Z level=info msg="Running in alternative execution of Error/NoData mode"
+prometheus-1             | ts=2026-06-08T15:14:25.449Z caller=head.go:793 level=info component=tsdb msg="WAL segment loaded" segment=1 maxSegment=4
+prometheus-1             | ts=2026-06-08T15:14:25.449Z caller=head.go:793 level=info component=tsdb msg="WAL segment loaded" segment=2 maxSegment=4
+grafana-1                | logger=infra.usagestats.collector t=2026-06-08T15:14:26.313988089Z level=info msg="registering usage stat providers" usageStatsProvidersLen=2
+prometheus-1             | ts=2026-06-08T15:14:25.454Z caller=head.go:793 level=info component=tsdb msg="WAL segment loaded" segment=3 maxSegment=4
+prometheus-1             | ts=2026-06-08T15:14:25.457Z caller=head.go:793 level=info component=tsdb msg="WAL segment loaded" segment=4 maxSegment=4
+grafana-1                | logger=provisioning.plugins t=2026-06-08T15:14:26.371594631Z level=error msg="Failed to read plugin provisioning files from directory" path=/etc/grafana/provisioning/plugins error="open /etc/grafana/provisioning/plugins: no such file or directory"
+grafana-1                | logger=provisioning.notifiers t=2026-06-08T15:14:26.372586948Z level=error msg="Can't read alert notification provisioning files from directory" path=/etc/grafana/provisioning/notifiers error="open /etc/grafana/provisioning/notifiers: no such file or directory"
+grafana-1                | logger=provisioning.alerting t=2026-06-08T15:14:26.37336018Z level=error msg="can't read alerting provisioning files from directory" path=/etc/grafana/provisioning/alerting error="open /etc/grafana/provisioning/alerting: no such file or directory"
+grafana-1                | logger=provisioning.alerting t=2026-06-08T15:14:26.373381438Z level=info msg="starting to provision alerting"
+grafana-1                | logger=provisioning.alerting t=2026-06-08T15:14:26.373427191Z level=info msg="finished to provision alerting"
+grafana-1                | logger=grafanaStorageLogger t=2026-06-08T15:14:26.376126623Z level=info msg="Storage starting"
+prometheus-1             | ts=2026-06-08T15:14:25.457Z caller=head.go:830 level=info component=tsdb msg="WAL replay completed" checkpoint_replay_duration=56.511µs wal_replay_duration=33.280196ms wbl_replay_duration=41ns chunk_snapshot_load_duration=0s mmap_chunk_replay_duration=1.813338ms total_replay_duration=35.221836ms
+prometheus-1             | ts=2026-06-08T15:14:25.459Z caller=main.go:1181 level=info fs_type=EXT4_SUPER_MAGIC
+grafana-1                | logger=ngalert.multiorg.alertmanager t=2026-06-08T15:14:26.377183877Z level=info msg="Starting MultiOrg Alertmanager"
+grafana-1                | logger=ngalert.state.manager t=2026-06-08T15:14:26.376402352Z level=info msg="Warming state cache for startup"
+prometheus-1             | ts=2026-06-08T15:14:25.459Z caller=main.go:1184 level=info msg="TSDB started"
+prometheus-1             | ts=2026-06-08T15:14:25.459Z caller=main.go:1367 level=info msg="Loading configuration file" filename=/etc/prometheus/prometheus.yml
+prometheus-1             | ts=2026-06-08T15:14:25.462Z caller=main.go:1404 level=info msg="updated GOGC" old=100 new=75
+prometheus-1             | ts=2026-06-08T15:14:25.462Z caller=main.go:1415 level=info msg="Completed loading of configuration file" filename=/etc/prometheus/prometheus.yml totalDuration=2.745797ms db_storage=1.494µs remote_storage=1.334µs web_handler=669ns query_engine=4.717µs scrape=1.082707ms scrape_sd=106.962µs notify=854ns notify_sd=689ns rules=1.566µs tracing=4.571µs
+prometheus-1             | ts=2026-06-08T15:14:25.462Z caller=main.go:1145 level=info msg="Server is ready to receive web requests."
+prometheus-1             | ts=2026-06-08T15:14:25.462Z caller=manager.go:164 level=info component="rule manager" msg="Starting rule manager..."
+prometheus-1             | ts=2026-06-08T15:14:30.598Z caller=compact.go:571 level=info component=tsdb msg="write block resulted in empty block" mint=1780682400000 maxt=1780689600000 duration=15.806107ms
+prometheus-1             | ts=2026-06-08T15:14:30.600Z caller=head.go:1355 level=info component=tsdb msg="Head GC completed" caller=truncateMemory duration=1.909176ms
+prometheus-1             | ts=2026-06-08T15:14:30.661Z caller=compact.go:580 level=info component=tsdb msg="write block" mint=1780689657666 maxt=1780696800000 ulid=01KTKWSCJ8MTGYMH7F0ADQ6B9D duration=60.61578ms ooo=false
+grafana-1                | logger=http.server t=2026-06-08T15:14:26.385218997Z level=info msg="HTTP Server Listen" address=[::]:3000 protocol=http subUrl= socket=
+prometheus-1             | ts=2026-06-08T15:14:30.666Z caller=head.go:1355 level=info component=tsdb msg="Head GC completed" caller=truncateMemory duration=4.931473ms
+prometheus-1             | ts=2026-06-08T15:14:30.667Z caller=checkpoint.go:101 level=info component=tsdb msg="Creating checkpoint" from_segment=0 to_segment=2 mint=1780696800000
+prometheus-1             | ts=2026-06-08T15:14:30.685Z caller=head.go:1317 level=info component=tsdb msg="WAL checkpoint complete" first=0 last=2 duration=18.818842ms
+grafana-1                | logger=provisioning.dashboard t=2026-06-08T15:14:26.403036068Z level=info msg="starting to provision dashboards"
+grafana-1                | logger=ngalert.state.manager t=2026-06-08T15:14:26.426137131Z level=info msg="State cache has been initialized" states=0 duration=49.733879ms
+grafana-1                | logger=ngalert.scheduler t=2026-06-08T15:14:26.426185186Z level=info msg="Starting scheduler" tickInterval=10s maxAttempts=1
+grafana-1                | logger=ticker t=2026-06-08T15:14:26.426694197Z level=info msg=starting first_tick=2026-06-08T15:14:30Z
+grafana-1                | logger=provisioning.dashboard t=2026-06-08T15:14:26.429337294Z level=info msg="finished to provision dashboards"
+grafana-1                | logger=grafana-apiserver t=2026-06-08T15:14:26.519159654Z level=info msg="Adding GroupVersion playlist.grafana.app v0alpha1 to ResourceManager"
+grafana-1                | logger=grafana-apiserver t=2026-06-08T15:14:26.519679533Z level=info msg="Adding GroupVersion featuretoggle.grafana.app v0alpha1 to ResourceManager"
+grafana-1                | logger=plugins.update.checker t=2026-06-08T15:14:26.613764818Z level=info msg="Update check succeeded" duration=237.477054ms
+grafana-1                | logger=grafana.update.checker t=2026-06-08T15:14:26.61420537Z level=info msg="Update check succeeded" duration=237.723662ms
+grafana-1                | logger=infra.usagestats t=2026-06-08T15:15:30.380657405Z level=info msg="Usage stats are ready to report"
+grafana-1                | logger=cleanup t=2026-06-08T15:27:46.701700967Z level=info msg="Completed cleanup jobs" duration=62.286311ms
+grafana-1                | logger=plugins.update.checker t=2026-06-08T15:27:47.067697798Z level=info msg="Update check succeeded" duration=190.071849ms
+grafana-1                | logger=grafana.update.checker t=2026-06-08T15:27:47.083685508Z level=info msg="Update check succeeded" duration=206.132275ms
+grafana-1                | logger=cleanup t=2026-06-08T15:37:46.628722368Z level=info msg="Completed cleanup jobs" duration=47.681311ms
+grafana-1                | logger=grafana.update.checker t=2026-06-08T15:37:47.041298725Z level=info msg="Update check succeeded" duration=222.688859ms
+grafana-1                | logger=plugins.update.checker t=2026-06-08T15:37:47.065660276Z level=info msg="Update check succeeded" duration=246.956844ms
+grafana-1                | logger=cleanup t=2026-06-08T15:58:51.045747274Z level=info msg="Completed cleanup jobs" duration=26.351898ms
+grafana-1                | logger=plugins.update.checker t=2026-06-08T15:58:51.463750617Z level=info msg="Update check succeeded" duration=206.906587ms
+grafana-1                | logger=grafana.update.checker t=2026-06-08T15:58:51.464716849Z level=info msg="Update check succeeded" duration=208.069849ms
+grafana-1                | logger=infra.usagestats t=2026-06-08T15:59:55.027901894Z level=info msg="Usage stats are ready to report"
+grafana-1                | logger=cleanup t=2026-06-08T16:08:50.984815572Z level=info msg="Completed cleanup jobs" duration=12.329777ms
+grafana-1                | logger=plugins.update.checker t=2026-06-08T16:08:51.44613411Z level=info msg="Update check succeeded" duration=234.124273ms
+grafana-1                | logger=grafana.update.checker t=2026-06-08T16:08:51.447356934Z level=info msg="Update check succeeded" duration=235.526092ms
+grafana-1                | logger=cleanup t=2026-06-08T16:21:51.350718415Z level=info msg="Completed cleanup jobs" duration=19.282458ms
+grafana-1                | logger=grafana.update.checker t=2026-06-08T16:21:51.759036171Z level=info msg="Update check succeeded" duration=190.801057ms
+grafana-1                | logger=plugins.update.checker t=2026-06-08T16:21:51.767790563Z level=info msg="Update check succeeded" duration=199.450146ms
+grafana-1                | logger=cleanup t=2026-06-08T16:31:51.314445182Z level=info msg="Completed cleanup jobs" duration=46.418575ms
+grafana-1                | logger=plugins.update.checker t=2026-06-08T16:31:51.713509131Z level=info msg="Update check succeeded" duration=208.515705ms
+grafana-1                | logger=grafana.update.checker t=2026-06-08T16:31:51.713911271Z level=info msg="Update check succeeded" duration=209.023463ms
+grafana-1                | logger=infra.usagestats t=2026-06-08T16:32:55.30224748Z level=info msg="Usage stats are ready to report"

@@ -1,0 +1,103 @@
+LandMark - Go test suite (stage 4)
+go go1.25.5
+============================================================
+
+>>> module: auth-service
+?   	github.com/ilpaka/landmark_app/backend/auth-service/cmd/migrate	[no test files]
+?   	github.com/ilpaka/landmark_app/backend/auth-service/cmd/server	[no test files]
+?   	github.com/ilpaka/landmark_app/backend/auth-service/internal/bootstrap	[no test files]
+?   	github.com/ilpaka/landmark_app/backend/auth-service/internal/config	[no test files]
+ok  	github.com/ilpaka/landmark_app/backend/auth-service/internal/httpserver	0.255s
+?   	github.com/ilpaka/landmark_app/backend/auth-service/internal/modules/auth/adapters/email	[no test files]
+ok  	github.com/ilpaka/landmark_app/backend/auth-service/internal/modules/auth/adapters/jwt	1.418s
+?   	github.com/ilpaka/landmark_app/backend/auth-service/internal/modules/auth/adapters/postgres	[no test files]
+?   	github.com/ilpaka/landmark_app/backend/auth-service/internal/modules/auth/adapters/profile	[no test files]
+ok  	github.com/ilpaka/landmark_app/backend/auth-service/internal/modules/auth/adapters/redis	1.626s
+?   	github.com/ilpaka/landmark_app/backend/auth-service/internal/modules/auth/adapters/sms	[no test files]
+ok  	github.com/ilpaka/landmark_app/backend/auth-service/internal/modules/auth/app	0.398s
+ok  	github.com/ilpaka/landmark_app/backend/auth-service/internal/modules/auth/audit	1.042s
+ok  	github.com/ilpaka/landmark_app/backend/auth-service/internal/modules/auth/crypto	0.852s
+?   	github.com/ilpaka/landmark_app/backend/auth-service/internal/modules/auth/domain	[no test files]
+ok  	github.com/ilpaka/landmark_app/backend/auth-service/internal/modules/auth/http	0.309s
+?   	github.com/ilpaka/landmark_app/backend/auth-service/internal/modules/auth/metrics	[no test files]
+?   	github.com/ilpaka/landmark_app/backend/auth-service/internal/modules/auth/mocks	[no test files]
+?   	github.com/ilpaka/landmark_app/backend/auth-service/internal/modules/auth/phone	[no test files]
+?   	github.com/ilpaka/landmark_app/backend/auth-service/internal/modules/auth/ports	[no test files]
+?   	github.com/ilpaka/landmark_app/backend/auth-service/internal/modules/auth/worker	[no test files]
+
+>>> module: profile-service
+go: downloading github.com/jackc/pgx/v5 v5.7.0
+go: downloading github.com/pressly/goose/v3 v3.22.0
+go: downloading golang.org/x/crypto v0.25.0
+go: downloading golang.org/x/net v0.27.0
+go: downloading golang.org/x/sys v0.26.0
+?   	github.com/ilpaka/landmark_app/backend/profile-service/cmd/migrate	[no test files]
+?   	github.com/ilpaka/landmark_app/backend/profile-service/cmd/server	[no test files]
+?   	github.com/ilpaka/landmark_app/backend/profile-service/internal/modules/profile/adapters/postgres	[no test files]
+ok  	github.com/ilpaka/landmark_app/backend/profile-service/internal/modules/profile/app	0.850s
+?   	github.com/ilpaka/landmark_app/backend/profile-service/internal/modules/profile/domain	[no test files]
+?   	github.com/ilpaka/landmark_app/backend/profile-service/internal/modules/profile/http	[no test files]
+?   	github.com/ilpaka/landmark_app/backend/profile-service/internal/modules/profile/ports	[no test files]
+
+>>> module: places-service
+?   	github.com/ilpaka/landmark_app/backend/places-service/cmd/migrate	[no test files]
+?   	github.com/ilpaka/landmark_app/backend/places-service/cmd/server	[no test files]
+?   	github.com/ilpaka/landmark_app/backend/places-service/internal/config	[no test files]
+?   	github.com/ilpaka/landmark_app/backend/places-service/internal/modules/place/adapters/moderation	[no test files]
+?   	github.com/ilpaka/landmark_app/backend/places-service/internal/modules/place/adapters/postgres	[no test files]
+ok  	github.com/ilpaka/landmark_app/backend/places-service/internal/modules/place/app	0.846s
+?   	github.com/ilpaka/landmark_app/backend/places-service/internal/modules/place/domain	[no test files]
+?   	github.com/ilpaka/landmark_app/backend/places-service/internal/modules/place/http	[no test files]
+?   	github.com/ilpaka/landmark_app/backend/places-service/internal/modules/place/ports	[no test files]
+
+>>> module: trips-service
+?   	github.com/ilpaka/landmark_app/backend/trips-service/cmd/migrate	[no test files]
+?   	github.com/ilpaka/landmark_app/backend/trips-service/cmd/server	[no test files]
+?   	github.com/ilpaka/landmark_app/backend/trips-service/internal/config	[no test files]
+?   	github.com/ilpaka/landmark_app/backend/trips-service/internal/modules/trip/adapters/postgres	[no test files]
+ok  	github.com/ilpaka/landmark_app/backend/trips-service/internal/modules/trip/app	1.041s
+?   	github.com/ilpaka/landmark_app/backend/trips-service/internal/modules/trip/domain	[no test files]
+?   	github.com/ilpaka/landmark_app/backend/trips-service/internal/modules/trip/http	[no test files]
+?   	github.com/ilpaka/landmark_app/backend/trips-service/internal/modules/trip/ports	[no test files]
+
+>>> module: favorites-service
+?   	github.com/ilpaka/landmark_app/backend/favorites-service/cmd/migrate	[no test files]
+?   	github.com/ilpaka/landmark_app/backend/favorites-service/cmd/server	[no test files]
+?   	github.com/ilpaka/landmark_app/backend/favorites-service/internal/modules/favorite/adapters/postgres	[no test files]
+ok  	github.com/ilpaka/landmark_app/backend/favorites-service/internal/modules/favorite/app	0.919s
+?   	github.com/ilpaka/landmark_app/backend/favorites-service/internal/modules/favorite/domain	[no test files]
+?   	github.com/ilpaka/landmark_app/backend/favorites-service/internal/modules/favorite/http	[no test files]
+?   	github.com/ilpaka/landmark_app/backend/favorites-service/internal/modules/favorite/ports	[no test files]
+
+>>> module: journal-service
+?   	github.com/ilpaka/landmark_app/backend/journal-service/cmd/migrate	[no test files]
+?   	github.com/ilpaka/landmark_app/backend/journal-service/cmd/server	[no test files]
+?   	github.com/ilpaka/landmark_app/backend/journal-service/internal/config	[no test files]
+?   	github.com/ilpaka/landmark_app/backend/journal-service/internal/modules/journal/adapters/postgres	[no test files]
+ok  	github.com/ilpaka/landmark_app/backend/journal-service/internal/modules/journal/app	0.875s
+?   	github.com/ilpaka/landmark_app/backend/journal-service/internal/modules/journal/domain	[no test files]
+?   	github.com/ilpaka/landmark_app/backend/journal-service/internal/modules/journal/http	[no test files]
+?   	github.com/ilpaka/landmark_app/backend/journal-service/internal/modules/journal/ports	[no test files]
+
+>>> module: notifications-service
+?   	github.com/ilpaka/landmark_app/backend/notifications-service/cmd/migrate	[no test files]
+?   	github.com/ilpaka/landmark_app/backend/notifications-service/cmd/server	[no test files]
+?   	github.com/ilpaka/landmark_app/backend/notifications-service/internal/modules/notification/adapters/postgres	[no test files]
+ok  	github.com/ilpaka/landmark_app/backend/notifications-service/internal/modules/notification/app	0.900s
+?   	github.com/ilpaka/landmark_app/backend/notifications-service/internal/modules/notification/domain	[no test files]
+?   	github.com/ilpaka/landmark_app/backend/notifications-service/internal/modules/notification/http	[no test files]
+?   	github.com/ilpaka/landmark_app/backend/notifications-service/internal/modules/notification/ports	[no test files]
+
+>>> module: moderation-service
+?   	github.com/ilpaka/landmark_app/backend/moderation-service/cmd/migrate	[no test files]
+?   	github.com/ilpaka/landmark_app/backend/moderation-service/cmd/server	[no test files]
+?   	github.com/ilpaka/landmark_app/backend/moderation-service/internal/modules/moderation/adapters/places	[no test files]
+?   	github.com/ilpaka/landmark_app/backend/moderation-service/internal/modules/moderation/adapters/postgres	[no test files]
+ok  	github.com/ilpaka/landmark_app/backend/moderation-service/internal/modules/moderation/app	0.976s
+?   	github.com/ilpaka/landmark_app/backend/moderation-service/internal/modules/moderation/domain	[no test files]
+?   	github.com/ilpaka/landmark_app/backend/moderation-service/internal/modules/moderation/http	[no test files]
+?   	github.com/ilpaka/landmark_app/backend/moderation-service/internal/modules/moderation/ports	[no test files]
+
+============================================================
+SUMMARY: 14 packages passed (ok), 0 failed.
+Result: ALL TESTS PASSED
