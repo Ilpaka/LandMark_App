@@ -1,0 +1,19 @@
+LandMark stage 5 - access-control checks @ http://localhost:8080
+======================================================================
+tokens: userA=ok userB=ok admin=ok
+
+[1] RBAC - admin-only endpoint /v1/admin/users
+[PASS] anonymous -> 401 (denied)
+[PASS] regular user -> 403 (forbidden)
+[PASS] admin -> 200 (allowed)
+
+[2] IDOR - user B must not access user A's trip
+userA created trip id=b3685e36-4d0a-4583-ad51-a44cfa164d82
+[PASS] owner (A) reads own trip -> 200
+[PASS] other user (B) reads A's trip -> 403 (denied)
+[PASS] user B edits A's trip -> 403 (denied)
+[PASS] user B deletes A's trip -> 403 (denied)
+
+======================================================================
+RESULT: 7 passed, 0 failed
+ACCESS CONTROL: OK

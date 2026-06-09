@@ -1,0 +1,32 @@
+Скриншоты этапа 5 — статус
+==========================
+
+ГОТОВО (сделаны автоматически из РЕАЛЬНЫХ выводов команд/проверок,
+оформлены аккуратными изображениями, без захвата вашего экрана):
+
+  [ГОТОВО] 01_gitignore_no_env.png            — .gitignore: .env*, backups/, дампы, логи игнорируются
+  [ГОТОВО] 02_env_example_without_secrets.png — .env.production.example: только change_me_*
+  [ГОТОВО] 03_secret_scan_result.png          — git grep: реальных секретов в репозитории нет
+  [ГОТОВО] 04_dependency_check_result.png     — govulncheck: уязвимости + фикс jwt 5.2.1->5.2.2
+  [ГОТОВО] 05_roles_access_check.png          — RBAC: anon 401 / user 403 / admin 200
+  [ГОТОВО] 06_foreign_data_access_denied.png  — IDOR: чужая поездка -> 403 (read/edit/delete)
+  [ГОТОВО] 07_cors_or_security_config.png     — CORS: * -> http://localhost:8080
+  [ГОТОВО] 08_backup_created.png              — pg_dump: backups/backup_*.sql создан
+  [ГОТОВО] 09_restore_success.png             — restore в тестовую БД, число строк совпало
+  [ГОТОВО] 10_open_ports_check.png            — порты: БД/Redis/бэкенд только внутри сети
+  [ГОТОВО] 11_logs_no_critical_errors.png     — логи: panic/fatal/5xx в сервисах нет
+
+ОСТАЛОСЬ снять вам:
+
+  [ ] 12_security_commit.png
+        После коммита/пуша файлов этапа 5:  git log --oneline -5  (или окно GitHub) -> скрин.
+
+Воспроизвести любую проверку можно скриптами (запускать из этой папки, стенд должен быть запущен):
+  scripts\security-check.bat   -> 01,03
+  scripts\deps-check.bat       -> 04
+  scripts\backup.bat           -> 08
+  scripts\restore.bat          -> 09
+  scripts\ports-check.bat      -> 10
+  scripts\logs-security.bat    -> 11
+  bash scripts\access-check.sh -> 05,06
+Доказательства в текстовом виде — в папке reports\.

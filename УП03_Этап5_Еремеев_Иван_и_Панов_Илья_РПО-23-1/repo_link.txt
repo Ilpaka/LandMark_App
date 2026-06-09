@@ -1,0 +1,23 @@
+Репозиторий: https://github.com/Ilpaka/LandMark_App
+Ветка с работой по этапу 5: feat/fifth_stage
+
+Развёрнутый стенд, который проверялся на безопасность (demo из этапа 3):
+  Запуск:      docker compose --env-file .env.production -f docker-compose.prod.yml up -d
+  API Gateway: http://localhost:8080  (health: /healthz)
+  Grafana:     http://localhost:3000   Prometheus: http://localhost:9090
+  Mailpit:     http://localhost:8025   MinIO: http://localhost:9001
+  Админ для проверки ролей: admin@apple.com / AdminPass123456
+
+Что проверено на этапе 5 (инструменты, не «на глаз»):
+  - секреты: .gitignore, .env.example, ручной secret-scan (git grep)
+  - зависимости: govulncheck (Go) — найдены и частично исправлены уязвимости
+  - роли и доступ: RBAC (anon/user/admin) + IDOR (чужие данные) — scripts/access-check.sh
+  - CORS: заголовок Access-Control-Allow-Origin
+  - backup/restore: pg_dump + восстановление в тестовую БД со сверкой числа строк
+  - порты: docker compose ps + netstat
+  - логи: docker compose logs — без критических ошибок приложения
+
+Исправлено на этапе 5:
+  - .gitignore: добавлены backups/, дампы, логи
+  - CORS: * заменён на конкретный origin (CORS_ORIGINS)
+  - зависимость: golang-jwt/jwt/v5 1.5.2.1 -> v5.2.2 (GO-2025-3553)
