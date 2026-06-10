@@ -90,6 +90,7 @@ func MountAuth(cfg *config.Config, log *slog.Logger, pool *pgxpool.Pool, rdb *re
 	engine.Use(RequestIDMiddleware())
 	engine.Use(otelgin.Middleware(cfg.OTELServiceName))
 	engine.Use(PrometheusHTTPMiddleware())
+	RegisterFallbackHandlers(engine)
 
 	engine.GET("/healthz", func(c *gin.Context) {
 		ctx, cancel := context.WithTimeout(c.Request.Context(), 2*time.Second)

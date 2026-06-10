@@ -15,6 +15,15 @@ func Mount(svc *app.Service, internalKey string) *Stack {
 	r := gin.New()
 	r.Use(gin.Recovery())
 
+	// Unified JSON error envelope for unmatched routes and methods (BUG-03)
+	r.HandleMethodNotAllowed = true
+	r.NoRoute(func(c *gin.Context) {
+		c.JSON(http.StatusNotFound, gin.H{"error": "not found"})
+	})
+	r.NoMethod(func(c *gin.Context) {
+		c.JSON(http.StatusMethodNotAllowed, gin.H{"error": "method not allowed"})
+	})
+
 	h := &Handlers{Svc: svc, InternalKey: internalKey}
 
 	r.GET("/healthz", func(c *gin.Context) { c.JSON(http.StatusOK, gin.H{"status": "ok"}) })

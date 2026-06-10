@@ -1,6 +1,10 @@
 package notifhttp
 
-import "github.com/gin-gonic/gin"
+import (
+	"net/http"
+
+	"github.com/gin-gonic/gin"
+)
 
 func Mount(r *gin.Engine, h *Handler) {
 	v1 := r.Group("/v1/notifications")
@@ -14,4 +18,13 @@ func Mount(r *gin.Engine, h *Handler) {
 
 	internal := r.Group("/v1/internal/notifications", internalKeyMiddleware())
 	internal.POST("/send", h.InternalSend)
+
+	// Unified JSON error envelope for unmatched routes and methods (BUG-03)
+	r.HandleMethodNotAllowed = true
+	r.NoRoute(func(c *gin.Context) {
+		c.JSON(http.StatusNotFound, gin.H{"error": "not found"})
+	})
+	r.NoMethod(func(c *gin.Context) {
+		c.JSON(http.StatusMethodNotAllowed, gin.H{"error": "method not allowed"})
+	})
 }
