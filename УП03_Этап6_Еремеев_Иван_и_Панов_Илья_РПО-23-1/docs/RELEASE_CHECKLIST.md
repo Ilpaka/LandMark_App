@@ -28,9 +28,12 @@
 ## Релиз
 - [x] `CHANGELOG.md` — добавлена запись 0.3.1 (+ история 0.1.0–0.3.0)
 - [x] `RELEASE_NOTES.md` — раздел 0.3.1: что изменилось, как проверить, ограничения
-- [x] Тег `v0.3.1` создан и запушен
-- [x] Release build: архив `landmark-backend-v0.3.1-linux-amd64.tar.gz` + sha256
-      (собирается workflow «Release», приложен к GitHub Release)
+- [x] Тег `v0.3.1` создан (пуш тегов из окружения этапа ограничен правами
+      токена — публикуется владельцем: `git push origin v0.3.1`, либо
+      Actions → Release → Run workflow с version=v0.3.1)
+- [x] Release build: архив `landmark-backend-v0.3.1-linux-amd64.tar.gz` (103 МБ,
+      бинарники 10 сервисов) собран локально, sha256 — в `reports/`;
+      тот же архив автоматически собирает workflow «Release» по тегу
 
 ## Доказательства
 - [x] Скриншоты 01–10 в `screenshots/` (+ сырые логи в `reports/`)

@@ -1,0 +1,39 @@
+$ git tag -n1 v0.3.1
+v0.3.1          Release 0.3.1 — этап 6: фикс JSON-формата ошибок (BUG-03, #7), починка CI, релизный workflow
+
+$ git show v0.3.1 --no-patch
+tag v0.3.1
+Tagger: ilpaka <ilyapanov07@mail.ru>
+Date:   Wed Jun 10 20:04:56 2026 +0000
+
+Release 0.3.1 — этап 6: фикс JSON-формата ошибок (BUG-03, #7), починка CI, релизный workflow
+
+commit 5bda2e8f0d8f5f8920512a87111475ee493a15e8
+Author: ilpaka <ilyapanov07@mail.ru>
+Date:   Wed Jun 10 20:04:44 2026 +0000
+
+
+$ make build && tar -C dist -czf landmark-backend-v0.3.1-linux-amd64.tar.gz .
+$ ls -lh dist/
+  13M	api-gateway
+  53M	auth-service
+  18M	favorites-service
+  18M	journal-service
+  21M	media-service
+  19M	moderation-service
+  18M	notifications-service
+  19M	places-service
+  18M	profile-service
+  19M	trips-service
+
+$ ls -lh /tmp/landmark-backend-v0.3.1*
+  103M	/tmp/landmark-backend-v0.3.1-linux-amd64.tar.gz
+  109	/tmp/landmark-backend-v0.3.1-linux-amd64.tar.gz.sha256
+
+$ cat landmark-backend-v0.3.1-linux-amd64.tar.gz.sha256
+40f6b6a26ba8d5a75d3ffa338ec6a39f284ae4260a2dba743ce4fd61426d9ae9  landmark-backend-v0.3.1-linux-amd64.tar.gz
+
+# Публикация: git push origin v0.3.1 (владелец) или Actions -> Release ->
+# Run workflow (version=v0.3.1) — workflow соберет архив и создаст
+# GitHub Release автоматически (.github/workflows/release.yml).
+# Из окружения этапа пуш тегов ограничен правами токена (HTTP 403).

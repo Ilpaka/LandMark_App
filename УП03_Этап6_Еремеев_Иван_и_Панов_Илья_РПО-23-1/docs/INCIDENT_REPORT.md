@@ -111,9 +111,10 @@ api-gateway не менялся: для неизвестного префикс�
   `GET /v1/profile` → `404 {"error":"not found"}` (application/json),
   `DELETE /v1/profile/me` → `405 {"error":"method not allowed"}` +
   корректный заголовок `Allow: GET, PATCH`.
-- GitHub Actions: workflow «CI» на PR этапа 6 — успешный
-  (скриншот `07_github_actions_success.png`); workflow «Release» по тегу
-  `v0.3.1` собрал релизный архив.
+- GitHub Actions: workflow «CI» на PR этапа 6 — успешный, runs #22 и #23
+  (скриншот `07_github_actions_success.png`) — первые зелёные запуски в
+  истории репозитория; релизный архив v0.3.1 собран командой `make build`
+  (sha256 в `reports/`), workflow «Release» собирает его же по тегу.
 - Pull Request с чек-листом и ссылкой `Closes #7`
   (скриншот `08_pull_request.png`).
 
@@ -122,7 +123,9 @@ api-gateway не менялся: для неизвестного префикс�
 **Проблема исправлена.** Все сервисы отвечают единым JSON-конвертом ошибок
 на любые маршруты и методы; регресс закрыт тестами; CI зелёный и снова
 выполняет свою функцию; релиз 0.3.1 оформлен (changelog, release notes,
-тег + автоматическая сборка).
+тег v0.3.1 + релизная сборка; публикация тега — `git push origin v0.3.1`
+владельцем либо ручной запуск workflow «Release», т.к. пуш тегов из
+окружения этапа ограничен правами токена).
 
 Остаётся технический долг (не входит в инцидент): поднять покрытие
 app-слоя auth/media/trips и вернуть порог 40% в `cover-check`; открытые
