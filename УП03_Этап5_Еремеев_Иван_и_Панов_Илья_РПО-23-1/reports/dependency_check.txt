@@ -1,0 +1,74 @@
+LandMark - dependency vulnerability scan (govulncheck)
+tool: Go: go1.25.5
+
+==================== module: auth-service ====================
+  Standard library
+    Found in: crypto/tls@go1.25.5
+    Fixed in: crypto/tls@go1.25.7
+    Example traces found:
+      #1: cmd/server/main.go:92:29: server.main calls gin.Engine.Run, which eventually calls tls.Conn.HandshakeContext
+      #2: internal/modules/auth/crypto/otp.go:32:26: crypto.RandomSalt calls io.ReadFull, which eventually calls tls.Conn.Read
+      #3: internal/modules/auth/adapters/profile/client.go:110:2: profile.HTTPClient.ConfirmReservation calls http.http2transportResponseBody.Close, which eventually calls tls.Conn.Write
+      #4: internal/modules/auth/adapters/redis/client.go:48:26: redis.New calls redis.NewClient, which eventually calls tls.DialWithDialer
+      #5: internal/modules/auth/adapters/profile/client.go:106:28: profile.HTTPClient.ConfirmReservation calls http.Client.Do, which eventually calls tls.Dialer.DialContext
+Vulnerability #20: GO-2025-3540
+    Potential out of order responses when CLIENT SETINFO times out during
+    connection establishment in github.com/redis/go-redis
+  More info: https://pkg.go.dev/vuln/GO-2025-3540
+  Module: github.com/redis/go-redis/v9
+    Found in: github.com/redis/go-redis/v9@v9.7.0
+    Fixed in: github.com/redis/go-redis/v9@v9.7.3
+    Example traces found:
+      #1: internal/modules/auth/adapters/redis/client.go:128:21: redis.Client.Clear calls redis.Pipeline.Exec, which eventually calls redis.baseClient.initConn
+      #2: internal/modules/auth/adapters/redis/client.go:128:21: redis.Client.Clear calls redis.Pipeline.Exec, which eventually calls redis.baseClient.initConn
+      #3: internal/modules/auth/adapters/redis/client.go:128:21: redis.Client.Clear calls redis.Pipeline.Exec, which eventually calls redis.baseClient.initConn
+Your code is affected by 20 vulnerabilities from 2 modules and the Go standard library.
+This scan also found 7 vulnerabilities in packages you import and 21
+vulnerabilities in modules you require, but your code doesn't appear to call
+these vulnerabilities.
+Use '-show verbose' for more details.
+
+==================== module: api-gateway ====================
+Vulnerability #12: GO-2026-4337
+    Unexpected session resumption in crypto/tls
+  More info: https://pkg.go.dev/vuln/GO-2026-4337
+  Standard library
+    Found in: crypto/tls@go1.25.5
+    Fixed in: crypto/tls@go1.25.7
+    Example traces found:
+      #1: cmd/server/main.go:197:17: server.main calls gin.Engine.Run, which eventually calls tls.Conn.HandshakeContext
+      #2: internal/middleware/jwks.go:88:2: middleware.JWKSCache.refresh calls http.body.Close, which eventually calls tls.Conn.Read
+      #3: cmd/server/main.go:197:17: server.main calls gin.Engine.Run, which eventually calls tls.Conn.Write
+      #4: internal/middleware/jwks.go:84:30: middleware.JWKSCache.refresh calls http.Client.Do, which eventually calls tls.Dialer.DialContext
+Vulnerability #13: GO-2025-3553
+    Excessive memory allocation during header parsing in
+    github.com/golang-jwt/jwt
+  More info: https://pkg.go.dev/vuln/GO-2025-3553
+  Module: github.com/golang-jwt/jwt/v5
+    Found in: github.com/golang-jwt/jwt/v5@v5.2.1
+    Fixed in: github.com/golang-jwt/jwt/v5@v5.2.2
+    Example traces found:
+      #1: internal/middleware/jwt.go:64:35: middleware.JWTMiddleware.extract calls jwt.ParseWithClaims, which eventually calls jwt.Parser.ParseUnverified
+Your code is affected by 13 vulnerabilities from 2 modules and the Go standard library.
+This scan also found 17 vulnerabilities in packages you import and 24
+vulnerabilities in modules you require, but your code doesn't appear to call
+these vulnerabilities.
+Use '-show verbose' for more details.
+
+====================================================================
+FINDINGS SUMMARY & REMEDIATION
+====================================================================
+Called vulnerabilities found (govulncheck, only code-reachable):
+  * api-gateway: github.com/golang-jwt/jwt/v5 v5.2.1  GO-2025-3553
+      (excessive memory allocation during JWT header parsing - DoS on auth path)
+  * auth-service: github.com/redis/go-redis/v9 v9.7.0  GO-2025-3540 (fixed in v9.7.3)
+  * crypto/tls (Go stdlib 1.25.5)  GO-2026-4337 / others (fixed in go1.25.7)
+
+FIXED in this stage:
+  github.com/golang-jwt/jwt/v5: v5.2.1 -> v5.2.2 (api-gateway go.mod), go build OK.
+  Re-scan: GO-2025-3553 no longer reported (api-gateway: 13 -> 12 findings, jwt module gone).
+
+Remaining (recommendations, see RECOMMENDATIONS.md):
+  - bump redis/go-redis to v9.7.3 (auth-service);
+  - rebuild images on Go 1.25.7+ to clear crypto/tls stdlib advisories;
+  - Dart deps (landmark_app/pubspec.yaml) not scanned here - run 'flutter pub outdated' where Flutter SDK is available.

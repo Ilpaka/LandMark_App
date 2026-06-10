@@ -1,0 +1,23 @@
+LandMark stage 5 - backup & restore verification
+=================================================
+Backup file: backup_20260610_012010.sql  (5516 lines, 94 tables)
+
+--- ORIGINAL DB (landmark) row counts ---
+auth.auth_accounts=12
+trips.trips_trips=3
+auth.auth_sessions=8
+
+--- RESTORE into fresh DB landmark_restore_test ---
+NOTICE:  database "landmark_restore_test" does not exist, skipping
+DROP DATABASE
+CREATE DATABASE
+restore exit code: 0
+restore ERROR lines: 0
+
+--- RESTORED DB (landmark_restore_test) row counts (must match original) ---
+auth.auth_accounts=12
+trips.trips_trips=3
+auth.auth_sessions=8
+
+--- cleanup test DB ---
+DROP DATABASE

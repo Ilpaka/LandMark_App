@@ -1,0 +1,28 @@
+LandMark stage 5 - open ports / running services
+=================================================
+--- docker compose ps (published ports) ---
+SERVICE                 STATUS                    PORTS
+api-gateway             Up 5 minutes              0.0.0.0:8080->8080/tcp, [::]:8080->8080/tcp
+auth-service            Up 26 minutes             8080/tcp
+favorites-service       Up 26 minutes             8080/tcp
+grafana                 Up 26 minutes             0.0.0.0:3000->3000/tcp, [::]:3000->3000/tcp
+journal-service         Up 26 minutes             8080/tcp
+mailhog                 Up 26 minutes (healthy)   0.0.0.0:8025->8025/tcp, [::]:8025->8025/tcp
+media-service           Up 26 minutes             8080/tcp
+minio                   Up 26 minutes (healthy)   0.0.0.0:9000-9001->9000-9001/tcp, [::]:9000-9001->9000-9001/tcp
+moderation-service      Up 26 minutes             8080/tcp
+notifications-service   Up 26 minutes             8080/tcp
+places-service          Up 26 minutes             8080/tcp
+postgres                Up 26 minutes (healthy)   5432/tcp
+profile-service         Up 26 minutes             8080/tcp
+prometheus              Up 26 minutes             0.0.0.0:9090->9090/tcp, [::]:9090->9090/tcp
+redis                   Up 26 minutes (healthy)   6379/tcp
+trips-service           Up 26 minutes             8080/tcp
+
+--- host LISTENING ports for the stand (8080/3000/8025/9090/9000/9001/5432/6379) ---
+  TCP    0.0.0.0:3000           0.0.0.0:0              LISTENING       17544
+  TCP    0.0.0.0:8025           0.0.0.0:0              LISTENING       17544
+  TCP    0.0.0.0:8080           0.0.0.0:0              LISTENING       17544
+  TCP    0.0.0.0:9000           0.0.0.0:0              LISTENING       17544
+  TCP    0.0.0.0:9001           0.0.0.0:0              LISTENING       17544
+  TCP    0.0.0.0:9090           0.0.0.0:0              LISTENING       17544

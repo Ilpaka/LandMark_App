@@ -1,0 +1,722 @@
+grafana-1                | logger=plugins.update.checker t=2026-06-08T16:51:51.607534033Z level=info msg="Update check succeeded" duration=205.558961ms
+grafana-1                | logger=grafana.update.checker t=2026-06-08T16:51:51.608309863Z level=info msg="Update check succeeded" duration=205.100152ms
+grafana-1                | logger=settings t=2026-06-08T21:29:32.345854115Z level=info msg="Starting Grafana" version=10.4.0 commit=03f502a94d17f7dc4e6c34acdf8428aedd986e4c branch=HEAD compiled=2026-06-08T21:29:32Z
+grafana-1                | logger=settings t=2026-06-08T21:29:32.34844252Z level=info msg="Config loaded from" file=/usr/share/grafana/conf/defaults.ini
+grafana-1                | logger=settings t=2026-06-08T21:29:32.34849156Z level=info msg="Config loaded from" file=/etc/grafana/grafana.ini
+grafana-1                | logger=settings t=2026-06-08T21:29:32.34849779Z level=info msg="Config overridden from command line" arg="default.paths.data=/var/lib/grafana"
+places-service-1         | Running database migrations...
+profile-service-1        | Running database migrations...
+profile-service-1        | 2026/06/09 21:56:55 goose: no migrations to run. current version: 20260602000000
+moderation-service-1     | Running database migrations...
+minio-init-1             | Added `local` successfully.
+favorites-service-1      | Running database migrations...
+minio-init-1             | Bucket created successfully `local/landmark-media`.
+favorites-service-1      | 2026/06/09 21:56:55 goose: no migrations to run. current version: 20260502170000
+trips-service-1          | Running database migrations...
+trips-service-1          | 2026/06/09 21:56:55 goose: no migrations to run. current version: 20260502140000
+trips-service-1          | Starting server...
+trips-service-1          | [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+minio-1                  | MinIO Object Storage Server
+mailhog-1                | time="2026/06/05 21:04:32" level=info msg="[smtpd] enabling any authentication (insecure)"
+minio-1                  | Copyright: 2015-2026 MinIO, Inc.
+minio-1                  | License: GNU AGPLv3 - https://www.gnu.org/licenses/agpl-3.0.html
+minio-1                  | Version: RELEASE.2025-09-07T16-13-09Z (go1.24.6 linux/amd64)
+minio-1                  | 
+profile-service-1        | Starting server...
+profile-service-1        | [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+api-gateway-1            | Starting api-gateway...
+api-gateway-1            | [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+api-gateway-1            |  - using env:	export GIN_MODE=release
+api-gateway-1            |  - using code:	gin.SetMode(gin.ReleaseMode)
+api-gateway-1            | 
+prometheus-1             | ts=2026-06-05T21:04:33.140Z caller=main.go:1367 level=info msg="Loading configuration file" filename=/etc/prometheus/prometheus.yml
+postgres-1               | 
+api-gateway-1            | [GIN-debug] GET    /healthz                  --> main.main.func1 (2 handlers)
+api-gateway-1            | {"time":"2026-06-09T22:18:06.899208426Z","level":"INFO","msg":"api-gateway starting","addr":":8080"}
+api-gateway-1            | [GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+api-gateway-1            | Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+api-gateway-1            | [GIN-debug] Listening and serving HTTP on :8080
+journal-service-1        | Running database migrations...
+places-service-1         | 2026/06/09 21:56:55 goose: no migrations to run. current version: 20260605000000
+minio-1                  | API: http://172.22.0.4:9000  http://127.0.0.1:9000 
+minio-1                  | WebUI: http://172.22.0.4:9001 http://127.0.0.1:9001  
+profile-service-1        |  - using env:	export GIN_MODE=release
+minio-init-1             | Access permission for `local/landmark-media` is set to `private`
+minio-init-1             | Added `local` successfully.
+minio-init-1             | Bucket created successfully `local/landmark-media`.
+media-service-1          | Running database migrations...
+prometheus-1             | ts=2026-06-05T21:04:33.142Z caller=main.go:1404 level=info msg="updated GOGC" old=100 new=75
+media-service-1          | 2026/06/09 21:56:58 goose: no migrations to run. current version: 20260502160000
+trips-service-1          |  - using env:	export GIN_MODE=release
+trips-service-1          |  - using code:	gin.SetMode(gin.ReleaseMode)
+trips-service-1          | 
+mailhog-1                | time="2026/06/05 21:04:32" level=info msg="[cors] allowed API origins: "
+mailhog-1                | time="2026/06/05 21:04:32" level=info msg="[smtpd] starting on [::]:1025 (no encryption)"
+mailhog-1                | time="2026/06/05 21:04:32" level=info msg="[http] starting on [::]:8025"
+mailhog-1                | time="2026/06/05 21:04:32" level=info msg="[http] accessible via http://localhost:8025/"
+places-service-1         | Starting server...
+moderation-service-1     | 2026/06/09 21:56:56 goose: no migrations to run. current version: 20260502190001
+profile-service-1        |  - using code:	gin.SetMode(gin.ReleaseMode)
+profile-service-1        | 
+profile-service-1        | [GIN-debug] GET    /healthz                  --> main.main.func1 (2 handlers)
+minio-init-1             | Access permission for `local/landmark-media` is set to `private`
+media-service-1          | Starting server...
+media-service-1          | [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+media-service-1          |  - using env:	export GIN_MODE=release
+auth-service-1           | Running database migrations...
+trips-service-1          | [GIN-debug] GET    /healthz                  --> github.com/ilpaka/landmark_app/backend/trips-service/internal/modules/trip/http.Mount.func1 (2 handlers)
+auth-service-1           | 2026/06/09 21:56:55 goose: no migrations to run. current version: 20260425120000
+trips-service-1          | [GIN-debug] GET    /v1/trips/public          --> github.com/ilpaka/landmark_app/backend/trips-service/internal/modules/trip/http.(*Handlers).ListPublicTrips-fm (2 handlers)
+trips-service-1          | [GIN-debug] GET    /v1/trips                 --> github.com/ilpaka/landmark_app/backend/trips-service/internal/modules/trip/http.(*Handlers).ListTrips-fm (2 handlers)
+trips-service-1          | [GIN-debug] POST   /v1/trips                 --> github.com/ilpaka/landmark_app/backend/trips-service/internal/modules/trip/http.(*Handlers).CreateTrip-fm (2 handlers)
+trips-service-1          | [GIN-debug] GET    /v1/trips/:id             --> github.com/ilpaka/landmark_app/backend/trips-service/internal/modules/trip/http.(*Handlers).GetTrip-fm (2 handlers)
+mailhog-1                | [db] got terminated signal, shutting down
+mailhog-1                | time="2026/06/08 15:14:25" level=info msg="[smtpd] enabling any authentication (insecure)"
+moderation-service-1     | Starting server...
+moderation-service-1     | [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+moderation-service-1     |  - using env:	export GIN_MODE=release
+favorites-service-1      | Starting server...
+favorites-service-1      | [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+favorites-service-1      |  - using env:	export GIN_MODE=release
+prometheus-1             | ts=2026-06-05T21:04:33.142Z caller=main.go:1415 level=info msg="Completed loading of configuration file" filename=/etc/prometheus/prometheus.yml totalDuration=2.616129ms db_storage=1.595µs remote_storage=3.719µs web_handler=1.022µs query_engine=14.182µs scrape=281.994µs scrape_sd=148.059µs notify=1.069µs notify_sd=495ns rules=13.319µs tracing=54.024µs
+notifications-service-1  | Running database migrations...
+auth-service-1           | Starting server...
+auth-service-1           | {"time":"2026-06-09T21:56:56.045399523Z","level":"INFO","msg":"admin bootstrap ok","email":"admin@apple.com"}
+grafana-1                | logger=settings t=2026-06-08T21:29:32.348501316Z level=info msg="Config overridden from command line" arg="default.paths.logs=/var/log/grafana"
+grafana-1                | logger=settings t=2026-06-08T21:29:32.348504691Z level=info msg="Config overridden from command line" arg="default.paths.plugins=/var/lib/grafana/plugins"
+places-service-1         | [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+places-service-1         |  - using env:	export GIN_MODE=release
+places-service-1         |  - using code:	gin.SetMode(gin.ReleaseMode)
+places-service-1         | 
+redis-1                  | 1:C 05 Jun 2026 21:04:32.790 * oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+places-service-1         | [GIN-debug] GET    /healthz                  --> github.com/ilpaka/landmark_app/backend/places-service/internal/modules/place/http.Mount.func1 (2 handlers)
+moderation-service-1     |  - using code:	gin.SetMode(gin.ReleaseMode)
+postgres-1               | PostgreSQL Database directory appears to contain a database; Skipping initialization
+postgres-1               | 
+favorites-service-1      |  - using code:	gin.SetMode(gin.ReleaseMode)
+prometheus-1             | ts=2026-06-05T21:04:33.142Z caller=main.go:1145 level=info msg="Server is ready to receive web requests."
+prometheus-1             | ts=2026-06-05T21:04:33.142Z caller=manager.go:164 level=info component="rule manager" msg="Starting rule manager..."
+prometheus-1             | ts=2026-06-05T21:04:38.487Z caller=compact.go:571 level=info component=tsdb msg="write block resulted in empty block" mint=1780682400000 maxt=1780689600000 duration=12.204873ms
+auth-service-1           | {"time":"2026-06-09T21:58:34.018323119Z","level":"INFO","msg":"verification otp","to":"userA.122298535@example.com","code":"856403"}
+auth-service-1           | {"time":"2026-06-09T21:58:34.728695204Z","level":"INFO","msg":"verification otp","to":"userB.122298535@example.com","code":"150372"}
+grafana-1                | logger=settings t=2026-06-08T21:29:32.348512001Z level=info msg="Config overridden from command line" arg="default.paths.provisioning=/etc/grafana/provisioning"
+grafana-1                | logger=settings t=2026-06-08T21:29:32.348515499Z level=info msg="Config overridden from command line" arg="default.log.mode=console"
+grafana-1                | logger=settings t=2026-06-08T21:29:32.348518928Z level=info msg="Config overridden from Environment variable" var="GF_PATHS_DATA=/var/lib/grafana"
+grafana-1                | logger=settings t=2026-06-08T21:29:32.348522413Z level=info msg="Config overridden from Environment variable" var="GF_PATHS_LOGS=/var/log/grafana"
+profile-service-1        | [GIN-debug] GET    /v1/profile/me            --> github.com/ilpaka/landmark_app/backend/profile-service/internal/modules/profile/http.(*Handler).GetMe-fm (2 handlers)
+profile-service-1        | [GIN-debug] PATCH  /v1/profile/me            --> github.com/ilpaka/landmark_app/backend/profile-service/internal/modules/profile/http.(*Handler).UpdateMe-fm (2 handlers)
+profile-service-1        | [GIN-debug] GET    /v1/profile/me/privacy    --> github.com/ilpaka/landmark_app/backend/profile-service/internal/modules/profile/http.(*Handler).GetPrivacy-fm (2 handlers)
+profile-service-1        | [GIN-debug] PATCH  /v1/profile/me/privacy    --> github.com/ilpaka/landmark_app/backend/profile-service/internal/modules/profile/http.(*Handler).UpdatePrivacy-fm (2 handlers)
+moderation-service-1     | 
+media-service-1          |  - using code:	gin.SetMode(gin.ReleaseMode)
+media-service-1          | 
+media-service-1          | [GIN-debug] GET    /healthz                  --> main.main.func1 (2 handlers)
+media-service-1          | [GIN-debug] POST   /v1/media/uploads         --> github.com/ilpaka/landmark_app/backend/media-service/internal/modules/media/http.(*Handler).RequestUpload-fm (2 handlers)
+prometheus-1             | ts=2026-06-05T21:04:38.488Z caller=head.go:1355 level=info component=tsdb msg="Head GC completed" caller=truncateMemory duration=995.314µs
+trips-service-1          | [GIN-debug] PATCH  /v1/trips/:id             --> github.com/ilpaka/landmark_app/backend/trips-service/internal/modules/trip/http.(*Handlers).UpdateTrip-fm (2 handlers)
+trips-service-1          | [GIN-debug] DELETE /v1/trips/:id             --> github.com/ilpaka/landmark_app/backend/trips-service/internal/modules/trip/http.(*Handlers).DeleteTrip-fm (2 handlers)
+minio-1                  | 
+redis-1                  | 1:C 05 Jun 2026 21:04:32.790 * Redis version=7.4.7, bits=64, commit=00000000, modified=0, pid=1, just started
+grafana-1                | logger=settings t=2026-06-08T21:29:32.348524979Z level=info msg="Config overridden from Environment variable" var="GF_PATHS_PLUGINS=/var/lib/grafana/plugins"
+places-service-1         | [GIN-debug] GET    /v1/places/categories     --> github.com/ilpaka/landmark_app/backend/places-service/internal/modules/place/http.(*Handlers).ListCategories-fm (2 handlers)
+places-service-1         | [GIN-debug] POST   /v1/places/categories     --> github.com/ilpaka/landmark_app/backend/places-service/internal/modules/place/http.(*Handlers).CreateCategory-fm (2 handlers)
+profile-service-1        | [GIN-debug] GET    /v1/profile/:user_id      --> github.com/ilpaka/landmark_app/backend/profile-service/internal/modules/profile/http.(*Handler).GetPublic-fm (2 handlers)
+profile-service-1        | [GIN-debug] GET    /v1/profile/:user_id/stats --> github.com/ilpaka/landmark_app/backend/profile-service/internal/modules/profile/http.(*Handler).GetFollowStats-fm (2 handlers)
+profile-service-1        | [GIN-debug] POST   /v1/profile/:user_id/follow --> github.com/ilpaka/landmark_app/backend/profile-service/internal/modules/profile/http.(*Handler).FollowUser-fm (2 handlers)
+moderation-service-1     | [GIN-debug] GET    /healthz                  --> main.main.func1 (2 handlers)
+notifications-service-1  | 2026/06/09 21:56:55 goose: no migrations to run. current version: 20260502180000
+media-service-1          | [GIN-debug] POST   /v1/media/uploads/:id/finalize --> github.com/ilpaka/landmark_app/backend/media-service/internal/modules/media/http.(*Handler).FinalizeUpload-fm (2 handlers)
+notifications-service-1  | Starting server...
+journal-service-1        | 2026/06/09 21:56:55 goose: no migrations to run. current version: 20260601000000
+journal-service-1        | Starting server...
+journal-service-1        | [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+minio-1                  | Docs: https://docs.min.io
+minio-1                  | WARN: Detected default credentials 'minioadmin:minioadmin', we recommend that you change these values with 'MINIO_ROOT_USER' and 'MINIO_ROOT_PASSWORD' environment variables
+grafana-1                | logger=settings t=2026-06-08T21:29:32.348529679Z level=info msg="Config overridden from Environment variable" var="GF_PATHS_PROVISIONING=/etc/grafana/provisioning"
+grafana-1                | logger=settings t=2026-06-08T21:29:32.34853465Z level=info msg="Config overridden from Environment variable" var="GF_SECURITY_ADMIN_PASSWORD=*********"
+grafana-1                | logger=settings t=2026-06-08T21:29:32.348537637Z level=info msg="Config overridden from Environment variable" var="GF_USERS_ALLOW_SIGN_UP=false"
+grafana-1                | logger=settings t=2026-06-08T21:29:32.348541313Z level=info msg=Target target=[all]
+grafana-1                | logger=settings t=2026-06-08T21:29:32.348551741Z level=info msg="Path Home" path=/usr/share/grafana
+profile-service-1        | [GIN-debug] DELETE /v1/profile/:user_id/follow --> github.com/ilpaka/landmark_app/backend/profile-service/internal/modules/profile/http.(*Handler).UnfollowUser-fm (2 handlers)
+profile-service-1        | [GIN-debug] GET    /v1/profile/:user_id/followers --> github.com/ilpaka/landmark_app/backend/profile-service/internal/modules/profile/http.(*Handler).ListFollowers-fm (2 handlers)
+profile-service-1        | [GIN-debug] GET    /v1/profile/:user_id/following --> github.com/ilpaka/landmark_app/backend/profile-service/internal/modules/profile/http.(*Handler).ListFollowing-fm (2 handlers)
+notifications-service-1  | [GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+notifications-service-1  |  - using env:	export GIN_MODE=release
+notifications-service-1  |  - using code:	gin.SetMode(gin.ReleaseMode)
+notifications-service-1  | 
+media-service-1          | [GIN-debug] GET    /v1/media/:id             --> github.com/ilpaka/landmark_app/backend/media-service/internal/modules/media/http.(*Handler).GetMedia-fm (2 handlers)
+media-service-1          | [GIN-debug] GET    /v1/media/:id/url         --> github.com/ilpaka/landmark_app/backend/media-service/internal/modules/media/http.(*Handler).GetMediaURL-fm (2 handlers)
+minio-1                  | INFO: Exiting on signal: TERMINATED
+minio-1                  | MinIO Object Storage Server
+minio-init-1             | Added `local` successfully.
+minio-init-1             | Bucket created successfully `local/landmark-media`.
+grafana-1                | logger=settings t=2026-06-08T21:29:32.348554538Z level=info msg="Path Data" path=/var/lib/grafana
+grafana-1                | logger=settings t=2026-06-08T21:29:32.348560984Z level=info msg="Path Logs" path=/var/log/grafana
+grafana-1                | logger=settings t=2026-06-08T21:29:32.348563667Z level=info msg="Path Plugins" path=/var/lib/grafana/plugins
+grafana-1                | logger=settings t=2026-06-08T21:29:32.348566467Z level=info msg="Path Provisioning" path=/etc/grafana/provisioning
+grafana-1                | logger=settings t=2026-06-08T21:29:32.348569438Z level=info msg="App mode production"
+trips-service-1          | [GIN-debug] GET    /v1/trips/:id/route       --> github.com/ilpaka/landmark_app/backend/trips-service/internal/modules/trip/http.(*Handlers).GetRoute-fm (2 handlers)
+mailhog-1                | time="2026/06/08 15:14:25" level=info msg="[cors] allowed API origins: "
+journal-service-1        |  - using env:	export GIN_MODE=release
+journal-service-1        |  - using code:	gin.SetMode(gin.ReleaseMode)
+journal-service-1        | 
+journal-service-1        | [GIN-debug] GET    /healthz                  --> github.com/ilpaka/landmark_app/backend/journal-service/internal/modules/journal/http.Mount.func1 (2 handlers)
+journal-service-1        | [GIN-debug] GET    /v1/journal/entries       --> github.com/ilpaka/landmark_app/backend/journal-service/internal/modules/journal/http.(*Handlers).ListEntries-fm (2 handlers)
+places-service-1         | [GIN-debug] PATCH  /v1/places/categories/:id --> github.com/ilpaka/landmark_app/backend/places-service/internal/modules/place/http.(*Handlers).UpdateCategory-fm (2 handlers)
+places-service-1         | [GIN-debug] DELETE /v1/places/categories/:id --> github.com/ilpaka/landmark_app/backend/places-service/internal/modules/place/http.(*Handlers).DeleteCategory-fm (2 handlers)
+minio-init-1             | Access permission for `local/landmark-media` is set to `private`
+minio-init-1             | Added `local` successfully.
+minio-init-1             | Bucket created successfully `local/landmark-media`.
+favorites-service-1      | 
+favorites-service-1      | [GIN-debug] GET    /healthz                  --> main.main.func1 (2 handlers)
+prometheus-1             | ts=2026-06-05T21:11:22.292Z caller=main.go:995 level=warn msg="Received an OS signal, exiting gracefully..." signal=terminated
+prometheus-1             | ts=2026-06-05T21:11:22.292Z caller=main.go:1019 level=info msg="Stopping scrape discovery manager..."
+prometheus-1             | ts=2026-06-05T21:11:22.292Z caller=main.go:1033 level=info msg="Stopping notify discovery manager..."
+mailhog-1                | time="2026/06/08 15:14:25" level=info msg="[smtpd] starting on [::]:1025 (no encryption)"
+mailhog-1                | time="2026/06/08 15:14:25" level=info msg="[http] starting on [::]:8025"
+mailhog-1                | time="2026/06/08 15:14:25" level=info msg="[http] accessible via http://localhost:8025/"
+mailhog-1                | time="2026/06/08 21:29:31" level=info msg="[smtpd] enabling any authentication (insecure)"
+journal-service-1        | [GIN-debug] POST   /v1/journal/entries       --> github.com/ilpaka/landmark_app/backend/journal-service/internal/modules/journal/http.(*Handlers).CreateEntry-fm (2 handlers)
+journal-service-1        | [GIN-debug] GET    /v1/journal/entries/:id   --> github.com/ilpaka/landmark_app/backend/journal-service/internal/modules/journal/http.(*Handlers).GetEntry-fm (2 handlers)
+journal-service-1        | [GIN-debug] PATCH  /v1/journal/entries/:id   --> github.com/ilpaka/landmark_app/backend/journal-service/internal/modules/journal/http.(*Handlers).UpdateEntry-fm (2 handlers)
+places-service-1         | [GIN-debug] GET    /v1/places                --> github.com/ilpaka/landmark_app/backend/places-service/internal/modules/place/http.(*Handlers).ListPlaces-fm (2 handlers)
+places-service-1         | [GIN-debug] GET    /v1/places/:id            --> github.com/ilpaka/landmark_app/backend/places-service/internal/modules/place/http.(*Handlers).GetPlace-fm (2 handlers)
+places-service-1         | [GIN-debug] POST   /v1/places                --> github.com/ilpaka/landmark_app/backend/places-service/internal/modules/place/http.(*Handlers).CreatePlace-fm (2 handlers)
+places-service-1         | [GIN-debug] PATCH  /v1/places/:id            --> github.com/ilpaka/landmark_app/backend/places-service/internal/modules/place/http.(*Handlers).UpdatePlace-fm (2 handlers)
+places-service-1         | [GIN-debug] POST   /v1/places/:id/submit     --> github.com/ilpaka/landmark_app/backend/places-service/internal/modules/place/http.(*Handlers).SubmitPlace-fm (2 handlers)
+moderation-service-1     | [GIN-debug] POST   /v1/moderation/submit     --> github.com/ilpaka/landmark_app/backend/moderation-service/internal/modules/moderation/http.(*Handler).Submit-fm (2 handlers)
+moderation-service-1     | [GIN-debug] GET    /v1/moderation/stats      --> github.com/ilpaka/landmark_app/backend/moderation-service/internal/modules/moderation/http.(*Handler).GetStats-fm (2 handlers)
+prometheus-1             | ts=2026-06-05T21:11:22.292Z caller=manager.go:178 level=info component="rule manager" msg="Stopping rule manager..."
+redis-1                  | 1:C 05 Jun 2026 21:04:32.790 # Warning: no config file specified, using the default config. In order to specify a config file use redis-server /path/to/redis.conf
+media-service-1          | [GIN-debug] DELETE /v1/media/:id             --> github.com/ilpaka/landmark_app/backend/media-service/internal/modules/media/http.(*Handler).DeleteMedia-fm (2 handlers)
+media-service-1          | {"time":"2026-06-09T21:56:58.673379186Z","level":"INFO","msg":"media-service started","addr":":8080"}
+media-service-1          | [GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+media-service-1          | Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+postgres-1               | 2026-06-05 21:04:32.975 UTC [1] LOG:  starting PostgreSQL 16.11 on x86_64-pc-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit
+postgres-1               | 2026-06-05 21:04:32.975 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+postgres-1               | 2026-06-05 21:04:32.975 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+profile-service-1        | {"time":"2026-06-09T21:56:55.985570722Z","level":"INFO","msg":"profile-service started","addr":":8080"}
+profile-service-1        | [GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+profile-service-1        | Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+grafana-1                | logger=sqlstore t=2026-06-08T21:29:32.349129279Z level=info msg="Connecting to DB" dbtype=sqlite3
+moderation-service-1     | [GIN-debug] GET    /v1/moderation/queue      --> github.com/ilpaka/landmark_app/backend/moderation-service/internal/modules/moderation/http.(*Handler).ListQueue-fm (2 handlers)
+moderation-service-1     | [GIN-debug] POST   /v1/moderation/queue/:id/approve --> github.com/ilpaka/landmark_app/backend/moderation-service/internal/modules/moderation/http.(*Handler).Approve-fm (2 handlers)
+prometheus-1             | ts=2026-06-05T21:11:22.292Z caller=manager.go:188 level=info component="rule manager" msg="Rule manager stopped"
+redis-1                  | 1:M 05 Jun 2026 21:04:32.791 * monotonic clock: POSIX clock_gettime
+minio-1                  | Copyright: 2015-2026 MinIO, Inc.
+minio-1                  | License: GNU AGPLv3 - https://www.gnu.org/licenses/agpl-3.0.html
+minio-1                  | Version: RELEASE.2025-09-07T16-13-09Z (go1.24.6 linux/amd64)
+minio-1                  | 
+minio-1                  | API: http://172.22.0.5:9000  http://127.0.0.1:9000 
+postgres-1               | 2026-06-05 21:04:32.978 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+places-service-1         | [GIN-debug] POST   /v1/places/internal/:id/approve --> github.com/ilpaka/landmark_app/backend/places-service/internal/modules/place/http.(*Handlers).ApprovePlace-fm (2 handlers)
+places-service-1         | [GIN-debug] POST   /v1/places/internal/:id/reject --> github.com/ilpaka/landmark_app/backend/places-service/internal/modules/place/http.(*Handlers).RejectPlace-fm (2 handlers)
+places-service-1         | {"time":"2026-06-09T21:56:55.923823757Z","level":"INFO","msg":"starting places-service","addr":":8080"}
+places-service-1         | [GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+grafana-1                | logger=migrator t=2026-06-08T21:29:32.356706544Z level=info msg="Starting DB migrations"
+moderation-service-1     | [GIN-debug] POST   /v1/moderation/queue/:id/reject --> github.com/ilpaka/landmark_app/backend/moderation-service/internal/modules/moderation/http.(*Handler).Reject-fm (2 handlers)
+profile-service-1        | [GIN-debug] Listening and serving HTTP on :8080
+prometheus-1             | ts=2026-06-05T21:11:22.292Z caller=main.go:1070 level=info msg="Stopping scrape manager..."
+redis-1                  | 1:M 05 Jun 2026 21:04:32.794 * Running mode=standalone, port=6379.
+mailhog-1                | time="2026/06/08 21:29:31" level=info msg="[smtpd] starting on [::]:1025 (no encryption)"
+mailhog-1                | time="2026/06/08 21:29:31" level=info msg="[cors] allowed API origins: "
+media-service-1          | [GIN-debug] Listening and serving HTTP on :8080
+minio-init-1             | Access permission for `local/landmark-media` is set to `private`
+minio-1                  | WebUI: http://172.22.0.5:9001 http://127.0.0.1:9001  
+minio-1                  | 
+minio-1                  | Docs: https://docs.min.io
+postgres-1               | 2026-06-05 21:04:32.984 UTC [29] LOG:  database system was shut down at 2026-06-05 21:04:25 UTC
+postgres-1               | 2026-06-05 21:04:32.991 UTC [1] LOG:  database system is ready to accept connections
+notifications-service-1  | [GIN-debug] GET    /healthz                  --> main.main.func1 (2 handlers)
+notifications-service-1  | [GIN-debug] GET    /v1/notifications         --> github.com/ilpaka/landmark_app/backend/notifications-service/internal/modules/notification/http.(*Handler).List-fm (2 handlers)
+grafana-1                | logger=migrator t=2026-06-08T21:29:32.456304287Z level=info msg="migrations completed" performed=0 skipped=547 duration=1.034442ms
+grafana-1                | logger=secrets t=2026-06-08T21:29:32.465463564Z level=info msg="Envelope encryption state" enabled=true currentprovider=secretKey.v1
+grafana-1                | logger=plugin.store t=2026-06-08T21:29:32.525219807Z level=info msg="Loading plugins..."
+redis-1                  | 1:M 05 Jun 2026 21:04:32.794 * Server initialized
+journal-service-1        | [GIN-debug] DELETE /v1/journal/entries/:id   --> github.com/ilpaka/landmark_app/backend/journal-service/internal/modules/journal/http.(*Handlers).DeleteEntry-fm (2 handlers)
+journal-service-1        | [GIN-debug] GET    /v1/journal/entries/:id/media --> github.com/ilpaka/landmark_app/backend/journal-service/internal/modules/journal/http.(*Handlers).ListMedia-fm (2 handlers)
+journal-service-1        | [GIN-debug] POST   /v1/journal/entries/:id/media --> github.com/ilpaka/landmark_app/backend/journal-service/internal/modules/journal/http.(*Handlers).AddMedia-fm (2 handlers)
+favorites-service-1      | [GIN-debug] GET    /v1/favorites             --> github.com/ilpaka/landmark_app/backend/favorites-service/internal/modules/favorite/http.(*Handler).ListFavorites-fm (2 handlers)
+favorites-service-1      | [GIN-debug] POST   /v1/favorites             --> github.com/ilpaka/landmark_app/backend/favorites-service/internal/modules/favorite/http.(*Handler).AddFavorite-fm (2 handlers)
+favorites-service-1      | [GIN-debug] DELETE /v1/favorites/:type/:id   --> github.com/ilpaka/landmark_app/backend/favorites-service/internal/modules/favorite/http.(*Handler).RemoveFavorite-fm (2 handlers)
+postgres-1               | 2026-06-05 21:09:33.021 UTC [27] LOG:  checkpoint starting: time
+moderation-service-1     | [GIN-debug] POST   /v1/internal/moderation/submit --> github.com/ilpaka/landmark_app/backend/moderation-service/internal/modules/moderation/http.(*Handler).InternalSubmit-fm (3 handlers)
+postgres-1               | 2026-06-05 21:09:33.136 UTC [27] LOG:  checkpoint complete: wrote 4 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.103 s, sync=0.005 s, total=0.115 s; sync files=3, longest=0.004 s, average=0.002 s; distance=1 kB, estimate=1 kB; lsn=0/1C3DE88, redo lsn=0/1C3DE50
+prometheus-1             | ts=2026-06-05T21:11:22.292Z caller=main.go:1015 level=info msg="Scrape discovery manager stopped"
+prometheus-1             | ts=2026-06-05T21:11:22.292Z caller=main.go:1029 level=info msg="Notify discovery manager stopped"
+redis-1                  | 1:M 05 Jun 2026 21:04:32.795 * Ready to accept connections tcp
+redis-1                  | 1:signal-handler (1780693882) Received SIGTERM scheduling shutdown...
+journal-service-1        | [GIN-debug] DELETE /v1/journal/entries/:id/media/:mid --> github.com/ilpaka/landmark_app/backend/journal-service/internal/modules/journal/http.(*Handlers).RemoveMedia-fm (2 handlers)
+journal-service-1        | [GIN-debug] GET    /v1/journal/entries/:id/reactions --> github.com/ilpaka/landmark_app/backend/journal-service/internal/modules/journal/http.(*Handlers).ListReactions-fm (2 handlers)
+minio-1                  | WARN: Detected default credentials 'minioadmin:minioadmin', we recommend that you change these values with 'MINIO_ROOT_USER' and 'MINIO_ROOT_PASSWORD' environment variables
+minio-1                  | MinIO Object Storage Server
+notifications-service-1  | [GIN-debug] POST   /v1/notifications/:id/read --> github.com/ilpaka/landmark_app/backend/notifications-service/internal/modules/notification/http.(*Handler).MarkRead-fm (2 handlers)
+notifications-service-1  | [GIN-debug] POST   /v1/notifications/read-all --> github.com/ilpaka/landmark_app/backend/notifications-service/internal/modules/notification/http.(*Handler).MarkAllRead-fm (2 handlers)
+moderation-service-1     | {"time":"2026-06-09T21:56:56.637882485Z","level":"INFO","msg":"moderation-service started","addr":":8080"}
+grafana-1                | logger=local.finder t=2026-06-08T21:29:32.832928368Z level=warn msg="Skipping finding plugins as directory does not exist" path=/usr/share/grafana/plugins-bundled
+grafana-1                | logger=plugin.store t=2026-06-08T21:29:32.833311344Z level=info msg="Plugins loaded" count=55 duration=308.093916ms
+prometheus-1             | ts=2026-06-05T21:11:22.293Z caller=main.go:1062 level=info msg="Scrape manager stopped"
+prometheus-1             | ts=2026-06-05T21:11:22.296Z caller=notifier.go:693 level=info component=notifier msg="Stopping notification manager..."
+prometheus-1             | ts=2026-06-05T21:11:22.296Z caller=notifier.go:386 level=info component=notifier msg="Draining any remaining notifications..."
+prometheus-1             | ts=2026-06-05T21:11:22.296Z caller=notifier.go:392 level=info component=notifier msg="Remaining notifications drained"
+journal-service-1        | [GIN-debug] POST   /v1/journal/entries/:id/reactions --> github.com/ilpaka/landmark_app/backend/journal-service/internal/modules/journal/http.(*Handlers).AddReaction-fm (2 handlers)
+journal-service-1        | [GIN-debug] DELETE /v1/journal/entries/:id/reactions/:emoji --> github.com/ilpaka/landmark_app/backend/journal-service/internal/modules/journal/http.(*Handlers).RemoveReaction-fm (2 handlers)
+minio-1                  | Copyright: 2015-2026 MinIO, Inc.
+minio-1                  | License: GNU AGPLv3 - https://www.gnu.org/licenses/agpl-3.0.html
+minio-1                  | Version: RELEASE.2025-09-07T16-13-09Z (go1.24.6 linux/amd64)
+postgres-1               | 2026-06-05 21:11:22.635 UTC [1] LOG:  received fast shutdown request
+mailhog-1                | time="2026/06/08 21:29:31" level=info msg="[http] starting on [::]:8025"
+grafana-1                | logger=query_data t=2026-06-08T21:29:32.85326932Z level=info msg="Query Service initialization"
+grafana-1                | logger=live.push_http t=2026-06-08T21:29:32.865627941Z level=info msg="Live Push Gateway initialization"
+trips-service-1          | [GIN-debug] POST   /v1/trips/:id/optimize    --> github.com/ilpaka/landmark_app/backend/trips-service/internal/modules/trip/http.(*Handlers).OptimizeRoute-fm (2 handlers)
+prometheus-1             | ts=2026-06-05T21:11:22.296Z caller=notifier.go:322 level=info component=notifier msg="Notification manager stopped"
+prometheus-1             | ts=2026-06-05T21:11:22.296Z caller=main.go:1293 level=info msg="Notifier manager stopped"
+prometheus-1             | ts=2026-06-05T21:11:22.296Z caller=main.go:1305 level=info msg="See you next time!"
+favorites-service-1      | [GIN-debug] GET    /v1/favorites/:type/:id   --> github.com/ilpaka/landmark_app/backend/favorites-service/internal/modules/favorite/http.(*Handler).CheckFavorite-fm (2 handlers)
+favorites-service-1      | [GIN-debug] GET    /v1/favorites/collections --> github.com/ilpaka/landmark_app/backend/favorites-service/internal/modules/favorite/http.(*Handler).ListCollections-fm (2 handlers)
+favorites-service-1      | [GIN-debug] POST   /v1/favorites/collections --> github.com/ilpaka/landmark_app/backend/favorites-service/internal/modules/favorite/http.(*Handler).CreateCollection-fm (2 handlers)
+favorites-service-1      | [GIN-debug] PATCH  /v1/favorites/collections/:id --> github.com/ilpaka/landmark_app/backend/favorites-service/internal/modules/favorite/http.(*Handler).UpdateCollection-fm (2 handlers)
+moderation-service-1     | [GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+mailhog-1                | time="2026/06/08 21:29:31" level=info msg="[http] accessible via http://localhost:8025/"
+mailhog-1                | [db] got terminated signal, shutting down
+mailhog-1                | time="2026/06/09 21:56:52" level=info msg="[smtpd] enabling any authentication (insecure)"
+trips-service-1          | [GIN-debug] GET    /v1/trips/:id/stops       --> github.com/ilpaka/landmark_app/backend/trips-service/internal/modules/trip/http.(*Handlers).ListStops-fm (2 handlers)
+trips-service-1          | [GIN-debug] POST   /v1/trips/:id/stops       --> github.com/ilpaka/landmark_app/backend/trips-service/internal/modules/trip/http.(*Handlers).AddStop-fm (2 handlers)
+places-service-1         | Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+places-service-1         | [GIN-debug] Listening and serving HTTP on :8080
+notifications-service-1  | [GIN-debug] POST   /v1/notifications/devices --> github.com/ilpaka/landmark_app/backend/notifications-service/internal/modules/notification/http.(*Handler).RegisterDevice-fm (2 handlers)
+minio-1                  | 
+minio-1                  | API: http://172.22.0.11:9000  http://127.0.0.1:9000 
+minio-1                  | WebUI: http://172.22.0.11:9001 http://127.0.0.1:9001  
+postgres-1               | 2026-06-05 21:11:22.637 UTC [1] LOG:  aborting any active transactions
+postgres-1               | 2026-06-05 21:11:22.639 UTC [1] LOG:  background worker "logical replication launcher" (PID 32) exited with exit code 1
+redis-1                  | 1:M 05 Jun 2026 21:11:22.702 * User requested shutdown...
+mailhog-1                | time="2026/06/09 21:56:52" level=info msg="[smtpd] starting on [::]:1025 (no encryption)"
+mailhog-1                | time="2026/06/09 21:56:52" level=info msg="[cors] allowed API origins: "
+trips-service-1          | [GIN-debug] POST   /v1/trips/:id/stops/:sid/visit --> github.com/ilpaka/landmark_app/backend/trips-service/internal/modules/trip/http.(*Handlers).MarkVisited-fm (2 handlers)
+journal-service-1        | {"time":"2026-06-09T21:56:56.01200333Z","level":"INFO","msg":"starting journal-service","addr":":8080"}
+journal-service-1        | [GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+moderation-service-1     | Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+moderation-service-1     | [GIN-debug] Listening and serving HTTP on :8080
+favorites-service-1      | [GIN-debug] DELETE /v1/favorites/collections/:id --> github.com/ilpaka/landmark_app/backend/favorites-service/internal/modules/favorite/http.(*Handler).DeleteCollection-fm (2 handlers)
+minio-1                  | 
+minio-1                  | Docs: https://docs.min.io
+minio-1                  | WARN: Detected default credentials 'minioadmin:minioadmin', we recommend that you change these values with 'MINIO_ROOT_USER' and 'MINIO_ROOT_PASSWORD' environment variables
+minio-1                  | INFO: Exiting on signal: TERMINATED
+minio-1                  | MinIO Object Storage Server
+trips-service-1          | {"time":"2026-06-09T21:56:55.93137186Z","level":"INFO","msg":"starting trips-service","addr":":8080"}
+trips-service-1          | [GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+notifications-service-1  | [GIN-debug] DELETE /v1/notifications/devices/:id --> github.com/ilpaka/landmark_app/backend/notifications-service/internal/modules/notification/http.(*Handler).UnregisterDevice-fm (2 handlers)
+notifications-service-1  | [GIN-debug] GET    /v1/notifications/preferences --> github.com/ilpaka/landmark_app/backend/notifications-service/internal/modules/notification/http.(*Handler).GetPreferences-fm (2 handlers)
+notifications-service-1  | [GIN-debug] PATCH  /v1/notifications/preferences --> github.com/ilpaka/landmark_app/backend/notifications-service/internal/modules/notification/http.(*Handler).UpdatePreferences-fm (2 handlers)
+grafana-1                | logger=ngalert.migration t=2026-06-08T21:29:32.877153456Z level=info msg=Starting
+grafana-1                | logger=ngalert.state.manager t=2026-06-08T21:29:32.915118168Z level=info msg="Running in alternative execution of Error/NoData mode"
+grafana-1                | logger=infra.usagestats.collector t=2026-06-08T21:29:32.934503441Z level=info msg="registering usage stat providers" usageStatsProvidersLen=2
+mailhog-1                | time="2026/06/09 21:56:52" level=info msg="[http] starting on [::]:8025"
+minio-1                  | Copyright: 2015-2026 MinIO, Inc.
+minio-1                  | License: GNU AGPLv3 - https://www.gnu.org/licenses/agpl-3.0.html
+minio-1                  | Version: RELEASE.2025-09-07T16-13-09Z (go1.24.6 linux/amd64)
+favorites-service-1      | {"time":"2026-06-09T21:56:55.927584466Z","level":"INFO","msg":"favorites-service started","addr":":8080"}
+favorites-service-1      | [GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+favorites-service-1      | Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+redis-1                  | 1:M 05 Jun 2026 21:11:22.703 * Saving the final RDB snapshot before exiting.
+redis-1                  | 1:M 05 Jun 2026 21:11:22.707 * DB saved on disk
+redis-1                  | 1:M 05 Jun 2026 21:11:22.707 # Redis is now ready to exit, bye bye...
+prometheus-1             | ts=2026-06-08T15:14:25.402Z caller=main.go:601 level=info msg="No time or size retention was set so using the default time retention" duration=15d
+trips-service-1          | Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+journal-service-1        | Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+journal-service-1        | [GIN-debug] Listening and serving HTTP on :8080
+notifications-service-1  | [GIN-debug] POST   /v1/internal/notifications/send --> github.com/ilpaka/landmark_app/backend/notifications-service/internal/modules/notification/http.(*Handler).InternalSend-fm (3 handlers)
+notifications-service-1  | {"time":"2026-06-09T21:56:56.042510968Z","level":"INFO","msg":"notifications-service started","addr":":8080"}
+favorites-service-1      | [GIN-debug] Listening and serving HTTP on :8080
+grafana-1                | logger=provisioning.plugins t=2026-06-08T21:29:32.997446184Z level=error msg="Failed to read plugin provisioning files from directory" path=/etc/grafana/provisioning/plugins error="open /etc/grafana/provisioning/plugins: no such file or directory"
+redis-1                  | 1:C 08 Jun 2026 15:14:25.046 * oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+mailhog-1                | time="2026/06/09 21:56:52" level=info msg="[http] accessible via http://localhost:8025/"
+prometheus-1             | ts=2026-06-08T15:14:25.402Z caller=main.go:645 level=info msg="Starting Prometheus Server" mode=server version="(version=2.54.1, branch=HEAD, revision=e6cfa720fbe6280153fab13090a483dbd40bece3)"
+trips-service-1          | [GIN-debug] Listening and serving HTTP on :8080
+minio-1                  | 
+minio-1                  | API: http://172.22.0.4:9000  http://127.0.0.1:9000 
+notifications-service-1  | [GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+notifications-service-1  | Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+notifications-service-1  | [GIN-debug] Listening and serving HTTP on :8080
+redis-1                  | 1:C 08 Jun 2026 15:14:25.047 * Redis version=7.4.7, bits=64, commit=00000000, modified=0, pid=1, just started
+redis-1                  | 1:C 08 Jun 2026 15:14:25.047 # Warning: no config file specified, using the default config. In order to specify a config file use redis-server /path/to/redis.conf
+redis-1                  | 1:M 08 Jun 2026 15:14:25.047 * monotonic clock: POSIX clock_gettime
+postgres-1               | 2026-06-05 21:11:22.640 UTC [27] LOG:  shutting down
+prometheus-1             | ts=2026-06-08T15:14:25.402Z caller=main.go:650 level=info build_context="(go=go1.22.6, platform=linux/amd64, user=root@812ffd741951, date=20240827-10:56:41, tags=netgo,builtinassets,stringlabels)"
+prometheus-1             | ts=2026-06-08T15:14:25.403Z caller=main.go:651 level=info host_details="(Linux 6.6.87.2-microsoft-standard-WSL2 #1 SMP PREEMPT_DYNAMIC Thu Jun  5 18:30:46 UTC 2025 x86_64 451f5cbcfee4 localdomain)"
+minio-1                  | WebUI: http://172.22.0.4:9001 http://127.0.0.1:9001  
+redis-1                  | 1:M 08 Jun 2026 15:14:25.049 * Running mode=standalone, port=6379.
+postgres-1               | 2026-06-05 21:11:22.641 UTC [27] LOG:  checkpoint starting: shutdown immediate
+prometheus-1             | ts=2026-06-08T15:14:25.403Z caller=main.go:652 level=info fd_limits="(soft=1048576, hard=1048576)"
+prometheus-1             | ts=2026-06-08T15:14:25.403Z caller=main.go:653 level=info vm_limits="(soft=unlimited, hard=unlimited)"
+minio-1                  | 
+redis-1                  | 1:M 08 Jun 2026 15:14:25.049 * Server initialized
+postgres-1               | 2026-06-05 21:11:22.645 UTC [27] LOG:  checkpoint complete: wrote 0 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.001 s, sync=0.001 s, total=0.006 s; sync files=0, longest=0.000 s, average=0.000 s; distance=0 kB, estimate=1 kB; lsn=0/1C3DF38, redo lsn=0/1C3DF38
+postgres-1               | 2026-06-05 21:11:22.649 UTC [1] LOG:  database system is shut down
+postgres-1               | 
+prometheus-1             | ts=2026-06-08T15:14:25.412Z caller=web.go:571 level=info component=web msg="Start listening for connections" address=0.0.0.0:9090
+redis-1                  | 1:M 08 Jun 2026 15:14:25.050 * Loading RDB produced by version 7.4.7
+redis-1                  | 1:M 08 Jun 2026 15:14:25.050 * RDB age 237783 seconds
+grafana-1                | logger=provisioning.notifiers t=2026-06-08T21:29:32.997940921Z level=error msg="Can't read alert notification provisioning files from directory" path=/etc/grafana/provisioning/notifiers error="open /etc/grafana/provisioning/notifiers: no such file or directory"
+minio-1                  | Docs: https://docs.min.io
+minio-1                  | WARN: Detected default credentials 'minioadmin:minioadmin', we recommend that you change these values with 'MINIO_ROOT_USER' and 'MINIO_ROOT_PASSWORD' environment variables
+redis-1                  | 1:M 08 Jun 2026 15:14:25.050 * RDB memory usage when created 0.93 Mb
+redis-1                  | 1:M 08 Jun 2026 15:14:25.050 * Done loading RDB, keys loaded: 0, keys expired: 0.
+postgres-1               | PostgreSQL Database directory appears to contain a database; Skipping initialization
+prometheus-1             | ts=2026-06-08T15:14:25.414Z caller=main.go:1160 level=info msg="Starting TSDB ..."
+prometheus-1             | ts=2026-06-08T15:14:25.415Z caller=tls_config.go:313 level=info component=web msg="Listening on" address=[::]:9090
+prometheus-1             | ts=2026-06-08T15:14:25.415Z caller=tls_config.go:316 level=info component=web msg="TLS is disabled." http2=false address=[::]:9090
+grafana-1                | logger=provisioning.alerting t=2026-06-08T21:29:32.998570707Z level=error msg="can't read alerting provisioning files from directory" path=/etc/grafana/provisioning/alerting error="open /etc/grafana/provisioning/alerting: no such file or directory"
+redis-1                  | 1:M 08 Jun 2026 15:14:25.050 * DB loaded from disk: 0.001 seconds
+prometheus-1             | ts=2026-06-08T15:14:25.417Z caller=repair.go:56 level=info component=tsdb msg="Found healthy block" mint=1780678581887 maxt=1780682400000 ulid=01KTCNZRGJE93B6PEPH9QH176Z
+prometheus-1             | ts=2026-06-08T15:14:25.421Z caller=head.go:626 level=info component=tsdb msg="Replaying on-disk memory mappable chunks if any"
+grafana-1                | logger=provisioning.alerting t=2026-06-08T21:29:32.998589983Z level=info msg="starting to provision alerting"
+grafana-1                | logger=provisioning.alerting t=2026-06-08T21:29:32.99860055Z level=info msg="finished to provision alerting"
+grafana-1                | logger=ngalert.state.manager t=2026-06-08T21:29:32.999878793Z level=info msg="Warming state cache for startup"
+postgres-1               | 
+postgres-1               | 2026-06-08 15:14:25.143 UTC [1] LOG:  starting PostgreSQL 16.11 on x86_64-pc-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit
+postgres-1               | 2026-06-08 15:14:25.143 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+prometheus-1             | ts=2026-06-08T15:14:25.423Z caller=head.go:713 level=info component=tsdb msg="On-disk memory mappable chunks replay completed" duration=1.813338ms
+prometheus-1             | ts=2026-06-08T15:14:25.423Z caller=head.go:721 level=info component=tsdb msg="Replaying WAL, this may take a while"
+redis-1                  | 1:M 08 Jun 2026 15:14:25.050 * Ready to accept connections tcp
+postgres-1               | 2026-06-08 15:14:25.143 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+prometheus-1             | ts=2026-06-08T15:14:25.435Z caller=head.go:793 level=info component=tsdb msg="WAL segment loaded" segment=0 maxSegment=4
+grafana-1                | logger=ngalert.state.manager t=2026-06-08T21:29:33.000776848Z level=info msg="State cache has been initialized" states=0 duration=897.462µs
+redis-1                  | 1:M 08 Jun 2026 16:14:26.092 * 1 changes in 3600 seconds. Saving...
+redis-1                  | 1:M 08 Jun 2026 16:14:26.093 * Background saving started by pid 5012
+redis-1                  | 5012:C 08 Jun 2026 16:14:26.100 * DB saved on disk
+prometheus-1             | ts=2026-06-08T15:14:25.449Z caller=head.go:793 level=info component=tsdb msg="WAL segment loaded" segment=1 maxSegment=4
+prometheus-1             | ts=2026-06-08T15:14:25.449Z caller=head.go:793 level=info component=tsdb msg="WAL segment loaded" segment=2 maxSegment=4
+redis-1                  | 5012:C 08 Jun 2026 16:14:26.100 * Fork CoW for RDB: current 0 MB, peak 0 MB, average 0 MB
+redis-1                  | 1:M 08 Jun 2026 16:14:26.194 * Background saving terminated with success
+grafana-1                | logger=ngalert.multiorg.alertmanager t=2026-06-08T21:29:33.000839593Z level=info msg="Starting MultiOrg Alertmanager"
+prometheus-1             | ts=2026-06-08T15:14:25.454Z caller=head.go:793 level=info component=tsdb msg="WAL segment loaded" segment=3 maxSegment=4
+prometheus-1             | ts=2026-06-08T15:14:25.457Z caller=head.go:793 level=info component=tsdb msg="WAL segment loaded" segment=4 maxSegment=4
+postgres-1               | 2026-06-08 15:14:25.148 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+grafana-1                | logger=grafanaStorageLogger t=2026-06-08T21:29:33.001502552Z level=info msg="Storage starting"
+grafana-1                | logger=ngalert.scheduler t=2026-06-08T21:29:33.000866716Z level=info msg="Starting scheduler" tickInterval=10s maxAttempts=1
+redis-1                  | 1:C 08 Jun 2026 21:29:30.736 * oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+postgres-1               | 2026-06-08 15:14:25.153 UTC [29] LOG:  database system was shut down at 2026-06-05 21:11:22 UTC
+redis-1                  | 1:C 08 Jun 2026 21:29:30.737 * Redis version=7.4.7, bits=64, commit=00000000, modified=0, pid=1, just started
+grafana-1                | logger=ticker t=2026-06-08T21:29:33.002894695Z level=info msg=starting first_tick=2026-06-08T21:29:40Z
+prometheus-1             | ts=2026-06-08T15:14:25.457Z caller=head.go:830 level=info component=tsdb msg="WAL replay completed" checkpoint_replay_duration=56.511µs wal_replay_duration=33.280196ms wbl_replay_duration=41ns chunk_snapshot_load_duration=0s mmap_chunk_replay_duration=1.813338ms total_replay_duration=35.221836ms
+redis-1                  | 1:C 08 Jun 2026 21:29:30.737 # Warning: no config file specified, using the default config. In order to specify a config file use redis-server /path/to/redis.conf
+redis-1                  | 1:M 08 Jun 2026 21:29:30.738 * monotonic clock: POSIX clock_gettime
+redis-1                  | 1:M 08 Jun 2026 21:29:30.741 * Running mode=standalone, port=6379.
+grafana-1                | logger=http.server t=2026-06-08T21:29:33.009997952Z level=info msg="HTTP Server Listen" address=[::]:3000 protocol=http subUrl= socket=
+grafana-1                | logger=provisioning.dashboard t=2026-06-08T21:29:33.04634629Z level=info msg="starting to provision dashboards"
+grafana-1                | logger=provisioning.dashboard t=2026-06-08T21:29:33.125977678Z level=info msg="finished to provision dashboards"
+grafana-1                | logger=grafana.update.checker t=2026-06-08T21:29:33.384747933Z level=info msg="Update check succeeded" duration=383.851242ms
+grafana-1                | logger=plugins.update.checker t=2026-06-08T21:29:33.388415358Z level=info msg="Update check succeeded" duration=388.483994ms
+postgres-1               | 2026-06-08 15:14:25.165 UTC [1] LOG:  database system is ready to accept connections
+prometheus-1             | ts=2026-06-08T15:14:25.459Z caller=main.go:1181 level=info fs_type=EXT4_SUPER_MAGIC
+postgres-1               | 2026-06-08 15:19:25.203 UTC [27] LOG:  checkpoint starting: time
+prometheus-1             | ts=2026-06-08T15:14:25.459Z caller=main.go:1184 level=info msg="TSDB started"
+postgres-1               | 2026-06-08 15:19:25.361 UTC [27] LOG:  checkpoint complete: wrote 4 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.106 s, sync=0.014 s, total=0.159 s; sync files=3, longest=0.010 s, average=0.005 s; distance=1 kB, estimate=1 kB; lsn=0/1C3E4E0, redo lsn=0/1C3E4A8
+grafana-1                | logger=grafana-apiserver t=2026-06-08T21:29:33.46916684Z level=info msg="Adding GroupVersion playlist.grafana.app v0alpha1 to ResourceManager"
+grafana-1                | logger=grafana-apiserver t=2026-06-08T21:29:33.470052628Z level=info msg="Adding GroupVersion featuretoggle.grafana.app v0alpha1 to ResourceManager"
+grafana-1                | logger=infra.usagestats t=2026-06-08T21:30:19.017438799Z level=info msg="Usage stats are ready to report"
+grafana-1                | logger=context userId=0 orgId=0 uname= t=2026-06-08T21:31:56.755525898Z level=info msg="Request Completed" method=GET path=/ status=302 remote_addr=172.22.0.1 time_ms=1 duration=1.550916ms size=29 referer= handler=/ status_source=server
+redis-1                  | 1:M 08 Jun 2026 21:29:30.741 * Server initialized
+redis-1                  | 1:M 08 Jun 2026 21:29:30.744 * Loading RDB produced by version 7.4.7
+prometheus-1             | ts=2026-06-08T15:14:25.459Z caller=main.go:1367 level=info msg="Loading configuration file" filename=/etc/prometheus/prometheus.yml
+prometheus-1             | ts=2026-06-08T15:14:25.462Z caller=main.go:1404 level=info msg="updated GOGC" old=100 new=75
+prometheus-1             | ts=2026-06-08T15:14:25.462Z caller=main.go:1415 level=info msg="Completed loading of configuration file" filename=/etc/prometheus/prometheus.yml totalDuration=2.745797ms db_storage=1.494µs remote_storage=1.334µs web_handler=669ns query_engine=4.717µs scrape=1.082707ms scrape_sd=106.962µs notify=854ns notify_sd=689ns rules=1.566µs tracing=4.571µs
+postgres-1               | 2026-06-08 15:27:45.744 UTC [27] LOG:  checkpoint starting: time
+grafana-1                | logger=cleanup t=2026-06-08T21:39:32.955244796Z level=info msg="Completed cleanup jobs" duration=26.077492ms
+redis-1                  | 1:M 08 Jun 2026 21:29:30.744 * RDB age 18904 seconds
+prometheus-1             | ts=2026-06-08T15:14:25.462Z caller=main.go:1145 level=info msg="Server is ready to receive web requests."
+postgres-1               | 2026-06-08 15:27:47.956 UTC [27] LOG:  checkpoint complete: wrote 22 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=2.113 s, sync=0.062 s, total=2.212 s; sync files=22, longest=0.025 s, average=0.003 s; distance=12 kB, estimate=12 kB; lsn=0/1C416B0, redo lsn=0/1C41678
+postgres-1               | 2026-06-08 15:37:46.003 UTC [27] LOG:  checkpoint starting: time
+redis-1                  | 1:M 08 Jun 2026 21:29:30.744 * RDB memory usage when created 1.20 Mb
+redis-1                  | 1:M 08 Jun 2026 21:29:30.744 * Done loading RDB, keys loaded: 0, keys expired: 0.
+redis-1                  | 1:M 08 Jun 2026 21:29:30.744 * DB loaded from disk: 0.003 seconds
+grafana-1                | logger=plugins.update.checker t=2026-06-08T21:39:33.530669161Z level=info msg="Update check succeeded" duration=212.897669ms
+prometheus-1             | ts=2026-06-08T15:14:25.462Z caller=manager.go:164 level=info component="rule manager" msg="Starting rule manager..."
+prometheus-1             | ts=2026-06-08T15:14:30.598Z caller=compact.go:571 level=info component=tsdb msg="write block resulted in empty block" mint=1780682400000 maxt=1780689600000 duration=15.806107ms
+postgres-1               | 2026-06-08 15:37:49.141 UTC [27] LOG:  checkpoint complete: wrote 32 buffers (0.2%); 0 WAL file(s) added, 0 removed, 0 recycled; write=3.118 s, sync=0.012 s, total=3.138 s; sync files=28, longest=0.004 s, average=0.001 s; distance=17 kB, estimate=17 kB; lsn=0/1C45E90, redo lsn=0/1C45E58
+grafana-1                | logger=grafana.update.checker t=2026-06-08T21:39:33.546920792Z level=info msg="Update check succeeded" duration=234.240187ms
+grafana-1                | logger=context userId=1 orgId=1 uname=admin t=2026-06-08T21:40:53.807095394Z level=info msg="Request Completed" method=GET path=/api/live/ws status=-1 remote_addr=172.22.0.1 time_ms=3 duration=3.339486ms size=0 referer= handler=/api/live/ws status_source=server
+grafana-1                | logger=live t=2026-06-08T21:41:09.215839915Z level=info msg="Initialized channel handler" channel=grafana/dashboard/uid/wanderlog-overview address=grafana/dashboard/uid/wanderlog-overview
+prometheus-1             | ts=2026-06-08T15:14:30.600Z caller=head.go:1355 level=info component=tsdb msg="Head GC completed" caller=truncateMemory duration=1.909176ms
+prometheus-1             | ts=2026-06-08T15:14:30.661Z caller=compact.go:580 level=info component=tsdb msg="write block" mint=1780689657666 maxt=1780696800000 ulid=01KTKWSCJ8MTGYMH7F0ADQ6B9D duration=60.61578ms ooo=false
+grafana-1                | logger=context userId=1 orgId=1 uname=admin t=2026-06-08T21:41:48.430310754Z level=info msg="Request Completed" method=GET path=/.well-known/appspecific/com.chrome.devtools.json status=404 remote_addr=172.22.0.1 time_ms=12 duration=12.069936ms size=49745 referer= handler=notfound status_source=server
+postgres-1               | 2026-06-08 16:21:51.345 UTC [27] LOG:  checkpoint starting: time
+redis-1                  | 1:M 08 Jun 2026 21:29:30.744 * Ready to accept connections tcp
+redis-1                  | 1:signal-handler (1780958105) Received SIGTERM scheduling shutdown...
+redis-1                  | 1:M 08 Jun 2026 22:35:05.757 * User requested shutdown...
+grafana-1                | logger=context userId=1 orgId=1 uname=admin t=2026-06-08T21:51:33.1763272Z level=info msg="Request Completed" method=GET path=/api/live/ws status=-1 remote_addr=172.22.0.1 time_ms=18 duration=18.111388ms size=0 referer= handler=/api/live/ws status_source=server
+prometheus-1             | ts=2026-06-08T15:14:30.666Z caller=head.go:1355 level=info component=tsdb msg="Head GC completed" caller=truncateMemory duration=4.931473ms
+redis-1                  | 1:M 08 Jun 2026 22:35:05.758 * Saving the final RDB snapshot before exiting.
+postgres-1               | 2026-06-08 16:21:53.022 UTC [27] LOG:  checkpoint complete: wrote 17 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.618 s, sync=0.048 s, total=1.678 s; sync files=17, longest=0.027 s, average=0.003 s; distance=19 kB, estimate=19 kB; lsn=0/1C4ABE0, redo lsn=0/1C4ABA8
+postgres-1               | 2026-06-08 16:26:51.044 UTC [27] LOG:  checkpoint starting: time
+postgres-1               | 2026-06-08 16:26:53.850 UTC [27] LOG:  checkpoint complete: wrote 28 buffers (0.2%); 0 WAL file(s) added, 0 removed, 0 recycled; write=2.721 s, sync=0.044 s, total=2.806 s; sync files=28, longest=0.026 s, average=0.002 s; distance=31 kB, estimate=31 kB; lsn=0/1C52850, redo lsn=0/1C52818
+redis-1                  | 1:M 08 Jun 2026 22:35:05.773 * DB saved on disk
+redis-1                  | 1:M 08 Jun 2026 22:35:05.773 # Redis is now ready to exit, bye bye...
+redis-1                  | 1:C 09 Jun 2026 21:56:52.011 * oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+postgres-1               | 
+postgres-1               | PostgreSQL Database directory appears to contain a database; Skipping initialization
+grafana-1                | logger=cleanup t=2026-06-08T21:52:23.172180507Z level=info msg="Completed cleanup jobs" duration=59.183143ms
+redis-1                  | 1:C 09 Jun 2026 21:56:52.011 * Redis version=7.4.7, bits=64, commit=00000000, modified=0, pid=1, just started
+redis-1                  | 1:C 09 Jun 2026 21:56:52.011 # Warning: no config file specified, using the default config. In order to specify a config file use redis-server /path/to/redis.conf
+redis-1                  | 1:M 09 Jun 2026 21:56:52.012 * monotonic clock: POSIX clock_gettime
+redis-1                  | 1:M 09 Jun 2026 21:56:52.015 * Running mode=standalone, port=6379.
+redis-1                  | 1:M 09 Jun 2026 21:56:52.016 * Server initialized
+redis-1                  | 1:M 09 Jun 2026 21:56:52.018 * Loading RDB produced by version 7.4.7
+redis-1                  | 1:M 09 Jun 2026 21:56:52.018 * RDB age 84107 seconds
+redis-1                  | 1:M 09 Jun 2026 21:56:52.018 * RDB memory usage when created 0.93 Mb
+prometheus-1             | ts=2026-06-08T15:14:30.667Z caller=checkpoint.go:101 level=info component=tsdb msg="Creating checkpoint" from_segment=0 to_segment=2 mint=1780696800000
+prometheus-1             | ts=2026-06-08T15:14:30.685Z caller=head.go:1317 level=info component=tsdb msg="WAL checkpoint complete" first=0 last=2 duration=18.818842ms
+prometheus-1             | ts=2026-06-08T21:29:31.770Z caller=main.go:601 level=info msg="No time or size retention was set so using the default time retention" duration=15d
+redis-1                  | 1:M 09 Jun 2026 21:56:52.018 * Done loading RDB, keys loaded: 0, keys expired: 0.
+grafana-1                | logger=plugins.update.checker t=2026-06-08T21:52:23.653437156Z level=info msg="Update check succeeded" duration=154.242845ms
+postgres-1               | 
+prometheus-1             | ts=2026-06-08T21:29:31.772Z caller=main.go:645 level=info msg="Starting Prometheus Server" mode=server version="(version=2.54.1, branch=HEAD, revision=e6cfa720fbe6280153fab13090a483dbd40bece3)"
+redis-1                  | 1:M 09 Jun 2026 21:56:52.018 * DB loaded from disk: 0.001 seconds
+redis-1                  | 1:M 09 Jun 2026 21:56:52.018 * Ready to accept connections tcp
+postgres-1               | 2026-06-08 21:29:31.382 UTC [1] LOG:  starting PostgreSQL 16.11 on x86_64-pc-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit
+postgres-1               | 2026-06-08 21:29:31.383 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+prometheus-1             | ts=2026-06-08T21:29:31.772Z caller=main.go:650 level=info build_context="(go=go1.22.6, platform=linux/amd64, user=root@812ffd741951, date=20240827-10:56:41, tags=netgo,builtinassets,stringlabels)"
+prometheus-1             | ts=2026-06-08T21:29:31.772Z caller=main.go:651 level=info host_details="(Linux 6.6.87.2-microsoft-standard-WSL2 #1 SMP PREEMPT_DYNAMIC Thu Jun  5 18:30:46 UTC 2025 x86_64 451f5cbcfee4 localdomain)"
+postgres-1               | 2026-06-08 21:29:31.383 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+prometheus-1             | ts=2026-06-08T21:29:31.773Z caller=main.go:652 level=info fd_limits="(soft=1048576, hard=1048576)"
+grafana-1                | logger=grafana.update.checker t=2026-06-08T21:52:23.672766642Z level=info msg="Update check succeeded" duration=176.383883ms
+grafana-1                | logger=context userId=1 orgId=1 uname=admin t=2026-06-08T21:55:00.581498569Z level=info msg="Request Completed" method=GET path=/api/live/ws status=-1 remote_addr=172.22.0.1 time_ms=8 duration=8.696477ms size=0 referer= handler=/api/live/ws status_source=server
+grafana-1                | logger=context userId=1 orgId=1 uname=admin t=2026-06-08T22:00:15.66716205Z level=info msg="Request Completed" method=GET path=/api/plugins/grafana-llm-app/settings status=404 remote_addr=172.22.0.1 time_ms=1 duration=1.258313ms size=64 referer=http://localhost:3000/explore handler=/api/plugins/:pluginId/settings status_source=server
+postgres-1               | 2026-06-08 21:29:31.390 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+postgres-1               | 2026-06-08 21:29:31.401 UTC [29] LOG:  database system was interrupted; last known up at 2026-06-08 16:26:53 UTC
+prometheus-1             | ts=2026-06-08T21:29:31.773Z caller=main.go:653 level=info vm_limits="(soft=unlimited, hard=unlimited)"
+postgres-1               | 2026-06-08 21:29:31.928 UTC [30] FATAL:  the database system is starting up
+grafana-1                | logger=context userId=1 orgId=1 uname=admin t=2026-06-08T22:00:15.671025896Z level=info msg="Request Completed" method=GET path=/api/plugins/grafana-llm-app/settings status=404 remote_addr=172.22.0.1 time_ms=1 duration=1.098574ms size=64 referer=http://localhost:3000/explore handler=/api/plugins/:pluginId/settings status_source=server
+grafana-1                | logger=context userId=1 orgId=1 uname=admin t=2026-06-08T22:00:32.841957262Z level=info msg="Request Completed" method=GET path=/.well-known/appspecific/com.chrome.devtools.json status=404 remote_addr=172.22.0.1 time_ms=15 duration=15.374144ms size=49745 referer= handler=notfound status_source=server
+grafana-1                | logger=context userId=1 orgId=1 uname=admin t=2026-06-08T22:00:49.609773343Z level=info msg="Request Completed" method=GET path=/.well-known/appspecific/com.chrome.devtools.json status=404 remote_addr=172.22.0.1 time_ms=16 duration=16.793951ms size=49745 referer= handler=notfound status_source=server
+postgres-1               | 2026-06-08 21:29:31.939 UTC [31] FATAL:  the database system is starting up
+postgres-1               | 2026-06-08 21:29:32.028 UTC [32] FATAL:  the database system is starting up
+grafana-1                | logger=cleanup t=2026-06-08T22:06:55.107441522Z level=info msg="Completed cleanup jobs" duration=130.415617ms
+postgres-1               | 2026-06-08 21:29:32.032 UTC [33] FATAL:  the database system is starting up
+prometheus-1             | ts=2026-06-08T21:29:31.789Z caller=web.go:571 level=info component=web msg="Start listening for connections" address=0.0.0.0:9090
+grafana-1                | logger=plugins.update.checker t=2026-06-08T22:06:55.564840852Z level=info msg="Update check succeeded" duration=200.76604ms
+postgres-1               | 2026-06-08 21:29:32.635 UTC [29] LOG:  database system was not properly shut down; automatic recovery in progress
+postgres-1               | 2026-06-08 21:29:32.640 UTC [29] LOG:  redo starts at 0/1C52818
+postgres-1               | 2026-06-08 21:29:32.644 UTC [29] LOG:  invalid record length at 0/1C59CE0: expected at least 24, got 0
+grafana-1                | logger=grafana.update.checker t=2026-06-08T22:06:55.565380077Z level=info msg="Update check succeeded" duration=205.221116ms
+grafana-1                | logger=infra.usagestats t=2026-06-08T22:07:41.006038121Z level=info msg="Usage stats are ready to report"
+grafana-1                | logger=context userId=1 orgId=1 uname=admin t=2026-06-08T22:09:41.197171152Z level=info msg="Request Completed" method=GET path=/api/live/ws status=-1 remote_addr=172.22.0.1 time_ms=36 duration=36.850709ms size=0 referer= handler=/api/live/ws status_source=server
+prometheus-1             | ts=2026-06-08T21:29:31.793Z caller=main.go:1160 level=info msg="Starting TSDB ..."
+grafana-1                | logger=context userId=1 orgId=1 uname=admin t=2026-06-08T22:11:36.769649068Z level=info msg="Request Completed" method=GET path=/api/plugins/grafana-llm-app/settings status=404 remote_addr=172.22.0.1 time_ms=1 duration=1.128544ms size=64 referer=http://localhost:3000/explore handler=/api/plugins/:pluginId/settings status_source=server
+prometheus-1             | ts=2026-06-08T21:29:31.797Z caller=tls_config.go:313 level=info component=web msg="Listening on" address=[::]:9090
+prometheus-1             | ts=2026-06-08T21:29:31.797Z caller=tls_config.go:316 level=info component=web msg="TLS is disabled." http2=false address=[::]:9090
+prometheus-1             | ts=2026-06-08T21:29:31.799Z caller=repair.go:56 level=info component=tsdb msg="Found healthy block" mint=1780678581887 maxt=1780682400000 ulid=01KTCNZRGJE93B6PEPH9QH176Z
+grafana-1                | logger=context userId=1 orgId=1 uname=admin t=2026-06-08T22:11:36.773908616Z level=info msg="Request Completed" method=GET path=/api/plugins/grafana-llm-app/settings status=404 remote_addr=172.22.0.1 time_ms=1 duration=1.104199ms size=64 referer=http://localhost:3000/explore handler=/api/plugins/:pluginId/settings status_source=server
+prometheus-1             | ts=2026-06-08T21:29:31.800Z caller=repair.go:56 level=info component=tsdb msg="Found healthy block" mint=1780689657666 maxt=1780696800000 ulid=01KTKWSCJ8MTGYMH7F0ADQ6B9D
+postgres-1               | 2026-06-08 21:29:32.644 UTC [29] LOG:  redo done at 0/1C59CA8 system usage: CPU: user: 0.00 s, system: 0.00 s, elapsed: 0.00 s
+postgres-1               | 2026-06-08 21:29:32.655 UTC [27] LOG:  checkpoint starting: end-of-recovery immediate wait
+postgres-1               | 2026-06-08 21:29:32.700 UTC [27] LOG:  checkpoint complete: wrote 25 buffers (0.2%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.017 s, sync=0.018 s, total=0.049 s; sync files=24, longest=0.004 s, average=0.001 s; distance=29 kB, estimate=29 kB; lsn=0/1C59CE0, redo lsn=0/1C59CE0
+postgres-1               | 2026-06-08 21:29:32.711 UTC [1] LOG:  database system is ready to accept connections
+postgres-1               | 2026-06-08 21:29:35.050 UTC [52] ERROR:  relation "goose_db_version" already exists
+postgres-1               | 2026-06-08 21:29:35.050 UTC [52] STATEMENT:  CREATE TABLE goose_db_version (
+postgres-1               | 			id integer PRIMARY KEY GENERATED BY DEFAULT AS IDENTITY,
+grafana-1                | logger=context userId=1 orgId=1 uname=admin t=2026-06-08T22:11:46.024093771Z level=info msg="Request Completed" method=GET path=/.well-known/appspecific/com.chrome.devtools.json status=404 remote_addr=172.22.0.1 time_ms=15 duration=15.482452ms size=49745 referer= handler=notfound status_source=server
+grafana-1                | logger=cleanup t=2026-06-08T22:17:48.234756803Z level=info msg="Completed cleanup jobs" duration=102.715546ms
+prometheus-1             | ts=2026-06-08T21:29:31.800Z caller=dir_locker.go:77 level=warn component=tsdb msg="A lockfile from a previous execution already existed. It was replaced" file=/prometheus/lock
+prometheus-1             | ts=2026-06-08T21:29:31.819Z caller=head.go:626 level=info component=tsdb msg="Replaying on-disk memory mappable chunks if any"
+prometheus-1             | ts=2026-06-08T21:29:31.819Z caller=head.go:713 level=info component=tsdb msg="On-disk memory mappable chunks replay completed" duration=153.767µs
+prometheus-1             | ts=2026-06-08T21:29:31.819Z caller=head.go:721 level=info component=tsdb msg="Replaying WAL, this may take a while"
+grafana-1                | logger=grafana.update.checker t=2026-06-08T22:17:48.750279548Z level=info msg="Update check succeeded" duration=236.779858ms
+prometheus-1             | ts=2026-06-08T21:29:31.833Z caller=head.go:758 level=info component=tsdb msg="WAL checkpoint loaded"
+postgres-1               | 			version_id bigint NOT NULL,
+grafana-1                | logger=plugins.update.checker t=2026-06-08T22:17:48.750395558Z level=info msg="Update check succeeded" duration=233.038344ms
+grafana-1                | logger=context userId=1 orgId=1 uname=admin t=2026-06-08T22:19:46.554594499Z level=info msg="Request Completed" method=GET path=/api/live/ws status=-1 remote_addr=172.22.0.1 time_ms=24 duration=24.902521ms size=0 referer= handler=/api/live/ws status_source=server
+prometheus-1             | ts=2026-06-08T21:29:31.842Z caller=head.go:793 level=info component=tsdb msg="WAL segment loaded" segment=3 maxSegment=6
+prometheus-1             | ts=2026-06-08T21:29:31.845Z caller=head.go:793 level=info component=tsdb msg="WAL segment loaded" segment=4 maxSegment=6
+prometheus-1             | ts=2026-06-08T21:29:31.976Z caller=head.go:793 level=info component=tsdb msg="WAL segment loaded" segment=5 maxSegment=6
+prometheus-1             | ts=2026-06-08T21:29:31.979Z caller=head.go:793 level=info component=tsdb msg="WAL segment loaded" segment=6 maxSegment=6
+grafana-1                | logger=context userId=1 orgId=1 uname=admin t=2026-06-08T22:25:51.456816411Z level=info msg="Request Completed" method=GET path=/api/live/ws status=-1 remote_addr=172.22.0.1 time_ms=9 duration=9.463937ms size=0 referer= handler=/api/live/ws status_source=server
+prometheus-1             | ts=2026-06-08T21:29:31.979Z caller=head.go:830 level=info component=tsdb msg="WAL replay completed" checkpoint_replay_duration=13.232021ms wal_replay_duration=146.274027ms wbl_replay_duration=177ns chunk_snapshot_load_duration=0s mmap_chunk_replay_duration=153.767µs total_replay_duration=159.709018ms
+grafana-1                | logger=context userId=1 orgId=1 uname=admin t=2026-06-08T22:28:16.073246855Z level=info msg="Request Completed" method=GET path=/.well-known/appspecific/com.chrome.devtools.json status=404 remote_addr=172.22.0.1 time_ms=6 duration=6.663723ms size=49745 referer= handler=notfound status_source=server
+grafana-1                | logger=context userId=1 orgId=1 uname=admin t=2026-06-08T22:28:17.052251869Z level=info msg="Request Completed" method=GET path=/api/live/ws status=-1 remote_addr=172.22.0.1 time_ms=2 duration=2.941247ms size=0 referer= handler=/api/live/ws status_source=server
+grafana-1                | logger=cleanup t=2026-06-08T22:29:31.961924583Z level=info msg="Completed cleanup jobs" duration=98.901869ms
+grafana-1                | logger=plugins.update.checker t=2026-06-08T22:29:32.42362014Z level=info msg="Update check succeeded" duration=174.350837ms
+grafana-1                | logger=grafana.update.checker t=2026-06-08T22:29:32.428216817Z level=info msg="Update check succeeded" duration=182.263531ms
+grafana-1                | logger=server t=2026-06-08T22:35:03.76048916Z level=info msg="Shutdown started" reason="System signal: terminated"
+postgres-1               | 			is_applied boolean NOT NULL,
+grafana-1                | logger=tracing t=2026-06-08T22:35:03.763451825Z level=info msg="Closing tracing"
+prometheus-1             | ts=2026-06-08T21:29:31.986Z caller=main.go:1181 level=info fs_type=EXT4_SUPER_MAGIC
+postgres-1               | 			tstamp timestamp NOT NULL DEFAULT now()
+postgres-1               | 		)
+prometheus-1             | ts=2026-06-08T21:29:31.986Z caller=main.go:1184 level=info msg="TSDB started"
+prometheus-1             | ts=2026-06-08T21:29:31.986Z caller=main.go:1367 level=info msg="Loading configuration file" filename=/etc/prometheus/prometheus.yml
+grafana-1                | logger=grafana-apiserver t=2026-06-08T22:35:03.763492897Z level=info msg="StorageObjectCountTracker pruner is exiting"
+prometheus-1             | ts=2026-06-08T21:29:32.005Z caller=main.go:1404 level=info msg="updated GOGC" old=100 new=75
+postgres-1               | 2026-06-08 21:34:32.766 UTC [27] LOG:  checkpoint starting: time
+postgres-1               | 2026-06-08 21:34:34.770 UTC [27] LOG:  checkpoint complete: wrote 20 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.922 s, sync=0.039 s, total=2.004 s; sync files=20, longest=0.026 s, average=0.002 s; distance=76 kB, estimate=76 kB; lsn=0/1C6D060, redo lsn=0/1C6D028
+postgres-1               | 2026-06-08 22:35:05.744 UTC [1] LOG:  received fast shutdown request
+prometheus-1             | ts=2026-06-08T21:29:32.005Z caller=main.go:1415 level=info msg="Completed loading of configuration file" filename=/etc/prometheus/prometheus.yml totalDuration=19.019613ms db_storage=5.59µs remote_storage=4.32µs web_handler=2.034µs query_engine=19.07µs scrape=2.180885ms scrape_sd=599.939µs notify=3.509µs notify_sd=3.18µs rules=5.013µs tracing=13.704µs
+prometheus-1             | ts=2026-06-08T21:29:32.005Z caller=main.go:1145 level=info msg="Server is ready to receive web requests."
+prometheus-1             | ts=2026-06-08T21:29:32.005Z caller=manager.go:164 level=info component="rule manager" msg="Starting rule manager..."
+grafana-1                | logger=ticker t=2026-06-08T22:35:03.763648595Z level=info msg=stopped last_tick=2026-06-08T22:35:00Z
+postgres-1               | 2026-06-08 22:35:05.749 UTC [1] LOG:  aborting any active transactions
+grafana-1                | logger=settings t=2026-06-09T21:56:52.961957481Z level=info msg="Starting Grafana" version=10.4.0 commit=03f502a94d17f7dc4e6c34acdf8428aedd986e4c branch=HEAD compiled=2026-06-09T21:56:52Z
+grafana-1                | logger=settings t=2026-06-09T21:56:52.962708728Z level=info msg="Config loaded from" file=/usr/share/grafana/conf/defaults.ini
+grafana-1                | logger=settings t=2026-06-09T21:56:52.962730753Z level=info msg="Config loaded from" file=/etc/grafana/grafana.ini
+postgres-1               | 2026-06-08 22:35:05.757 UTC [1] LOG:  background worker "logical replication launcher" (PID 36) exited with exit code 1
+grafana-1                | logger=settings t=2026-06-09T21:56:52.962733837Z level=info msg="Config overridden from command line" arg="default.paths.data=/var/lib/grafana"
+grafana-1                | logger=settings t=2026-06-09T21:56:52.962735362Z level=info msg="Config overridden from command line" arg="default.paths.logs=/var/log/grafana"
+grafana-1                | logger=settings t=2026-06-09T21:56:52.962736735Z level=info msg="Config overridden from command line" arg="default.paths.plugins=/var/lib/grafana/plugins"
+grafana-1                | logger=settings t=2026-06-09T21:56:52.962738228Z level=info msg="Config overridden from command line" arg="default.paths.provisioning=/etc/grafana/provisioning"
+grafana-1                | logger=settings t=2026-06-09T21:56:52.962743343Z level=info msg="Config overridden from command line" arg="default.log.mode=console"
+grafana-1                | logger=settings t=2026-06-09T21:56:52.962745013Z level=info msg="Config overridden from Environment variable" var="GF_PATHS_DATA=/var/lib/grafana"
+prometheus-1             | ts=2026-06-08T21:29:37.310Z caller=compact.go:571 level=info component=tsdb msg="write block resulted in empty block" mint=1780696800000 maxt=1780704000000 duration=33.939309ms
+grafana-1                | logger=settings t=2026-06-09T21:56:52.962746604Z level=info msg="Config overridden from Environment variable" var="GF_PATHS_LOGS=/var/log/grafana"
+grafana-1                | logger=settings t=2026-06-09T21:56:52.962749115Z level=info msg="Config overridden from Environment variable" var="GF_PATHS_PLUGINS=/var/lib/grafana/plugins"
+grafana-1                | logger=settings t=2026-06-09T21:56:52.962750839Z level=info msg="Config overridden from Environment variable" var="GF_PATHS_PROVISIONING=/etc/grafana/provisioning"
+prometheus-1             | ts=2026-06-08T21:29:37.314Z caller=head.go:1355 level=info component=tsdb msg="Head GC completed" caller=truncateMemory duration=2.729188ms
+grafana-1                | logger=settings t=2026-06-09T21:56:52.962752333Z level=info msg="Config overridden from Environment variable" var="GF_SECURITY_ADMIN_PASSWORD=*********"
+postgres-1               | 2026-06-08 22:35:05.759 UTC [27] LOG:  shutting down
+postgres-1               | 2026-06-08 22:35:05.764 UTC [27] LOG:  checkpoint starting: shutdown immediate
+grafana-1                | logger=settings t=2026-06-09T21:56:52.962753842Z level=info msg="Config overridden from Environment variable" var="GF_USERS_ALLOW_SIGN_UP=false"
+grafana-1                | logger=settings t=2026-06-09T21:56:52.962756587Z level=info msg=Target target=[all]
+grafana-1                | logger=settings t=2026-06-09T21:56:52.962771362Z level=info msg="Path Home" path=/usr/share/grafana
+postgres-1               | 2026-06-08 22:35:05.820 UTC [27] LOG:  checkpoint complete: wrote 0 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.029 s, sync=0.001 s, total=0.061 s; sync files=0, longest=0.000 s, average=0.000 s; distance=0 kB, estimate=69 kB; lsn=0/1C6D110, redo lsn=0/1C6D110
+postgres-1               | 2026-06-08 22:35:05.835 UTC [1] LOG:  database system is shut down
+postgres-1               | 
+prometheus-1             | ts=2026-06-08T21:29:37.466Z caller=compact.go:580 level=info component=tsdb msg="write block" mint=1780931670576 maxt=1780934400000 ulid=01KTMJ87S21W78RJ61229NH589 duration=152.219395ms ooo=false
+postgres-1               | PostgreSQL Database directory appears to contain a database; Skipping initialization
+grafana-1                | logger=settings t=2026-06-09T21:56:52.962772878Z level=info msg="Path Data" path=/var/lib/grafana
+grafana-1                | logger=settings t=2026-06-09T21:56:52.962774205Z level=info msg="Path Logs" path=/var/log/grafana
+grafana-1                | logger=settings t=2026-06-09T21:56:52.96277797Z level=info msg="Path Plugins" path=/var/lib/grafana/plugins
+postgres-1               | 
+postgres-1               | 2026-06-09 21:56:52.178 UTC [1] LOG:  starting PostgreSQL 16.11 on x86_64-pc-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit
+postgres-1               | 2026-06-09 21:56:52.178 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+postgres-1               | 2026-06-09 21:56:52.178 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+postgres-1               | 2026-06-09 21:56:52.182 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+prometheus-1             | ts=2026-06-08T21:29:37.471Z caller=head.go:1355 level=info component=tsdb msg="Head GC completed" caller=truncateMemory duration=3.840707ms
+prometheus-1             | ts=2026-06-08T21:29:37.554Z caller=compact.go:580 level=info component=tsdb msg="write block" mint=1780934401366 maxt=1780941600000 ulid=01KTMJ87Y0FDYWXE7H0TESPT83 duration=82.586569ms ooo=false
+prometheus-1             | ts=2026-06-08T21:29:37.561Z caller=head.go:1355 level=info component=tsdb msg="Head GC completed" caller=truncateMemory duration=5.680048ms
+prometheus-1             | ts=2026-06-08T21:29:37.561Z caller=checkpoint.go:101 level=info component=tsdb msg="Creating checkpoint" from_segment=3 to_segment=4 mint=1780941600000
+postgres-1               | 2026-06-09 21:56:52.192 UTC [28] LOG:  database system was shut down at 2026-06-08 22:35:05 UTC
+prometheus-1             | ts=2026-06-08T21:29:37.574Z caller=head.go:1317 level=info component=tsdb msg="WAL checkpoint complete" first=3 last=4 duration=13.537383ms
+grafana-1                | logger=settings t=2026-06-09T21:56:52.962779713Z level=info msg="Path Provisioning" path=/etc/grafana/provisioning
+prometheus-1             | ts=2026-06-08T21:29:37.681Z caller=compact.go:519 level=info component=tsdb msg="compact blocks" count=2 mint=1780678581887 maxt=1780696800000 ulid=01KTMJ8817PANZZQ0G8T7GNEEK sources="[01KTCNZRGJE93B6PEPH9QH176Z 01KTKWSCJ8MTGYMH7F0ADQ6B9D]" duration=106.180144ms
+grafana-1                | logger=settings t=2026-06-09T21:56:52.962781172Z level=info msg="App mode production"
+postgres-1               | 2026-06-09 21:56:52.211 UTC [1] LOG:  database system is ready to accept connections
+postgres-1               | 2026-06-09 22:01:52.253 UTC [26] LOG:  checkpoint starting: time
+prometheus-1             | ts=2026-06-08T21:29:37.685Z caller=db.go:1755 level=info component=tsdb msg="Deleting obsolete block" block=01KTCNZRGJE93B6PEPH9QH176Z
+postgres-1               | 2026-06-09 22:01:55.062 UTC [26] LOG:  checkpoint complete: wrote 30 buffers (0.2%); 0 WAL file(s) added, 0 removed, 0 recycled; write=2.725 s, sync=0.059 s, total=2.810 s; sync files=28, longest=0.027 s, average=0.003 s; distance=42 kB, estimate=42 kB; lsn=0/1C77AC0, redo lsn=0/1C77A88
+grafana-1                | logger=sqlstore t=2026-06-09T21:56:52.964858871Z level=info msg="Connecting to DB" dbtype=sqlite3
+grafana-1                | logger=migrator t=2026-06-09T21:56:52.967580738Z level=info msg="Starting DB migrations"
+prometheus-1             | ts=2026-06-08T21:29:37.689Z caller=db.go:1755 level=info component=tsdb msg="Deleting obsolete block" block=01KTKWSCJ8MTGYMH7F0ADQ6B9D
+grafana-1                | logger=migrator t=2026-06-09T21:56:53.013786918Z level=info msg="migrations completed" performed=0 skipped=547 duration=1.564552ms
+postgres-1               | 2026-06-09 22:21:21.906 UTC [3408] ERROR:  relation "places.places" does not exist at character 33
+postgres-1               | 2026-06-09 22:21:21.906 UTC [3408] STATEMENT:  SELECT 'places='||count(*) FROM places.places; SELECT 'auth_accounts='||count(*) FROM auth.auth_accounts; SELECT 'trips='||count(*) FROM trips.trips;
+prometheus-1             | ts=2026-06-08T22:35:05.634Z caller=main.go:995 level=warn msg="Received an OS signal, exiting gracefully..." signal=terminated
+postgres-1               | 2026-06-09 22:21:22.470 UTC [3421] ERROR:  DROP DATABASE cannot run inside a transaction block
+postgres-1               | 2026-06-09 22:21:22.470 UTC [3421] STATEMENT:  DROP DATABASE IF EXISTS landmark_restore_test; CREATE DATABASE landmark_restore_test;
+grafana-1                | logger=secrets t=2026-06-09T21:56:53.017222191Z level=info msg="Envelope encryption state" enabled=true currentprovider=secretKey.v1
+postgres-1               | 2026-06-09 22:21:23.028 UTC [3428] FATAL:  database "landmark_restore_test" does not exist
+prometheus-1             | ts=2026-06-08T22:35:05.634Z caller=main.go:1019 level=info msg="Stopping scrape discovery manager..."
+grafana-1                | logger=plugin.store t=2026-06-09T21:56:53.038250976Z level=info msg="Loading plugins..."
+postgres-1               | 2026-06-09 22:21:23.599 UTC [3435] FATAL:  database "landmark_restore_test" does not exist
+postgres-1               | 2026-06-09 22:21:52.298 UTC [26] LOG:  checkpoint starting: time
+postgres-1               | 2026-06-09 22:21:55.727 UTC [26] LOG:  checkpoint complete: wrote 33 buffers (0.2%); 0 WAL file(s) added, 0 removed, 0 recycled; write=3.315 s, sync=0.061 s, total=3.430 s; sync files=19, longest=0.029 s, average=0.004 s; distance=13 kB, estimate=39 kB; lsn=0/1C7B168, redo lsn=0/1C7B130
+postgres-1               | 2026-06-09 22:22:55.334 UTC [26] LOG:  checkpoint starting: immediate force wait
+postgres-1               | 2026-06-09 22:22:55.351 UTC [26] LOG:  checkpoint complete: wrote 4 buffers (0.0%); 0 WAL file(s) added, 0 removed, 1 recycled; write=0.004 s, sync=0.004 s, total=0.017 s; sync files=4, longest=0.002 s, average=0.001 s; distance=6972 kB, estimate=6972 kB; lsn=0/234A2E0, redo lsn=0/234A2A8
+prometheus-1             | ts=2026-06-08T22:35:05.635Z caller=main.go:1033 level=info msg="Stopping notify discovery manager..."
+prometheus-1             | ts=2026-06-08T22:35:05.635Z caller=main.go:1015 level=info msg="Scrape discovery manager stopped"
+grafana-1                | logger=local.finder t=2026-06-09T21:56:53.204593669Z level=warn msg="Skipping finding plugins as directory does not exist" path=/usr/share/grafana/plugins-bundled
+prometheus-1             | ts=2026-06-08T22:35:05.635Z caller=main.go:1029 level=info msg="Notify discovery manager stopped"
+grafana-1                | logger=plugin.store t=2026-06-09T21:56:53.204621262Z level=info msg="Plugins loaded" count=55 duration=166.371212ms
+prometheus-1             | ts=2026-06-08T22:35:05.635Z caller=manager.go:178 level=info component="rule manager" msg="Stopping rule manager..."
+grafana-1                | logger=query_data t=2026-06-09T21:56:53.215964768Z level=info msg="Query Service initialization"
+prometheus-1             | ts=2026-06-08T22:35:05.635Z caller=manager.go:188 level=info component="rule manager" msg="Rule manager stopped"
+grafana-1                | logger=live.push_http t=2026-06-09T21:56:53.221465649Z level=info msg="Live Push Gateway initialization"
+grafana-1                | logger=ngalert.migration t=2026-06-09T21:56:53.227568545Z level=info msg=Starting
+grafana-1                | logger=ngalert.state.manager t=2026-06-09T21:56:53.246055701Z level=info msg="Running in alternative execution of Error/NoData mode"
+prometheus-1             | ts=2026-06-08T22:35:05.635Z caller=main.go:1070 level=info msg="Stopping scrape manager..."
+prometheus-1             | ts=2026-06-08T22:35:05.637Z caller=main.go:1062 level=info msg="Scrape manager stopped"
+prometheus-1             | ts=2026-06-08T22:35:05.651Z caller=notifier.go:693 level=info component=notifier msg="Stopping notification manager..."
+grafana-1                | logger=infra.usagestats.collector t=2026-06-09T21:56:53.250602521Z level=info msg="registering usage stat providers" usageStatsProvidersLen=2
+prometheus-1             | ts=2026-06-08T22:35:05.651Z caller=notifier.go:386 level=info component=notifier msg="Draining any remaining notifications..."
+grafana-1                | logger=provisioning.plugins t=2026-06-09T21:56:53.288038761Z level=error msg="Failed to read plugin provisioning files from directory" path=/etc/grafana/provisioning/plugins error="open /etc/grafana/provisioning/plugins: no such file or directory"
+grafana-1                | logger=provisioning.notifiers t=2026-06-09T21:56:53.288289107Z level=error msg="Can't read alert notification provisioning files from directory" path=/etc/grafana/provisioning/notifiers error="open /etc/grafana/provisioning/notifiers: no such file or directory"
+prometheus-1             | ts=2026-06-08T22:35:05.651Z caller=notifier.go:392 level=info component=notifier msg="Remaining notifications drained"
+grafana-1                | logger=provisioning.alerting t=2026-06-09T21:56:53.288512268Z level=error msg="can't read alerting provisioning files from directory" path=/etc/grafana/provisioning/alerting error="open /etc/grafana/provisioning/alerting: no such file or directory"
+grafana-1                | logger=provisioning.alerting t=2026-06-09T21:56:53.288530929Z level=info msg="starting to provision alerting"
+prometheus-1             | ts=2026-06-08T22:35:05.651Z caller=notifier.go:322 level=info component=notifier msg="Notification manager stopped"
+grafana-1                | logger=provisioning.alerting t=2026-06-09T21:56:53.288542553Z level=info msg="finished to provision alerting"
+prometheus-1             | ts=2026-06-08T22:35:05.651Z caller=main.go:1293 level=info msg="Notifier manager stopped"
+grafana-1                | logger=grafanaStorageLogger t=2026-06-09T21:56:53.289972501Z level=info msg="Storage starting"
+prometheus-1             | ts=2026-06-08T22:35:05.652Z caller=main.go:1305 level=info msg="See you next time!"
+prometheus-1             | ts=2026-06-09T21:56:52.410Z caller=main.go:601 level=info msg="No time or size retention was set so using the default time retention" duration=15d
+prometheus-1             | ts=2026-06-09T21:56:52.410Z caller=main.go:645 level=info msg="Starting Prometheus Server" mode=server version="(version=2.54.1, branch=HEAD, revision=e6cfa720fbe6280153fab13090a483dbd40bece3)"
+grafana-1                | logger=ngalert.state.manager t=2026-06-09T21:56:53.29020459Z level=info msg="Warming state cache for startup"
+grafana-1                | logger=ngalert.multiorg.alertmanager t=2026-06-09T21:56:53.291478872Z level=info msg="Starting MultiOrg Alertmanager"
+grafana-1                | logger=http.server t=2026-06-09T21:56:53.298563657Z level=info msg="HTTP Server Listen" address=[::]:3000 protocol=http subUrl= socket=
+prometheus-1             | ts=2026-06-09T21:56:52.410Z caller=main.go:650 level=info build_context="(go=go1.22.6, platform=linux/amd64, user=root@812ffd741951, date=20240827-10:56:41, tags=netgo,builtinassets,stringlabels)"
+prometheus-1             | ts=2026-06-09T21:56:52.411Z caller=main.go:651 level=info host_details="(Linux 6.6.87.2-microsoft-standard-WSL2 #1 SMP PREEMPT_DYNAMIC Thu Jun  5 18:30:46 UTC 2025 x86_64 451f5cbcfee4 localdomain)"
+prometheus-1             | ts=2026-06-09T21:56:52.411Z caller=main.go:652 level=info fd_limits="(soft=1048576, hard=1048576)"
+grafana-1                | logger=provisioning.dashboard t=2026-06-09T21:56:53.324254655Z level=info msg="starting to provision dashboards"
+grafana-1                | logger=provisioning.dashboard t=2026-06-09T21:56:53.342431487Z level=info msg="finished to provision dashboards"
+grafana-1                | logger=ngalert.state.manager t=2026-06-09T21:56:53.357843326Z level=info msg="State cache has been initialized" states=0 duration=67.612069ms
+prometheus-1             | ts=2026-06-09T21:56:52.411Z caller=main.go:653 level=info vm_limits="(soft=unlimited, hard=unlimited)"
+prometheus-1             | ts=2026-06-09T21:56:52.413Z caller=web.go:571 level=info component=web msg="Start listening for connections" address=0.0.0.0:9090
+prometheus-1             | ts=2026-06-09T21:56:52.415Z caller=main.go:1160 level=info msg="Starting TSDB ..."
+prometheus-1             | ts=2026-06-09T21:56:52.418Z caller=tls_config.go:313 level=info component=web msg="Listening on" address=[::]:9090
+prometheus-1             | ts=2026-06-09T21:56:52.418Z caller=tls_config.go:316 level=info component=web msg="TLS is disabled." http2=false address=[::]:9090
+grafana-1                | logger=ngalert.scheduler t=2026-06-09T21:56:53.358023807Z level=info msg="Starting scheduler" tickInterval=10s maxAttempts=1
+grafana-1                | logger=ticker t=2026-06-09T21:56:53.359656429Z level=info msg=starting first_tick=2026-06-09T21:57:00Z
+prometheus-1             | ts=2026-06-09T21:56:52.420Z caller=repair.go:56 level=info component=tsdb msg="Found healthy block" mint=1780931670576 maxt=1780934400000 ulid=01KTMJ87S21W78RJ61229NH589
+grafana-1                | logger=grafana-apiserver t=2026-06-09T21:56:53.488998327Z level=info msg="Adding GroupVersion playlist.grafana.app v0alpha1 to ResourceManager"
+grafana-1                | logger=grafana-apiserver t=2026-06-09T21:56:53.49024691Z level=info msg="Adding GroupVersion featuretoggle.grafana.app v0alpha1 to ResourceManager"
+grafana-1                | logger=grafana.update.checker t=2026-06-09T21:56:53.667268238Z level=info msg="Update check succeeded" duration=375.750105ms
+grafana-1                | logger=plugins.update.checker t=2026-06-09T21:56:53.693535996Z level=info msg="Update check succeeded" duration=403.659009ms
+grafana-1                | logger=infra.usagestats t=2026-06-09T21:58:11.318810763Z level=info msg="Usage stats are ready to report"
+grafana-1                | logger=cleanup t=2026-06-09T22:06:53.28372135Z level=info msg="Completed cleanup jobs" duration=32.151382ms
+prometheus-1             | ts=2026-06-09T21:56:52.420Z caller=repair.go:56 level=info component=tsdb msg="Found healthy block" mint=1780934401366 maxt=1780941600000 ulid=01KTMJ87Y0FDYWXE7H0TESPT83
+prometheus-1             | ts=2026-06-09T21:56:52.420Z caller=repair.go:56 level=info component=tsdb msg="Found healthy block" mint=1780678581887 maxt=1780696800000 ulid=01KTMJ8817PANZZQ0G8T7GNEEK
+grafana-1                | logger=plugins.update.checker t=2026-06-09T22:06:53.948698761Z level=info msg="Update check succeeded" duration=294.647665ms
+prometheus-1             | ts=2026-06-09T21:56:52.429Z caller=head.go:626 level=info component=tsdb msg="Replaying on-disk memory mappable chunks if any"
+prometheus-1             | ts=2026-06-09T21:56:52.431Z caller=head.go:713 level=info component=tsdb msg="On-disk memory mappable chunks replay completed" duration=2.141609ms
+prometheus-1             | ts=2026-06-09T21:56:52.431Z caller=head.go:721 level=info component=tsdb msg="Replaying WAL, this may take a while"
+grafana-1                | logger=grafana.update.checker t=2026-06-09T22:06:53.948891397Z level=info msg="Update check succeeded" duration=321.394274ms
+prometheus-1             | ts=2026-06-09T21:56:52.436Z caller=head.go:758 level=info component=tsdb msg="WAL checkpoint loaded"
+grafana-1                | logger=cleanup t=2026-06-09T22:16:53.254906661Z level=info msg="Completed cleanup jobs" duration=50.181165ms
+grafana-1                | logger=plugins.update.checker t=2026-06-09T22:16:53.859466511Z level=info msg="Update check succeeded" duration=252.487676ms
+grafana-1                | logger=grafana.update.checker t=2026-06-09T22:16:53.881408508Z level=info msg="Update check succeeded" duration=300.481523ms
+prometheus-1             | ts=2026-06-09T21:56:52.449Z caller=head.go:793 level=info component=tsdb msg="WAL segment loaded" segment=5 maxSegment=8
+prometheus-1             | ts=2026-06-09T21:56:52.451Z caller=head.go:793 level=info component=tsdb msg="WAL segment loaded" segment=6 maxSegment=8
+prometheus-1             | ts=2026-06-09T21:56:52.471Z caller=head.go:793 level=info component=tsdb msg="WAL segment loaded" segment=7 maxSegment=8
+prometheus-1             | ts=2026-06-09T21:56:52.472Z caller=head.go:793 level=info component=tsdb msg="WAL segment loaded" segment=8 maxSegment=8
+prometheus-1             | ts=2026-06-09T21:56:52.472Z caller=head.go:830 level=info component=tsdb msg="WAL replay completed" checkpoint_replay_duration=4.629677ms wal_replay_duration=35.951339ms wbl_replay_duration=77ns chunk_snapshot_load_duration=0s mmap_chunk_replay_duration=2.141609ms total_replay_duration=42.783311ms
+prometheus-1             | ts=2026-06-09T21:56:52.479Z caller=main.go:1181 level=info fs_type=EXT4_SUPER_MAGIC
+prometheus-1             | ts=2026-06-09T21:56:52.479Z caller=main.go:1184 level=info msg="TSDB started"
+prometheus-1             | ts=2026-06-09T21:56:52.479Z caller=main.go:1367 level=info msg="Loading configuration file" filename=/etc/prometheus/prometheus.yml
+prometheus-1             | ts=2026-06-09T21:56:52.483Z caller=main.go:1404 level=info msg="updated GOGC" old=100 new=75
+prometheus-1             | ts=2026-06-09T21:56:52.484Z caller=main.go:1415 level=info msg="Completed loading of configuration file" filename=/etc/prometheus/prometheus.yml totalDuration=5.131884ms db_storage=1.47µs remote_storage=1.564µs web_handler=657ns query_engine=5.038µs scrape=1.799025ms scrape_sd=90.648µs notify=1.048µs notify_sd=744ns rules=1.525µs tracing=4.231µs
+prometheus-1             | ts=2026-06-09T21:56:52.484Z caller=main.go:1145 level=info msg="Server is ready to receive web requests."
+prometheus-1             | ts=2026-06-09T21:56:52.484Z caller=manager.go:164 level=info component="rule manager" msg="Starting rule manager..."
+prometheus-1             | ts=2026-06-09T21:56:57.975Z caller=compact.go:571 level=info component=tsdb msg="write block resulted in empty block" mint=1780941600000 maxt=1780948800000 duration=9.604437ms
+prometheus-1             | ts=2026-06-09T21:56:57.977Z caller=head.go:1355 level=info component=tsdb msg="Head GC completed" caller=truncateMemory duration=1.062216ms
+prometheus-1             | ts=2026-06-09T21:56:58.018Z caller=compact.go:580 level=info component=tsdb msg="write block" mint=1780954177269 maxt=1780956000000 ulid=01KTQ670ZSZYB585DA3V3G1N3A duration=41.58887ms ooo=false
+prometheus-1             | ts=2026-06-09T21:56:58.020Z caller=head.go:1355 level=info component=tsdb msg="Head GC completed" caller=truncateMemory duration=1.23399ms
+prometheus-1             | ts=2026-06-09T21:56:58.058Z caller=compact.go:580 level=info component=tsdb msg="write block" mint=1780956000494 maxt=1780963200000 ulid=01KTQ67114JS86VZEJTTJ97X7D duration=38.133412ms ooo=false
+prometheus-1             | ts=2026-06-09T21:56:58.060Z caller=head.go:1355 level=info component=tsdb msg="Head GC completed" caller=truncateMemory duration=1.701426ms
+prometheus-1             | ts=2026-06-09T21:56:58.061Z caller=checkpoint.go:101 level=info component=tsdb msg="Creating checkpoint" from_segment=5 to_segment=6 mint=1780963200000
+prometheus-1             | ts=2026-06-09T21:56:58.071Z caller=head.go:1317 level=info component=tsdb msg="WAL checkpoint complete" first=5 last=6 duration=10.191064ms
+prometheus-1             | ts=2026-06-09T21:56:58.107Z caller=compact.go:519 level=info component=tsdb msg="compact blocks" count=2 mint=1780931670576 maxt=1780941600000 ulid=01KTQ6712Q9AYW3H9Q7H0Y76ED sources="[01KTMJ87S21W78RJ61229NH589 01KTMJ87Y0FDYWXE7H0TESPT83]" duration=36.29987ms
+prometheus-1             | ts=2026-06-09T21:56:58.109Z caller=db.go:1755 level=info component=tsdb msg="Deleting obsolete block" block=01KTMJ87S21W78RJ61229NH589
+prometheus-1             | ts=2026-06-09T21:56:58.111Z caller=db.go:1755 level=info component=tsdb msg="Deleting obsolete block" block=01KTMJ87Y0FDYWXE7H0TESPT83
+
+====================================================================
+ANALYSIS (stage 5)
+====================================================================
+[OK] No panic / fatal / 5xx in the Go application services.
+Only benign, explainable entries present:
+  - postgres 'FATAL: the database system is starting up' -> health-check
+    connections retrying while Postgres boots (normal, self-resolves).
+  - postgres 'FATAL: database "landmark_restore_test" does not exist' ->
+    produced by THIS stage's backup/restore test (probe before CREATE / after DROP).
+  - grafana 'level=error' provisioning-dir messages -> third-party UI noise
+    (see stage 4 BUG-05), not a LandMark service error.
+Conclusion: no recurring critical errors in application services after startup.

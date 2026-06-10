@@ -1,0 +1,10 @@
+CORS hardening - before / after (stage 5)
+==========================================
+BEFORE: CORS_ORIGINS=* (wildcard) -> any site could call the API from a browser.
+  Access-Control-Allow-Origin: *
+
+FIX: set CORS_ORIGINS to a concrete origin in .env.production / .env.demo.example
+     (api-gateway reads getenv("CORS_ORIGINS","*"); prod template already used a real domain).
+
+AFTER (api-gateway recreated with CORS_ORIGINS=http://localhost:8080):
+  Access-Control-Allow-Origin: http://localhost:8080

@@ -1,0 +1,95 @@
+# ---------------------------------------------------------------------------
+# Production / demo-стенд проекта LandMark (Wanderlog).
+#
+# Это production-вариант запуска. Он переиспользует описание сервисов из
+# backend/docker-compose.yml (директива include) и накладывает поверх него
+# production-настройки: APP_ENV=production, политики перезапуска и подстановку
+# секретов из файла .env.production (флаг --env-file).
+#
+# Запуск:
+#   docker compose --env-file .env.production -f docker-compose.prod.yml up --build -d
+#
+# Все настоящие секреты (AUTH_PEPPER, INTERNAL_API_KEY, пароли админа и Grafana,
+# CORS_ORIGINS) берутся из .env.production. Сам .env.production в репозиторий
+# НЕ коммитится — в репозитории лежат только .env.production.example /
+# .env.demo.example без реальных значений.
+# ---------------------------------------------------------------------------
+name: landmark
+
+include:
+  - backend/docker-compose.yml
+
+services:
+  # --- Инфраструктура: добавляем политику перезапуска для production ---------
+  postgres:
+    restart: unless-stopped
+
+  redis:
+    restart: unless-stopped
+
+  minio:
+    restart: unless-stopped
+
+  mailhog:
+    restart: unless-stopped
+
+  prometheus:
+    restart: unless-stopped
+
+  grafana:
+    restart: unless-stopped
+
+  # --- Go-микросервисы: переключаем в production-режим ----------------------
+  # (restart: unless-stopped уже задан в backend/docker-compose.yml через
+  #  общий anchor x-go-build, здесь переопределяем только окружение).
+  auth-service:
+    environment:
+      APP_ENV: production
+      LOG_LEVEL: ${LOG_LEVEL:-info}
+
+  profile-service:
+    environment:
+      APP_ENV: production
+      LOG_LEVEL: ${LOG_LEVEL:-info}
+
+  places-service:
+    environment:
+      APP_ENV: production
+      LOG_LEVEL: ${LOG_LEVEL:-info}
+
+  trips-service:
+    environment:
+      APP_ENV: production
+      LOG_LEVEL: ${LOG_LEVEL:-info}
+
+  journal-service:
+    environment:
+      APP_ENV: production
+      LOG_LEVEL: ${LOG_LEVEL:-info}
+
+  media-service:
+    environment:
+      APP_ENV: production
+      LOG_LEVEL: ${LOG_LEVEL:-info}
+
+  favorites-service:
+    environment:
+      APP_ENV: production
+      LOG_LEVEL: ${LOG_LEVEL:-info}
+
+  notifications-service:
+    environment:
+      APP_ENV: production
+      LOG_LEVEL: ${LOG_LEVEL:-info}
+
+  moderation-service:
+    environment:
+      APP_ENV: production
+      LOG_LEVEL: ${LOG_LEVEL:-info}
+
+  api-gateway:
+    environment:
+      APP_ENV: production
+      LOG_LEVEL: ${LOG_LEVEL:-info}
+      # В production вместо "*" подставляются домены фронтенда из .env.production
+      CORS_ORIGINS: ${CORS_ORIGINS:-*}
