@@ -1,13 +1,24 @@
 name: Release
 
-# Релизная сборка по тегу vX.Y.Z (этап 6): собираем бинарники всех
-# Go-сервисов, пакуем архив и публикуем GitHub Release с release notes.
+# Релизная сборка (этап 6): собираем бинарники всех Go-сервисов, пакуем
+# архив и публикуем GitHub Release с release notes. Запускается по тегу
+# vX.Y.Z или вручную (Run workflow) с указанием версии — во втором случае
+# тег создаст сам workflow при публикации релиза.
 on:
   push:
     tags: ['v*']
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Версия релиза (тег), например v0.3.1'
+        required: true
+        default: 'v0.3.1'
 
 permissions:
   contents: write
+
+env:
+  RELEASE_TAG: ${{ github.event.inputs.version || github.ref_name }}
 
 jobs:
   release:
@@ -35,18 +46,19 @@ jobs:
 
       - name: Pack release archive
         run: |
-          tar -C dist -czf "landmark-backend-${GITHUB_REF_NAME}-linux-amd64.tar.gz" .
-          sha256sum "landmark-backend-${GITHUB_REF_NAME}-linux-amd64.tar.gz" \
-            > "landmark-backend-${GITHUB_REF_NAME}-linux-amd64.tar.gz.sha256"
+          tar -C dist -czf "landmark-backend-${RELEASE_TAG}-linux-amd64.tar.gz" .
+          sha256sum "landmark-backend-${RELEASE_TAG}-linux-amd64.tar.gz" \
+            > "landmark-backend-${RELEASE_TAG}-linux-amd64.tar.gz.sha256"
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:
-          name: landmark-backend-${{ github.ref_name }}
+          name: landmark-backend-${{ github.event.inputs.version || github.ref_name }}
           path: landmark-backend-*.tar.gz*
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
+          tag_name: ${{ github.event.inputs.version || github.ref_name }}
           files: landmark-backend-*.tar.gz*
           body_path: RELEASE_NOTES.md
