@@ -10,7 +10,7 @@ GO_SERVICES := api-gateway auth-service favorites-service journal-service media-
 
 .DEFAULT_GOAL := help
 .PHONY: help setup run run-app check format test lint-strict \
-        docker-build docker-up docker-down logs ps clean
+        build release-check docker-build docker-up docker-down logs ps clean
 
 help: ## Показать список команд
 	@echo 'LandMark — команды проекта:'
@@ -51,6 +51,15 @@ lint-strict: ## Глубокий линтер Go (golangci-lint, если уст
 	  for s in $(GO_SERVICES); do echo ">> golangci-lint: $$s"; \
 	    (cd $(BACKEND)/$$s && golangci-lint run ./...) || exit 1; done; \
 	else echo 'golangci-lint не установлен — пропускаю (опционально).'; fi
+
+build: ## Собрать release-бинарники Go-сервисов в dist/
+	@mkdir -p dist
+	@for s in $(GO_SERVICES); do echo ">> go build: $$s"; \
+	  (cd $(BACKEND)/$$s && CGO_ENABLED=0 go build -o ../../dist/$$s ./cmd/server) || exit 1; done
+	@echo 'Бинарники собраны в dist/'
+
+release-check: check test build ## Финальная проверка перед релизом (этап 6)
+	@echo 'Проект готов к релизу.'
 
 docker-build: ## Собрать docker-образы backend
 	docker compose build
