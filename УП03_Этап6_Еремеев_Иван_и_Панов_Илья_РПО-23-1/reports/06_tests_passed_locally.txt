@@ -1,0 +1,35 @@
+$ make check && make test (Go-часть; flutter недоступен в этом окружении — проверяется в CI)
+>> gofmt + go vet + go test: api-gateway
+>> gofmt + go vet + go test: auth-service
+ok  	github.com/ilpaka/landmark_app/backend/auth-service/internal/httpserver	0.016s
+ok  	github.com/ilpaka/landmark_app/backend/auth-service/internal/modules/auth/adapters/jwt	0.200s
+ok  	github.com/ilpaka/landmark_app/backend/auth-service/internal/modules/auth/adapters/redis	0.027s
+ok  	github.com/ilpaka/landmark_app/backend/auth-service/internal/modules/auth/app	0.015s
+ok  	github.com/ilpaka/landmark_app/backend/auth-service/internal/modules/auth/audit	0.004s
+ok  	github.com/ilpaka/landmark_app/backend/auth-service/internal/modules/auth/crypto	0.002s
+ok  	github.com/ilpaka/landmark_app/backend/auth-service/internal/modules/auth/http	0.032s
+>> gofmt + go vet + go test: favorites-service
+ok  	github.com/ilpaka/landmark_app/backend/favorites-service/internal/modules/favorite/app	0.003s
+ok  	github.com/ilpaka/landmark_app/backend/favorites-service/internal/modules/favorite/http	0.008s
+>> gofmt + go vet + go test: journal-service
+ok  	github.com/ilpaka/landmark_app/backend/journal-service/internal/modules/journal/app	0.003s
+ok  	github.com/ilpaka/landmark_app/backend/journal-service/internal/modules/journal/http	0.008s
+>> gofmt + go vet + go test: media-service
+ok  	github.com/ilpaka/landmark_app/backend/media-service/internal/modules/media/http	0.008s
+>> gofmt + go vet + go test: moderation-service
+ok  	github.com/ilpaka/landmark_app/backend/moderation-service/internal/modules/moderation/app	0.003s
+ok  	github.com/ilpaka/landmark_app/backend/moderation-service/internal/modules/moderation/http	0.008s
+>> gofmt + go vet + go test: notifications-service
+ok  	github.com/ilpaka/landmark_app/backend/notifications-service/internal/modules/notification/app	0.003s
+ok  	github.com/ilpaka/landmark_app/backend/notifications-service/internal/modules/notification/http	0.008s
+>> gofmt + go vet + go test: places-service
+ok  	github.com/ilpaka/landmark_app/backend/places-service/internal/modules/place/app	0.003s
+ok  	github.com/ilpaka/landmark_app/backend/places-service/internal/modules/place/http	0.008s
+>> gofmt + go vet + go test: profile-service
+ok  	github.com/ilpaka/landmark_app/backend/profile-service/internal/modules/profile/app	0.003s
+ok  	github.com/ilpaka/landmark_app/backend/profile-service/internal/modules/profile/http	0.008s
+>> gofmt + go vet + go test: trips-service
+ok  	github.com/ilpaka/landmark_app/backend/trips-service/internal/modules/trip/app	0.003s
+ok  	github.com/ilpaka/landmark_app/backend/trips-service/internal/modules/trip/http	0.008s
+
+Все Go-проверки пройдены.

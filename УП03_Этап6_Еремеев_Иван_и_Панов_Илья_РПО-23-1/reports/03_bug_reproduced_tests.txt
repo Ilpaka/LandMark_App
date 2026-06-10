@@ -1,0 +1,56 @@
+=== profile-service ===
+--- FAIL: TestUnknownRouteReturnsJSON (0.00s)
+    router_test.go:32: Content-Type = "text/plain", want application/json (body: "404 page not found")
+--- FAIL: TestUnknownMethodReturnsJSON (0.00s)
+    router_test.go:50: status = 404, want 405 (body: "404 page not found")
+FAIL
+FAIL	github.com/ilpaka/landmark_app/backend/profile-service/internal/modules/profile/http	0.008s
+=== media-service ===
+--- FAIL: TestUnknownRouteReturnsJSON (0.00s)
+    router_test.go:32: Content-Type = "text/plain", want application/json (body: "404 page not found")
+--- FAIL: TestUnknownMethodReturnsJSON (0.00s)
+    router_test.go:50: status = 404, want 405 (body: "404 page not found")
+FAIL
+FAIL	github.com/ilpaka/landmark_app/backend/media-service/internal/modules/media/http	0.008s
+=== favorites-service ===
+--- FAIL: TestUnknownRouteReturnsJSON (0.00s)
+    router_test.go:32: Content-Type = "text/plain", want application/json (body: "404 page not found")
+--- FAIL: TestUnknownMethodReturnsJSON (0.00s)
+    router_test.go:50: status = 404, want 405 (body: "404 page not found")
+FAIL
+FAIL	github.com/ilpaka/landmark_app/backend/favorites-service/internal/modules/favorite/http	0.008s
+=== moderation-service ===
+--- FAIL: TestUnknownRouteReturnsJSON (0.00s)
+    router_test.go:32: Content-Type = "text/plain", want application/json (body: "404 page not found")
+--- FAIL: TestUnknownMethodReturnsJSON (0.00s)
+    router_test.go:50: status = 404, want 405 (body: "404 page not found")
+FAIL
+FAIL	github.com/ilpaka/landmark_app/backend/moderation-service/internal/modules/moderation/http	0.009s
+=== notifications-service ===
+--- FAIL: TestUnknownRouteReturnsJSON (0.00s)
+    router_test.go:32: Content-Type = "text/plain", want application/json (body: "404 page not found")
+--- FAIL: TestUnknownMethodReturnsJSON (0.00s)
+    router_test.go:50: status = 404, want 405 (body: "404 page not found")
+FAIL
+FAIL	github.com/ilpaka/landmark_app/backend/notifications-service/internal/modules/notification/http	0.008s
+=== places-service ===
+--- FAIL: TestUnknownRouteReturnsJSON (0.00s)
+    router_test.go:31: Content-Type = "text/plain", want application/json (body: "404 page not found")
+--- FAIL: TestUnknownMethodReturnsJSON (0.00s)
+    router_test.go:49: status = 404, want 405 (body: "404 page not found")
+FAIL
+FAIL	github.com/ilpaka/landmark_app/backend/places-service/internal/modules/place/http	0.009s
+=== trips-service ===
+--- FAIL: TestUnknownRouteReturnsJSON (0.00s)
+    router_test.go:31: Content-Type = "text/plain", want application/json (body: "404 page not found")
+--- FAIL: TestUnknownMethodReturnsJSON (0.00s)
+    router_test.go:49: status = 404, want 405 (body: "404 page not found")
+FAIL
+FAIL	github.com/ilpaka/landmark_app/backend/trips-service/internal/modules/trip/http	0.008s
+=== journal-service ===
+--- FAIL: TestUnknownRouteReturnsJSON (0.00s)
+    router_test.go:31: Content-Type = "text/plain", want application/json (body: "404 page not found")
+--- FAIL: TestUnknownMethodReturnsJSON (0.00s)
+    router_test.go:49: status = 404, want 405 (body: "404 page not found")
+FAIL
+FAIL	github.com/ilpaka/landmark_app/backend/journal-service/internal/modules/journal/http	0.008s

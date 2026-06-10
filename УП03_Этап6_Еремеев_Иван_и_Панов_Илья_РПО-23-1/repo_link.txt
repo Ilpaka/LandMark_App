@@ -1,0 +1,20 @@
+Репозиторий: https://github.com/Ilpaka/LandMark_App
+Ветка с работой по этапу 6: feat/sixth_stage
+Issue инцидента:  https://github.com/Ilpaka/LandMark_App/issues/7
+Pull Request:     см. docs/SUPPORT_REPORT.docx и скриншот 08 (PR из feat/sixth_stage в main)
+Релиз:            тег v0.3.1 + GitHub Release (workflow .github/workflows/release.yml)
+
+Полный цикл сопровождения этапа 6:
+  проблема (issue #7, BUG-03 из этапа 4)
+  -> воспроизведение (curl: plain-text "404 page not found" вместо JSON)
+  -> диагностика по логам и тестам (причина: нет NoRoute/NoMethod у Gin)
+  -> исправление в отдельной ветке (единый JSON-конверт ошибок в 9 сервисах + 18 тестов)
+  -> локальные проверки (gofmt, go vet, go test, make build)
+  -> GitHub Actions (CI починен и зелёный; добавлен Release-workflow)
+  -> PR с описанием и ссылкой на issue
+  -> CHANGELOG.md + RELEASE_NOTES.md + тег v0.3.1 с релизной сборкой
+
+Как проверить за 2 минуты:
+  make release-check            (Linux/macOS; нужны Go и Flutter)
+  scripts\release-check.bat     (Windows)
+  curl -i http://localhost:8080/v1/places/x/y  ->  {"error":"not found"} (JSON, не plain-text)
