@@ -1,13 +1,21 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:latlong2/latlong.dart';
 
 import '../../../../core/design/tokens.dart';
 import '../../../../core/networking/api_client.dart';
+import '../../../../core/services/reverse_geocoding_service.dart';
 import '../../../../core/widgets/location_picker_page.dart';
+import '../../domain/entities/place.dart';
 
 class SuggestPlacePage extends ConsumerStatefulWidget {
-  const SuggestPlacePage({super.key});
+  const SuggestPlacePage({super.key, this.initialCoords});
+
+  /// Стартовая точка для пикера — обычно текущий центр карты, чтобы
+  /// пользователю не приходилось заново искать свой район от Москвы.
+  final LatLng? initialCoords;
 
   @override
   ConsumerState<SuggestPlacePage> createState() => _SuggestPlacePageState();
@@ -24,6 +32,11 @@ class _SuggestPlacePageState extends ConsumerState<SuggestPlacePage> {
   bool _loading = false;
   bool _isPrivate = false; // false = публичная (с модерацией), true = приватная
 
+  // Автозаполнение города по координатам.
+  bool _geocoding = false;
+  bool _cityAutoFilled = false;
+  String? _country;
+
   @override
   void dispose() {
     _titleCtrl.dispose();
@@ -35,7 +48,7 @@ class _SuggestPlacePageState extends ConsumerState<SuggestPlacePage> {
   Future<void> _pickCoords() async {
     final picked = await LocationPickerPage.show(
       context,
-      initial: _coords,
+      initial: _coords ?? widget.initialCoords,
       title: 'Где находится место?',
     );
     if (picked != null) {
@@ -43,11 +56,30 @@ class _SuggestPlacePageState extends ConsumerState<SuggestPlacePage> {
         _coords = picked;
         _coordsTouched = true;
       });
+      // Город подтягиваем в фоне — форма остаётся доступной для ввода.
+      unawaited(_autofillCity(picked));
     } else {
       // Пользователь закрыл пикер — учитываем как факт обращения, чтобы
       // показать ошибку валидации, если координаты так и не выбраны.
       setState(() => _coordsTouched = true);
     }
+  }
+
+  Future<void> _autofillCity(LatLng point) async {
+    setState(() => _geocoding = true);
+    final res = await ref.read(reverseGeocodingProvider).resolve(point);
+    if (!mounted) return;
+    setState(() {
+      _geocoding = false;
+      _country = res.country ?? _country;
+      // Не затираем то, что пользователь ввёл руками: перезаписываем только
+      // пустое поле или своё же автозаполнение от предыдущей точки.
+      final canOverwrite = _cityCtrl.text.trim().isEmpty || _cityAutoFilled;
+      if (res.city != null && res.city!.isNotEmpty && canOverwrite) {
+        _cityCtrl.text = res.city!;
+        _cityAutoFilled = true;
+      }
+    });
   }
 
   Future<void> _submit() async {
@@ -69,13 +101,15 @@ class _SuggestPlacePageState extends ConsumerState<SuggestPlacePage> {
         'latitude': _coords!.latitude,
         'longitude': _coords!.longitude,
         'city': _cityCtrl.text.trim().isEmpty ? null : _cityCtrl.text.trim(),
+        'country': _country,
         'visibility': visibility,
       });
-      final placeId = (createResp.data as Map<String, dynamic>)['id'] as String;
+      final created =
+          Place.fromJson(createResp.data as Map<String, dynamic>);
 
       if (!_isPrivate) {
         // 2. Только публичные идут на модерацию.
-        await dio.post('/v1/places/$placeId/submit');
+        await dio.post('/v1/places/${created.id}/submit');
       }
 
       if (mounted) {
@@ -88,7 +122,9 @@ class _SuggestPlacePageState extends ConsumerState<SuggestPlacePage> {
             ),
           ),
         );
-        Navigator.of(context).pop();
+        // Приватная точка сразу видна на карте — возвращаем её, чтобы карта
+        // перелетела к ней. Публичный draft до одобрения не виден — null.
+        Navigator.of(context).pop(_isPrivate ? created : null);
       }
     } catch (e) {
       if (mounted) {
@@ -105,7 +141,7 @@ class _SuggestPlacePageState extends ConsumerState<SuggestPlacePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Предложить место'),
+        title: const Text('Новое место'),
         backgroundColor: AppColors.surface,
         foregroundColor: AppColors.textPrimary,
         elevation: 0,
@@ -125,7 +161,12 @@ class _SuggestPlacePageState extends ConsumerState<SuggestPlacePage> {
               onTap: _pickCoords,
             ),
             const SizedBox(height: 12),
-            _field(_cityCtrl, 'Город'),
+            _CityField(
+              controller: _cityCtrl,
+              geocoding: _geocoding,
+              autoFilled: _cityAutoFilled,
+              onManualEdit: () => _cityAutoFilled = false,
+            ),
             const SizedBox(height: 16),
             _VisibilityPicker(
               isPrivate: _isPrivate,
@@ -179,6 +220,55 @@ class _SuggestPlacePageState extends ConsumerState<SuggestPlacePage> {
       validator: required
           ? (v) => (v == null || v.trim().isEmpty) ? 'Обязательное поле' : null
           : null,
+    );
+  }
+}
+
+class _CityField extends StatelessWidget {
+  const _CityField({
+    required this.controller,
+    required this.geocoding,
+    required this.autoFilled,
+    required this.onManualEdit,
+  });
+
+  final TextEditingController controller;
+  final bool geocoding;
+  final bool autoFilled;
+  final VoidCallback onManualEdit;
+
+  @override
+  Widget build(BuildContext context) {
+    return TextFormField(
+      controller: controller,
+      onChanged: (_) => onManualEdit(),
+      decoration: InputDecoration(
+        labelText: 'Город',
+        helperText: geocoding
+            ? 'Определяем по точке на карте…'
+            : autoFilled
+                ? 'Определён по точке на карте — можно изменить'
+                : 'Заполнится сам после выбора точки',
+        suffixIcon: geocoding
+            ? const Padding(
+                padding: EdgeInsets.all(14),
+                child: SizedBox(
+                  width: 16,
+                  height: 16,
+                  child: CircularProgressIndicator(
+                    strokeWidth: 2,
+                    color: AppColors.primary,
+                  ),
+                ),
+              )
+            : autoFilled
+                ? const Icon(Icons.auto_awesome,
+                    size: 18, color: AppColors.primary)
+                : null,
+        border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+        filled: true,
+        fillColor: AppColors.surface,
+      ),
     );
   }
 }

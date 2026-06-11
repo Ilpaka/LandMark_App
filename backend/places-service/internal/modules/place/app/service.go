@@ -59,33 +59,42 @@ func (s *Service) GetPlace(ctx context.Context, id uuid.UUID, userID *uuid.UUID,
 }
 
 func (s *Service) CreateDraft(ctx context.Context, userID uuid.UUID, title string, lat, lng float64) (*domain.Place, error) {
-	return s.CreatePlace(ctx, userID, title, lat, lng, domain.VisibilityPublic)
+	return s.CreatePlace(ctx, userID, domain.NewPlace{
+		Title:      title,
+		Latitude:   lat,
+		Longitude:  lng,
+		Visibility: domain.VisibilityPublic,
+	})
 }
 
 // CreatePlace создаёт место с явной видимостью.
 //   - public: status=draft, дальше нужно дернуть Submit → модерация → published.
 //   - private: status сразу = published, published_at = now(), показывается
 //     только автору (фильтрация в ListPlaces по ViewerID).
-func (s *Service) CreatePlace(ctx context.Context, userID uuid.UUID, title string, lat, lng float64, visibility domain.PlaceVisibility) (*domain.Place, error) {
-	if title == "" {
+func (s *Service) CreatePlace(ctx context.Context, userID uuid.UUID, in domain.NewPlace) (*domain.Place, error) {
+	if in.Title == "" {
 		return nil, domain.ErrBadRequest
 	}
-	if visibility != domain.VisibilityPublic && visibility != domain.VisibilityPrivate {
+	if in.Visibility != domain.VisibilityPublic && in.Visibility != domain.VisibilityPrivate {
 		return nil, domain.ErrBadRequest
 	}
 	now := time.Now()
 	p := domain.Place{
-		ID:         uuid.New(),
-		Title:      title,
-		Latitude:   lat,
-		Longitude:  lng,
-		AuthorID:   &userID,
-		Source:     "user",
-		Visibility: visibility,
-		CreatedAt:  now,
-		UpdatedAt:  now,
+		ID:          uuid.New(),
+		Title:       in.Title,
+		Description: in.Description,
+		Latitude:    in.Latitude,
+		Longitude:   in.Longitude,
+		Address:     in.Address,
+		City:        in.City,
+		Country:     in.Country,
+		AuthorID:    &userID,
+		Source:      "user",
+		Visibility:  in.Visibility,
+		CreatedAt:   now,
+		UpdatedAt:   now,
 	}
-	if visibility == domain.VisibilityPrivate {
+	if in.Visibility == domain.VisibilityPrivate {
 		p.Status = domain.StatusPublished
 		p.PublishedAt = &now
 	} else {
