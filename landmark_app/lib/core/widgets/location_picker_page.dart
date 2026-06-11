@@ -6,6 +6,7 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 
 import '../design/tokens.dart';
+import 'map_zoom_controls.dart';
 
 /// Полноэкранный выбор координаты на карте.
 ///
@@ -284,14 +285,7 @@ class _MapStack extends StatelessWidget {
         Positioned(
           right: 12,
           bottom: 12,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              _ZoomButton(icon: Icons.add, onTap: onZoomIn),
-              const SizedBox(height: 8),
-              _ZoomButton(icon: Icons.remove, onTap: onZoomOut),
-            ],
-          ),
+          child: MapZoomControls(onZoomIn: onZoomIn, onZoomOut: onZoomOut),
         ),
       ],
     );
@@ -432,27 +426,3 @@ class _CenterPin extends StatelessWidget {
   }
 }
 
-class _ZoomButton extends StatelessWidget {
-  const _ZoomButton({required this.icon, required this.onTap});
-
-  final IconData icon;
-  final VoidCallback onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return Material(
-      color: Colors.white,
-      elevation: 3,
-      shape: const CircleBorder(),
-      child: InkWell(
-        customBorder: const CircleBorder(),
-        onTap: onTap,
-        child: SizedBox(
-          width: 40,
-          height: 40,
-          child: Icon(icon, color: AppColors.primary, size: 22),
-        ),
-      ),
-    );
-  }
-}

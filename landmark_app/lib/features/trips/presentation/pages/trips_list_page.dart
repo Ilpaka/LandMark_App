@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/design/tokens.dart';
 import '../../../../core/design/typography.dart';
 import '../../../../core/design/components/wl_button.dart';
+import '../../../../core/widgets/error_state.dart';
 import '../../../../core/widgets/skeleton.dart';
 import '../../domain/entities/trip.dart';
 import '../providers/trips_provider.dart';
@@ -29,10 +30,16 @@ class TripsListPage extends ConsumerWidget {
       body: tripsAsync.when(
         data: (trips) => trips.isEmpty
             ? _EmptyTrips(onCreate: () => _showCreateDialog(context, ref))
-            : _PaginatedTripList(trips: trips),
+            : RefreshIndicator(
+                color: AppColors.primary,
+                onRefresh: () => ref.refresh(tripsListProvider.future),
+                child: _PaginatedTripList(trips: trips),
+              ),
         loading: () => const SkeletonListView(),
-        error: (e, _) => const Center(
-            child: Text('Ошибка загрузки', style: AppTypography.body)),
+        error: (e, _) => WlErrorState(
+          message: 'Не удалось загрузить поездки',
+          onRetry: () => ref.invalidate(tripsListProvider),
+        ),
       ),
     );
   }

@@ -5,6 +5,7 @@ import '../../../../core/design/tokens.dart';
 import '../../../../core/design/typography.dart';
 import '../../domain/entities/entry.dart';
 import '../providers/journal_provider.dart';
+import '../../../../core/widgets/error_state.dart';
 import '../../../../core/widgets/skeleton.dart';
 import 'create_entry_page.dart';
 import 'entry_detail_page.dart';
@@ -32,9 +33,16 @@ class JournalFeedPage extends ConsumerWidget {
       body: entriesAsync.when(
         data: (entries) => entries.isEmpty
             ? const _EmptyJournal()
-            : _PaginatedList(entries: entries),
+            : RefreshIndicator(
+                color: AppColors.primary,
+                onRefresh: () => ref.refresh(journalFeedProvider.future),
+                child: _PaginatedList(entries: entries),
+              ),
         loading: () => const SkeletonListView(),
-        error: (e, _) => Center(child: Text('Ошибка: $e')),
+        error: (e, _) => WlErrorState(
+          message: 'Не удалось загрузить журнал',
+          onRetry: () => ref.invalidate(journalFeedProvider),
+        ),
       ),
     );
   }

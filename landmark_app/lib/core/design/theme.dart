@@ -60,6 +60,45 @@ class AppTheme {
       textButtonTheme: TextButtonThemeData(
         style: TextButton.styleFrom(foregroundColor: AppColors.primary),
       ),
+      // Снэкбары: плавающие и скруглённые, чтобы не прилипали к нижней
+      // навигации и читались как часть единого стиля.
+      snackBarTheme: const SnackBarThemeData(
+        behavior: SnackBarBehavior.floating,
+        backgroundColor: AppColors.textPrimary,
+        contentTextStyle: TextStyle(fontSize: 14, color: Colors.white),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(AppRadius.md),
+        ),
+      ),
+      floatingActionButtonTheme: const FloatingActionButtonThemeData(
+        backgroundColor: AppColors.primary,
+        foregroundColor: Colors.white,
+      ),
+      navigationBarTheme: NavigationBarThemeData(
+        backgroundColor: AppColors.surface,
+        indicatorColor: AppColors.primary.withValues(alpha: 0.15),
+        height: 64,
+        labelTextStyle: const WidgetStatePropertyAll(
+          TextStyle(fontSize: 11, fontWeight: FontWeight.w500),
+        ),
+      ),
+      cardTheme: const CardThemeData(
+        color: AppColors.surface,
+        elevation: 1,
+        surfaceTintColor: Colors.transparent,
+        shadowColor: Colors.black12,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(AppRadius.md),
+        ),
+      ),
+      dividerTheme: const DividerThemeData(
+        color: AppColors.border,
+        thickness: 1,
+      ),
+      progressIndicatorTheme: const ProgressIndicatorThemeData(
+        color: AppColors.primary,
+      ),
+      tooltipTheme: const TooltipThemeData(waitDuration: Duration(seconds: 1)),
     );
   }
 }

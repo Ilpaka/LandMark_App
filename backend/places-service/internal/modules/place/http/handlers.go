@@ -81,6 +81,9 @@ func (h *Handlers) ListPlaces(c *gin.Context) {
 		writeErr(c, err)
 		return
 	}
+	if places == nil {
+		places = []domain.Place{}
+	}
 	c.JSON(http.StatusOK, gin.H{"places": places})
 }
 
@@ -100,10 +103,14 @@ func (h *Handlers) GetPlace(c *gin.Context) {
 }
 
 type createPlaceReq struct {
-	Title      string  `json:"title" binding:"required,min=1,max=120"`
-	Latitude   float64 `json:"latitude"`
-	Longitude  float64 `json:"longitude"`
-	Visibility string  `json:"visibility"` // "public" (default) или "private"
+	Title       string  `json:"title" binding:"required,min=1,max=120"`
+	Description string  `json:"description"`
+	Latitude    float64 `json:"latitude"`
+	Longitude   float64 `json:"longitude"`
+	Address     *string `json:"address"`
+	City        *string `json:"city"`
+	Country     *string `json:"country"`
+	Visibility  string  `json:"visibility"` // "public" (default) или "private"
 }
 
 func (h *Handlers) CreatePlace(c *gin.Context) {
@@ -127,7 +134,16 @@ func (h *Handlers) CreatePlace(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "validation_error"})
 		return
 	}
-	p, err := h.Svc.CreatePlace(c.Request.Context(), *userID, req.Title, req.Latitude, req.Longitude, visibility)
+	p, err := h.Svc.CreatePlace(c.Request.Context(), *userID, domain.NewPlace{
+		Title:       req.Title,
+		Description: req.Description,
+		Latitude:    req.Latitude,
+		Longitude:   req.Longitude,
+		Address:     req.Address,
+		City:        req.City,
+		Country:     req.Country,
+		Visibility:  visibility,
+	})
 	if err != nil {
 		writeErr(c, err)
 		return

@@ -231,6 +231,40 @@ func TestService_CreateDraft_Success(t *testing.T) {
 	}
 }
 
+// TestService_CreatePlace_PrivatePersistsDetails verifies that a private place
+// is published immediately and keeps description/city/country from the form.
+func TestService_CreatePlace_PrivatePersistsDetails(t *testing.T) {
+	svc := newServiceWithStore(newMockStore())
+	userID := uuid.New()
+	city := "Москва"
+	country := "Россия"
+
+	p, err := svc.CreatePlace(context.Background(), userID, domain.NewPlace{
+		Title:       "Секретное место",
+		Description: "только моё",
+		Latitude:    55.75,
+		Longitude:   37.61,
+		City:        &city,
+		Country:     &country,
+		Visibility:  domain.VisibilityPrivate,
+	})
+	if err != nil {
+		t.Fatalf("unexpected error: %v", err)
+	}
+	if p.Status != domain.StatusPublished || p.PublishedAt == nil {
+		t.Fatalf("private place must be published immediately, got %s", p.Status)
+	}
+	if p.Description != "только моё" {
+		t.Fatalf("description lost: %q", p.Description)
+	}
+	if p.City == nil || *p.City != city {
+		t.Fatalf("city lost: %v", p.City)
+	}
+	if p.Country == nil || *p.Country != country {
+		t.Fatalf("country lost: %v", p.Country)
+	}
+}
+
 // TestService_Submit_Forbidden verifies that a user cannot submit someone else's place.
 func TestService_Submit_Forbidden(t *testing.T) {
 	st := newMockStore()

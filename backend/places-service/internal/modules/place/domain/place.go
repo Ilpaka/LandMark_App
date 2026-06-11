@@ -55,6 +55,20 @@ type Place struct {
 	UpdatedAt    time.Time       `json:"updated_at"`
 }
 
+// NewPlace — входные данные создания места. Description/City/Address/Country
+// приходят из формы клиента вместе с координатами и должны сохраняться сразу:
+// приватное место публикуется мгновенно и стадии draft-редактирования у него нет.
+type NewPlace struct {
+	Title       string
+	Description string
+	Latitude    float64
+	Longitude   float64
+	Address     *string
+	City        *string
+	Country     *string
+	Visibility  PlaceVisibility
+}
+
 type BBox struct {
 	SouthLat float64
 	WestLng  float64

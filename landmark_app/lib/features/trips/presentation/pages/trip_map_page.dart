@@ -3,6 +3,7 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:latlong2/latlong.dart';
 import '../../../../core/design/tokens.dart';
+import '../../../../core/widgets/map_zoom_controls.dart';
 import '../../domain/entities/stop.dart';
 import '../../domain/entities/trip.dart';
 import '../providers/stops_provider.dart';
@@ -19,6 +20,11 @@ class TripMapPage extends ConsumerStatefulWidget {
 class _TripMapPageState extends ConsumerState<TripMapPage> {
   final _mapController = MapController();
   int? _selectedIdx;
+
+  void _zoomBy(double delta) {
+    final camera = _mapController.camera;
+    _mapController.move(camera.center, (camera.zoom + delta).clamp(2.0, 18.0));
+  }
 
   void _fitBounds(List<TripStop> stops) {
     if (stops.isEmpty) return;
@@ -82,6 +88,11 @@ class _TripMapPageState extends ConsumerState<TripMapPage> {
                       ? LatLng(stops.first.latitude, stops.first.longitude)
                       : const LatLng(55.75, 37.62),
                   initialZoom: 12,
+                  minZoom: 2,
+                  maxZoom: 18,
+                  interactionOptions: const InteractionOptions(
+                    flags: InteractiveFlag.all & ~InteractiveFlag.rotate,
+                  ),
                   onMapReady: () => WidgetsBinding.instance
                       .addPostFrameCallback((_) => _fitBounds(stops)),
                 ),
@@ -89,7 +100,8 @@ class _TripMapPageState extends ConsumerState<TripMapPage> {
                   TileLayer(
                     urlTemplate:
                         'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-                    userAgentPackageName: 'com.wanderlog.app',
+                    userAgentPackageName: 'com.landmark.app',
+                    maxZoom: 19,
                   ),
                   // Route polyline
                   if (route != null && route.isNotEmpty)
@@ -133,6 +145,14 @@ class _TripMapPageState extends ConsumerState<TripMapPage> {
                     ],
                   ),
                 ],
+              ),
+              Positioned(
+                right: 12,
+                bottom: _selectedIdx != null ? 130 : 24,
+                child: MapZoomControls(
+                  onZoomIn: () => _zoomBy(1),
+                  onZoomOut: () => _zoomBy(-1),
+                ),
               ),
               // Selected stop info card
               if (_selectedIdx != null && _selectedIdx! < stops.length)

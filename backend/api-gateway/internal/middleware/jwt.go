@@ -44,11 +44,18 @@ func (m *JWTMiddleware) Required() gin.HandlerFunc {
 
 func (m *JWTMiddleware) Optional() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		claims, err := m.extract(c)
-		if err == nil && claims != nil {
+		// Без Authorization — анонимный доступ разрешён. Но присланный токен
+		// обязан быть валидным: тихий даунгрейд до анонима на 200 прятал
+		// приватные места владельца после истечения access-токена, и клиент
+		// не получал сигнала сделать refresh. 401 этот сигнал даёт.
+		if h := c.GetHeader("Authorization"); strings.HasPrefix(h, "Bearer ") {
+			claims, err := m.extract(c)
+			if err != nil || claims == nil {
+				c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{"error": "unauthorized"})
+				return
+			}
 			m.inject(c, claims)
 		}
-		// Always continue regardless of auth state
 		c.Next()
 	}
 }

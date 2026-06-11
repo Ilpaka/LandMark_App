@@ -87,15 +87,20 @@ class _PlacesTab extends ConsumerWidget {
     return async.when(
       loading: () => const SkeletonListView(),
       error: (e, _) => _ErrorView(
-          message: '$e', onRetry: () => ref.invalidate(favoritePlacesProvider)),
+          message: 'Не удалось загрузить избранные места',
+          onRetry: () => ref.invalidate(favoritePlacesProvider)),
       data: (places) => places.isEmpty
           ? const _EmptyFavorites(label: 'Нет избранных мест')
-          : ListView.separated(
-              padding: const EdgeInsets.all(AppSpacing.md),
-              itemCount: places.length,
-              separatorBuilder: (_, __) =>
-                  const SizedBox(height: AppSpacing.sm),
-              itemBuilder: (_, i) => _PlaceCard(place: places[i]),
+          : RefreshIndicator(
+              color: AppColors.primary,
+              onRefresh: () => ref.refresh(favoritePlacesProvider.future),
+              child: ListView.separated(
+                padding: const EdgeInsets.all(AppSpacing.md),
+                itemCount: places.length,
+                separatorBuilder: (_, __) =>
+                    const SizedBox(height: AppSpacing.sm),
+                itemBuilder: (_, i) => _PlaceCard(place: places[i]),
+              ),
             ),
     );
   }
@@ -192,15 +197,20 @@ class _TripsTab extends ConsumerWidget {
     return async.when(
       loading: () => const SkeletonListView(),
       error: (e, _) => _ErrorView(
-          message: '$e', onRetry: () => ref.invalidate(favoriteTripsProvider)),
+          message: 'Не удалось загрузить избранные поездки',
+          onRetry: () => ref.invalidate(favoriteTripsProvider)),
       data: (trips) => trips.isEmpty
           ? const _EmptyFavorites(label: 'Нет избранных поездок')
-          : ListView.separated(
-              padding: const EdgeInsets.all(AppSpacing.md),
-              itemCount: trips.length,
-              separatorBuilder: (_, __) =>
-                  const SizedBox(height: AppSpacing.sm),
-              itemBuilder: (_, i) => _TripCard(trip: trips[i]),
+          : RefreshIndicator(
+              color: AppColors.primary,
+              onRefresh: () => ref.refresh(favoriteTripsProvider.future),
+              child: ListView.separated(
+                padding: const EdgeInsets.all(AppSpacing.md),
+                itemCount: trips.length,
+                separatorBuilder: (_, __) =>
+                    const SizedBox(height: AppSpacing.sm),
+                itemBuilder: (_, i) => _TripCard(trip: trips[i]),
+              ),
             ),
     );
   }
@@ -258,16 +268,20 @@ class _EntriesTab extends ConsumerWidget {
     return async.when(
       loading: () => const SkeletonListView(),
       error: (e, _) => _ErrorView(
-          message: '$e',
+          message: 'Не удалось загрузить избранные записи',
           onRetry: () => ref.invalidate(favoriteEntriesProvider)),
       data: (entries) => entries.isEmpty
           ? const _EmptyFavorites(label: 'Нет избранных записей')
-          : ListView.separated(
-              padding: const EdgeInsets.all(AppSpacing.md),
-              itemCount: entries.length,
-              separatorBuilder: (_, __) =>
-                  const SizedBox(height: AppSpacing.sm),
-              itemBuilder: (_, i) => _EntryCard(entry: entries[i]),
+          : RefreshIndicator(
+              color: AppColors.primary,
+              onRefresh: () => ref.refresh(favoriteEntriesProvider.future),
+              child: ListView.separated(
+                padding: const EdgeInsets.all(AppSpacing.md),
+                itemCount: entries.length,
+                separatorBuilder: (_, __) =>
+                    const SizedBox(height: AppSpacing.sm),
+                itemBuilder: (_, i) => _EntryCard(entry: entries[i]),
+              ),
             ),
     );
   }

@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:latlong2/latlong.dart';
 import '../../../../core/design/tokens.dart';
 import '../../../../core/design/typography.dart';
+import '../../../../core/widgets/map_zoom_controls.dart';
 import '../../../map/domain/entities/place.dart';
 import '../providers/favorites_provider.dart';
 
@@ -15,7 +16,13 @@ class FavoritesMapPage extends ConsumerStatefulWidget {
 }
 
 class _FavoritesMapPageState extends ConsumerState<FavoritesMapPage> {
+  final _mapController = MapController();
   Place? _selected;
+
+  void _zoomBy(double delta) {
+    final camera = _mapController.camera;
+    _mapController.move(camera.center, (camera.zoom + delta).clamp(2.0, 18.0));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,9 +55,15 @@ class _FavoritesMapPageState extends ConsumerState<FavoritesMapPage> {
           return Stack(
             children: [
               FlutterMap(
+                mapController: _mapController,
                 options: MapOptions(
                   initialCenter: center,
                   initialZoom: places.length == 1 ? 13 : 5,
+                  minZoom: 2,
+                  maxZoom: 18,
+                  interactionOptions: const InteractionOptions(
+                    flags: InteractiveFlag.all & ~InteractiveFlag.rotate,
+                  ),
                   onTap: (_, __) => setState(() => _selected = null),
                 ),
                 children: [
@@ -58,6 +71,7 @@ class _FavoritesMapPageState extends ConsumerState<FavoritesMapPage> {
                     urlTemplate:
                         'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
                     userAgentPackageName: 'com.landmark.app',
+                    maxZoom: 19,
                   ),
                   MarkerLayer(
                     markers: places
@@ -74,6 +88,14 @@ class _FavoritesMapPageState extends ConsumerState<FavoritesMapPage> {
                         .toList(),
                   ),
                 ],
+              ),
+              Positioned(
+                right: 12,
+                bottom: _selected != null ? 120 : 24,
+                child: MapZoomControls(
+                  onZoomIn: () => _zoomBy(1),
+                  onZoomOut: () => _zoomBy(-1),
+                ),
               ),
               if (_selected != null)
                 Positioned(
