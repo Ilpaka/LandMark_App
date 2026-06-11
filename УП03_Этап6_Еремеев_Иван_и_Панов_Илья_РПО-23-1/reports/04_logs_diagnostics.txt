@@ -1,0 +1,18 @@
+[GIN-debug] [WARNING] Running in "debug" mode. Switch to "release" mode in production.
+ - using env:	export GIN_MODE=release
+ - using code:	gin.SetMode(gin.ReleaseMode)
+
+[GIN-debug] GET    /healthz                  --> main.main.func1 (2 handlers)
+[GIN-debug] GET    /v1/profile/me            --> github.com/ilpaka/landmark_app/backend/profile-service/internal/modules/profile/http.(*Handler).GetMe-fm (2 handlers)
+[GIN-debug] PATCH  /v1/profile/me            --> github.com/ilpaka/landmark_app/backend/profile-service/internal/modules/profile/http.(*Handler).UpdateMe-fm (2 handlers)
+[GIN-debug] GET    /v1/profile/me/privacy    --> github.com/ilpaka/landmark_app/backend/profile-service/internal/modules/profile/http.(*Handler).GetPrivacy-fm (2 handlers)
+[GIN-debug] PATCH  /v1/profile/me/privacy    --> github.com/ilpaka/landmark_app/backend/profile-service/internal/modules/profile/http.(*Handler).UpdatePrivacy-fm (2 handlers)
+[GIN-debug] GET    /v1/profile/:user_id      --> github.com/ilpaka/landmark_app/backend/profile-service/internal/modules/profile/http.(*Handler).GetPublic-fm (2 handlers)
+[GIN-debug] GET    /v1/profile/:user_id/stats --> github.com/ilpaka/landmark_app/backend/profile-service/internal/modules/profile/http.(*Handler).GetFollowStats-fm (2 handlers)
+[GIN-debug] POST   /v1/profile/:user_id/follow --> github.com/ilpaka/landmark_app/backend/profile-service/internal/modules/profile/http.(*Handler).FollowUser-fm (2 handlers)
+[GIN-debug] DELETE /v1/profile/:user_id/follow --> github.com/ilpaka/landmark_app/backend/profile-service/internal/modules/profile/http.(*Handler).UnfollowUser-fm (2 handlers)
+[GIN-debug] GET    /v1/profile/:user_id/followers --> github.com/ilpaka/landmark_app/backend/profile-service/internal/modules/profile/http.(*Handler).ListFollowers-fm (2 handlers)
+[GIN-debug] GET    /v1/profile/:user_id/following --> github.com/ilpaka/landmark_app/backend/profile-service/internal/modules/profile/http.(*Handler).ListFollowing-fm (2 handlers)
+[GIN-debug] [WARNING] You trusted all proxies, this is NOT safe. We recommend you to set a value.
+Please check https://pkg.go.dev/github.com/gin-gonic/gin#readme-don-t-trust-all-proxies for details.
+[GIN-debug] Listening and serving HTTP on :18080

@@ -25,3 +25,7 @@ backups/
 logs/
 **/logs/
 *.log
+coverage.out
+# Релизные бинарники (make build)
+dist/
+release/

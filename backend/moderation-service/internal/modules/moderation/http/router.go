@@ -30,4 +30,13 @@ func Mount(r *gin.Engine, h *Handler) {
 
 	internal := r.Group("/v1/internal/moderation", internalKeyMiddleware())
 	internal.POST("/submit", h.InternalSubmit)
+
+	// Unified JSON error envelope for unmatched routes and methods (BUG-03)
+	r.HandleMethodNotAllowed = true
+	r.NoRoute(func(c *gin.Context) {
+		c.JSON(http.StatusNotFound, gin.H{"error": "not found"})
+	})
+	r.NoMethod(func(c *gin.Context) {
+		c.JSON(http.StatusMethodNotAllowed, gin.H{"error": "method not allowed"})
+	})
 }
